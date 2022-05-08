@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Fortify\Actions;
+namespace App\Actions\Fortify;
 
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Contracts\Auth\StatefulGuard;
@@ -51,17 +51,21 @@ class RedirectIfTwoFactorAuthenticatable
         $user = $this->validateCredentials($request);
 
         if (Fortify::confirmsTwoFactorAuthentication()) {
-            if (optional($user)->two_factor_secret &&
-                ! is_null(optional($user)->two_factor_confirmed_at) &&
-                in_array(TwoFactorAuthenticatable::class, class_uses_recursive($user))) {
+            if (
+                optional($user)->two_factor_secret &&
+                !is_null(optional($user)->two_factor_confirmed_at) &&
+                in_array(TwoFactorAuthenticatable::class, class_uses_recursive($user))
+            ) {
                 return $this->twoFactorChallengeResponse($request, $user);
             } else {
                 return $next($request);
             }
         }
 
-        if (optional($user)->two_factor_secret &&
-            in_array(TwoFactorAuthenticatable::class, class_uses_recursive($user))) {
+        if (
+            optional($user)->two_factor_secret &&
+            in_array(TwoFactorAuthenticatable::class, class_uses_recursive($user))
+        ) {
             return $this->twoFactorChallengeResponse($request, $user);
         }
 
@@ -78,7 +82,7 @@ class RedirectIfTwoFactorAuthenticatable
     {
         if (Fortify::$authenticateUsingCallback) {
             return tap(call_user_func(Fortify::$authenticateUsingCallback, $request), function ($user) use ($request) {
-                if (! $user) {
+                if (!$user) {
                     $this->fireFailedEvent($request);
 
                     $this->throwFailedAuthenticationException($request);
@@ -89,7 +93,7 @@ class RedirectIfTwoFactorAuthenticatable
         $model = $this->guard->getProvider()->getModel();
 
         return tap($model::where(Fortify::username(), $request->{Fortify::username()})->first(), function ($user) use ($request) {
-            if (! $user || ! $this->guard->getProvider()->validateCredentials($user, ['password' => $request->password])) {
+            if (!$user || !$this->guard->getProvider()->validateCredentials($user, ['password' => $request->password])) {
                 $this->fireFailedEvent($request, $user);
 
                 $this->throwFailedAuthenticationException($request);
@@ -146,7 +150,7 @@ class RedirectIfTwoFactorAuthenticatable
         TwoFactorAuthenticationChallenged::dispatch($user);
 
         return $request->wantsJson()
-                    ? response()->json(['two_factor' => true])
-                    : redirect()->route('two-factor.login');
+            ? response()->json(['two_factor' => true])
+            : redirect()->route('two-factor.login');
     }
 }

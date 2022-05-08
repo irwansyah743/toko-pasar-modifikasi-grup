@@ -31,7 +31,7 @@ Route::middleware([
 // Login Admin
 
 Route::middleware('admin:admin')->controller(AdminController::class)->group(function () {
-    Route::get('/admin/login', 'loginForm')->name('loginform');
+    Route::get('/admin/login', 'loginForm')->name('loginformAdmin');
     Route::post('/admin/login', 'store')->name('admin.login');
 });
 
@@ -42,7 +42,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('/admin/dashboard', function () {
         return view('dashboard');
-    })->name('admin.dashboard');
+    })->name('admin.dashboard')->middleware('auth:admin');
 });
 
 // Akhir login admin

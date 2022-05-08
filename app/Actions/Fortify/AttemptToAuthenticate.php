@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Fortify\Actions;
+namespace App\Actions\Fortify;
 
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Contracts\Auth\StatefulGuard;
@@ -52,8 +52,8 @@ class AttemptToAuthenticate
 
         if ($this->guard->attempt(
             $request->only(Fortify::username(), 'password'),
-            $request->boolean('remember'))
-        ) {
+            $request->boolean('remember')
+        )) {
             return $next($request);
         }
 
@@ -71,7 +71,7 @@ class AttemptToAuthenticate
     {
         $user = call_user_func(Fortify::$authenticateUsingCallback, $request);
 
-        if (! $user) {
+        if (!$user) {
             $this->fireFailedEvent($request);
 
             return $this->throwFailedAuthenticationException($request);

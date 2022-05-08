@@ -13,9 +13,9 @@ use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Contracts\Auth\StatefulGuard;
-use App\Actions\Fortify\Actions\AttemptToAuthenticate;
+use App\Actions\Fortify\AttemptToAuthenticate;
 use App\Actions\Fortify\UpdateUserProfileInformation;
-use App\Actions\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
+use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
 
 class FortifyServiceProvider extends ServiceProvider
 {
