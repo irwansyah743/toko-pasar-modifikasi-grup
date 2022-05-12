@@ -2,21 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Contracts\Auth\StatefulGuard;
+use App\Models\Admin;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Features;
 use Illuminate\Routing\Pipeline;
+use Illuminate\Routing\Controller;
+use App\Http\Responses\LoginResponse;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\Auth\StatefulGuard;
+use Laravel\Fortify\Contracts\LogoutResponse;
 use App\Actions\Fortify\AttemptToAuthenticate;
+use App\Http\Responses\LogoutResponseRedirect;
+use Laravel\Fortify\Http\Requests\LoginRequest;
+
+use Laravel\Fortify\Contracts\LoginViewResponse;
 use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
-use Laravel\Fortify\Contracts\LoginViewResponse;
-use Laravel\Fortify\Contracts\LogoutResponse;
-use Laravel\Fortify\Features;
-use Laravel\Fortify\Fortify;
-use Laravel\Fortify\Http\Requests\LoginRequest;
-
-use App\Http\Responses\LoginResponse;
 
 class AdminController extends Controller
 {
@@ -41,7 +45,59 @@ class AdminController extends Controller
     public function loginForm()
     {
         $data['guard'] = 'admin';
-        return view('auth.login', $data);
+        return view('auth.admin-login', $data);
+    }
+
+    public function dashboard()
+    {
+        $data['admin'] = Admin::find(1);
+        return view('admin.dashboard', $data);
+    }
+
+    public function profile()
+    {
+        $data['admin'] = Admin::find(1);
+        return view('admin.profile', $data);
+    }
+
+    public function profileEdit()
+    {
+        $data['admin'] = Admin::find(1);
+        return view('admin.profile-edit', $data);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\UpdateBrandRequest  $request
+     * @param  \App\Models\Admin  $brand
+     * @return \Illuminate\Http\Response
+     */
+    public function profileUpdate(Request $request, Admin $admin)
+    {
+        $validated = $request->validate([
+            'name' => 'required|max:20',
+            'email' => 'required|email|max:20',
+            'profile_photo_path' => 'image|file|max:2024',
+        ]);
+        // $admin_image = $request->file('brand_image');
+        if ($request->file('profile_photo_path')) {
+            if ($request->old_image) {
+                Storage::delete($request->old_image);
+            }
+            // $img_gen = hexdec(uniqid()) . '.' . strtolower($admin_image->getClientOriginalExtension());
+            // Image::make($admin_image)->resize(300, 200)->save('storage/brand-images/' . $img_gen);
+            // $validated['brand_image'] = 'brand-images/' . $img_gen;
+            $validated['profile_photo_path'] = $request->file('profile_photo_path')->store('admin-images');
+        }
+
+        $validated['name'] = $request->name;
+        $validated['email'] = $request->email;
+        $validated['updated_at'] = Carbon::now();
+
+        Admin::where('id', $admin->id)->update($validated);
+
+        return to_route('admin.profile')->with('status', "Admin profile has been updated");
     }
 
     /**
@@ -110,6 +166,6 @@ class AdminController extends Controller
 
         $request->session()->regenerateToken();
 
-        return app(LogoutResponse::class);
+        return app(LogoutResponseRedirect::class);
     }
 }

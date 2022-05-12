@@ -21,9 +21,21 @@
 </head>
 
 <body class="hold-transition dark-skin sidebar-mini theme-primary fixed">
+    <div class="wrapper">
+        @include('admin.components.header')
 
-    @yield('content')
-
+        <!-- Left side column. contains the logo and sidebar -->
+        @include('admin.components.sidebar')
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            @yield('content')
+        </div>
+        <!-- /.content-wrapper -->
+        @include('admin.components.footer')
+    </div>
+    <!-- ./wrapper -->
+    {{-- Custom JS --}}
+    <script src="{{ asset('js/upload_preview.js') }}"></script>
 
     <!-- Vendor JS -->
     <script src="{{ asset('admin-theme/js/vendors.min.js') }}"></script>
@@ -35,6 +47,7 @@
     <!-- Sunny Admin App -->
     <script src="{{ asset('admin-theme/js/template.js') }}"></script>
     <script src="{{ asset('admin-theme/js/pages/dashboard.js') }}"></script>
+
 
 
 </body>
