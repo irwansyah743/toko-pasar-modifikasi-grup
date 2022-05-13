@@ -65,6 +65,8 @@
                                         <div class="text-xs-right">
                                             <button type="submit" class="btn btn-rounded btn-primary mb-5">Update</button>
                                         </div>
+                                    </div>
+                                </div>
                             </form>
 
                         </div>

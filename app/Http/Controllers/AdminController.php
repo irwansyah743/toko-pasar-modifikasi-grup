@@ -3,20 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
-use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Features;
+use Illuminate\Support\Carbon;
 use Illuminate\Routing\Pipeline;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Responses\LoginResponse;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Laravel\Fortify\Contracts\LogoutResponse;
 use App\Actions\Fortify\AttemptToAuthenticate;
+
 use App\Http\Responses\LogoutResponseRedirect;
 use Laravel\Fortify\Http\Requests\LoginRequest;
-
 use Laravel\Fortify\Contracts\LoginViewResponse;
 use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
@@ -50,19 +52,19 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        $data['admin'] = Admin::find(1);
+        $data['admin'] = Admin::find(Auth::user()->id);;
         return view('admin.dashboard', $data);
     }
 
-    public function profile()
+    public function profile(Admin $admin)
     {
-        $data['admin'] = Admin::find(1);
+        $data['admin'] = $admin;
         return view('admin.profile', $data);
     }
 
-    public function profileEdit()
+    public function profileEdit(Admin $admin)
     {
-        $data['admin'] = Admin::find(1);
+        $data['admin'] = $admin;
         return view('admin.profile-edit', $data);
     }
 
@@ -80,14 +82,12 @@ class AdminController extends Controller
             'email' => 'required|email|max:20',
             'profile_photo_path' => 'image|file|max:2024',
         ]);
-        // $admin_image = $request->file('brand_image');
+
         if ($request->file('profile_photo_path')) {
             if ($request->old_image) {
                 Storage::delete($request->old_image);
             }
-            // $img_gen = hexdec(uniqid()) . '.' . strtolower($admin_image->getClientOriginalExtension());
-            // Image::make($admin_image)->resize(300, 200)->save('storage/brand-images/' . $img_gen);
-            // $validated['brand_image'] = 'brand-images/' . $img_gen;
+
             $validated['profile_photo_path'] = $request->file('profile_photo_path')->store('admin-images');
         }
 
@@ -97,7 +97,44 @@ class AdminController extends Controller
 
         Admin::where('id', $admin->id)->update($validated);
 
-        return to_route('admin.profile')->with('status', "Admin profile has been updated");
+        $notification = array(
+            'message' => 'Your profile has been updated',
+            'alert-type' => 'success'
+        );
+
+        return redirect('/admin/profile/' . $admin->id)->with($notification);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\UpdateBrandRequest  $request
+     * @param  \App\Models\Admin  $brand
+     * @return \Illuminate\Http\Response
+     */
+    public function changePassword(Request $request, Admin $admin)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|confirmed',
+        ]);
+
+        if (Hash::check($request->current_password, $admin->password)) {
+            $admin->password = Hash::make($request->password);
+            $admin->save();
+            Auth::logout();
+            $notification = array(
+                'message' => 'Your password has been changed',
+                'alert-type' => 'success'
+            );
+            return to_route('admin.login')->with($notification);
+        } else {
+            $notification = array(
+                'message' => 'Your current password is wrong',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
     }
 
     /**

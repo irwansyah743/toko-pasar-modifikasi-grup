@@ -13,6 +13,7 @@
 
     <!-- Vendors Style-->
     <link rel="stylesheet" href="{{ asset('admin-theme/css/vendors_css.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet" />
 
     <!-- Style-->
     <link rel="stylesheet" href="{{ asset('admin-theme/css/style.css') }}">
@@ -43,12 +44,33 @@
     <script src="{{ asset('assets/vendor_components/easypiechart/dist/jquery.easypiechart.js') }}"></script>
     <script src="{{ asset('assets/vendor_components/apexcharts-bundle/irregular-data-series.js') }}"></script>
     <script src="{{ asset('assets/vendor_components/apexcharts-bundle/dist/apexcharts.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
     <!-- Sunny Admin App -->
     <script src="{{ asset('admin-theme/js/template.js') }}"></script>
     <script src="{{ asset('admin-theme/js/pages/dashboard.js') }}"></script>
 
 
+    @if (Session::has('message'))
+        <script>
+            let type = "{{ Session::get('alert-type') }}";
+            switch (type) {
+                case 'info':
+                    toastr.info("{{ Session::get('message') }}");
+                    break;
+                case 'success':
+                    toastr.success("{{ Session::get('message') }}");
+                    break;
+                case 'warning':
+                    toastr.warning("{{ Session::get('message') }}");
+                    break;
+                case 'error':
+                    toastr.error("{{ Session::get('message') }}");
+                    break;
+            }
+        </script>
+    @endif
 
 </body>
 
