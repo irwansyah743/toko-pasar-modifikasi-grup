@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,15 +36,6 @@ Route::middleware('admin:admin')->controller(AdminController::class)->group(func
     Route::post('/admin/login', 'store')->name('admin.login');
 });
 
-// Route::middleware([
-//     'auth:sanctum,admin',
-//     config('jetstream.auth_session'),
-//     'verified'
-// ])->group(function () {
-//     Route::get('/admin/dashboard', function () {
-//         return view('admin.dashboard');
-//     })->name('admin.dashboard')->middleware('auth:admin');
-// });
 
 Route::middleware([
     'auth.admin:admin',
@@ -59,3 +51,9 @@ Route::middleware([
 
 Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 // Akhir login admin
+
+// MAIN CONTENT
+Route::controller(IndexController::class)->group(function () {
+    Route::get('/', 'index');
+});
+// Akhir MAIN CONTENT
