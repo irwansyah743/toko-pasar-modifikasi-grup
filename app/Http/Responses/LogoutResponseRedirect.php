@@ -16,8 +16,12 @@ class LogoutResponseRedirect implements LogoutResponseContract
      */
     public function toResponse($request)
     {
+        $notification = array(
+            'message' => 'You have successfully logged out',
+            'alert-type' => 'success'
+        );
         return $request->wantsJson()
             ? new JsonResponse('', 204)
-            : redirect(Fortify::redirects('logout', '/admin/login'));
+            : redirect(Fortify::redirects('logout', '/admin/login'))->with($notification);
     }
 }

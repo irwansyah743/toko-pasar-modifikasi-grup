@@ -10,7 +10,7 @@
                         <li><a href="#"><i class="icon fa fa-heart"></i>Wishlist</a></li>
                         <li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
                         <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
-                        <li><a href="#"><i class="icon fa fa-lock"></i>Login</a></li>
+                        <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login</a></li>
                     </ul>
                 </div>
                 <!-- /.cnt-account -->
@@ -349,7 +349,7 @@
                                                             <li><a href="blog.html">Blog</a></li>
                                                             <li><a href="blog-details.html">Blog Detail</a></li>
                                                             <li><a href="contact.html">Contact</a></li>
-                                                            <li><a href="sign-in.html">Sign In</a></li>
+                                                            <li><a href="{{ route('login') }}">Sign In</a></li>
                                                             <li><a href="my-wishlist.html">Wishlist</a></li>
                                                             <li><a href="terms-conditions.html">Terms and Condition</a>
                                                             </li>

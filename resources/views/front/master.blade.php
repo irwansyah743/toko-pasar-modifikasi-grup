@@ -12,7 +12,8 @@
     <title>Flipmart premium HTML5 & CSS3 Template</title>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="{{ asset('front-theme/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('front-theme/assets/css/bootstrap.css') }}">
+
 
     <!-- Customizable CSS -->
     <link rel="stylesheet" href="{{ asset('front-theme/assets/css/main.css') }}">
@@ -22,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('front-theme/assets/css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('front-theme/assets/css/rateit.css') }}">
     <link rel="stylesheet" href="{{ asset('front-theme/assets/css/bootstrap-select.min.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet" />
 
     <!-- Icons/Glyphs -->
     <link rel="stylesheet" href="{{ asset('front-theme/assets/css/font-awesome.css') }}">
@@ -62,6 +64,26 @@
     <script src="{{ asset('front-theme/assets/js/bootstrap-select.min.js') }}"></script>
     <script src="{{ asset('front-theme/assets/js/wow.min.js') }}"></script>
     <script src="{{ asset('front-theme/assets/js/scripts.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @if (Session::has('message'))
+        <script>
+            let type = "{{ Session::get('alert-type') }}";
+            switch (type) {
+                case 'info':
+                    toastr.info("{{ Session::get('message') }}");
+                    break;
+                case 'success':
+                    toastr.success("{{ Session::get('message') }}");
+                    break;
+                case 'warning':
+                    toastr.warning("{{ Session::get('message') }}");
+                    break;
+                case 'error':
+                    toastr.error("{{ Session::get('message') }}");
+                    break;
+            }
+        </script>
+    @endif
 </body>
 
 </html>

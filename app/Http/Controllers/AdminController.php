@@ -154,8 +154,25 @@ class AdminController extends Controller
      * @param  \Laravel\Fortify\Http\Requests\LoginRequest  $request
      * @return mixed
      */
+    public function login(LoginRequest $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:App\Models\Admin,email',
+            'password' => 'required',
+        ]);
+    }
+
+
+
+    /**
+     * Attempt to authenticate a new session.
+     *
+     * @param  \Laravel\Fortify\Http\Requests\LoginRequest  $request
+     * @return mixed
+     */
     public function store(LoginRequest $request)
     {
+        $this->login($request);
         return $this->loginPipeline($request)->then(function ($request) {
             return app(LoginResponse::class);
         });

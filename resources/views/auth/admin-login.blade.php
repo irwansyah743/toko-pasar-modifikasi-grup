@@ -43,9 +43,15 @@
                                             <span class="input-group-text bg-transparent text-white"><i
                                                     class="ti-user"></i></span>
                                         </div>
-                                        <input id="email" class="form-control pl-15 bg-transparent text-white plc-white"
+                                        <input id="email"
+                                            class="form-control pl-15 bg-transparent text-white plc-white  @error('email') is-invalid @enderror"
                                             type="email" name="email" :value="old('email')" required autofocus
                                             placeholder="Email">
+                                        @error('email')
+                                            <div class="invalid-feedback alert alert-danger">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -55,9 +61,14 @@
                                                     class="ti-lock"></i></span>
                                         </div>
                                         <input type="password" id="password"
-                                            class="form-control pl-15 bg-transparent text-white plc-white"
+                                            class="form-control pl-15 bg-transparent text-white plc-white  @error('password') is-invalid @enderror"
                                             type="password" name="password" required autocomplete="current-password"
                                             placeholder="Password">
+                                        @error('password')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row">
