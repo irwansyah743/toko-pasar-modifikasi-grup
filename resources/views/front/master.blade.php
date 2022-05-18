@@ -50,6 +50,8 @@
     <!-- For demo purposes – can be removed on production -->
 
     <!-- For demo purposes – can be removed on production : End -->
+    {{-- Custom JS --}}
+    <script src="{{ asset('js/upload_preview.js') }}"></script>
 
     <!-- JavaScripts placed at the end of the document so the pages load faster -->
     <script src="{{ asset('front-theme/assets/js/jquery-1.11.1.min.js') }}"></script>

@@ -25,9 +25,15 @@
                                                 <div class="form-group">
                                                     <h5>Username <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <input type="text" name="name" class="form-control" required
+                                                        <input type="text" name="name"
+                                                            class="form-control @error('name') is-invalid @enderror"
                                                             data-validation-required-message="This field is required"
                                                             value="{{ old('name', $admin->name) }}">
+                                                        @error('name')
+                                                            <div class="invalid-feedback text-danger">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                             </div>
@@ -35,9 +41,15 @@
                                                 <div class="form-group">
                                                     <h5>Email <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <input type="email" name="email" class="form-control" required
+                                                        <input type="email" name="email"
+                                                            class="form-control @error('email') is-invalid @enderror"
                                                             data-validation-required-message="This field is required"
                                                             value="{{ old('email', $admin->email) }}">
+                                                        @error('email')
+                                                            <div class="invalid-feedback text-danger">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                             </div>
@@ -49,14 +61,20 @@
                                                     <div class="controls">
                                                         <input type="hidden" value="{{ $admin->profile_photo_path }}"
                                                             name="old_image">
-                                                        <input type="file" name="profile_photo_path" class="form-control"
-                                                            onchange="previewImage()" id="input_image" required>
+                                                        <input type="file" name="profile_photo_path"
+                                                            class="form-control @error('profile_photo_path') is-invalid @enderror"
+                                                            onchange="previewImage()" id="input_image">
+                                                        @error('profile_photo_path')
+                                                            <div class="invalid-feedback text-danger">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <img class="rounded-circle"
-                                                    src="{{ !empty($admin->profile_photo_path) ? url('storage/' . $admin->profile_photo_path) : url('storage/admin-images/no_image.jpg') }}"
+                                                    src="{{ !empty($admin->profile_photo_path) ? url('storage/' . $admin->profile_photo_path) : url('storage/no_image.jpg') }}"
                                                     alt="User Avatar" style="width: 100px; height:100px;" id="img-preview">
                                             </div>
                                         </div>

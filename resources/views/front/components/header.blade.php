@@ -10,7 +10,14 @@
                         <li><a href="#"><i class="icon fa fa-heart"></i>Wishlist</a></li>
                         <li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
                         <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
-                        <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login</a></li>
+                        <li>
+                            @auth
+                                <a href="{{ url('/user/profile/' . $user->id) }}"><i class="icon fa fa-user"></i>User
+                                    Profile</a>
+                            @else
+                                <a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login/Register</a>
+                            @endauth
+                        </li>
                     </ul>
                 </div>
                 <!-- /.cnt-account -->
@@ -52,7 +59,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
                     <!-- ============================================================= LOGO ============================================================= -->
-                    <div class="logo"> <a href="home.html"> <img
+                    <div class="logo"> <a href="{{ url('/') }}"> <img
                                 src="{{ asset('front-theme/assets/images/logo.png') }}" alt="logo"> </a>
                     </div>
                     <!-- /.logo -->
@@ -167,8 +174,8 @@
                     <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
                         <div class="nav-outer">
                             <ul class="nav navbar-nav">
-                                <li class="active dropdown yamm-fw"> <a href="home.html" data-hover="dropdown"
-                                        class="dropdown-toggle" data-toggle="dropdown">Home</a> </li>
+                                <li class="active dropdown yamm-fw"> <a href="{{ url('/') }}"
+                                        class="dropdown-toggle">Home</a> </li>
                                 <li class="dropdown yamm mega-menu"> <a href="home.html" data-hover="dropdown"
                                         class="dropdown-toggle" data-toggle="dropdown">Clothing</a>
                                     <ul class="dropdown-menu container">

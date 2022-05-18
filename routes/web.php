@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,10 +24,10 @@ Route::middleware([
     'auth:sanctum,web',
     config('jetstream.auth_session'),
     'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+])->controller(UserController::class)->group(function () {
+    Route::get('/dashboard', 'index')->name('dashboard');
+    Route::get('/user/profile/{user}', 'profile');
+    Route::put('/user/profile/{user}', 'store');
 });
 
 // Login Admin
