@@ -12,12 +12,7 @@
     </div><!-- /.breadcrumb -->
 
     <div class="body-content">
-        @if (session('status'))
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                {{ session('status') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+
         <div class="container">
             <div class="sign-in-page">
                 <div class="row">
@@ -36,9 +31,8 @@
                             <div class="form-group">
                                 <label class="info-title" for="email_login">Email Address <span>*</span></label>
                                 <input type="email" name="email" value="{{ old('email') }}"
-                                    class="form-control unicase-form-control text-input @if (isset($_POST['submit_login'])) @error('email') is-invalid @enderror @endif"
+                                    class="form-control unicase-form-control text-input  @error('email') is-invalid @enderror"
                                     id="email_login">
-
                                 @error('email')
                                     <div class="invalid-feedback text-danger">
                                         {{ $message }}
@@ -49,9 +43,8 @@
                             <div class="form-group">
                                 <label class="info-title" for="password_login">Password <span>*</span></label>
                                 <input type="password" name="password"
-                                    class="form-control unicase-form-control text-input   @if (isset($_POST['submit_login'])) @error('password') is-invalid @enderror @endif"
+                                    class="form-control unicase-form-control text-input    @error('password') is-invalid @enderror"
                                     id="password_login">
-
                                 @error('password')
                                     <div class="invalid-feedback text-danger">
                                         {{ $message }}
@@ -85,8 +78,7 @@
                                 <label class="info-title" for="name">Name <span>*</span></label>
                                 <input type="text"
                                     class="form-control unicase-form-control text-input @error('name') is-invalid @enderror"
-                                    id="name" type="text" name="name" value="{{ old('name') }}" required autofocus
-                                    autocomplete="name">
+                                    id="name" type="text" name="name" value="{{ old('name') }}" autocomplete="name">
                                 @error('name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -94,33 +86,45 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label class="info-title" for="email">Email <span>*</span></label>
+                                <label class="info-title" for="emailRegister">Email <span>*</span></label>
                                 <input type="email"
-                                    class="form-control unicase-form-control text-input @error('email') is-invalid @enderror"
-                                    id="email" name="email" value="{{ old('email') }}" required>
-                                @error('email')
+                                    class="form-control unicase-form-control text-input  @error('emailRegister') is-invalid @enderror"
+                                    id="emailRegister" name="emailRegister" value="{{ old('emailRegister') }}">
+                                @error('emailRegister')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label class="info-title" for="password">Password <span>*</span></label>
+                                <label class="info-title" for="phone">Phone number <span>*</span></label>
+                                <input type="text"
+                                    class="form-control unicase-form-control text-input @error('phone') is-invalid @enderror"
+                                    id="phone" name="phone" value="{{ old('phone') }}">
+                                @error('phone')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label class="info-title" for="passwordRegister">Password <span>*</span></label>
                                 <input type="password"
-                                    class="form-control unicase-form-control text-input @error('password') is-invalid @enderror"
-                                    id="password" type="password" name="password" required autocomplete="new-password">
-                                @error('password')
+                                    class="form-control unicase-form-control text-input @error('passwordRegister') is-invalid @enderror"
+                                    id="passwordRegister" type="passwordRegister" name="passwordRegister"
+                                    autocomplete="new-password">
+                                @error('passwordRegister')
                                     <div class="invalid-feedback text-danger">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label class="info-title" for="password_confirmation">Confirm Password
+                                <label class="info-title" for="passwordRegister_confirmation">Confirm Password
                                     <span>*</span></label>
                                 <input type="password" class="form-control unicase-form-control text-input"
-                                    id="password_confirmation" type="password" name="password_confirmation" required
-                                    autocomplete="new-password">
+                                    id="passwordRegister_confirmation" type="passwordRegister"
+                                    name="passwordRegister_confirmation" autocomplete="new-password">
                             </div>
                             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                                 <div class="mt-4">
@@ -138,7 +142,8 @@
                                     </x-jet-label>
                                 </div>
                             @endif
-                            <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
+                            <input type="submit" class="btn-upper btn btn-primary checkout-page-button"
+                                name="submit_register" value="Sign up">
                         </form>
 
 

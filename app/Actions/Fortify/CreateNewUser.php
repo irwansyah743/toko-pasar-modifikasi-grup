@@ -22,15 +22,20 @@ class CreateNewUser implements CreatesNewUsers
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => $this->passwordRules(),
+            'emailRegister' => ['required', 'string', 'email', 'max:255', 'unique:App\Models\User,email'],
+            'phone' => ['required', 'numeric'],
+            'passwordRegister' => ['required', 'confirmed', $this->passwordRules()],
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+        ], [
+            'emailRegister.unique' => 'This email has already been taken.',
+            'passwordRegister.confirmed' => 'The password confirmation does not match.',
         ])->validate();
 
         return User::create([
             'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
+            'email' => $input['emailRegister'],
+            'phone' => $input['phone'],
+            'password' => Hash::make($input['passwordRegister']),
         ]);
     }
 }
