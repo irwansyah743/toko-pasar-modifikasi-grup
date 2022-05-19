@@ -102,7 +102,7 @@ class AdminController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect('/admin/profile/' . $admin->id)->with($notification);
+        return redirect('/admin/profile')->with($notification);
     }
 
     /**

@@ -28,6 +28,8 @@ Route::middleware([
     Route::get('/dashboard', 'index')->name('dashboard');
     Route::get('/user/profile', 'profile')->name('profile');
     Route::put('/user/profile/{user}', 'store');
+    Route::get('/user/profile/change-password', 'editPassword')->name('user.password');
+    Route::put('/user/profile/change-password/{user}', 'changePassword');
 });
 
 // Login Admin

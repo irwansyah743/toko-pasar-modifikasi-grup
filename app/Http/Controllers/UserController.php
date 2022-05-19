@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -76,7 +77,45 @@ class UserController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect('/user/profile/' . $user->id)->with($notification);
+        return redirect('/user/profile')->with($notification);
+    }
+
+    public function editPassword()
+    {
+        $data['user'] = User::find(Auth::user()->id);;
+        return view('front.profile.change_password', $data);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\UpdateBrandRequest  $request
+     * @param  \App\Models\User  $brand
+     * @return \Illuminate\Http\Response
+     */
+    public function changePassword(Request $request, User $user)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|confirmed',
+        ]);
+
+        if (Hash::check($request->current_password, $user->password)) {
+            $user->password = Hash::make($request->password);
+            $user->save();
+            Auth::guard('web')->logout();
+            $notification = array(
+                'message' => 'Your password has been changed',
+                'alert-type' => 'success'
+            );
+            return to_route('login')->with($notification);
+        } else {
+            $notification = array(
+                'message' => 'Your current password is wrong',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
     }
 
     /**
