@@ -56,15 +56,15 @@ class AdminController extends Controller
         return view('admin.dashboard', $data);
     }
 
-    public function profile(Admin $admin)
+    public function profile()
     {
-        $data['admin'] = $admin;
+        $data['admin'] = Admin::find(Auth::user()->id);;
         return view('admin.profile', $data);
     }
 
-    public function profileEdit(Admin $admin)
+    public function profileEdit()
     {
-        $data['admin'] = $admin;
+        $data['admin'] = Admin::find(Auth::user()->id);;
         return view('admin.profile-edit', $data);
     }
 

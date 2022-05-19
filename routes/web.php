@@ -26,7 +26,7 @@ Route::middleware([
     'verified'
 ])->controller(UserController::class)->group(function () {
     Route::get('/dashboard', 'index')->name('dashboard');
-    Route::get('/user/profile/{user}', 'profile');
+    Route::get('/user/profile', 'profile')->name('profile');
     Route::put('/user/profile/{user}', 'store');
 });
 
@@ -44,8 +44,8 @@ Route::middleware([
     'verified'
 ])->controller(AdminController::class)->group(function () {
     Route::get('/admin/dashboard', 'dashboard')->name('admin.dashboard');
-    Route::get('/admin/profile/{admin}', 'profile');
-    Route::get('/admin/profile/edit/{admin}', 'profileEdit')->name('admin.profile.edit');
+    Route::get('/admin/profile', 'profile')->name('admin.profile');
+    Route::get('/admin/profile/edit', 'profileEdit')->name('admin.profile.edit');
     Route::put('/admin/profile/{admin}', 'profileUpdate');
     Route::post('/admin/profile/{admin}', 'changePassword');
 });

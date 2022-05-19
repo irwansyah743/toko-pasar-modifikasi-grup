@@ -17,13 +17,14 @@ class UserController extends Controller
      */
     public function index()
     {
+
         $data['user'] = User::find(Auth::user()->id);;
         return view('dashboard', $data);
     }
 
-    public function profile(User $user)
+    public function profile()
     {
-        $data['user'] = $user;
+        $data['user'] = User::find(Auth::user()->id);;
         return view('front.profile.profile', $data);
     }
 

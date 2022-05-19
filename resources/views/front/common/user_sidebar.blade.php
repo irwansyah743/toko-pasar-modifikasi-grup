@@ -6,7 +6,7 @@
     <ul class="list-group list-group-flush">
         <a href="{{ route('dashboard') }}" class="btn btn-primary btn-sm btn-block">Home</a>
 
-        <a href="{{ url('/user/profile/' . $user->id) }}" class="btn btn-primary btn-sm btn-block">Profile Update</a>
+        <a href="{{ route('profile') }}" class="btn btn-primary btn-sm btn-block">Profile Update</a>
 
         <a href="" class="btn btn-primary btn-sm btn-block">Change Password </a>
 
