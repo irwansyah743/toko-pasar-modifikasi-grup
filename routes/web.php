@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// USER AUTH
 Route::middleware([
     'auth:sanctum,web',
     config('jetstream.auth_session'),
@@ -31,8 +33,9 @@ Route::middleware([
     Route::get('/user/profile/change-password', 'editPassword')->name('user.password');
     Route::put('/user/profile/change-password/{user}', 'changePassword');
 });
+// END USER AUTH
 
-// Login Admin
+// ADMIN AUTH
 
 Route::middleware('admin:admin')->controller(AdminController::class)->group(function () {
     Route::get('/admin/login', 'loginForm')->name('loginformAdmin');
@@ -53,10 +56,24 @@ Route::middleware([
 });
 
 Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
-// Akhir login admin
+// END ADMIN AUTH
+
+// ADMIN BRAND
+Route::middleware([
+    'auth.admin:admin',
+    config('jetstream.auth_session'),
+    'verified'
+])->controller(BrandController::class)->prefix('brand')->group(function () {
+    Route::get('/', 'index')->name('all.brand');
+    Route::post('/', 'store')->name('brand.store');
+    Route::get('/{brand}', 'edit');
+    Route::put('/{brand}', 'update');
+    Route::post('/{brand}', 'destroy')->name('brand.delete');
+});
+// END ADMIN BRAND
 
 // MAIN CONTENT
 Route::controller(IndexController::class)->group(function () {
     Route::get('/', 'index');
 });
-// Akhir MAIN CONTENT
+// END MAIN CONTENT
