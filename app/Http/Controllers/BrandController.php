@@ -44,7 +44,7 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'brand_name' => 'required|unique:brands|max:255|unique:brands,brand_name',
+            'brand_name' => 'required|max:255|unique:brands,brand_name',
             'brand_image' => 'required|image|file|max:2024',
         ], [
             'brand_name.required' => 'Please input the brand name',

@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -71,6 +73,32 @@ Route::middleware([
     Route::post('/{brand}', 'destroy')->name('brand.delete');
 });
 // END ADMIN BRAND
+
+// ADMIN CATEGORY
+Route::middleware([
+    'auth.admin:admin',
+    config('jetstream.auth_session'),
+    'verified'
+])->controller(CategoryController::class)->prefix('category')->group(function () {
+    Route::get('/', 'index')->name('all.category');
+    Route::post('/', 'store')->name('category.store');
+    Route::get('/{category}', 'edit');
+    Route::put('/{category}', 'update');
+    Route::post('/{category}', 'destroy')->name('category.delete');
+});
+
+Route::middleware([
+    'auth.admin:admin',
+    config('jetstream.auth_session'),
+    'verified'
+])->controller(SubCategoryController::class)->prefix('subcategory')->group(function () {
+    Route::get('/', 'index')->name('all.subcategory');
+    Route::post('/', 'store')->name('subcategory.store');
+    Route::get('/{subCategory}', 'edit');
+    Route::put('/{subCategory}', 'update');
+    Route::post('/{subCategory}', 'destroy')->name('subcategory.delete');
+});
+// END ADMIN CATEGORY
 
 // MAIN CONTENT
 Route::controller(IndexController::class)->group(function () {

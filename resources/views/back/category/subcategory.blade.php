@@ -16,8 +16,8 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Brand List <span class="badge badge-pill badge-danger">
-                                    {{ count($brands) }} </span></h3>
+                            <h3 class="box-title">SubCategory List <span class="badge badge-pill badge-danger">
+                                    {{ count($subcategories) }} </span> </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -25,30 +25,28 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Brand</th>
-                                            <th>Image</th>
+                                            <th>SubCategory</th>
+                                            <th>Category </th>
                                             <th>Action</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($brands as $brand)
+                                        @foreach ($subcategories as $subcategory)
                                             <tr>
-                                                <td>{{ $brand->brand_name }}</td>
-                                                <td><img src="{{ asset('storage/' . $brand->brand_image) }}"
-                                                        style="width: 70px; height: 40px;"> </td>
-                                                <td>
-                                                    <a href="{{ url('brand/' . $brand->id) }}" class="btn btn-info"
-                                                        title="Edit Data"><i class="fa fa-pencil"></i> </a>
-
-                                                    <form method="POST" id="{{ 'deletebrand' . $brand->id }}"
+                                                <td>{{ $subcategory->subcategory_name }}</td>
+                                                <td> {{ $subcategory->category->category_name }} </td>
+                                                <td width="30%">
+                                                    <a href="{{ url('subcategory/' . $subcategory->id) }}"
+                                                        class="btn btn-info" title="Edit Data"><i
+                                                            class="fa fa-pencil"></i> </a>
+                                                    <form method="POST" id="{{ 'deletesubcategory' . $subcategory->id }}"
                                                         style="display:inline;">
                                                         @csrf
                                                         <button type="button" class="btn btn-danger delete-button"
-                                                            onclick="deleteConfirmation('brand',{{ $brand->id }})">
+                                                            onclick="deleteConfirmation('subcategory',{{ $subcategory->id }})">
                                                             <i class="fa fa-trash"></i></button>
                                                     </form>
-
                                                 </td>
 
                                             </tr>
@@ -67,43 +65,52 @@
                 <!-- /.col -->
 
 
-                <!--   ------------ Add Brand Page -------- -->
+                <!--   ------------ Add Category Page -------- -->
 
 
                 <div class="col-4">
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Add Brand </h3>
+                            <h3 class="box-title">Add SubCategory </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
                             <div class="table-responsive">
-                                <form method="post" action="{{ route('brand.store') }}" enctype="multipart/form-data"
-                                    novalidate>
+
+
+                                <form method="post" action="{{ route('subcategory.store') }}">
                                     @csrf
-
-
                                     <div class="form-group">
-                                        <h5>Brand name <span class="text-danger">*</span></h5>
+                                        <h5>Category Select <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" name="brand_name"
-                                                class="form-control @error('brand_name') is-invalid @enderror"
-                                                value="{{ old('brand_name') }}">
-                                            @error('brand_name')
-                                                <div class="invalid-feedback text-danger">
+                                            <select name="category_id" id="category_id"
+                                                class="form-control @error('category_id') is-invalid @enderror">
+                                                <option value="" @selected(old('category_id') == '') disabled>- Select
+                                                    Category -
+                                                </option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>
+                                                        {{ $category->category_name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('category_id')
+                                                <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
                                             @enderror
                                         </div>
                                     </div>
 
+
+
                                     <div class="form-group">
-                                        <h5>Brand image <span class="text-danger">*</span></h5>
+                                        <h5>SubCategory<span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="file" name="brand_image"
-                                                class="form-control @error('brand_image') is-invalid @enderror">
-                                            @error('brand_image')
+                                            <input type="text" name="subcategory_name"
+                                                class="form-control @error('subcategory_name') is-invalid @enderror"
+                                                value="{{ old('subcategory_name') }}">
+                                            @error('subcategory_name')
                                                 <div class="invalid-feedback text-danger">
                                                     {{ $message }}
                                                 </div>
@@ -116,12 +123,21 @@
                                         <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New">
                                     </div>
                                 </form>
+
+
+
+
+
                             </div>
                         </div>
                         <!-- /.box-body -->
                     </div>
                     <!-- /.box -->
                 </div>
+
+
+
+
             </div>
             <!-- /.row -->
         </section>

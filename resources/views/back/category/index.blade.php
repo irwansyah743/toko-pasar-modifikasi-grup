@@ -9,15 +9,11 @@
         <!-- Main content -->
         <section class="content">
             <div class="row">
-
-
-
                 <div class="col-8">
-
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Brand List <span class="badge badge-pill badge-danger">
-                                    {{ count($brands) }} </span></h3>
+                            <h3 class="box-title">Category List <span class="badge badge-pill badge-danger">
+                                    {{ count($categories) }} </span></h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -25,27 +21,26 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Brand</th>
-                                            <th>Image</th>
+                                            <th>Category icon </th>
+                                            <th>Category</th>
                                             <th>Action</th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($brands as $brand)
+                                        @foreach ($categories as $category)
                                             <tr>
-                                                <td>{{ $brand->brand_name }}</td>
-                                                <td><img src="{{ asset('storage/' . $brand->brand_image) }}"
-                                                        style="width: 70px; height: 40px;"> </td>
+                                                <td> <span><i class="{{ $category->category_icon }}"></i></span> </td>
+                                                <td>{{ $category->category_name }}</td>
                                                 <td>
-                                                    <a href="{{ url('brand/' . $brand->id) }}" class="btn btn-info"
-                                                        title="Edit Data"><i class="fa fa-pencil"></i> </a>
+                                                    <a href="{{ url('category/' . $category->id) }}"
+                                                        class="btn btn-info" title="Edit Data"><i
+                                                            class="fa fa-pencil"></i> </a>
 
-                                                    <form method="POST" id="{{ 'deletebrand' . $brand->id }}"
+                                                    <form method="POST" id="{{ 'deletecategory' . $category->id }}"
                                                         style="display:inline;">
                                                         @csrf
                                                         <button type="button" class="btn btn-danger delete-button"
-                                                            onclick="deleteConfirmation('brand',{{ $brand->id }})">
+                                                            onclick="deleteConfirmation('category',{{ $category->id }})">
                                                             <i class="fa fa-trash"></i></button>
                                                     </form>
 
@@ -74,23 +69,21 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Add Brand </h3>
+                            <h3 class="box-title">Add Category </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
                             <div class="table-responsive">
-                                <form method="post" action="{{ route('brand.store') }}" enctype="multipart/form-data"
+                                <form method="post" action="{{ route('category.store') }}" enctype="multipart/form-data"
                                     novalidate>
                                     @csrf
-
-
                                     <div class="form-group">
-                                        <h5>Brand name <span class="text-danger">*</span></h5>
+                                        <h5>Category name <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" name="brand_name"
-                                                class="form-control @error('brand_name') is-invalid @enderror"
-                                                value="{{ old('brand_name') }}">
-                                            @error('brand_name')
+                                            <input type="text" name="category_name"
+                                                class="form-control @error('category_name') is-invalid @enderror"
+                                                value="{{ old('category_name') }}">
+                                            @error('category_name')
                                                 <div class="invalid-feedback text-danger">
                                                     {{ $message }}
                                                 </div>
@@ -99,11 +92,12 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <h5>Brand image <span class="text-danger">*</span></h5>
+                                        <h5>Category icon <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="file" name="brand_image"
-                                                class="form-control @error('brand_image') is-invalid @enderror">
-                                            @error('brand_image')
+                                            <input type="text" name="category_icon"
+                                                class="form-control @error('category_icon') is-invalid @enderror"
+                                                value="{{ old('category_icon') }}">
+                                            @error('category_icon')
                                                 <div class="invalid-feedback text-danger">
                                                     {{ $message }}
                                                 </div>

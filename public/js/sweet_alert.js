@@ -14,7 +14,8 @@ const deleteConfirmation=(prefix,id)=>{
                     const formId='delete'.concat(prefix,id)
                     // console.log(formId);
                     const data=new FormData(document.getElementById(formId));
-                    fetch(`${prefix}/${id}`,{
+                    const url=`${prefix}/${id}`;
+                    fetch(`${url}`,{
                         method:'post',
                         body:data
                     }).then(
