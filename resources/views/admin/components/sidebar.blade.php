@@ -44,7 +44,8 @@ $route = Route::current()->getName();
                 </ul>
             </li>
 
-            <li class="treeview {{ $prefix == '/category' || $prefix == '/subcategory' ? 'active' : '' }}">
+            <li
+                class="treeview {{ $prefix == '/category' || $prefix == '/subcategory' || $prefix == '/subsubcategory' ? 'active' : '' }}">
                 <a href="#">
                     <i data-feather="mail"></i> <span>Category</span>
                     <span class="pull-right-container">
@@ -56,6 +57,10 @@ $route = Route::current()->getName();
                             href="{{ route('all.category') }}"><i class="ti-more"></i>All Categories</a></li>
                     <li class="{{ $route == 'all.subcategory' ? 'active' : '' }}"><a
                             href="{{ route('all.subcategory') }}"><i class="ti-more"></i>SubCategories</a>
+                    </li>
+                    <li class="{{ $route == 'all.subsubcategory' ? 'active' : '' }}"><a
+                            href="{{ route('all.subsubcategory') }}"><i
+                                class="ti-more"></i>SubSubCategories</a>
                     </li>
                 </ul>
             </li>

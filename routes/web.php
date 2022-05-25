@@ -1,12 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
-use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SubSubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +98,19 @@ Route::middleware([
     Route::get('/{subCategory}', 'edit');
     Route::put('/{subCategory}', 'update');
     Route::post('/{subCategory}', 'destroy')->name('subcategory.delete');
+});
+
+Route::middleware([
+    'auth.admin:admin',
+    config('jetstream.auth_session'),
+    'verified'
+])->controller(SubSubCategoryController::class)->prefix('subsubcategory')->group(function () {
+    Route::get('/', 'index')->name('all.subsubcategory');
+    Route::post('/', 'store')->name('subsubcategory.store');
+    Route::get('/ajax/{subSubCategory}', 'getSubCategory');
+    Route::get('/{subSubCategory}', 'edit');
+    Route::put('/{subSubCategory}', 'update');
+    Route::post('/{subSubCategory}', 'destroy')->name('subsubcategory.delete');
 });
 // END ADMIN CATEGORY
 
