@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use App\Models\SubSubCategory;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
@@ -21,6 +24,7 @@ class CategoryController extends Controller
     {
         $data['admin'] = Admin::find(Auth::user()->id);
         $data['categories'] = Category::latest()->get();
+        $data['subcategoriesToDelete'] = DB::table('sub_categories')->select('category_id', DB::raw('count(*)'))->groupBy('category_id')->get();
         return view('back.category.index', $data);
     }
 
@@ -125,10 +129,13 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         Category::destroy($category->id);
+        SubCategory::where('category_id', $category->id)->delete();
+        SubSubCategory::where('category_id', $category->id)->delete();
         $notification = array(
             'message' => 'A category has been deleted',
             'alert-type' => 'success'
         );
+
         return to_route('all.category')->with($notification);
     }
 }

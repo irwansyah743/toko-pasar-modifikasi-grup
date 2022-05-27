@@ -34,9 +34,9 @@ class SubSubCategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function getSubCategory($category_id)
+    public function getSubSubCategory($subcategory_id)
     {
-        $subcat = SubCategory::where('category_id', $category_id)->orderBy('subcategory_name', 'ASC')->get();
+        $subcat = SubSubCategory::where('subcategory_id', $subcategory_id)->orderBy('subsubcategory_name', 'ASC')->get();
         return json_encode($subcat);
     }
 

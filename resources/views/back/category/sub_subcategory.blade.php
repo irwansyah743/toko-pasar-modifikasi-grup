@@ -13,7 +13,6 @@
 
 
                 <div class="col-8">
-
                     <div class="box">
                         <div class="box-header with-border">
                             <h3 class="box-title">SubSubCategory List <span class="badge badge-pill badge-danger">
@@ -29,7 +28,6 @@
                                             <th>SubCategory</th>
                                             <th>Category </th>
                                             <th>Action</th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -51,7 +49,6 @@
                                                             <i class="fa fa-trash"></i></button>
                                                     </form>
                                                 </td>
-
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -62,8 +59,6 @@
                         <!-- /.box-body -->
                     </div>
                     <!-- /.box -->
-
-
                 </div>
                 <!-- /.col -->
 

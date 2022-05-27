@@ -43,9 +43,11 @@
                                                     <form method="POST" id="{{ 'deletesubcategory' . $subcategory->id }}"
                                                         style="display:inline;">
                                                         @csrf
-                                                        <button type="button" class="btn btn-danger delete-button"
-                                                            onclick="deleteConfirmation('subcategory',{{ $subcategory->id }})">
-                                                            <i class="fa fa-trash"></i></button>
+                                                        @if (!$subsubcategoriesToDelete->contains('subcategory_id', $subcategory->id))
+                                                            <button type="button" class="btn btn-danger delete-button"
+                                                                onclick="deleteConfirmation('subcategory',{{ $subcategory->id }})">
+                                                                <i class="fa fa-trash"></i></button>
+                                                        @endif
                                                     </form>
                                                 </td>
 

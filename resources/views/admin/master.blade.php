@@ -52,6 +52,14 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/sweet_alert.js') }}"></script>
 
+    {{-- TAGS INPUT --}}
+    <script src="{{ asset('assets/vendor_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js') }}"></script>
+
+    {{-- CK Editor --}}
+    <script src="{{ asset('assets/vendor_components/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js') }}"></script>
+    <script src=" {{ asset('admin-theme/js/pages/editor.js') }}"></script>
+
 
     <!-- Sunny Admin App -->
     <script src="{{ asset('admin-theme/js/template.js') }}"></script>

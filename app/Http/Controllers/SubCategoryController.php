@@ -6,7 +6,9 @@ use App\Models\Admin;
 use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use App\Models\SubSubCategory;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreSubCategoryRequest;
 use App\Http\Requests\UpdateSubCategoryRequest;
@@ -23,6 +25,7 @@ class SubCategoryController extends Controller
         $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
         $data['admin'] = Admin::find(Auth::user()->id);
         $data['subcategories'] = SubCategory::latest()->get();
+        $data['subsubcategoriesToDelete'] = DB::table('sub_sub_categories')->select('subcategory_id', DB::raw('count(*)'))->groupBy('subcategory_id')->get();
         return view('back.category.subcategory', $data);
     }
 
@@ -133,10 +136,23 @@ class SubCategoryController extends Controller
     public function destroy(SubCategory $subCategory)
     {
         SubCategory::destroy($subCategory->id);
+        SubSubCategory::where('subcategory_id', $subCategory->id)->delete();
         $notification = array(
             'message' => 'A subcategory has been deleted',
             'alert-type' => 'success'
         );
         return to_route('all.subcategory')->with($notification);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Category  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function getSubCategory($category_id)
+    {
+        $subcat = SubCategory::where('category_id', $category_id)->orderBy('subcategory_name', 'ASC')->get();
+        return json_encode($subcat);
     }
 }
