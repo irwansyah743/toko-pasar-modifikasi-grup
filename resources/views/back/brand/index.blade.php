@@ -102,19 +102,23 @@
                                         <h5>Brand image <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="file" name="brand_image"
-                                                class="form-control @error('brand_image') is-invalid @enderror">
+                                                class="form-control @error('brand_image') is-invalid @enderror"
+                                                onchange="previewImage()" id="input_image">
                                             @error('brand_image')
                                                 <div class="invalid-feedback text-danger">
                                                     {{ $message }}
                                                 </div>
                                             @enderror
+                                            <img class="mt-2" src=""
+                                                style="display: none; width:100px; height:100px;" alt="User Avatar"
+                                                id="img-preview">
                                         </div>
-                                    </div>
 
 
-                                    <div class="text-xs-right">
-                                        <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New">
-                                    </div>
+                                        <div class="text-xs-right">
+                                            <input type="submit" class="btn btn-rounded btn-primary mb-5 mt-4"
+                                                value="Add New">
+                                        </div>
                                 </form>
                             </div>
                         </div>

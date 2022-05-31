@@ -38,11 +38,11 @@
                                     <tbody>
                                         @foreach ($products as $item)
                                             <tr>
-                                                <td> <img src="{{ asset($item->product_thambnail) }}"
+                                                <td> <img src="{{ asset('storage/' . $item->product_thambnail) }}"
                                                         style="width: 60px; height: 50px;"> </td>
-                                                <td>{{ $item->product_name_en }}</td>
-                                                <td>{{ $item->selling_price }} $</td>
-                                                <td>{{ $item->product_qty }} Pic</td>
+                                                <td>{{ $item->product_name }}</td>
+                                                <td>Rp.{{ $item->selling_price }}K</td>
+                                                <td>{{ $item->product_qty }} Pcs</td>
 
                                                 <td>
                                                     @if ($item->discount_price == null)

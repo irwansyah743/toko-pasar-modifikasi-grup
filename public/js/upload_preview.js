@@ -36,16 +36,18 @@ function checkFormat(file) {
 
 const previewImage=()=>{
     const image=document.getElementById('input_image');
-    const imagePreview=document.getElementById('img-preview');
+    const imagePreview=document.getElementById('img-preview')
+    const file = image.files[0];
+    const reader = new FileReader();;
 
     imagePreview.style.display='block';
-
-    const oFReader=new FileReader();
-    oFReader.readAsDataURL(image.files[0]);
-
-    oFReader.onload=function(oFREvent){
-        imagePreview.src=oFREvent.target.result;
+    if (file) {
+      reader.readAsDataURL(file);
     }
+    reader.addEventListener("load", function () {
+      // convert image file to base64 string
+      imagePreview.src = reader.result;
+    }, false);
 
    
       if (checkFormat(image)) {
@@ -76,6 +78,33 @@ const previewImage=()=>{
           image.parentElement.querySelector(".error-message").remove();
         }
       }
+}
+
+const previewImages=()=>{
+  const image=document.getElementById('input_images');
+    const imagePreview=document.getElementById('img-previews');
+    removeAllChildNodes(imagePreview);
+    const files = image.files;
+  
+    if (files) {
+      Array.from(files).forEach(file => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.addEventListener("load", function () {
+          const imageToAppend=document.createElement("IMG");
+          imageToAppend.src=reader.result;
+          imageToAppend.classList.add('col-md-3');
+          imageToAppend.classList.add('mt-2');
+          imagePreview.appendChild(imageToAppend);
+        }, false);
+      });
+    }
+}
+
+function removeAllChildNodes(parent) {
+  while (parent.firstElementChild) {
+      parent.removeChild(parent.firstElementChild);
+  }
 }
 
  

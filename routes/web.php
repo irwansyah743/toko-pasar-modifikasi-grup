@@ -125,7 +125,9 @@ Route::middleware([
     Route::get('/', 'index')->name('manage.product');
     Route::get('/create', 'create')->name('create.product');
     Route::post('/', 'store')->name('product.store');
-    Route::get('/{product}', 'edit');
+    Route::get('/asdfasdf', 'edit')->name('product.edit');
+    Route::get('/asdfsadf', 'update')->name('product.inactive');
+    Route::get('/fsdgfsdg', 'update')->name('product.active');
     Route::put('/{product}', 'update');
     Route::post('/{product}', 'destroy')->name('product.delete');
 });

@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('product_qty');
             $table->string('product_tags');
 
-            $table->string('product_size')->nullable();
+            $table->string('product_size');
 
             $table->string('product_color');
 
