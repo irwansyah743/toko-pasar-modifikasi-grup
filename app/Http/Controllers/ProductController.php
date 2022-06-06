@@ -13,6 +13,7 @@ use App\Models\SubSubCategory;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -164,7 +165,14 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $data['admin'] = Admin::find(Auth::user()->id);
+        $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
+        $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
+        $data['subsubcategories'] = SubSubCategory::orderBy('subsubcategory_name', 'ASC')->get();
+        $data['brands'] = Brand::orderBy('brand_name', 'ASC')->get();
+        $data['product'] = $product;
+        $data['multiimg'] = MultiImg::where('product_id',  $product->id)->get();
+        return view('back.product.edit', $data);
     }
 
     /**
@@ -174,9 +182,84 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'brand_id' => 'required',
+            'category_id' => 'required',
+            'subcategory_id' => 'required',
+            'subsubcategory_id' => 'required',
+            'product_name' => 'required',
+            'product_code' => 'required',
+            'product_qty' => 'required|numeric',
+            'product_tags' => 'required',
+            'product_size' => 'required',
+            'product_color' => 'required',
+            'selling_price' => 'required',
+            'short_descp' => 'required|max:255',
+            'long_descp' => 'required',
+        ]);
+
+        Product::where('id', $product->id)->update([
+            'brand_id' => $request->brand_id,
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'subsubcategory_id' => $request->subsubcategory_id,
+            'product_name' => $request->product_name,
+
+            'product_slug' =>  strtolower(str_replace(' ', '-', $request->product_name)),
+
+            'product_code' => $request->product_code,
+
+            'product_qty' => $request->product_qty,
+            'product_tags' => $request->product_tags,
+
+            'product_size' => $request->product_size,
+
+            'product_color' => $request->product_color,
+
+
+            'selling_price' => $request->selling_price,
+            'discount_price' => $request->discount_price,
+            'short_descp' => $request->short_descp,
+
+            'long_descp' => $request->long_descp,
+            'hot_deals' => $request->hot_deals,
+            'featured' => $request->featured,
+            'special_offer' => $request->special_offer,
+            'special_deals' => $request->special_deals,
+            'updated_at' => Carbon::now(),
+
+        ]);
+        $notification = array(
+            'message' => 'A product has been updated',
+            'alert-type' => 'success'
+        );
+
+        return to_route('manage.product')->with($notification);
+    }
+
+    public function ProductInactive(Product $product)
+    {
+        $product->update(['status' => 0]);
+        $notification = array(
+            'message' => 'Product ' . $product->product_name . ' is Inactive',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+
+    public function ProductActive(Product $product)
+    {
+        $product->update(['status' => 1]);
+        $notification = array(
+            'message' => 'Product ' . $product->product_name . ' is Active',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
     }
 
     /**
@@ -187,6 +270,97 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+
+        if ($images = MultiImg::where('product_id',  $product->id)->get()) {
+            foreach ($images as $image) {
+                Storage::delete($image->photo_name);
+            }
+        }
+
+        if ($product->product_thambnail) {
+            Storage::delete($product->product_thambnail);
+        }
+        MultiImg::where('product_id', $product->id)->delete();
+        Product::destroy($product->id);
+
+        $notification = array(
+            'message' => 'A product has been deleted',
+            'alert-type' => 'success'
+        );
+        return to_route('manage.product')->with($notification);
     }
+
+    public function storeImages(Request $request)
+    {
+        $request->validate([
+            'multi_img' => 'required',
+            'multi_img.*' => 'image|max:2048',
+        ], [
+            'multi_img.*.image' => 'The product images must be images',
+            'multi_img.*.max' => 'Maximum size is 2MB each'
+        ]);
+
+        $images = $request->file('multi_img');
+        foreach ($images as $img) {
+            $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
+            Image::make($img)->resize(917, 1000)->save('storage/product-images/' . $make_name);
+            $uploadPath = 'product-images/' . $make_name;
+            MultiImg::insert([
+                'product_id' => $request->product_id,
+                'photo_name' => $uploadPath,
+                'created_at' => Carbon::now(),
+
+            ]);
+        }
+        $notification = array(
+            'message' => 'An image has been added',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Brand  $brand
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyImages(MultiImg $multiimg)
+    {
+
+        if ($multiimg->photo_name) {
+            Storage::delete($multiimg->photo_name);
+        }
+        MultiImg::destroy($multiimg->id);
+        $notification = array(
+            'message' => 'An image has been deleted',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function updateThumbnail(Request $request, Product $product)
+    {
+        $request->validate([
+            'product_thambnail' => 'required|image|max:2048'
+        ]);
+        Storage::delete($request->old_img);
+
+        $image = $request->file('product_thambnail');
+        $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+        Image::make($image)->resize(917, 1000)->save('storage/thumbnails/' . $name_gen);
+        $save_url = 'thumbnails/' . $name_gen;
+
+        Product::findOrFail($product->id)->update([
+            'product_thambnail' => $save_url,
+            'updated_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Product Image Thambnail Updated Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
+    } // end method
 }

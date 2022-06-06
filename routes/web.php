@@ -7,6 +7,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\SubSubCategoryController;
 
@@ -60,6 +61,7 @@ Route::middleware([
 });
 
 Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+
 // END ADMIN AUTH
 
 // ADMIN BRAND
@@ -125,13 +127,35 @@ Route::middleware([
     Route::get('/', 'index')->name('manage.product');
     Route::get('/create', 'create')->name('create.product');
     Route::post('/', 'store')->name('product.store');
-    Route::get('/asdfasdf', 'edit')->name('product.edit');
-    Route::get('/asdfsadf', 'update')->name('product.inactive');
-    Route::get('/fsdgfsdg', 'update')->name('product.active');
-    Route::put('/{product}', 'update');
+    Route::get('/edit/{product}', 'edit')->name('product.edit');
+    Route::put('/{product}', 'update')->name('product.update');
+    Route::put('/images', 'updateMultiImage')->name('update.product.images');
+    Route::post('/images', 'storeImages')->name('product.images.store');
+    Route::put('/thumbnail/{product}', 'updateThumbnail')->name('update.product.thumbnail');
+    Route::put('/activate/{product}', 'ProductInactive')->name('product.inactive');
+    Route::put('/inactivate/{product}', 'ProductActive')->name('product.active');
     Route::post('/{product}', 'destroy')->name('product.delete');
 });
+
+Route::post('/images/{multiimg}', [ProductController::class, 'destroyImages']);
 // END ADMIN PRODUCT
+
+// ADMIN SLIDER
+Route::middleware([
+    'auth.admin:admin',
+    config('jetstream.auth_session'),
+    'verified'
+])->controller(SliderController::class)->prefix('slider')->group(function () {
+    Route::get('/', 'index')->name('manage.slider');
+    Route::get('/create', 'create')->name('create.slider');
+    Route::post('/', 'store')->name('slider.store');
+    Route::get('/edit/{slider}', 'edit')->name('slider.edit');
+    Route::put('/{slider}', 'update')->name('slider.update');
+    Route::put('/activate/{slider}', 'SliderInactive')->name('slider.inactive');
+    Route::put('/inactivate/{slider}', 'SliderActive')->name('slider.active');
+    Route::post('/{slider}', 'destroy')->name('slider.delete');
+});
+// END ADMIN SLIDER
 
 // MAIN CONTENT
 Route::controller(IndexController::class)->group(function () {

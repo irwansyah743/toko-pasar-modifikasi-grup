@@ -79,23 +79,33 @@
                                                         class="btn btn-info" title="Edit Data"><i
                                                             class="fa fa-pencil"></i> </a>
 
-                                                    <a href="{{ route('product.delete', $item->id) }}"
-                                                        class="btn btn-danger" title="Delete Data" id="delete">
-                                                        <i class="fa fa-trash"></i></a>
+                                                    <form method="POST" id="{{ 'deleteproduct' . $item->id }}"
+                                                        style="display:inline;">
+                                                        @csrf
+                                                        <button type="button" class="btn btn-danger delete-button"
+                                                            onclick="deleteConfirmation('product',{{ $item->id }})">
+                                                            <i class="fa fa-trash"></i></button>
+                                                    </form>
 
                                                     @if ($item->status == 1)
-                                                        <a href="{{ route('product.inactive', $item->id) }}"
-                                                            class="btn btn-danger" title="Inactive Now"><i
-                                                                class="fa fa-arrow-down"></i> </a>
+                                                        <form method="POST"
+                                                            action="{{ route('product.inactive', $item->id) }}"
+                                                            style="display:inline;">
+                                                            @csrf
+                                                            @method('put')
+                                                            <button type="submit" class="btn btn-danger" title="Inactivate">
+                                                                <i class="fa fa-arrow-down"></i></button>
+                                                        </form>
                                                     @else
-                                                        <a href="{{ route('product.active', $item->id) }}"
-                                                            class="btn btn-success" title="Active Now"><i
-                                                                class="fa fa-arrow-up"></i> </a>
+                                                        <form method="POST"
+                                                            action="{{ route('product.active', $item->id) }}"
+                                                            style="display:inline;">
+                                                            @csrf
+                                                            @method('put')
+                                                            <button type="submit" class="btn btn-success" title="Activate">
+                                                                <i class="fa fa-arrow-up"></i></button>
+                                                        </form>
                                                     @endif
-
-
-
-
                                                 </td>
 
                                             </tr>

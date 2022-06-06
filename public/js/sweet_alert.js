@@ -9,13 +9,13 @@ const deleteConfirmation=(prefix,id)=>{
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // console.log(prefix);
-                    // console.log(id);
+                    console.log(prefix);
+                    console.log(id);
                     const formId='delete'.concat(prefix,id)
                     // console.log(formId);
                     const data=new FormData(document.getElementById(formId));
                     const url=`${prefix}/${id}`;
-                    fetch(`${url}`,{
+                    fetch(`http://127.0.0.1:8000/${url}`,{
                         method:'post',
                         body:data
                     }).then(
@@ -25,7 +25,6 @@ const deleteConfirmation=(prefix,id)=>{
                             'success'
                         )
                     ).then(
-                        // e.target.parentElement.parentElement.parentElement.style.display='none'
                         location.reload()
                     )
                 }
