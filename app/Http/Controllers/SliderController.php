@@ -92,6 +92,8 @@ class SliderController extends Controller
         return view('back.slider.edit', $data);
     }
 
+
+
     /**
      * Update the specified resource in storage.
      *

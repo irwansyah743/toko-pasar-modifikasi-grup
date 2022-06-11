@@ -113,12 +113,12 @@
                                                 style="display: none; width:100px; height:100px;" alt="User Avatar"
                                                 id="img-preview">
                                         </div>
+                                    </div>
 
 
-                                        <div class="text-xs-right">
-                                            <input type="submit" class="btn btn-rounded btn-primary mb-5 mt-4"
-                                                value="Add New">
-                                        </div>
+                                    <div class="text-xs-right">
+                                        <input type="submit" class="btn btn-rounded btn-primary mb-5 mt-4" value="Add New">
+                                    </div>
                                 </form>
                             </div>
                         </div>

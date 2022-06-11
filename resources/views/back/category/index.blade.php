@@ -22,6 +22,7 @@
                                     <thead>
                                         <tr>
                                             <th>Category icon </th>
+                                            <th>Category image </th>
                                             <th>Category</th>
                                             <th>Action</th>
                                         </tr>
@@ -30,6 +31,9 @@
                                         @foreach ($categories as $category)
                                             <tr>
                                                 <td> <span><i class="{{ $category->category_icon }}"></i></span> </td>
+                                                <td><img src="{{ asset('storage/' . $category->category_image) }}"
+                                                        style="width: 70px; height: 40px;"> </td>
+
                                                 <td>{{ $category->category_name }}</td>
                                                 <td>
                                                     <a href="{{ url('category/' . $category->id) }}"
@@ -104,6 +108,22 @@
                                                     {{ $message }}
                                                 </div>
                                             @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h5>Category image <span class="text-danger">*</span></h5>
+                                        <div class="controls">
+                                            <input type="file" name="category_image"
+                                                class="form-control @error('category_image') is-invalid @enderror"
+                                                onchange="previewImage()" id="input_image">
+                                            @error('category_image')
+                                                <div class="invalid-feedback text-danger">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                            <img class="mt-2" src=""
+                                                style="display: none; width:100px; height:100px;" alt="User Avatar"
+                                                id="img-preview">
                                         </div>
                                     </div>
 

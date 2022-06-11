@@ -2163,3 +2163,8 @@ select {
   }
 }
 
+/* CUSTOM */
+.hero-image{
+  filter: brightness(.4);
+  filter: grayscale(1) !important;
+}

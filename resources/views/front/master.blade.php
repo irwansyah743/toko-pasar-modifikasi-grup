@@ -26,7 +26,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet" />
 
     <!-- Icons/Glyphs -->
-    <link rel="stylesheet" href="{{ asset('front-theme/assets/css/font-awesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/icons/font-awesome/css/font-awesome.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('front-theme/assets/css/font-awesome.css') }}"> --}}
 
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>

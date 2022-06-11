@@ -10,6 +10,7 @@ use App\Models\SubSubCategory;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 
@@ -49,8 +50,12 @@ class CategoryController extends Controller
         $validated = $request->validate([
             'category_name' => 'required|max:50|unique:categories,category_name',
             'category_icon' => 'required|max:255',
+            'category_image' => 'required|image|max:2048',
         ]);
 
+        if ($request->file('category_image')) {
+            $validated['category_image'] = $request->file('category_image')->store('category-images');
+        }
 
         $validated['category_name'] = $request->category_name;
         $validated['category_icon'] = $request->category_icon;
@@ -105,6 +110,13 @@ class CategoryController extends Controller
             'category_icon' => 'required|max:255',
 
         ]);
+
+        if ($request->file('category_image')) {
+            if ($request->old_image) {
+                Storage::delete($request->old_image);
+            }
+            $validated['category_image'] = $request->file('category_image')->store('category-images');
+        }
 
         $validated['category_name'] = $request->category_name;
         $validated['category_icon'] = $request->category_icon;

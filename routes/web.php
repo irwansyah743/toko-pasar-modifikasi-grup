@@ -22,10 +22,6 @@ use App\Http\Controllers\SubSubCategoryController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 // USER AUTH
 Route::middleware([
     'auth:sanctum,web',

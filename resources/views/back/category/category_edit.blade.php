@@ -48,6 +48,28 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h5>Category image <span class="text-danger">*</span></h5>
+                                    <div class="controls">
+                                        <input type="hidden" value="{{ $category->category_image }}" name="old_image">
+                                        <input type="file" name="category_image"
+                                            class="form-control  @error('category_image') is-invalid @enderror"
+                                            onchange="previewImage()" id="input_image">
+                                        @error('category_image')
+                                            <div class="invalid-feedback text-danger">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="{{ url('storage/' . $category->category_image) }}" alt="User Avatar"
+                                    style="width: 100px; height:100px;" id="img-preview">
+                            </div>
+                        </div>
                         <div class="text-xs-right mt-2">
                             <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update">
                         </div>
