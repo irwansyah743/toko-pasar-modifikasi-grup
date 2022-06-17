@@ -156,5 +156,9 @@ Route::middleware([
 // MAIN CONTENT
 Route::controller(IndexController::class)->group(function () {
     Route::get('/', 'index');
+    Route::get('/product/detail/{slug}', 'productDetail');
+    Route::get('/product/category/{category}', 'productCategory');
+    Route::get('/product/subcategory/{subcategory}', 'productSubcategory');
+    Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
 });
 // END MAIN CONTENT

@@ -1,4 +1,7 @@
 @extends('front.master')
+@section('title')
+    Home | Flipmart
+@endsection
 @section('content')
     <div class="body-content outer-top-xs" id="top-banner-and-menu">
         <div class="container">
@@ -100,9 +103,6 @@
                                                 data-toggle="tab">{{ $category->category_name }}</a>
                                         </li>
                                     @endforeach
-                                    {{-- <li><a data-transition-type="backSlide" href="#laptop" data-toggle="tab">Electronics</a>
-                                    </li>
-                                    <li><a data-transition-type="backSlide" href="#apple" data-toggle="tab">Shoes</a></li> --}}
                                 </ul>
                                 <!-- /.nav-tabs -->
                             </div>
@@ -110,24 +110,38 @@
 
                                 <div class="tab-pane in active" id="all">
                                     <div class="product-slider">
-                                        <div class="owl-carousel home-owl-carousel custom-carousel owl-theme" data-item="4">
-                                            @foreach ($products as $product)
+                                        <div class="owl-carousel home-owl-carousel custom-carousel owl-theme"
+                                            data-item="4">
+                                            @foreach ($newProducts as $product)
                                                 <div class="item item-carousel">
                                                     <div class="products">
                                                         <div class="product">
                                                             <div class="product-image">
-                                                                <div class="image"> <a href="detail.html"><img
+                                                                <div class="image"> <a
+                                                                        href="{{ url('product/detail/' . $product->product_slug) }}"><img
                                                                             src=" {{ asset('storage/' . $product->product_thambnail) }}"
                                                                             alt=""></a> </div>
                                                                 <!-- /.image -->
+                                                                @php
+                                                                    $amount = $product->selling_price - $product->discount_price;
+                                                                    $discount = ($amount / $product->selling_price) * 100;
+                                                                @endphp
 
-                                                                <div class="tag new"><span>new</span></div>
+                                                                <div>
+                                                                    @if ($product->discount_price == null)
+                                                                        <div class="tag new"><span>new</span></div>
+                                                                    @else
+                                                                        <div class="tag hot">
+                                                                            <span>{{ round($discount) }}%</span>
+                                                                        </div>
+                                                                    @endif
+                                                                </div>
                                                             </div>
                                                             <!-- /.product-image -->
 
                                                             <div class="product-info text-left">
                                                                 <h3 class="name"><a
-                                                                        href="detail.html">{{ $product->product_name }}</a>
+                                                                        href="{{ url('product/detail/' . $product->product_slug) }}">{{ $product->product_name }}</a>
                                                                 </h3>
                                                                 <div class="rating rateit-small"></div>
                                                                 <div class="description"></div>
@@ -153,10 +167,12 @@
                                                                 <div class="action">
                                                                     <ul class="list-unstyled">
                                                                         <li class="add-cart-button btn-group">
-                                                                            <button data-toggle="tooltip"
+                                                                            <button data-toggle="modal"
+                                                                                data-target="#exampleModal"
                                                                                 class="btn btn-primary icon" type="button"
-                                                                                title="Add Cart"> <i
-                                                                                    class="fa fa-shopping-cart"></i>
+                                                                                title="Add Cart" id="{{ $product->id }}"
+                                                                                onclick="productView(this.id)">
+                                                                                <i class="fa fa-shopping-cart"></i>
                                                                             </button>
                                                                             <button class="btn btn-primary cart-btn"
                                                                                 type="button">Add to cart</button>
@@ -197,25 +213,38 @@
                                         <div class="product-slider">
                                             <div class="owl-carousel home-owl-carousel custom-carousel owl-theme"
                                                 data-item="4">
-                                                @forelse ($products as $product)
+                                                @forelse ($newProducts as $product)
                                                     @if ($product->category_id == $category->id)
                                                         <div class="item item-carousel">
                                                             <div class="products">
                                                                 <div class="product">
                                                                     <div class="product-image">
                                                                         <div class="image"> <a
-                                                                                href="detail.html"><img
+                                                                                href="{{ url('product/detail/' . $product->product_slug) }}"><img
                                                                                     src=" {{ asset('storage/' . $product->product_thambnail) }}"
                                                                                     alt=""></a> </div>
                                                                         <!-- /.image -->
+                                                                        @php
+                                                                            $amount = $product->selling_price - $product->discount_price;
+                                                                            $discount = ($amount / $product->selling_price) * 100;
+                                                                        @endphp
 
-                                                                        <div class="tag new"><span>new</span></div>
+                                                                        <div>
+                                                                            @if ($product->discount_price == null)
+                                                                                <div class="tag new"><span>new</span>
+                                                                                </div>
+                                                                            @else
+                                                                                <div class="tag hot">
+                                                                                    <span>{{ round($discount) }}%</span>
+                                                                                </div>
+                                                                            @endif
+                                                                        </div>
                                                                     </div>
                                                                     <!-- /.product-image -->
 
                                                                     <div class="product-info text-left">
                                                                         <h3 class="name"><a
-                                                                                href="detail.html">{{ $product->product_name }}</a>
+                                                                                href="{{ url('product/detail/' . $product->product_slug) }}">{{ $product->product_name }}</a>
                                                                         </h3>
                                                                         <div class="rating rateit-small"></div>
                                                                         <div class="description"></div>
@@ -241,24 +270,30 @@
                                                                         <div class="action">
                                                                             <ul class="list-unstyled">
                                                                                 <li class="add-cart-button btn-group">
-                                                                                    <button data-toggle="tooltip"
+                                                                                    <button data-toggle="modal"
+                                                                                        data-target="#exampleModal"
                                                                                         class="btn btn-primary icon"
-                                                                                        type="button" title="Add Cart"> <i
-                                                                                            class="fa fa-shopping-cart"></i>
+                                                                                        type="button" title="Add Cart"
+                                                                                        id="{{ $product->id }}"
+                                                                                        onclick="productView(this.id)">
+                                                                                        <i class="fa fa-shopping-cart"></i>
                                                                                     </button>
-                                                                                    <button class="btn btn-primary cart-btn"
+                                                                                    <button
+                                                                                        class="btn btn-primary cart-btn"
                                                                                         type="button">Add to cart</button>
                                                                                 </li>
                                                                                 <li class="lnk wishlist"> <a
                                                                                         data-toggle="tooltip"
                                                                                         class="add-to-cart"
-                                                                                        href="detail.html" title="Wishlist">
+                                                                                        href="detail.html"
+                                                                                        title="Wishlist">
                                                                                         <i class="icon fa fa-heart"></i>
                                                                                     </a> </li>
                                                                                 <li class="lnk"> <a
                                                                                         data-toggle="tooltip"
                                                                                         class="add-to-cart"
-                                                                                        href="detail.html" title="Compare">
+                                                                                        href="detail.html"
+                                                                                        title="Compare">
                                                                                         <i class="fa fa-signal"
                                                                                             aria-hidden="true"></i> </a>
                                                                                 </li>
@@ -324,336 +359,94 @@
                         <section class="section featured-product wow fadeInUp">
                             <h3 class="section-title">Featured products</h3>
                             <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
-                                <div class="item item-carousel">
-                                    <div class="products">
-                                        <div class="product">
-                                            <div class="product-image">
-                                                <div class="image"> <a href="detail.html"><img
-                                                            src=" {{ asset('front-theme/assets/images/products/p5.jpg') }}"
-                                                            alt=""></a> </div>
-                                                <!-- /.image -->
+                                @foreach ($featuredProducts as $product)
+                                    <div class="item item-carousel">
+                                        <div class="products">
+                                            <div class="product">
+                                                <div class="product-image">
+                                                    <div class="image"> <a
+                                                            href="{{ url('product/detail/' . $product->product_slug) }}"><img
+                                                                src=" {{ asset('storage/' . $product->product_thambnail) }}"
+                                                                alt=""></a> </div>
+                                                    <!-- /.image -->
 
-                                                <div class="tag hot"><span>hot</span></div>
-                                            </div>
-                                            <!-- /.product-image -->
+                                                    @php
+                                                        $amount = $product->selling_price - $product->discount_price;
+                                                        $discount = ($amount / $product->selling_price) * 100;
+                                                    @endphp
 
-                                            <div class="product-info text-left">
-                                                <h3 class="name"><a href="detail.html">Floral Print Buttoned</a>
-                                                </h3>
-                                                <div class="rating rateit-small"></div>
-                                                <div class="description"></div>
-                                                <div class="product-price"> <span class="price"> $450.99 </span>
-                                                    <span class="price-before-discount">$ 800</span>
+                                                    <div>
+                                                        @if ($product->discount_price)
+                                                            <div class="tag hot">
+                                                                <span>{{ round($discount) }}%</span>
+                                                            </div>
+                                                        @endif
+                                                    </div>
                                                 </div>
-                                                <!-- /.product-price -->
+                                                <!-- /.product-image -->
 
-                                            </div>
-                                            <!-- /.product-info -->
-                                            <div class="cart clearfix animate-effect">
-                                                <div class="action">
-                                                    <ul class="list-unstyled">
-                                                        <li class="add-cart-button btn-group">
-                                                            <button class="btn btn-primary icon" data-toggle="dropdown"
-                                                                type="button"> <i class="fa fa-shopping-cart"></i>
-                                                            </button>
-                                                            <button class="btn btn-primary cart-btn" type="button">Add to
-                                                                cart</button>
-                                                        </li>
-                                                        <li class="lnk wishlist"> <a class="add-to-cart"
-                                                                href="detail.html" title="Wishlist"> <i
-                                                                    class="icon fa fa-heart"></i> </a> </li>
-                                                        <li class="lnk"> <a class="add-to-cart"
-                                                                href="detail.html" title="Compare"> <i
-                                                                    class="fa fa-signal" aria-hidden="true"></i> </a>
-                                                        </li>
-                                                    </ul>
+                                                <div class="product-info text-left">
+                                                    <h3 class="name"><a
+                                                            href="{{ url('product/detail/' . $product->product_slug) }}">{{ $product->product_name }}</a>
+                                                    </h3>
+                                                    <div class="rating rateit-small"></div>
+                                                    <div class="description"></div>
+                                                    <div class="product-price">
+                                                        @if ($product->discount_price)
+                                                            <span class="price">
+                                                                Rp.{{ $product->discount_price }}K
+                                                            </span>
+                                                            <span
+                                                                class="price-before-discount">Rp.{{ $product->selling_price }}K
+                                                            </span>
+                                                        @else
+                                                            <span class="price">
+                                                                Rp.{{ $product->selling_price }}K
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <!-- /.product-price -->
+
                                                 </div>
-                                                <!-- /.action -->
+                                                <!-- /.product-info -->
+                                                <div class="cart clearfix animate-effect">
+                                                    <div class="action">
+                                                        <ul class="list-unstyled">
+                                                            <li class="add-cart-button btn-group">
+                                                                <button data-toggle="modal" data-target="#exampleModal"
+                                                                    class="btn btn-primary icon" type="button"
+                                                                    title="Add Cart" id="{{ $product->id }}"
+                                                                    onclick="productView(this.id)"> <i
+                                                                        class="fa fa-shopping-cart"></i>
+                                                                </button>
+                                                                <button class="btn btn-primary cart-btn"
+                                                                    type="button">Add
+                                                                    to cart</button>
+                                                            </li>
+                                                            <li class="lnk wishlist"> <a data-toggle="tooltip"
+                                                                    class="add-to-cart" href="detail.html"
+                                                                    title="Wishlist">
+                                                                    <i class="icon fa fa-heart"></i>
+                                                                </a> </li>
+                                                            <li class="lnk"> <a data-toggle="tooltip"
+                                                                    class="add-to-cart" href="detail.html"
+                                                                    title="Compare">
+                                                                    <i class="fa fa-signal" aria-hidden="true"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- /.action -->
+                                                </div>
+                                                <!-- /.cart -->
                                             </div>
-                                            <!-- /.cart -->
+                                            <!-- /.product -->
+
                                         </div>
-                                        <!-- /.product -->
-
+                                        <!-- /.products -->
                                     </div>
-                                    <!-- /.products -->
-                                </div>
-                                <!-- /.item -->
-
-                                <div class="item item-carousel">
-                                    <div class="products">
-                                        <div class="product">
-                                            <div class="product-image">
-                                                <div class="image"> <a href="detail.html"><img
-                                                            src=" {{ asset('front-theme/assets/images/products/p6.jpg') }}"
-                                                            alt=""></a> </div>
-                                                <!-- /.image -->
-
-                                                <div class="tag new"><span>new</span></div>
-                                            </div>
-                                            <!-- /.product-image -->
-
-                                            <div class="product-info text-left">
-                                                <h3 class="name"><a href="detail.html">Floral Print Buttoned</a>
-                                                </h3>
-                                                <div class="rating rateit-small"></div>
-                                                <div class="description"></div>
-                                                <div class="product-price"> <span class="price"> $450.99 </span>
-                                                    <span class="price-before-discount">$ 800</span>
-                                                </div>
-                                                <!-- /.product-price -->
-
-                                            </div>
-                                            <!-- /.product-info -->
-                                            <div class="cart clearfix animate-effect">
-                                                <div class="action">
-                                                    <ul class="list-unstyled">
-                                                        <li class="add-cart-button btn-group">
-                                                            <button class="btn btn-primary icon" data-toggle="dropdown"
-                                                                type="button"> <i class="fa fa-shopping-cart"></i>
-                                                            </button>
-                                                            <button class="btn btn-primary cart-btn" type="button">Add to
-                                                                cart</button>
-                                                        </li>
-                                                        <li class="lnk wishlist"> <a class="add-to-cart"
-                                                                href="detail.html" title="Wishlist"> <i
-                                                                    class="icon fa fa-heart"></i> </a> </li>
-                                                        <li class="lnk"> <a class="add-to-cart"
-                                                                href="detail.html" title="Compare"> <i
-                                                                    class="fa fa-signal" aria-hidden="true"></i> </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <!-- /.action -->
-                                            </div>
-                                            <!-- /.cart -->
-                                        </div>
-                                        <!-- /.product -->
-
-                                    </div>
-                                    <!-- /.products -->
-                                </div>
-                                <!-- /.item -->
-
-                                <div class="item item-carousel">
-                                    <div class="products">
-                                        <div class="product">
-                                            <div class="product-image">
-                                                <div class="image"> <a href="detail.html"><img
-                                                            src=" {{ asset('front-theme/assets/images/blank.gif') }}"
-                                                            data-echo=" {{ asset('front-theme/assets/images/products/p7.jpg') }}"
-                                                            alt=""></a> </div>
-                                                <!-- /.image -->
-
-                                                <div class="tag sale"><span>sale</span></div>
-                                            </div>
-                                            <!-- /.product-image -->
-
-                                            <div class="product-info text-left">
-                                                <h3 class="name"><a href="detail.html">Floral Print Buttoned</a>
-                                                </h3>
-                                                <div class="rating rateit-small"></div>
-                                                <div class="description"></div>
-                                                <div class="product-price"> <span class="price"> $450.99 </span>
-                                                    <span class="price-before-discount">$ 800</span>
-                                                </div>
-                                                <!-- /.product-price -->
-
-                                            </div>
-                                            <!-- /.product-info -->
-                                            <div class="cart clearfix animate-effect">
-                                                <div class="action">
-                                                    <ul class="list-unstyled">
-                                                        <li class="add-cart-button btn-group">
-                                                            <button class="btn btn-primary icon" data-toggle="dropdown"
-                                                                type="button"> <i class="fa fa-shopping-cart"></i>
-                                                            </button>
-                                                            <button class="btn btn-primary cart-btn" type="button">Add to
-                                                                cart</button>
-                                                        </li>
-                                                        <li class="lnk wishlist"> <a class="add-to-cart"
-                                                                href="detail.html" title="Wishlist"> <i
-                                                                    class="icon fa fa-heart"></i> </a> </li>
-                                                        <li class="lnk"> <a class="add-to-cart"
-                                                                href="detail.html" title="Compare"> <i
-                                                                    class="fa fa-signal" aria-hidden="true"></i> </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <!-- /.action -->
-                                            </div>
-                                            <!-- /.cart -->
-                                        </div>
-                                        <!-- /.product -->
-
-                                    </div>
-                                    <!-- /.products -->
-                                </div>
-                                <!-- /.item -->
-
-                                <div class="item item-carousel">
-                                    <div class="products">
-                                        <div class="product">
-                                            <div class="product-image">
-                                                <div class="image"> <a href="detail.html"><img
-                                                            src=" {{ asset('front-theme/assets/images/products/p8.jpg') }}"
-                                                            alt=""></a> </div>
-                                                <!-- /.image -->
-
-                                                <div class="tag hot"><span>hot</span></div>
-                                            </div>
-                                            <!-- /.product-image -->
-
-                                            <div class="product-info text-left">
-                                                <h3 class="name"><a href="detail.html">Floral Print Buttoned</a>
-                                                </h3>
-                                                <div class="rating rateit-small"></div>
-                                                <div class="description"></div>
-                                                <div class="product-price"> <span class="price"> $450.99 </span>
-                                                    <span class="price-before-discount">$ 800</span>
-                                                </div>
-                                                <!-- /.product-price -->
-
-                                            </div>
-                                            <!-- /.product-info -->
-                                            <div class="cart clearfix animate-effect">
-                                                <div class="action">
-                                                    <ul class="list-unstyled">
-                                                        <li class="add-cart-button btn-group">
-                                                            <button class="btn btn-primary icon" data-toggle="dropdown"
-                                                                type="button"> <i class="fa fa-shopping-cart"></i>
-                                                            </button>
-                                                            <button class="btn btn-primary cart-btn" type="button">Add to
-                                                                cart</button>
-                                                        </li>
-                                                        <li class="lnk wishlist"> <a class="add-to-cart"
-                                                                href="detail.html" title="Wishlist"> <i
-                                                                    class="icon fa fa-heart"></i> </a> </li>
-                                                        <li class="lnk"> <a class="add-to-cart"
-                                                                href="detail.html" title="Compare"> <i
-                                                                    class="fa fa-signal" aria-hidden="true"></i> </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <!-- /.action -->
-                                            </div>
-                                            <!-- /.cart -->
-                                        </div>
-                                        <!-- /.product -->
-
-                                    </div>
-                                    <!-- /.products -->
-                                </div>
-                                <!-- /.item -->
-
-                                <div class="item item-carousel">
-                                    <div class="products">
-                                        <div class="product">
-                                            <div class="product-image">
-                                                <div class="image"> <a href="detail.html"><img
-                                                            src=" {{ asset('front-theme/assets/images/products/p9.jpg') }}"
-                                                            alt=""></a> </div>
-                                                <!-- /.image -->
-
-                                                <div class="tag new"><span>new</span></div>
-                                            </div>
-                                            <!-- /.product-image -->
-
-                                            <div class="product-info text-left">
-                                                <h3 class="name"><a href="detail.html">Floral Print Buttoned</a>
-                                                </h3>
-                                                <div class="rating rateit-small"></div>
-                                                <div class="description"></div>
-                                                <div class="product-price"> <span class="price"> $450.99 </span>
-                                                    <span class="price-before-discount">$ 800</span>
-                                                </div>
-                                                <!-- /.product-price -->
-
-                                            </div>
-                                            <!-- /.product-info -->
-                                            <div class="cart clearfix animate-effect">
-                                                <div class="action">
-                                                    <ul class="list-unstyled">
-                                                        <li class="add-cart-button btn-group">
-                                                            <button class="btn btn-primary icon" data-toggle="dropdown"
-                                                                type="button"> <i class="fa fa-shopping-cart"></i>
-                                                            </button>
-                                                            <button class="btn btn-primary cart-btn" type="button">Add to
-                                                                cart</button>
-                                                        </li>
-                                                        <li class="lnk wishlist"> <a class="add-to-cart"
-                                                                href="detail.html" title="Wishlist"> <i
-                                                                    class="icon fa fa-heart"></i> </a> </li>
-                                                        <li class="lnk"> <a class="add-to-cart"
-                                                                href="detail.html" title="Compare"> <i
-                                                                    class="fa fa-signal" aria-hidden="true"></i> </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <!-- /.action -->
-                                            </div>
-                                            <!-- /.cart -->
-                                        </div>
-                                        <!-- /.product -->
-
-                                    </div>
-                                    <!-- /.products -->
-                                </div>
-                                <!-- /.item -->
-
-                                <div class="item item-carousel">
-                                    <div class="products">
-                                        <div class="product">
-                                            <div class="product-image">
-                                                <div class="image"> <a href="detail.html"><img
-                                                            src=" {{ asset('front-theme/assets/images/products/p10.jpg') }}"
-                                                            alt=""></a> </div>
-                                                <!-- /.image -->
-
-                                                <div class="tag sale"><span>sale</span></div>
-                                            </div>
-                                            <!-- /.product-image -->
-
-                                            <div class="product-info text-left">
-                                                <h3 class="name"><a href="detail.html">Floral Print Buttoned</a>
-                                                </h3>
-                                                <div class="rating rateit-small"></div>
-                                                <div class="description"></div>
-                                                <div class="product-price"> <span class="price"> $450.99 </span>
-                                                    <span class="price-before-discount">$ 800</span>
-                                                </div>
-                                                <!-- /.product-price -->
-
-                                            </div>
-                                            <!-- /.product-info -->
-                                            <div class="cart clearfix animate-effect">
-                                                <div class="action">
-                                                    <ul class="list-unstyled">
-                                                        <li class="add-cart-button btn-group">
-                                                            <button class="btn btn-primary icon" data-toggle="dropdown"
-                                                                type="button"> <i class="fa fa-shopping-cart"></i>
-                                                            </button>
-                                                            <button class="btn btn-primary cart-btn" type="button">Add to
-                                                                cart</button>
-                                                        </li>
-                                                        <li class="lnk wishlist"> <a class="add-to-cart"
-                                                                href="detail.html" title="Wishlist"> <i
-                                                                    class="icon fa fa-heart"></i> </a> </li>
-                                                        <li class="lnk"> <a class="add-to-cart"
-                                                                href="detail.html" title="Compare"> <i
-                                                                    class="fa fa-signal" aria-hidden="true"></i> </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <!-- /.action -->
-                                            </div>
-                                            <!-- /.cart -->
-                                        </div>
-                                        <!-- /.product -->
-
-                                    </div>
-                                    <!-- /.products -->
-                                </div>
-                                <!-- /.item -->
+                                    <!-- /.item -->
+                                @endforeach
                             </div>
                             <!-- /.home-owl-carousel -->
                         </section>
@@ -688,6 +481,399 @@
                         </div>
                         <!-- /.wide-banners -->
                         <!-- ============================================== WIDE PRODUCTS : END ============================================== -->
+
+                        <!-- ============================================== PREMIER LEAGUE PRODUCTS ============================================== -->
+                        <section class="section featured-product wow fadeInUp">
+                            <h3 class="section-title">Premier League</h3>
+                            <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                                @foreach ($premProducts as $product)
+                                    <div class="item item-carousel">
+                                        <div class="products">
+                                            <div class="product">
+                                                <div class="product-image">
+                                                    <div class="image"> <a
+                                                            href="{{ url('product/detail/' . $product->product_slug) }}"><img
+                                                                src=" {{ asset('storage/' . $product->product_thambnail) }}"
+                                                                alt=""></a> </div>
+                                                    <!-- /.image -->
+
+                                                    @php
+                                                        $amount = $product->selling_price - $product->discount_price;
+                                                        $discount = ($amount / $product->selling_price) * 100;
+                                                    @endphp
+
+                                                    <div>
+                                                        @if ($product->discount_price)
+                                                            <div class="tag hot">
+                                                                <span>{{ round($discount) }}%</span>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <!-- /.product-image -->
+
+                                                <div class="product-info text-left">
+                                                    <h3 class="name"><a
+                                                            href="{{ url('product/detail/' . $product->product_slug) }}">{{ $product->product_name }}</a>
+                                                    </h3>
+                                                    <div class="rating rateit-small"></div>
+                                                    <div class="description"></div>
+                                                    <div class="product-price">
+                                                        @if ($product->discount_price)
+                                                            <span class="price">
+                                                                Rp.{{ $product->discount_price }}K
+                                                            </span>
+                                                            <span
+                                                                class="price-before-discount">Rp.{{ $product->selling_price }}K
+                                                            </span>
+                                                        @else
+                                                            <span class="price">
+                                                                Rp.{{ $product->selling_price }}K
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <!-- /.product-price -->
+
+                                                </div>
+                                                <!-- /.product-info -->
+                                                <div class="cart clearfix animate-effect">
+                                                    <div class="action">
+                                                        <ul class="list-unstyled">
+                                                            <li class="add-cart-button btn-group">
+                                                                <button data-toggle="modal" data-target="#exampleModal"
+                                                                    class="btn btn-primary icon" type="button"
+                                                                    title="Add Cart" id="{{ $product->id }}"
+                                                                    onclick="productView(this.id)"> <i
+                                                                        class="fa fa-shopping-cart"></i>
+                                                                </button>
+                                                                <button class="btn btn-primary cart-btn"
+                                                                    type="button">Add
+                                                                    to cart</button>
+                                                            </li>
+                                                            <li class="lnk wishlist"> <a data-toggle="tooltip"
+                                                                    class="add-to-cart" href="detail.html"
+                                                                    title="Wishlist">
+                                                                    <i class="icon fa fa-heart"></i>
+                                                                </a> </li>
+                                                            <li class="lnk"> <a data-toggle="tooltip"
+                                                                    class="add-to-cart" href="detail.html"
+                                                                    title="Compare">
+                                                                    <i class="fa fa-signal" aria-hidden="true"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- /.action -->
+                                                </div>
+                                                <!-- /.cart -->
+                                            </div>
+                                            <!-- /.product -->
+
+                                        </div>
+                                        <!-- /.products -->
+                                    </div>
+                                    <!-- /.item -->
+                                @endforeach
+                            </div>
+                            <!-- /.home-owl-carousel -->
+                        </section>
+                        <!-- /.section -->
+                        <!-- ============================================== PREMIER LEAGUE PRODUCTS : END ============================================== -->
+                        <!-- ============================================== LA LIGA PRODUCTS ============================================== -->
+                        <section class="section featured-product wow fadeInUp">
+                            <h3 class="section-title">Premier League</h3>
+                            <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                                @foreach ($laligaProducts as $product)
+                                    <div class="item item-carousel">
+                                        <div class="products">
+                                            <div class="product">
+                                                <div class="product-image">
+                                                    <div class="image"> <a
+                                                            href="{{ url('product/detail/' . $product->product_slug) }}"><img
+                                                                src=" {{ asset('storage/' . $product->product_thambnail) }}"
+                                                                alt=""></a> </div>
+                                                    <!-- /.image -->
+
+                                                    @php
+                                                        $amount = $product->selling_price - $product->discount_price;
+                                                        $discount = ($amount / $product->selling_price) * 100;
+                                                    @endphp
+
+                                                    <div>
+                                                        @if ($product->discount_price)
+                                                            <div class="tag hot">
+                                                                <span>{{ round($discount) }}%</span>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <!-- /.product-image -->
+
+                                                <div class="product-info text-left">
+                                                    <h3 class="name"><a
+                                                            href="{{ url('product/detail/' . $product->product_slug) }}">{{ $product->product_name }}</a>
+                                                    </h3>
+                                                    <div class="rating rateit-small"></div>
+                                                    <div class="description"></div>
+                                                    <div class="product-price">
+                                                        @if ($product->discount_price)
+                                                            <span class="price">
+                                                                Rp.{{ $product->discount_price }}K
+                                                            </span>
+                                                            <span
+                                                                class="price-before-discount">Rp.{{ $product->selling_price }}K
+                                                            </span>
+                                                        @else
+                                                            <span class="price">
+                                                                Rp.{{ $product->selling_price }}K
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <!-- /.product-price -->
+
+                                                </div>
+                                                <!-- /.product-info -->
+                                                <div class="cart clearfix animate-effect">
+                                                    <div class="action">
+                                                        <ul class="list-unstyled">
+                                                            <li class="add-cart-button btn-group">
+                                                                <button data-toggle="modal" data-target="#exampleModal"
+                                                                    class="btn btn-primary icon" type="button"
+                                                                    title="Add Cart" id="{{ $product->id }}"
+                                                                    onclick="productView(this.id)"> <i
+                                                                        class="fa fa-shopping-cart"></i>
+                                                                </button>
+                                                                <button class="btn btn-primary cart-btn"
+                                                                    type="button">Add
+                                                                    to cart</button>
+                                                            </li>
+                                                            <li class="lnk wishlist"> <a data-toggle="tooltip"
+                                                                    class="add-to-cart" href="detail.html"
+                                                                    title="Wishlist">
+                                                                    <i class="icon fa fa-heart"></i>
+                                                                </a> </li>
+                                                            <li class="lnk"> <a data-toggle="tooltip"
+                                                                    class="add-to-cart" href="detail.html"
+                                                                    title="Compare">
+                                                                    <i class="fa fa-signal" aria-hidden="true"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- /.action -->
+                                                </div>
+                                                <!-- /.cart -->
+                                            </div>
+                                            <!-- /.product -->
+
+                                        </div>
+                                        <!-- /.products -->
+                                    </div>
+                                    <!-- /.item -->
+                                @endforeach
+                            </div>
+                            <!-- /.home-owl-carousel -->
+                        </section>
+                        <!-- /.section -->
+                        <!-- ============================================== LA LIGA PRODUCTS : END ============================================== -->
+
+                        <!-- ============================================== ADIDAS PRODUCTS ============================================== -->
+                        <section class="section featured-product wow fadeInUp">
+                            <h3 class="section-title">Adidas</h3>
+                            <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                                @foreach ($adidasProducts as $product)
+                                    <div class="item item-carousel">
+                                        <div class="products">
+                                            <div class="product">
+                                                <div class="product-image">
+                                                    <div class="image"> <a
+                                                            href="{{ url('product/detail/' . $product->product_slug) }}"><img
+                                                                src=" {{ asset('storage/' . $product->product_thambnail) }}"
+                                                                alt=""></a> </div>
+                                                    <!-- /.image -->
+
+                                                    @php
+                                                        $amount = $product->selling_price - $product->discount_price;
+                                                        $discount = ($amount / $product->selling_price) * 100;
+                                                    @endphp
+
+                                                    <div>
+                                                        @if ($product->discount_price)
+                                                            <div class="tag hot">
+                                                                <span>{{ round($discount) }}%</span>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <!-- /.product-image -->
+
+                                                <div class="product-info text-left">
+                                                    <h3 class="name"><a
+                                                            href="{{ url('product/detail/' . $product->product_slug) }}">{{ $product->product_name }}</a>
+                                                    </h3>
+                                                    <div class="rating rateit-small"></div>
+                                                    <div class="description"></div>
+                                                    <div class="product-price">
+                                                        @if ($product->discount_price)
+                                                            <span class="price">
+                                                                Rp.{{ $product->discount_price }}K
+                                                            </span>
+                                                            <span
+                                                                class="price-before-discount">Rp.{{ $product->selling_price }}K
+                                                            </span>
+                                                        @else
+                                                            <span class="price">
+                                                                Rp.{{ $product->selling_price }}K
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <!-- /.product-price -->
+
+                                                </div>
+                                                <!-- /.product-info -->
+                                                <div class="cart clearfix animate-effect">
+                                                    <div class="action">
+                                                        <ul class="list-unstyled">
+                                                            <li class="add-cart-button btn-group">
+                                                                <button data-toggle="modal" data-target="#exampleModal"
+                                                                    class="btn btn-primary icon" type="button"
+                                                                    title="Add Cart" id="{{ $product->id }}"
+                                                                    onclick="productView(this.id)"> <i
+                                                                        class="fa fa-shopping-cart"></i>
+                                                                </button>
+                                                                <button class="btn btn-primary cart-btn"
+                                                                    type="button">Add
+                                                                    to cart</button>
+                                                            </li>
+                                                            <li class="lnk wishlist"> <a data-toggle="tooltip"
+                                                                    class="add-to-cart" href="detail.html"
+                                                                    title="Wishlist">
+                                                                    <i class="icon fa fa-heart"></i>
+                                                                </a> </li>
+                                                            <li class="lnk"> <a data-toggle="tooltip"
+                                                                    class="add-to-cart" href="detail.html"
+                                                                    title="Compare">
+                                                                    <i class="fa fa-signal" aria-hidden="true"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- /.action -->
+                                                </div>
+                                                <!-- /.cart -->
+                                            </div>
+                                            <!-- /.product -->
+
+                                        </div>
+                                        <!-- /.products -->
+                                    </div>
+                                    <!-- /.item -->
+                                @endforeach
+                            </div>
+                            <!-- /.home-owl-carousel -->
+                        </section>
+                        <!-- /.section -->
+                        <!-- ============================================== ADIDAS PRODUCTS : END ============================================== -->
+
+                        <!-- ============================================== NIKE PRODUCTS ============================================== -->
+                        <section class="section featured-product wow fadeInUp">
+                            <h3 class="section-title">Nike</h3>
+                            <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                                @foreach ($nikeProducts as $product)
+                                    <div class="item item-carousel">
+                                        <div class="products">
+                                            <div class="product">
+                                                <div class="product-image">
+                                                    <div class="image"> <a
+                                                            href="{{ url('product/detail/' . $product->product_slug) }}"><img
+                                                                src=" {{ asset('storage/' . $product->product_thambnail) }}"
+                                                                alt=""></a> </div>
+                                                    <!-- /.image -->
+
+                                                    @php
+                                                        $amount = $product->selling_price - $product->discount_price;
+                                                        $discount = ($amount / $product->selling_price) * 100;
+                                                    @endphp
+
+                                                    <div>
+                                                        @if ($product->discount_price)
+                                                            <div class="tag hot">
+                                                                <span>{{ round($discount) }}%</span>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <!-- /.product-image -->
+
+                                                <div class="product-info text-left">
+                                                    <h3 class="name"><a
+                                                            href="{{ url('product/detail/' . $product->product_slug) }}">{{ $product->product_name }}</a>
+                                                    </h3>
+                                                    <div class="rating rateit-small"></div>
+                                                    <div class="description"></div>
+                                                    <div class="product-price">
+                                                        @if ($product->discount_price)
+                                                            <span class="price">
+                                                                Rp.{{ $product->discount_price }}K
+                                                            </span>
+                                                            <span
+                                                                class="price-before-discount">Rp.{{ $product->selling_price }}K
+                                                            </span>
+                                                        @else
+                                                            <span class="price">
+                                                                Rp.{{ $product->selling_price }}K
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <!-- /.product-price -->
+
+                                                </div>
+                                                <!-- /.product-info -->
+                                                <div class="cart clearfix animate-effect">
+                                                    <div class="action">
+                                                        <ul class="list-unstyled">
+                                                            <li class="add-cart-button btn-group">
+                                                                <button data-toggle="modal" data-target="#exampleModal"
+                                                                    class="btn btn-primary icon" type="button"
+                                                                    title="Add Cart" id="{{ $product->id }}"
+                                                                    onclick="productView(this.id)"> <i
+                                                                        class="fa fa-shopping-cart"></i>
+                                                                </button>
+                                                                <button class="btn btn-primary cart-btn"
+                                                                    type="button">Add
+                                                                    to cart</button>
+                                                            </li>
+                                                            <li class="lnk wishlist"> <a data-toggle="tooltip"
+                                                                    class="add-to-cart" href="detail.html"
+                                                                    title="Wishlist">
+                                                                    <i class="icon fa fa-heart"></i>
+                                                                </a> </li>
+                                                            <li class="lnk"> <a data-toggle="tooltip"
+                                                                    class="add-to-cart" href="detail.html"
+                                                                    title="Compare">
+                                                                    <i class="fa fa-signal" aria-hidden="true"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- /.action -->
+                                                </div>
+                                                <!-- /.cart -->
+                                            </div>
+                                            <!-- /.product -->
+
+                                        </div>
+                                        <!-- /.products -->
+                                    </div>
+                                    <!-- /.item -->
+                                @endforeach
+                            </div>
+                            <!-- /.home-owl-carousel -->
+                        </section>
+                        <!-- /.section -->
+                        <!-- ============================================== NIKE PRODUCTS : END ============================================== -->
+
+
                         <!-- ============================================== BEST SELLER ============================================== -->
 
                         <div class="best-deal wow fadeInUp outer-bottom-xs">
@@ -1173,9 +1359,9 @@
                                                         <li class="lnk wishlist"> <a class="add-to-cart"
                                                                 href="detail.html" title="Wishlist"> <i
                                                                     class="icon fa fa-heart"></i> </a> </li>
-                                                        <li class="lnk"> <a class="add-to-cart"
-                                                                href="detail.html" title="Compare"> <i
-                                                                    class="fa fa-signal" aria-hidden="true"></i> </a>
+                                                        <li class="lnk"> <a class="add-to-cart" href="detail.html"
+                                                                title="Compare"> <i class="fa fa-signal"
+                                                                    aria-hidden="true"></i> </a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -1229,9 +1415,9 @@
                                                         <li class="lnk wishlist"> <a class="add-to-cart"
                                                                 href="detail.html" title="Wishlist"> <i
                                                                     class="icon fa fa-heart"></i> </a> </li>
-                                                        <li class="lnk"> <a class="add-to-cart"
-                                                                href="detail.html" title="Compare"> <i
-                                                                    class="fa fa-signal" aria-hidden="true"></i> </a>
+                                                        <li class="lnk"> <a class="add-to-cart" href="detail.html"
+                                                                title="Compare"> <i class="fa fa-signal"
+                                                                    aria-hidden="true"></i> </a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -1285,9 +1471,9 @@
                                                         <li class="lnk wishlist"> <a class="add-to-cart"
                                                                 href="detail.html" title="Wishlist"> <i
                                                                     class="icon fa fa-heart"></i> </a> </li>
-                                                        <li class="lnk"> <a class="add-to-cart"
-                                                                href="detail.html" title="Compare"> <i
-                                                                    class="fa fa-signal" aria-hidden="true"></i> </a>
+                                                        <li class="lnk"> <a class="add-to-cart" href="detail.html"
+                                                                title="Compare"> <i class="fa fa-signal"
+                                                                    aria-hidden="true"></i> </a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -1341,9 +1527,9 @@
                                                         <li class="lnk wishlist"> <a class="add-to-cart"
                                                                 href="detail.html" title="Wishlist"> <i
                                                                     class="icon fa fa-heart"></i> </a> </li>
-                                                        <li class="lnk"> <a class="add-to-cart"
-                                                                href="detail.html" title="Compare"> <i
-                                                                    class="fa fa-signal" aria-hidden="true"></i> </a>
+                                                        <li class="lnk"> <a class="add-to-cart" href="detail.html"
+                                                                title="Compare"> <i class="fa fa-signal"
+                                                                    aria-hidden="true"></i> </a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -1397,9 +1583,9 @@
                                                         <li class="lnk wishlist"> <a class="add-to-cart"
                                                                 href="detail.html" title="Wishlist"> <i
                                                                     class="icon fa fa-heart"></i> </a> </li>
-                                                        <li class="lnk"> <a class="add-to-cart"
-                                                                href="detail.html" title="Compare"> <i
-                                                                    class="fa fa-signal" aria-hidden="true"></i> </a>
+                                                        <li class="lnk"> <a class="add-to-cart" href="detail.html"
+                                                                title="Compare"> <i class="fa fa-signal"
+                                                                    aria-hidden="true"></i> </a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -1453,9 +1639,9 @@
                                                         <li class="lnk wishlist"> <a class="add-to-cart"
                                                                 href="detail.html" title="Wishlist"> <i
                                                                     class="icon fa fa-heart"></i> </a> </li>
-                                                        <li class="lnk"> <a class="add-to-cart"
-                                                                href="detail.html" title="Compare"> <i
-                                                                    class="fa fa-signal" aria-hidden="true"></i> </a>
+                                                        <li class="lnk"> <a class="add-to-cart" href="detail.html"
+                                                                title="Compare"> <i class="fa fa-signal"
+                                                                    aria-hidden="true"></i> </a>
                                                         </li>
                                                     </ul>
                                                 </div>

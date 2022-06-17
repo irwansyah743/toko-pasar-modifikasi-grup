@@ -21,7 +21,7 @@ $subcategories = App\Models\SubCategory::latest()->get();
                                         @foreach ($subcategories as $subcategory)
                                             @if ($subcategory->category->category_name == $category->category_name)
                                                 <li class="col-xs-12 col-sm-6 col-md-3"><a
-                                                        href="#">{{ $subcategory->subcategory_name }}</a>
+                                                        href="{{ url('/product/subcategory/' . $subcategory->id) }}">{{ $subcategory->subcategory_name }}</a>
                                                 </li>
                                             @endif
                                         @endforeach

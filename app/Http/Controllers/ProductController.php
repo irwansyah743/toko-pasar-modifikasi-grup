@@ -87,6 +87,8 @@ class ProductController extends Controller
         Image::make($image)->resize(917, 1000)->save('storage/thumbnails/' . $name_gen);
         $save_url = 'thumbnails/' . $name_gen;
 
+
+
         $product_id = DB::table('products')->insertGetId([
             'brand_id' => $request->brand_id,
             'category_id' => $request->category_id,
@@ -121,7 +123,6 @@ class ProductController extends Controller
 
         ]);
 
-
         ////////// Multiple Image Upload Start ///////////
 
         $images = $request->file('multi_img');
@@ -133,7 +134,6 @@ class ProductController extends Controller
                 'product_id' => $product_id,
                 'photo_name' => $uploadPath,
                 'created_at' => Carbon::now(),
-
             ]);
         }
 

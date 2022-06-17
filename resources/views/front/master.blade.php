@@ -6,10 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="description" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="author" content="">
     <meta name="keywords" content="MediaCenter, Template, eCommerce">
     <meta name="robots" content="all">
-    <title>Flipmart premium HTML5 & CSS3 Template</title>
+    <title>@yield('title') </title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="{{ asset('front-theme/assets/css/bootstrap.css') }}">
@@ -53,6 +54,7 @@
     <!-- For demo purposes – can be removed on production : End -->
     {{-- Custom JS --}}
     <script src="{{ asset('js/upload_preview.js') }}"></script>
+    <script src="{{ asset('js/add_cart.js') }}"></script>
 
     <!-- JavaScripts placed at the end of the document so the pages load faster -->
     <script src="{{ asset('front-theme/assets/js/jquery-1.11.1.min.js') }}"></script>
@@ -87,6 +89,97 @@
             }
         </script>
     @endif
+
+    <!-- Add to Cart Product Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><b id="pname"></b> </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+
+                            <div class="card" style="width: 18rem;">
+
+                                <img src=" " class="card-img-top" alt="..."
+                                    style="height: 200px; width: 180px;" id="pimage">
+
+                            </div>
+
+                        </div><!-- // end col md -->
+
+
+                        <div class="col-md-4">
+
+                            <ul class="list-group">
+                                <li class="list-group-item">Product Price: <strong id="price"
+                                        class="text-danger"></strong>&nbsp;<del id="oldprice"></del> </li>
+                                <li class="list-group-item">Product Code: <strong id="pcode"></strong></li>
+                                <li class="list-group-item">Category: <strong id="pcategory"></strong></li>
+                                <li class="list-group-item">Brand: <strong id="pbrand"></strong></li>
+                                <li class="list-group-item">Stock: <strong id="pstock"></strong></li>
+                            </ul>
+                        </div><!-- // end col md -->
+
+
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Choose Color</label>
+                                <select class="form-control" id="pcolor">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div> <!-- // end form group -->
+
+
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Choose Size</label>
+                                <select class="form-control" id="psize">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div> <!-- // end form group -->
+
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Quantity</label>
+                                <input type="number" class="form-control" id="exampleFormControlInput1" value="1"
+                                    min="1">
+                            </div> <!-- // end form group -->
+
+                            <button type="submit" class="btn btn-primary mb-2">Add to Cart</button>
+
+
+                        </div><!-- // end col md -->
+
+
+                    </div> <!-- // end row -->
+
+
+                </div> <!-- // end modal Body -->
+            </div> <!-- // end modal Body -->
+
+        </div>
+    </div>
+
+    <!-- End Add to Cart Product Modal -->
+
+
+
 </body>
 
 </html>

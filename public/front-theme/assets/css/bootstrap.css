@@ -5992,6 +5992,7 @@ button.close {
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   outline: 0;
+ 
 }
 .modal-backdrop {
   position: fixed;
@@ -6055,6 +6056,8 @@ button.close {
   .modal-content {
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    width: 800px;
+    right: 100px;
   }
   .modal-sm {
     width: 300px;

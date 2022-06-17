@@ -182,9 +182,10 @@ $subcategories = App\Models\SubCategory::latest()->get();
                                 <li class="active dropdown yamm-fw"> <a href="{{ url('/') }}"
                                         class="dropdown-toggle">Home</a> </li>
                                 @foreach ($categories as $category)
-                                    <li class="dropdown yamm mega-menu"> <a href="home.html" data-hover="dropdown"
-                                            class="dropdown-toggle"
-                                            data-toggle="dropdown">{{ $category->category_name }}</a>
+                                    <li class="dropdown yamm mega-menu">
+                                        <a href="{{ url('/product/category/' . $category->id) }}"
+                                            data-hover="dropdown"
+                                            class="dropdown-toggle">{{ $category->category_name }}</a>
                                         <ul class="dropdown-menu container">
                                             <li>
                                                 <div class="yamm-content ">
@@ -193,8 +194,8 @@ $subcategories = App\Models\SubCategory::latest()->get();
                                                             <ul class="links">
                                                                 @foreach ($subcategories as $subcategory)
                                                                     @if ($subcategory->category->category_name == $category->category_name)
-                                                                        <li class="col-xs-12 col-sm-6 col-md-3"><a
-                                                                                href="#">{{ $subcategory->subcategory_name }}</a>
+                                                                        <li class="col-xs-12 col-sm-6 col-md-3 link"><a
+                                                                                href="{{ url('/product/subcategory/' . $subcategory->id) }}">{{ $subcategory->subcategory_name }}</a>
                                                                         </li>
                                                                     @endif
                                                                 @endforeach
@@ -202,7 +203,8 @@ $subcategories = App\Models\SubCategory::latest()->get();
                                                         </div>
                                                         <!-- /.col -->
 
-                                                        <div class="col-xs-12 col-sm-6 col-md-4 col-menu banner-image">
+                                                        <div
+                                                            class="col-xs-12 col-sm-6 col-md-4 col-menu banner-image pb-3">
                                                             <img class="img-responsive" style="max-height: 200px;"
                                                                 src="{{ asset('storage/' . $category->category_image) }}"
                                                                 alt="">

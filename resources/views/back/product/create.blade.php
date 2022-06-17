@@ -36,7 +36,8 @@
                                                     <div class="controls">
                                                         <select name="category_id" id="category_id"
                                                             class="form-control @error('category_id') is-invalid @enderror">
-                                                            <option value="" @selected(old('category_id') == '') disabled>- Select
+                                                            <option value="" @selected(old('category_id') == '') disabled>-
+                                                                Select
                                                                 Category -
                                                             </option>
                                                             @foreach ($categories as $category)
@@ -61,7 +62,8 @@
                                                     <div class="controls">
                                                         <select name="subcategory_id" id="subcategory_id"
                                                             class="form-control @error('subcategory_id') is-invalid @enderror">
-                                                            <option value="" @selected(old('subcategory_id') == '') disabled>- Select
+                                                            <option value="" @selected(old('subcategory_id') == '') disabled>-
+                                                                Select
                                                                 SubCategory -
                                                             </option>
                                                             @if (old('subcategory_id'))
@@ -89,7 +91,8 @@
                                                     <div class="controls">
                                                         <select name="subsubcategory_id" id="subsubcategory_id"
                                                             class="form-control @error('subsubcategory_id') is-invalid @enderror">
-                                                            <option value="" @selected(old('subsubcategory_id') == '') disabled>- Select
+                                                            <option value="" @selected(old('subsubcategory_id') == '') disabled>-
+                                                                Select
                                                                 Sub-SubCategory -
                                                             </option>
                                                             @if (old('subsubcategory_id'))
@@ -126,7 +129,8 @@
                                                         <select name="brand_id"
                                                             class="form-control @error('brand_id') is-invalid @enderror"
                                                             required="">
-                                                            <option value="" selected="" disabled="">Select Brand</option>
+                                                            <option value="" selected="" disabled="">Select
+                                                                Brand</option>
                                                             @foreach ($brands as $brand)
                                                                 <option @selected(old('brand_id') == $brand->id)
                                                                     value="{{ $brand->id }}">
@@ -179,10 +183,6 @@
                                                 </div>
 
                                             </div> <!-- end col md 4 -->
-
-
-
-
                                         </div> <!-- end 2nd row  -->
 
 
@@ -432,8 +432,8 @@
                                                             <label for="checkbox_2">Hot Deals</label>
                                                         </fieldset>
                                                         <fieldset>
-                                                            <input type="checkbox" id="checkbox_3" name="featured" value="1"
-                                                                @checked(old('featured'))>
+                                                            <input type="checkbox" id="checkbox_3" name="featured"
+                                                                value="1" @checked(old('featured'))>
                                                             <label for="checkbox_3">Featured</label>
                                                         </fieldset>
                                                     </div>
