@@ -72,8 +72,17 @@ class IndexController extends Controller
         return view('front.product.subcategory_products', $data);
     }
 
+    public function productTag($keyword)
+    {
+        $data['products'] = Product::where('status', 1)->where('product_tags', 'LIKE', '%' . $keyword . '%')->orderBy('id', 'DESC')->paginate(3);
+        $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
+        $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
+        $data['keyword'] = $keyword;
+        return view('front.product.tag_products', $data);
+    }
+
     /// Product View With Ajax
-    public function ProductViewAjax($id)
+    public function productViewAjax($id)
     {
         $product = Product::with('category', 'brand')->findOrFail($id);
 

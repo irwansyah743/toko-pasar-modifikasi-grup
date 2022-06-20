@@ -1,7 +1,7 @@
 @extends('front.master')
 @section('content')
 @section('title')
-    {{ $category_name }}
+    {{ $keyword }}
 @endsection
 
 
@@ -13,7 +13,7 @@
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
                 <li><a href="#">Home</a></li>
-                <li class='active'>{{ $category_name }}</li>
+                <li class='active'>{{ $keyword }}</li>
             </ul>
         </div>
         <!-- /.breadcrumb-inner -->
@@ -108,8 +108,8 @@
                             </div>
                             <div class="sidebar-widget-body m-t-10">
                                 <div class="price-range-holder"> <span class="min-max"> <span
-                                            class="pull-left">$200.00</span> <span
-                                            class="pull-right">$800.00</span> </span>
+                                            class="pull-left">$200.00</span> <span class="pull-right">$800.00</span>
+                                    </span>
                                     <input type="text" id="amount"
                                         style="border:0; color:#666666; font-weight:bold;text-align:center;">
                                     <input type="text" class="price-slider" value="">
@@ -187,7 +187,8 @@
 
 
                         <div class="home-banner"> <img
-                                src="{{ asset('frontend/assets/images/banners/LHS-banner.jpg') }}" alt="Image"> </div>
+                                src="{{ asset('frontend/assets/images/banners/LHS-banner.jpg') }}" alt="Image">
+                        </div>
                     </div>
                     <!-- /.sidebar-filter -->
                 </div>
@@ -238,7 +239,8 @@
                                 <div class="lbl-cnt"> <span class="lbl">Sort by</span>
                                     <div class="fld inline">
                                         <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
-                                            <button data-toggle="dropdown" type="button" class="btn dropdown-toggle">
+                                            <button data-toggle="dropdown" type="button"
+                                                class="btn dropdown-toggle">
                                                 Position <span class="caret"></span> </button>
                                             <ul role="menu" class="dropdown-menu">
                                                 <li role="presentation"><a href="#">position</a></li>
@@ -257,7 +259,8 @@
                                 <div class="lbl-cnt"> <span class="lbl">Show</span>
                                     <div class="fld inline">
                                         <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
-                                            <button data-toggle="dropdown" type="button" class="btn dropdown-toggle"> 1
+                                            <button data-toggle="dropdown" type="button"
+                                                class="btn dropdown-toggle"> 1
                                                 <span class="caret"></span> </button>
                                             <ul role="menu" class="dropdown-menu">
                                                 <li role="presentation"><a href="#">1</a></li>
@@ -443,12 +446,10 @@
 
 
                                                             @if ($product->discount_price == null)
-                                                                <div class="product-price"> <span
-                                                                        class="price">
+                                                                <div class="product-price"> <span class="price">
                                                                         ${{ $product->selling_price }} </span> </div>
                                                             @else
-                                                                <div class="product-price"> <span
-                                                                        class="price">
+                                                                <div class="product-price"> <span class="price">
                                                                         ${{ $product->discount_price }} </span> <span
                                                                         class="price-before-discount">$
                                                                         {{ $product->selling_price }}</span> </div>
@@ -465,19 +466,18 @@
                                                                     <ul class="list-unstyled">
                                                                         <li class="add-cart-button btn-group">
                                                                             <button class="btn btn-primary icon"
-                                                                                data-toggle="dropdown" type="button"> <i
-                                                                                    class="fa fa-shopping-cart"></i>
+                                                                                data-toggle="dropdown" type="button">
+                                                                                <i class="fa fa-shopping-cart"></i>
                                                                             </button>
                                                                             <button class="btn btn-primary cart-btn"
                                                                                 type="button">Add to cart</button>
                                                                         </li>
                                                                         <li class="lnk wishlist"> <a
-                                                                                class="add-to-cart"
-                                                                                href="detail.html" title="Wishlist"> <i
+                                                                                class="add-to-cart" href="detail.html"
+                                                                                title="Wishlist"> <i
                                                                                     class="icon fa fa-heart"></i> </a>
                                                                         </li>
-                                                                        <li class="lnk"> <a
-                                                                                class="add-to-cart"
+                                                                        <li class="lnk"> <a class="add-to-cart"
                                                                                 href="detail.html" title="Compare"> <i
                                                                                     class="fa fa-signal"></i> </a>
                                                                         </li>

@@ -70,6 +70,7 @@
     <script src="{{ asset('front-theme/assets/js/wow.min.js') }}"></script>
     <script src="{{ asset('front-theme/assets/js/scripts.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (Session::has('message'))
         <script>
             let type = "{{ Session::get('alert-type') }}";
@@ -96,7 +97,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"><b id="pname"></b> </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModel">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -133,8 +134,8 @@
                         <div class="col-md-4">
 
                             <div class="form-group">
-                                <label for="exampleFormControlSelect1">Choose Color</label>
-                                <select class="form-control" id="pcolor">
+                                <label for="pcolor">Choose Color</label>
+                                <select class="form-control" id="pcolor" name="pcolor">
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -145,8 +146,8 @@
 
 
                             <div class="form-group">
-                                <label for="exampleFormControlSelect1">Choose Size</label>
-                                <select class="form-control" id="psize">
+                                <label for="psize">Choose Size</label>
+                                <select class="form-control" id="psize" name="psize">
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -156,12 +157,13 @@
                             </div> <!-- // end form group -->
 
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Quantity</label>
-                                <input type="number" class="form-control" id="exampleFormControlInput1" value="1"
+                                <label for="qty">Quantity</label>
+                                <input type="number" class="form-control" id="qty" value="1"
                                     min="1">
                             </div> <!-- // end form group -->
-
-                            <button type="submit" class="btn btn-primary mb-2">Add to Cart</button>
+                            <input type="hidden" id="pid" />
+                            <button type="submit" class="btn btn-primary mb-2" onclick="addToCart()">Add to
+                                Cart</button>
 
 
                         </div><!-- // end col md -->

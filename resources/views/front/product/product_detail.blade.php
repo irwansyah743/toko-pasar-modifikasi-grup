@@ -142,7 +142,7 @@
                             <div class="product-info">
 
 
-                                <h1 class="name">
+                                <h1 class="name" id="pname">
 
                                     {{ $product->product_name }}
 
@@ -189,13 +189,10 @@
                                         <div class="col-sm-6">
                                             <div class="price-box">
                                                 @if ($product->discount_price == null)
-                                                    <span
-                                                        class="price">${{ $product->selling_price }}</span>
+                                                    <span class="price">${{ $product->selling_price }}</span>
                                                 @else
-                                                    <span
-                                                        class="price">${{ $product->discount_price }}</span>
-                                                    <span
-                                                        class="price-strike">${{ $product->selling_price }}</span>
+                                                    <span class="price">${{ $product->discount_price }}</span>
+                                                    <span class="price-strike">${{ $product->selling_price }}</span>
                                                 @endif
 
 
@@ -204,16 +201,16 @@
 
                                         <div class="col-sm-6">
                                             <div class="favorite-button m-t-10">
-                                                <a class="btn btn-primary" data-toggle="tooltip" data-placement="right"
-                                                    title="Wishlist" href="#">
+                                                <a class="btn btn-primary" data-toggle="tooltip"
+                                                    data-placement="right" title="Wishlist" href="#">
                                                     <i class="fa fa-heart"></i>
                                                 </a>
-                                                <a class="btn btn-primary" data-toggle="tooltip" data-placement="right"
-                                                    title="Add to Compare" href="#">
+                                                <a class="btn btn-primary" data-toggle="tooltip"
+                                                    data-placement="right" title="Add to Compare" href="#">
                                                     <i class="fa fa-signal"></i>
                                                 </a>
-                                                <a class="btn btn-primary" data-toggle="tooltip" data-placement="right"
-                                                    title="E-mail" href="#">
+                                                <a class="btn btn-primary" data-toggle="tooltip"
+                                                    data-placement="right" title="E-mail" href="#">
                                                     <i class="fa fa-envelope"></i>
                                                 </a>
                                             </div>
@@ -230,7 +227,8 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="info-title control-label">Color </label>
-                                            <select class="form-control unicase-form-control selectpicker">
+                                            <select class="form-control unicase-form-control selectpicker"
+                                                id="color">
                                                 <option selected disabled>--Choose Color--</option>
                                                 @foreach ($colors as $color)
                                                     <option value="{{ $color }}">{{ ucwords($color) }}
@@ -243,7 +241,8 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="info-title control-label">Size </label>
-                                            <select class="form-control unicase-form-control selectpicker">
+                                            <select class="form-control unicase-form-control selectpicker"
+                                                id="size">
                                                 <option selected disabled>--Choose Size--</option>
                                                 @foreach ($sizes as $size)
                                                     <option value="{{ $size }}">{{ ucwords($size) }}
@@ -271,18 +270,19 @@
                                                     <div class="arrows">
                                                         <div class="arrow plus gradient"><span class="ir"><i
                                                                     class="icon fa fa-sort-asc"></i></span></div>
-                                                        <div class="arrow minus gradient"><span
-                                                                class="ir"><i
+                                                        <div class="arrow minus gradient"><span class="ir"><i
                                                                     class="icon fa fa-sort-desc"></i></span></div>
                                                     </div>
-                                                    <input type="text" value="1">
+                                                    <input type="text" id="qty" value="1"
+                                                        min="1">
                                                 </div>
                                             </div>
                                         </div>
-
+                                        <input type="hidden" id="pid" value="{{ $product->id }}">
                                         <div class="col-sm-7">
-                                            <a href="#" class="btn btn-primary"><i
-                                                    class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+                                            <button type="submit" onclick="addToCart()" class="btn btn-primary"><i
+                                                    class="fa fa-shopping-cart inner-right-vs"></i> ADD TO
+                                                CART</button>
                                         </div>
 
 
@@ -456,7 +456,8 @@
 
                                                 <div class="form-group">
                                                     <label for="exampleInputTag">Add Your Tags: </label>
-                                                    <input type="email" id="exampleInputTag" class="form-control txt">
+                                                    <input type="email" id="exampleInputTag"
+                                                        class="form-control txt">
 
 
                                                 </div>

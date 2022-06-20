@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\IndexController;
@@ -158,7 +159,13 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/', 'index');
     Route::get('/product/detail/{slug}', 'productDetail');
     Route::get('/product/category/{category}', 'productCategory');
+    Route::get('/product/tags/{keyword}', 'productTag');
     Route::get('/product/subcategory/{subcategory}', 'productSubcategory');
-    Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
+    Route::get('/product/view/modal/{id}', 'productViewAjax');
 });
+
+Route::post('/cart/data/store/{id}', [CartController::class, 'addToCart']);
+// Get Data from mini cart
+Route::get('/cart/products', [CartController::class, 'addMiniCart']);
+Route::post('/cart/products/{rowId}', [CartController::class, 'removeMiniCart']); 
 // END MAIN CONTENT

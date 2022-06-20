@@ -32,7 +32,7 @@ $tagsFix = array_unique($tagsFix);
         <div class="tag-list">
             @foreach ($tagsFix as $tag)
                 <a class="item" title="{{ $tag }}"
-                    href="category.html">{{ str_replace(',', ' ', $tag) }}</a>
+                    href="{{ url('/product/tags/' . $tag) }}">{{ str_replace(',', ' ', $tag) }}</a>
             @endforeach
         </div>
         <!-- /.tag-list -->

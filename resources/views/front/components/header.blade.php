@@ -29,8 +29,8 @@ $subcategories = App\Models\SubCategory::latest()->get();
 
                 <div class="cnt-block">
                     <ul class="list-unstyled list-inline">
-                        <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown"
-                                data-toggle="dropdown"><span class="value">USD </span><b
+                        <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle"
+                                data-hover="dropdown" data-toggle="dropdown"><span class="value">USD </span><b
                                     class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">USD</a></li>
@@ -38,8 +38,8 @@ $subcategories = App\Models\SubCategory::latest()->get();
                                 <li><a href="#">GBP</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown"
-                                data-toggle="dropdown"><span class="value">English </span><b
+                        <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle"
+                                data-hover="dropdown" data-toggle="dropdown"><span class="value">English </span><b
                                     class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">English</a></li>
@@ -105,42 +105,35 @@ $subcategories = App\Models\SubCategory::latest()->get();
                 <!-- /.top-search-holder -->
 
                 <div class="col-xs-12 col-sm-12 col-md-2 animate-dropdown top-cart-row">
-                    <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
+
+                    <!-- ===== === SHOPPING CART DROPDOWN ===== == -->
 
                     <div class="dropdown dropdown-cart"> <a href="#" class="dropdown-toggle lnk-cart"
                             data-toggle="dropdown">
                             <div class="items-cart-inner">
                                 <div class="basket"> <i class="glyphicon glyphicon-shopping-cart"></i> </div>
-                                <div class="basket-item-count"><span class="count">2</span></div>
-                                <div class="total-price-basket"> <span class="lbl">cart -</span> <span
-                                        class="total-price"> <span class="sign">$</span><span
-                                            class="value">600.00</span> </span> </div>
+                                <div class="basket-item-count"><span class="count" id="cartQty"> </span></div>
+                                <div class="total-price-basket"> <span class="lbl">Rp -</span>
+                                    <span class="total-price"><span class="sign cartTotal"></span>K</span>
+
+                                </div>
                             </div>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <div class="cart-item product-summary">
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <div class="image"> <a href="detail.html"><img
-                                                        src="{{ asset('front-theme/assets/images/cart.jpg') }}"
-                                                        alt=""></a> </div>
-                                        </div>
-                                        <div class="col-xs-7">
-                                            <h3 class="name"><a href="index.php?page-detail">Simple
-                                                    Product</a></h3>
-                                            <div class="price">$600.00</div>
-                                        </div>
-                                        <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a>
-                                        </div>
-                                    </div>
+                                <!--   // Mini Cart Start with Ajax -->
+
+                                <div id="miniCart">
+
                                 </div>
-                                <!-- /.cart-item -->
-                                <div class="clearfix"></div>
-                                <hr>
+
+                                <!--   // End Mini Cart Start with Ajax -->
+
+
                                 <div class="clearfix cart-total">
-                                    <div class="pull-right"> <span class="text">Sub Total :</span><span
-                                            class='price'>$600.00</span> </div>
+                                    <div class="pull-right"> <span class="text">Sub Total :</span>
+                                        <span class='price cartTotal'> </span>
+                                    </div>
                                     <div class="clearfix"></div>
                                     <a href="checkout.html"
                                         class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
@@ -153,14 +146,15 @@ $subcategories = App\Models\SubCategory::latest()->get();
                     </div>
                     <!-- /.dropdown-cart -->
 
-                    <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= -->
+                    <!-- == === SHOPPING CART DROPDOWN : END=== === -->
                 </div>
-                <!-- /.top-cart-row -->
             </div>
-            <!-- /.row -->
-
+            <!-- /.top-cart-row -->
         </div>
-        <!-- /.container -->
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
 
     </div>
     <!-- /.main-header -->
@@ -221,8 +215,8 @@ $subcategories = App\Models\SubCategory::latest()->get();
                                         </ul>
                                     </li>
                                 @endforeach
-                                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-hover="dropdown"
-                                        data-toggle="dropdown">Pages</a>
+                                <li class="dropdown"> <a href="#" class="dropdown-toggle"
+                                        data-hover="dropdown" data-toggle="dropdown">Pages</a>
                                     <ul class="dropdown-menu pages">
                                         <li>
                                             <div class="yamm-content">
@@ -243,7 +237,8 @@ $subcategories = App\Models\SubCategory::latest()->get();
                                                             <li><a href="terms-conditions.html">Terms and Condition</a>
                                                             </li>
                                                             <li><a href="track-orders.html">Track Orders</a></li>
-                                                            <li><a href="product-comparison.html">Product-Comparison</a>
+                                                            <li><a
+                                                                    href="product-comparison.html">Product-Comparison</a>
                                                             </li>
                                                             <li><a href="faq.html">FAQ</a></li>
                                                             <li><a href="404.html">404</a></li>
@@ -254,7 +249,8 @@ $subcategories = App\Models\SubCategory::latest()->get();
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="dropdown  navbar-right special-menu"> <a href="#">Todays offer</a> </li>
+                                <li class="dropdown  navbar-right special-menu"> <a href="#">Todays offer</a>
+                                </li>
                             </ul>
                             <!-- /.navbar-nav -->
                             <div class="clearfix"></div>
