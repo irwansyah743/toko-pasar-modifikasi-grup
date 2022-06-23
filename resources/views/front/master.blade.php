@@ -55,6 +55,7 @@
     {{-- Custom JS --}}
     <script src="{{ asset('js/upload_preview.js') }}"></script>
     <script src="{{ asset('js/add_cart.js') }}"></script>
+    <script src="{{ asset('js/wishlist.js') }}"></script>
 
     <!-- JavaScripts placed at the end of the document so the pages load faster -->
     <script src="{{ asset('front-theme/assets/js/jquery-1.11.1.min.js') }}"></script>

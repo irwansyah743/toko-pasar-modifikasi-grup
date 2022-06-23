@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
@@ -11,7 +14,6 @@ class CartController extends Controller
 
     public function addToCart(Request $request, $id)
     {
-        // dd($request->all());
         $product = Product::find($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -64,6 +66,9 @@ class CartController extends Controller
     public function removeMiniCart($rowId)
     {
         Cart::remove($rowId);
-    } // end mehtod 
+    }
+
+    // add to wishlist mehtod 
+
 
 }

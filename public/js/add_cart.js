@@ -9,7 +9,7 @@ async function productView(id){
         document.getElementById('pcategory').innerHTML=data.product.category.category_name;
         document.getElementById('pbrand').innerHTML=data.product.brand.brand_name;
         document.getElementById('pid').value=data.product.id;
-        document.getElementById('pimage').src=`storage/${data.product.product_thambnail}`;
+        document.getElementById('pimage').src=`http://127.0.0.1:8000/storage/${data.product.product_thambnail}`;
         if(data.product.discount_price==null){
             document.getElementById('price').innerHTML=`Rp.${data.product.selling_price}K`;
         }else{
@@ -189,8 +189,8 @@ const miniCartRemove=(rowId)=>{
                 Swal.fire({
                     toast: true,
                     position: 'top-end',
-                    icon: 'error',
-                    title: "Product Remove from Cart",
+                    icon: 'success',
+                    title: "Product was Removed from Cart",
                     showConfirmButton: false,
                     timer: 3000
                 })
@@ -209,4 +209,7 @@ const miniCartRemove=(rowId)=>{
 
 //  end mini cart remove 
 // -------------------------------------- END REMOVE MINI CART ----------------------------------
+
+
+
 

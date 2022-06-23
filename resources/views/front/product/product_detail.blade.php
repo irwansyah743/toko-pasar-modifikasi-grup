@@ -201,10 +201,10 @@
 
                                         <div class="col-sm-6">
                                             <div class="favorite-button m-t-10">
-                                                <a class="btn btn-primary" data-toggle="tooltip"
-                                                    data-placement="right" title="Wishlist" href="#">
-                                                    <i class="fa fa-heart"></i>
-                                                </a>
+                                                <button class="btn btn-primary icon" type="button" title="Wishlist"
+                                                    id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i
+                                                        class="fa fa-heart"></i>
+                                                </button>
                                                 <a class="btn btn-primary" data-toggle="tooltip"
                                                     data-placement="right" title="Add to Compare" href="#">
                                                     <i class="fa fa-signal"></i>
@@ -552,11 +552,10 @@
 
                                                     </li>
 
-                                                    <li class="lnk wishlist">
-                                                        <a class="add-to-cart" href="detail.html" title="Wishlist">
-                                                            <i class="icon fa fa-heart"></i>
-                                                        </a>
-                                                    </li>
+                                                    <button class="btn btn-primary icon" type="button"
+                                                        title="Wishlist" id="{{ $product->id }}"
+                                                        onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i>
+                                                    </button>
 
                                                     <li class="lnk">
                                                         <a class="add-to-cart" href="detail.html" title="Compare">
