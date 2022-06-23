@@ -59,8 +59,7 @@ $route = Route::current()->getName();
                             href="{{ route('all.subcategory') }}"><i class="ti-more"></i>SubCategories</a>
                     </li>
                     <li class="{{ $route == 'all.subsubcategory' ? 'active' : '' }}"><a
-                            href="{{ route('all.subsubcategory') }}"><i
-                                class="ti-more"></i>SubSubCategories</a>
+                            href="{{ route('all.subsubcategory') }}"><i class="ti-more"></i>SubSubCategories</a>
                     </li>
                 </ul>
             </li>
@@ -93,6 +92,20 @@ $route = Route::current()->getName();
                 <ul class="treeview-menu">
                     <li class="{{ $route == 'manage.slider' ? 'active' : '' }}"><a
                             href="{{ route('manage.slider') }}"><i class="ti-more"></i>Manage Slider</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview {{ $prefix == '/coupon' ? 'active' : '' }}  ">
+                <a href="#">
+                    <i data-feather="file"></i>
+                    <span>Coupons</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ $route == 'manage.coupon' ? 'active' : '' }}"><a
+                            href="{{ route('manage.coupon') }}"><i class="ti-more"></i>Manage Coupon</a></li>
                 </ul>
             </li>
 
@@ -133,8 +146,8 @@ $route = Route::current()->getName();
 
     <div class="sidebar-footer">
         <!-- item-->
-        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title=""
-            data-original-title="Settings" aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
+        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Settings"
+            aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
         <!-- item-->
         <a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title=""
             data-original-title="Email"><i class="ti-email"></i></a>

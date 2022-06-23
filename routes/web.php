@@ -8,6 +8,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\SubSubCategoryController;
@@ -154,6 +155,23 @@ Route::middleware([
     Route::post('/{slider}', 'destroy')->name('slider.delete');
 });
 // END ADMIN SLIDER
+
+// ADMIN COUPON
+Route::middleware([
+    'auth.admin:admin',
+    config('jetstream.auth_session'),
+    'verified'
+])->controller(CouponController::class)->prefix('coupon')->group(function () {
+    Route::get('/', 'index')->name('manage.coupon');
+    Route::get('/create', 'create')->name('create.coupon');
+    Route::post('/', 'store')->name('coupon.store');
+    Route::get('/edit/{coupon}', 'edit')->name('coupon.edit');
+    Route::put('/{coupon}', 'update')->name('coupon.update');
+    Route::put('/activate/{coupon}', 'CouponInactive')->name('coupon.inactive');
+    Route::put('/inactivate/{coupon}', 'CouponActive')->name('coupon.active');
+    Route::post('/{coupon}', 'destroy')->name('coupon.delete');
+});
+// END ADMIN COUPON
 
 // MAIN CONTENT
 Route::controller(IndexController::class)->group(function () {
