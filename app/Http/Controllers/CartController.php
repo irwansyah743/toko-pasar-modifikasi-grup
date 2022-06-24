@@ -72,7 +72,23 @@ class CartController extends Controller
         Cart::remove($rowId);
     }
 
-    // add to wishlist mehtod 
+    // Cart Increment 
+    public function cartIncrement($rowId)
+    {
+        $row = Cart::get($rowId);
+        Cart::update($rowId, $row->qty + 1);
 
+        return response()->json('Increment');
+    } // end mehtod 
+
+    // Cart Decrement  
+    public function cartDecrement($rowId)
+    {
+
+        $row = Cart::get($rowId);
+        Cart::update($rowId, $row->qty - 1);
+
+        return response()->json('Decrement');
+    } // end mehtod 
 
 }

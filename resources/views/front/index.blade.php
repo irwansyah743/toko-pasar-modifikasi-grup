@@ -279,7 +279,11 @@
                                                                                         onclick="productView(this.id)">
                                                                                         <i class="fa fa-shopping-cart"></i>
                                                                                     </button>
-                                                                                    <button
+                                                                                    <button data-toggle="modal"
+                                                                                        data-target="#exampleModal"
+                                                                                        title="Add Cart"
+                                                                                        id="{{ $product->id }}"
+                                                                                        onclick="productView(this.id)"
                                                                                         class="btn btn-primary cart-btn"
                                                                                         type="button">Add to cart</button>
                                                                                 </li>

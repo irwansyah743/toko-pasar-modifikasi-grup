@@ -188,6 +188,8 @@ Route::controller(CartController::class)->group(function () {
     Route::get('/cart/products', 'addMiniCart');
     Route::post('/cart/products/{rowId}', 'removeMiniCart');
     Route::get('/mycart', 'index')->name('mycart');
+    Route::post('/cart-increment/{rowId}', 'cartIncrement');
+    Route::post('/cart-decrement/{rowId}', 'cartDecrement');
 });
 
 Route::middleware([

@@ -141,21 +141,101 @@ if(document.getElementById('cartPage')){
 
 function createCartPage(cart) {
     return `<tr>
-    <td class="col-md-2"><img src="http://127.0.0.1:8000/storage/${cart.options.image} " alt="imga"></td>
+    <td class="col-md-2"><img src="http://127.0.0.1:8000/storage/${cart.options.image} " alt="${cart.name}" style="width:60px; height:60px;"></td>
     
-    <td class="col-md-7">
+    <td class="col-md-2">
         <div class="product-name"><a href="#">${cart.name}</a></div>
          
-        <div class="price"> 
-                        ${cart.price}
+                    <div class="price"> 
+                        Rp. ${cart.price}K
                     </div>
                 </td>
-     
+             <td class="col-md-2">
+            <strong>${cart.options.color} </strong> 
+            </td>
+         <td class="col-md-2">
+          ${cart.options.size == null
+            ? `<span> .... </span>`
+            :
+          `<strong>${cart.options.size} </strong>` 
+          }           
+            </td>
+           <td class="col-md-2">
+           ${cart.qty > 1
+            ? `<button type="submit" class="btn btn-danger btn-sm" id="${cart.rowId}" onclick="cartDecrement(this.id)" >-</button> `
+            : `<button type="submit" class="btn btn-danger btn-sm" disabled >-</button> `
+            } 
+           <input type="text" value="${cart.qty}" min="1" max="100" disabled="" style="width:25px;" >  
+            <button type="submit" class="btn btn-success btn-sm" id="${cart.rowId}" onclick="cartIncrement(this.id)" >+</button>    
+            </td>
+             <td class="col-md-2">
+            <strong>Rp.${cart.subtotal}K </strong> 
+            </td>
+
     <td class="col-md-1 close-btn">
         <button type="submit" class="" id="${cart.rowId}" onclick="cartRemove(this.id)"><i class="fa fa-times"></i></button>
     </td>
             </tr>`;
 }
+
+ // -------- CART INCREMENT --------//
+ function cartIncrement(rowId){
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    fetch(`http://127.0.0.1:8000/cart-increment/${rowId}`,{
+        method:'post',
+        headers: {
+            
+            "Content-Type": "application/json",
+            "Accept": "application/json, text-plain, */*",
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRF-TOKEN": token
+        }
+    }).then(
+        miniCart()
+    ).then(
+        cart()
+    ).catch(error=> {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: error,
+            showConfirmButton: false,
+            timer: 3000
+          })
+    });
+}
+// ---------- END CART INCREMENT -----///
+
+ // -------- CART DECREMENT --------//
+ function cartDecrement(rowId){
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    fetch(`http://127.0.0.1:8000/cart-decrement/${rowId}`,{
+        method:'post',
+        headers: {
+            
+            "Content-Type": "application/json",
+            "Accept": "application/json, text-plain, */*",
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRF-TOKEN": token
+        }
+    }).then(
+        miniCart()
+    ).then(
+        cart()
+    ).catch(error=> {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: error,
+            showConfirmButton: false,
+            timer: 3000
+          })
+    });
+}
+// ---------- END CART DECREMENT -----///
+
 // -------------------------------------- MINI CART ----------------------------------
 
 
