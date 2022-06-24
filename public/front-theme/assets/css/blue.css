@@ -379,7 +379,10 @@ a {
   color: #0f6cb2;
 }
 .shopping-cart .cart-shopping-total table thead tr th .cart-grand-total {
-  color: #84b943;
+  color: #84b943 !important;
+}
+.cart-grand-total {
+  color: #84b943 !important;
 }
 .shopping-cart-table table tbody tr td .quant-input .arrows .arrow:hover,
 .shopping-cart-table table tbody tr td .quant-input .arrows .arrow:focus {

@@ -190,6 +190,9 @@ Route::controller(CartController::class)->group(function () {
     Route::get('/mycart', 'index')->name('mycart');
     Route::post('/cart-increment/{rowId}', 'cartIncrement');
     Route::post('/cart-decrement/{rowId}', 'cartDecrement');
+    Route::post('/coupon-apply', 'couponApply');
+    Route::get('/coupon-calculation', 'couponCalculation');
+    Route::post('/coupon-remove', 'couponRemove');
 });
 
 Route::middleware([

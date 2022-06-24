@@ -137,6 +137,7 @@ async function cart(){
 
 if(document.getElementById('cartPage')){
     cart();
+    couponCalculation();
 }
 
 function createCartPage(cart) {
@@ -191,6 +192,8 @@ function createCartPage(cart) {
             "X-CSRF-TOKEN": token
         }
     }).then(
+        couponCalculation()
+    ).then(
         miniCart()
     ).then(
         cart()
@@ -220,6 +223,8 @@ function createCartPage(cart) {
             "X-CSRF-TOKEN": token
         }
     }).then(
+        couponCalculation()
+    ).then(
         miniCart()
     ).then(
         cart()
@@ -302,10 +307,16 @@ const cartRemove=(rowId)=>{
                     "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 }
             }).then(
+                couponCalculation()
+            ).then(
                 miniCart()
                 
             ).then(
                 cart()
+            ).then(
+                document.getElementById('couponField').style.display='block'
+            ).then(
+                document.getElementById('coupon_name').value=''
             ).then(
                 // Start Message 
                 Swal.fire({
@@ -331,6 +342,152 @@ const cartRemove=(rowId)=>{
 
 //  end mini cart remove 
 // -------------------------------------- END REMOVE MINI CART ----------------------------------
+
+
+
+// -------------------------------------- COUPON ----------------------------------
+  
+  function applyCoupon(){
+    const coupon_name=document.getElementById('coupon_name').value;
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    fetch(`http://127.0.0.1:8000/coupon-apply`,{
+        method:'post',
+        body:JSON.stringify({coupon_name:coupon_name}),
+        headers: {
+            
+            "Content-Type": "application/json",
+            "Accept": "application/json, text-plain, */*",
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRF-TOKEN": token
+        }
+    }).then(response=> {
+        if (!response.ok) {
+            throw Error(response.statusText);
+        }
+        return response.json();
+    }).then(data=>{
+        if (data.error) {
+            throw Error(data.error);
+        }
+        return data;
+    }).then(
+        couponCalculation()
+    ).then(
+        document.getElementById('couponField').style.display='none'
+    ).then(data=>{
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: data.success,
+            showConfirmButton: false,
+            timer: 3000
+          })
+      }
+  // End Message 
+).catch(error=> {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: error,
+            showConfirmButton: false,
+            timer: 3000
+          })
+    });
+}
+// -------------------------------------- END COUPON ----------------------------------
+
+// -------------------------------------- COUPON CALCULATION ----------------------------------
+
+  async function couponCalculation() {
+    return fetch(`http://127.0.0.1:8000/coupon-calculation`,{
+        type: "GET",
+        dataType: "json",
+    }).then((response) => {
+        if (response.status !== 200) {
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    }).then((cart)=>{
+        if (cart.total) {
+            document.getElementById('couponCalField').innerHTML=
+                `<tr>
+            <th>
+                <div class="cart-sub-total">
+                    Subtotal<span class="inner-left-md" style="float:right;">Rp. ${cart.total}K</span>
+                </div>
+                <div class="cart-grand-total">
+                    Grand Total<span class="inner-left-md" style="float:right;">Rp. ${cart.total}K</span>
+                </div>
+            </th>
+        </tr>`
+        
+        }else{
+            document.getElementById('couponCalField').innerHTML=
+                `<tr>
+        <th>
+        <div class="cart-sub-total">
+            Subtotal<span class="inner-left-md" style="float:right;">Rp. ${cart.subtotal}K</span>
+        </div>
+        <div class="cart-sub-total">
+            Coupon<span class="inner-left-md" style="float:right;"> ${cart.coupon_name}</span>
+            <button type="submit" onclick="couponRemove()"><i class="fa fa-times"></i>  </button>
+        </div>
+         <div class="cart-sub-total">
+            Discount Amount<span class="inner-left-md" style="float:right;">Rp. ${cart.discount_amount}K</span>
+        </div>
+        <div class="cart-grand-total">
+            Grand Total<span class="inner-left-md" style="float:right;">Rp. ${cart.total_amount}K</span>
+        </div>
+     </th>
+        </tr>`
+        }
+    }
+        
+    );
+}
+// -------------------------------------- END COUPON CALCULATION ----------------------------------
+
+// -------------------------------------- COUPON REMOVE ----------------------------------
+ const couponRemove=()=>{
+    fetch(`http://127.0.0.1:8000/coupon-remove`,{
+        method:'POST',
+        headers: {
+            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+    }).then(
+        couponCalculation()
+    ).then(
+        document.getElementById('couponField').style.display='block'
+    ).then(
+            document.getElementById('coupon_name').value=''
+    ).then(
+        // Start Message 
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: "Coupon was removed succesfully",
+            showConfirmButton: false,
+            timer: 3000
+        })
+        // End Message 
+    ) .catch(error=> {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: error,
+            showConfirmButton: false,
+            timer: 3000
+          })
+    });
+}
+// -------------------------------------- END COUPON REMOVE ----------------------------------
+
+
+
 
 
 
