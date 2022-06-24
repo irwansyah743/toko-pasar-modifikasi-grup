@@ -119,6 +119,43 @@ function addToCart(){
 // -------------------------------------- END ADD TO CART ----------------------------------
 
 
+// -------------------------------------- CART PAGE ----------------------------------
+
+// -------------------------------------- END CART PAGE ----------------------------------
+async function cart(){
+    try {
+        const data = await getCart();
+    
+        removeAllChildNodes( document.getElementById('cartPage'));
+    Object.values(data.carts).forEach((cart) => {
+        document.getElementById('cartPage').innerHTML+=createCartPage(cart);
+    });
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+if(document.getElementById('cartPage')){
+    cart();
+}
+
+function createCartPage(cart) {
+    return `<tr>
+    <td class="col-md-2"><img src="http://127.0.0.1:8000/storage/${cart.options.image} " alt="imga"></td>
+    
+    <td class="col-md-7">
+        <div class="product-name"><a href="#">${cart.name}</a></div>
+         
+        <div class="price"> 
+                        ${cart.price}
+                    </div>
+                </td>
+     
+    <td class="col-md-1 close-btn">
+        <button type="submit" class="" id="${cart.rowId}" onclick="cartRemove(this.id)"><i class="fa fa-times"></i></button>
+    </td>
+            </tr>`;
+}
 // -------------------------------------- MINI CART ----------------------------------
 
 
@@ -165,18 +202,20 @@ function createCartItem(cart) {
         <div class="price"> ${cart.price} * ${cart.qty} </div>
       </div>
       <div class="col-xs-2 action"> 
-      <button type="submit" id="${cart.rowId}" onclick="miniCartRemove(this.id)"><i class="fa fa-trash"></i></button> </div>
+      <button type="submit" id="${cart.rowId}" onclick="cartRemove(this.id)"><i class="fa fa-trash"></i></button> </div>
     </div>
   </div>
   <!-- /.cart-item -->
   <div class="clearfix"></div>
   <hr>`;
 }
+
+
 // -------------------------------------- END MINI CART ----------------------------------
 
 // --------------------------------------  REMOVE MINI CART ----------------------------------
 
-const miniCartRemove=(rowId)=>{
+const cartRemove=(rowId)=>{
             fetch(`http://127.0.0.1:8000/cart/products/${rowId}`,{
                 method:'POST',
                 headers: {
@@ -184,6 +223,9 @@ const miniCartRemove=(rowId)=>{
                 }
             }).then(
                 miniCart()
+                
+            ).then(
+                cart()
             ).then(
                 // Start Message 
                 Swal.fire({

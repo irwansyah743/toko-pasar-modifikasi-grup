@@ -13,7 +13,7 @@ $subcategories = App\Models\SubCategory::latest()->get();
                     <ul class="list-unstyled">
                         <li><a href="#"><i class="icon fa fa-user"></i>My Account</a></li>
                         <li><a href="{{ route('wishlist') }}"><i class="icon fa fa-heart"></i>Wishlist</a></li>
-                        <li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
+                        <li><a href="{{ route('mycart') }}"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
                         <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
                         <li>
                             @auth
@@ -226,8 +226,9 @@ $subcategories = App\Models\SubCategory::latest()->get();
                                                             <li><a href="home.html">Home</a></li>
                                                             <li><a href="category.html">Category</a></li>
                                                             <li><a href="detail.html">Detail</a></li>
-                                                            <li><a href="shopping-cart.html">Shopping Cart Summary</a>
-                                                            </li>
+                                                            <li><a href="{{ route('mycart') }}"><i
+                                                                        class="icon fa fa-shopping-cart"></i>My
+                                                                    Cart</a></li>
                                                             <li><a href="checkout.html">Checkout</a></li>
                                                             <li><a href="blog.html">Blog</a></li>
                                                             <li><a href="blog-details.html">Blog Detail</a></li>

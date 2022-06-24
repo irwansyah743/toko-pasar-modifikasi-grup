@@ -11,6 +11,10 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
 {
+    public function index()
+    {
+        return view('front.cart.index');
+    }
 
     public function addToCart(Request $request, $id)
     {

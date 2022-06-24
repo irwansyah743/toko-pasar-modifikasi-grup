@@ -187,6 +187,7 @@ Route::controller(CartController::class)->group(function () {
     Route::post('/cart/data/store/{id}', 'addToCart');
     Route::get('/cart/products', 'addMiniCart');
     Route::post('/cart/products/{rowId}', 'removeMiniCart');
+    Route::get('/mycart', 'index')->name('mycart');
 });
 
 Route::middleware([
