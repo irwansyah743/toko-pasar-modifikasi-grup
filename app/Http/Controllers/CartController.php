@@ -159,7 +159,7 @@ class CartController extends Controller
             ));
         } else {
             return response()->json(array(
-                'total' => Cart::total(),
+                'total' => Cart::priceTotal(),
             ));
         }
     } // end method 
@@ -169,4 +169,53 @@ class CartController extends Controller
         Session::forget('coupon');
         return response()->json(['success' => 'Coupon Remove Successfully']);
     }
+
+    // Checkout Method 
+    public function checkoutCreate()
+    {
+
+        if (Auth::check()) {
+            if (Cart::priceTotal() > 0) {
+                $carts = Cart::content();
+                $cartQty = Cart::count();
+                $cartTotal = Cart::priceTotal();
+                return view('front.checkout.index', compact('carts', 'cartQty', 'cartTotal'));
+            } else {
+                $notification = array(
+                    'message' => 'Your cart is empty',
+                    'alert-type' => 'error'
+                );
+                return redirect()->back()->with($notification);
+            }
+        } else {
+            $notification = array(
+                'message' => 'You Need to Login First',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->route('login')->with($notification);
+        }
+    } // end method 
+
+    public function checkoutStore(Request $request)
+    {
+        $data['shipping_name'] = $request->shipping_name;
+        $data['shipping_email'] = $request->shipping_email;
+        $data['shipping_phone'] = $request->shipping_phone;
+        $data['post_code'] = $request->post_code;
+        $data['provinsi'] = $request->provinsi;
+        $data['kabupaten'] = $request->kabupaten;
+        $data['kecamatan'] = $request->kecamatan;
+        $data['address'] = $request->address;
+        $data['notes'] = $request->notes;
+
+
+        if ($request->payment_method == 'stripe') {
+            return view('payment.stripe.index', $data);
+        } elseif ($request->payment_method == 'card') {
+            return 'card';
+        } else {
+            return 'cash';
+        }
+    } // end mehtod. 
 }

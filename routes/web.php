@@ -193,6 +193,8 @@ Route::controller(CartController::class)->group(function () {
     Route::post('/coupon-apply', 'couponApply');
     Route::get('/coupon-calculation', 'couponCalculation');
     Route::post('/coupon-remove', 'couponRemove');
+    Route::get('/checkout', 'checkoutCreate')->name('checkout');
+    Route::post('/checkout/store', 'checkoutStore')->name('checkout.store');
 });
 
 Route::middleware([
