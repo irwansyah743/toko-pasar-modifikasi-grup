@@ -13,7 +13,7 @@ class Shipping extends Model
         'provinsi',
         'kabupaten',
         'kecamatan',
-        'alamat',
+        'address',
         'shipping_name',
         'shipping_email',
         'shipping_phone',

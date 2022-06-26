@@ -11,10 +11,10 @@ async function productView(id){
         document.getElementById('pid').value=data.product.id;
         document.getElementById('pimage').src=`http://127.0.0.1:8000/storage/${data.product.product_thambnail}`;
         if(data.product.discount_price==null){
-            document.getElementById('price').innerHTML=`Rp.${data.product.selling_price}K`;
+            document.getElementById('price').innerHTML=`Rp.${data.product.selling_price}`;
         }else{
-            document.getElementById('price').innerHTML=`Rp.${data.product.discount_price}K`;
-            document.getElementById('oldprice').innerHTML=` Rp.${data.product.selling_price}K`;
+            document.getElementById('price').innerHTML=`Rp.${data.product.discount_price}`;
+            document.getElementById('oldprice').innerHTML=` Rp.${data.product.selling_price}`;
         }
         removeAllChildNodes( document.getElementById('pcolor'));
         removeAllChildNodes( document.getElementById('psize'));
@@ -148,7 +148,7 @@ function createCartPage(cart) {
         <div class="product-name"><a href="#">${cart.name}</a></div>
          
                     <div class="price"> 
-                        Rp. ${cart.price}K
+                        Rp. ${cart.price}
                     </div>
                 </td>
              <td class="col-md-2">
@@ -170,7 +170,7 @@ function createCartPage(cart) {
             <button type="submit" class="btn btn-success btn-sm" id="${cart.rowId}" onclick="cartIncrement(this.id)" >+</button>    
             </td>
              <td class="col-md-2">
-            <strong>Rp.${cart.subtotal}K </strong> 
+            <strong>Rp.${cart.subtotal} </strong> 
             </td>
 
     <td class="col-md-1 close-btn">
@@ -415,10 +415,10 @@ const cartRemove=(rowId)=>{
                 `<tr>
             <th>
                 <div class="cart-sub-total">
-                    Subtotal<span class="inner-left-md" style="float:right;">Rp. ${cart.total}K</span>
+                    Subtotal<span class="inner-left-md" style="float:right;">Rp. ${cart.total}</span>
                 </div>
                 <div class="cart-grand-total">
-                    Grand Total<span class="inner-left-md" style="float:right;">Rp. ${cart.total}K</span>
+                    Grand Total<span class="inner-left-md" style="float:right;">Rp. ${cart.total}</span>
                 </div>
             </th>
         </tr>`
@@ -428,17 +428,17 @@ const cartRemove=(rowId)=>{
                 `<tr>
         <th>
         <div class="cart-sub-total">
-            Subtotal<span class="inner-left-md" style="float:right;">Rp. ${cart.subtotal}K</span>
+            Subtotal<span class="inner-left-md" style="float:right;">Rp. ${cart.subtotal}</span>
         </div>
         <div class="cart-sub-total">
             Coupon<span class="inner-left-md" style="float:right;"> ${cart.coupon_name}</span>
             <button type="submit" onclick="couponRemove()"><i class="fa fa-times"></i>  </button>
         </div>
          <div class="cart-sub-total">
-            Discount Amount<span class="inner-left-md" style="float:right;">Rp. ${cart.discount_amount}K</span>
+            Discount Amount<span class="inner-left-md" style="float:right;">Rp. ${cart.discount_amount}</span>
         </div>
         <div class="cart-grand-total">
-            Grand Total<span class="inner-left-md" style="float:right;">Rp. ${cart.total_amount}K</span>
+            Grand Total<span class="inner-left-md" style="float:right;">Rp. ${cart.total_amount}</span>
         </div>
      </th>
         </tr>`

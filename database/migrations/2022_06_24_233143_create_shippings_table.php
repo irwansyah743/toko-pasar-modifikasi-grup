@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('shippings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
             $table->string('provinsi');
             $table->string('kabupaten');
             $table->string('kecamatan');
@@ -24,7 +23,7 @@ return new class extends Migration
             $table->string('shipping_email');
             $table->string('shipping_phone');
             $table->integer('post_code');
-            $table->text('notes');
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

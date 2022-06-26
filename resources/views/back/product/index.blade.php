@@ -41,7 +41,7 @@
                                                 <td> <img src="{{ asset('storage/' . $item->product_thambnail) }}"
                                                         style="width: 60px; height: 50px;"> </td>
                                                 <td>{{ $item->product_name }}</td>
-                                                <td>Rp.{{ $item->selling_price }}K</td>
+                                                <td>Rp.{{ $item->selling_price }}</td>
                                                 <td>{{ $item->product_qty }} Pcs</td>
 
                                                 <td>
@@ -75,9 +75,8 @@
                                                         class="btn btn-primary" title="Product Details Data"><i
                                                             class="fa fa-eye"></i> </a>
 
-                                                    <a href="{{ route('product.edit', $item->id) }}"
-                                                        class="btn btn-info" title="Edit Data"><i
-                                                            class="fa fa-pencil"></i> </a>
+                                                    <a href="{{ route('product.edit', $item->id) }}" class="btn btn-info"
+                                                        title="Edit Data"><i class="fa fa-pencil"></i> </a>
 
                                                     <form method="POST" id="{{ 'deleteproduct' . $item->id }}"
                                                         style="display:inline;">
@@ -93,7 +92,8 @@
                                                             style="display:inline;">
                                                             @csrf
                                                             @method('put')
-                                                            <button type="submit" class="btn btn-danger" title="Inactivate">
+                                                            <button type="submit" class="btn btn-danger"
+                                                                title="Inactivate">
                                                                 <i class="fa fa-arrow-down"></i></button>
                                                         </form>
                                                     @else

@@ -3,7 +3,9 @@
 @section('title')
     My Checkout
 @endsection
-
+<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+    data-client-key="SB-Mid-client-GMO4riIFVRiZr0wb"></script>
+<!-- Note: replace with src="https://app.midtrans.com/snap/snap.js" for Production environment -->
 
 <div class="breadcrumb">
     <div class="container">
@@ -48,32 +50,35 @@
 
                                             <div class="col-md-6 col-sm-6 already-registered-login">
                                                 <div class="form-group">
-                                                    <label class="info-title" for="exampleInputEmail1"><b>Shipping
+                                                    <label class="info-title" for="shipping_name"><b>Shipping
                                                             Name</b> <span class="text-danger">*</span></label>
                                                     <input type="text" name="shipping_name"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="exampleInputEmail1" placeholder="Full Name"
-                                                        value="{{ Auth::user()->name }}" required="">
+                                                        id="shipping_name" placeholder="Full Name"
+                                                        value="{{ Auth::user()->name }}" required=""
+                                                        onchange="checkForm()">
                                                 </div> <!-- // end form group  -->
 
 
                                                 <div class="form-group">
-                                                    <label class="info-title" for="exampleInputEmail1"><b>Email </b>
+                                                    <label class="info-title" for="shipping_email"><b>Email </b>
                                                         <span class="text-danger">*</span></label>
                                                     <input type="email" name="shipping_email"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="exampleInputEmail1" placeholder="Email"
-                                                        value="{{ Auth::user()->email }}" required="">
+                                                        id="shipping_email" placeholder="Email"
+                                                        value="{{ Auth::user()->email }}" required=""
+                                                        onchange="checkForm()">
                                                 </div> <!-- // end form group  -->
 
 
                                                 <div class="form-group">
-                                                    <label class="info-title" for="exampleInputEmail1"><b>Phone</b>
+                                                    <label class="info-title" for="shipping_phone"><b>Phone</b>
                                                         <span class="text-danger">*</span></label>
                                                     <input type="number" name="shipping_phone"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="exampleInputEmail1" placeholder="Phone"
-                                                        value="{{ Auth::user()->phone }}" required="">
+                                                        id="shipping_phone" placeholder="Phone"
+                                                        value="{{ Auth::user()->phone }}" required=""
+                                                        onchange="checkForm()">
                                                 </div> <!-- // end form group  -->
 
 
@@ -82,51 +87,19 @@
                                                         <span class="text-danger">*</span></label>
                                                     <input type="text" name="post_code"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="post_code" placeholder="Post Code">
+                                                        id="post_code" placeholder="Post Code" required
+                                                        onchange="checkForm()">
                                                 </div> <!-- // end form group  -->
                                                 <hr>
-                                                <div class="form-group">
-                                                    <div class="panel-heading">
-                                                        <h4 class="unicase-checkout-title mb-4">Select Payment Method
-                                                        </h4>
-                                                    </div>
-
-
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <label for="">Stripe</label>
-                                                            <input type="radio" name="payment_method" value="stripe">
-                                                            <img
-                                                                src="{{ asset('front-theme/assets/images/payments/4.png') }}">
-                                                        </div> <!-- end col md 4 -->
-
-                                                        <div class="col-md-4">
-                                                            <label for="">Card</label>
-                                                            <input type="radio" name="payment_method" value="card">
-                                                            <img
-                                                                src="{{ asset('front-theme/assets/images/payments/3.png') }}">
-                                                        </div> <!-- end col md 4 -->
-
-                                                        <div class="col-md-4">
-                                                            <label for="">Cash</label>
-                                                            <input type="radio" name="payment_method" value="cash">
-                                                            <img
-                                                                src="{{ asset('front-theme/assets/images/payments/2.png') }}">
-                                                        </div> <!-- end col md 4 -->
-
-
-                                                    </div> <!-- // end row  -->
-                                                </div>
                                             </div>
                                             <div class="col-md-6 col-sm-6 already-registered-login">
-
-
                                                 <div class="form-group">
                                                     <label class="info-title" for="provinsi"><b>Provinsi</b>
                                                         <span class="text-danger">*</span></label>
                                                     <input type="text" name="provinsi"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="provinsi" value="{{ old('provinsi') }}">
+                                                        id="provinsi" value="{{ old('provinsi') }}" required
+                                                        onchange="checkForm()">
                                                 </div> <!-- // end form group  -->
 
 
@@ -135,7 +108,8 @@
                                                         <span class="text-danger">*</span></label>
                                                     <input type="text" name="kabupaten"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="kabupaten" value="{{ old('kabupaten') }}">
+                                                        id="kabupaten" value="{{ old('kabupaten') }}" required
+                                                        onchange="checkForm()">
                                                 </div> <!-- // end form group  -->
 
 
@@ -144,7 +118,8 @@
                                                         <span class="text-danger">*</span></label>
                                                     <input type="text" name="kecamatan"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="kecamatan" value="{{ old('kecamatan') }}">
+                                                        id="kecamatan" value="{{ old('kecamatan') }}" required
+                                                        onchange="checkForm()">
                                                 </div> <!-- // end form group  -->
 
                                                 <div class="form-group">
@@ -152,14 +127,16 @@
                                                         <span class="text-danger">*</span></label>
                                                     <input type="text" name="address"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="address" value="{{ old('address') }}">
+                                                        id="address" value="{{ old('address') }}" required
+                                                        onchange="checkForm()">
                                                 </div> <!-- // end form group  -->
 
 
                                                 <div class="form-group">
-                                                    <label class="info-title" for="exampleInputEmail1">Notes
+                                                    <label class="info-title" for="notes">Notes
                                                     </label>
-                                                    <textarea class="form-control" cols="30" rows="5" placeholder="Notes" name="notes"></textarea>
+                                                    <textarea id="notes" class="form-control" cols="30" rows="5" placeholder="Notes" name="notes"
+                                                        onchange="checkForm()"></textarea>
                                                 </div> <!-- // end form group  -->
 
 
@@ -171,10 +148,7 @@
 
                                             </div>
                                             <!-- already-registered-login -->
-                                            <button type="submit"
-                                                class="btn-upper btn btn-primary checkout-page-button"
-                                                style="float:right;">Payment
-                                                Step</button>
+
                                         </form>
 
 
@@ -240,22 +214,24 @@
                                                 <hr>
 
                                                 <strong>Coupon Name : </strong>
-                                                {{ session()->get('coupon')['coupon_name'] }}
+                                                <span
+                                                    id="coupon_name">{{ session()->get('coupon')['coupon_name'] }}</span>
                                                 ( {{ session()->get('coupon')['coupon_discount'] }} % )
                                                 <hr>
 
                                                 <strong>Coupon Discount : </strong>
-                                                Rp.{{ session()->get('coupon')['discount_amount'] }}K
+                                                Rp. <span
+                                                    id="coupon_discount">{{ session()->get('coupon')['discount_amount'] }}</span>
                                                 <hr>
 
                                                 <strong>Grand Total : </strong>
-                                                Rp.{{ session()->get('coupon')['total_amount'] }}K
+                                                Rp.{{ session()->get('coupon')['total_amount'] }}
                                                 <hr>
                                             @else
-                                                <strong>SubTotal: </strong> Rp.{{ $cartTotal }}K
+                                                <strong>SubTotal: </strong> Rp.{{ $cartTotal }}
                                                 <hr>
 
-                                                <strong>Grand Total : </strong> Rp.{{ $cartTotal }}K
+                                                <strong>Grand Total : </strong> Rp.{{ $cartTotal }}
                                                 <hr>
                                             @endif
 
@@ -267,9 +243,15 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
-                    <!-- checkout-progress-sidebar -->
+
+                    <button type="button" id="pay-button" disabled
+                        class="btn-upper btn btn-primary checkout-page-button mb-5" style="float:right;">Pay
+                        Now</button>
                 </div>
+                <!-- checkout-progress-sidebar -->
+
 
 
 
@@ -295,5 +277,6 @@
 
 
 
-
+{{-- Custom JS --}}
+<script src="{{ asset('js/midtrans.js') }}"></script>
 @endsection

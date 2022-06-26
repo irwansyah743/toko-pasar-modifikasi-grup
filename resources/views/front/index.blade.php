@@ -148,14 +148,14 @@
                                                                 <div class="product-price">
                                                                     @if ($product->discount_price)
                                                                         <span class="price">
-                                                                            Rp.{{ $product->discount_price }}K
+                                                                            Rp.{{ $product->discount_price }}
                                                                         </span>
                                                                         <span
-                                                                            class="price-before-discount">Rp.{{ $product->selling_price }}K
+                                                                            class="price-before-discount">Rp.{{ $product->selling_price }}
                                                                         </span>
                                                                     @else
                                                                         <span class="price">
-                                                                            Rp.{{ $product->selling_price }}K
+                                                                            Rp.{{ $product->selling_price }}
                                                                         </span>
                                                                     @endif
                                                                 </div>
@@ -252,14 +252,14 @@
                                                                         <div class="product-price">
                                                                             @if ($product->discount_price)
                                                                                 <span class="price">
-                                                                                    Rp.{{ $product->discount_price }}K
+                                                                                    Rp.{{ $product->discount_price }}
                                                                                 </span>
                                                                                 <span
-                                                                                    class="price-before-discount">Rp.{{ $product->selling_price }}K
+                                                                                    class="price-before-discount">Rp.{{ $product->selling_price }}
                                                                                 </span>
                                                                             @else
                                                                                 <span class="price">
-                                                                                    Rp.{{ $product->selling_price }}K
+                                                                                    Rp.{{ $product->selling_price }}
                                                                                 </span>
                                                                             @endif
                                                                         </div>
@@ -398,14 +398,14 @@
                                                     <div class="product-price">
                                                         @if ($product->discount_price)
                                                             <span class="price">
-                                                                Rp.{{ $product->discount_price }}K
+                                                                Rp.{{ $product->discount_price }}
                                                             </span>
                                                             <span
-                                                                class="price-before-discount">Rp.{{ $product->selling_price }}K
+                                                                class="price-before-discount">Rp.{{ $product->selling_price }}
                                                             </span>
                                                         @else
                                                             <span class="price">
-                                                                Rp.{{ $product->selling_price }}K
+                                                                Rp.{{ $product->selling_price }}
                                                             </span>
                                                         @endif
                                                     </div>
@@ -524,14 +524,14 @@
                                                     <div class="product-price">
                                                         @if ($product->discount_price)
                                                             <span class="price">
-                                                                Rp.{{ $product->discount_price }}K
+                                                                Rp.{{ $product->discount_price }}
                                                             </span>
                                                             <span
-                                                                class="price-before-discount">Rp.{{ $product->selling_price }}K
+                                                                class="price-before-discount">Rp.{{ $product->selling_price }}
                                                             </span>
                                                         @else
                                                             <span class="price">
-                                                                Rp.{{ $product->selling_price }}K
+                                                                Rp.{{ $product->selling_price }}
                                                             </span>
                                                         @endif
                                                     </div>
@@ -620,14 +620,14 @@
                                                     <div class="product-price">
                                                         @if ($product->discount_price)
                                                             <span class="price">
-                                                                Rp.{{ $product->discount_price }}K
+                                                                Rp.{{ $product->discount_price }}
                                                             </span>
                                                             <span
-                                                                class="price-before-discount">Rp.{{ $product->selling_price }}K
+                                                                class="price-before-discount">Rp.{{ $product->selling_price }}
                                                             </span>
                                                         @else
                                                             <span class="price">
-                                                                Rp.{{ $product->selling_price }}K
+                                                                Rp.{{ $product->selling_price }}
                                                             </span>
                                                         @endif
                                                     </div>
@@ -717,14 +717,14 @@
                                                     <div class="product-price">
                                                         @if ($product->discount_price)
                                                             <span class="price">
-                                                                Rp.{{ $product->discount_price }}K
+                                                                Rp.{{ $product->discount_price }}
                                                             </span>
                                                             <span
-                                                                class="price-before-discount">Rp.{{ $product->selling_price }}K
+                                                                class="price-before-discount">Rp.{{ $product->selling_price }}
                                                             </span>
                                                         @else
                                                             <span class="price">
-                                                                Rp.{{ $product->selling_price }}K
+                                                                Rp.{{ $product->selling_price }}
                                                             </span>
                                                         @endif
                                                     </div>
@@ -814,14 +814,14 @@
                                                     <div class="product-price">
                                                         @if ($product->discount_price)
                                                             <span class="price">
-                                                                Rp.{{ $product->discount_price }}K
+                                                                Rp.{{ $product->discount_price }}
                                                             </span>
                                                             <span
-                                                                class="price-before-discount">Rp.{{ $product->selling_price }}K
+                                                                class="price-before-discount">Rp.{{ $product->selling_price }}
                                                             </span>
                                                         @else
                                                             <span class="price">
-                                                                Rp.{{ $product->selling_price }}K
+                                                                Rp.{{ $product->selling_price }}
                                                             </span>
                                                         @endif
                                                     </div>

@@ -58,9 +58,9 @@
 
                              {{-- HOT DEALS ARE GUARANTEED TO HAVE DISCOUNT --}}
                              <span class="price">
-                                 Rp.{{ $product->discount_price }}K
+                                 Rp.{{ $product->discount_price }}
                              </span>
-                             <span class="price-before-discount">Rp.{{ $product->selling_price }}K
+                             <span class="price-before-discount">Rp.{{ $product->selling_price }}
                              </span>
 
                          </div>

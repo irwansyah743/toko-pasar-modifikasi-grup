@@ -9,6 +9,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\SubSubCategoryController;
@@ -208,3 +209,9 @@ Route::middleware([
 });
 
 // END MAIN CONTENT
+
+// PAYMENT
+Route::post('/midtrans/getToken', [MidtransController::class, 'getToken']);
+Route::post('/midtrans/postTrans', [MidtransController::class, 'paymentPost']);
+Route::post('/midtrans/shippingStore', [MidtransController::class, 'shippingStore']);
+// END PAYMENT
