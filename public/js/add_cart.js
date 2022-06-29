@@ -372,9 +372,11 @@ const cartRemove=(rowId)=>{
         return data;
     }).then(
         couponCalculation()
-    ).then(
-        document.getElementById('couponField').style.display='none'
     ).then(data=>{
+        if(data.validity==true){
+            document.getElementById('couponField').style.display='none';
+        }
+    }).then(data=>{
         Swal.fire({
             toast: true,
             position: 'top-end',

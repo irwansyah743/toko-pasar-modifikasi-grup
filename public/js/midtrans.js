@@ -69,6 +69,7 @@ function midTrans(){
                 console.log(result);
                 storeShipping(shippingData);
                 send_response_to_form(result);
+                storeItems();
               },
               onPending: function(result){
                 /* You may add your own implementation here */
@@ -140,7 +141,6 @@ const send_response_to_form=(result)=>{
 
 // -------------------------------------- SHIPPING STORE ----------------------------------
 const storeShipping=(data)=>{
-    console.log(data);
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     fetch(`http://127.0.0.1:8000/midtrans/shippingStore`,{
         method:'POST',
@@ -168,6 +168,35 @@ const storeShipping=(data)=>{
     });
   }
 // -------------------------------------- END SHIPPING STORE ----------------------------------
+
+// -------------------------------------- ITEMS STORE ----------------------------------
+const storeItems=()=>{
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    fetch(`http://127.0.0.1:8000/midtrans/itemStore`,{
+        method:'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json, text-plain, */*",
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRF-TOKEN": token
+        }
+    }).then(response=> {
+        if (!response.ok) {
+            throw Error(response.statusText);
+        }
+        return response.json();
+    }).catch(error=> {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: error,
+            showConfirmButton: false,
+            timer: 3000
+          })
+    });
+  }
+// -------------------------------------- END ITEMS STORE ----------------------------------
 
 // -------------------------------------- FORM HANDLING VALIDATION ----------------------------------
 const checkForm=()=>{

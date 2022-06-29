@@ -224,14 +224,14 @@
                                                     id="coupon_discount">{{ session()->get('coupon')['discount_amount'] }}</span>
                                                 <hr>
 
-                                                <strong>Grand Total : </strong>
-                                                Rp.{{ session()->get('coupon')['total_amount'] }}
+                                                <strong>Grand Total :
+                                                    Rp.{{ session()->get('coupon')['total_amount'] }}</strong>
                                                 <hr>
                                             @else
                                                 <strong>SubTotal: </strong> Rp.{{ $cartTotal }}
                                                 <hr>
 
-                                                <strong>Grand Total : </strong> Rp.{{ $cartTotal }}
+                                                <strong>Grand Total : Rp.{{ $cartTotal }}</strong>
                                                 <hr>
                                             @endif
 

@@ -214,4 +214,5 @@ Route::middleware([
 Route::post('/midtrans/getToken', [MidtransController::class, 'getToken']);
 Route::post('/midtrans/postTrans', [MidtransController::class, 'paymentPost']);
 Route::post('/midtrans/shippingStore', [MidtransController::class, 'shippingStore']);
+Route::post('/midtrans/itemStore', [MidtransController::class, 'orderItemStore']);
 // END PAYMENT

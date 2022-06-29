@@ -20,4 +20,19 @@ class Order extends Model
         'pdf_url',
         'status',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function orderItem()
+    {
+        return $this->belongsTo(OrderItem::class, 'order_id', 'order_id');
+    }
+
+    public function shipping()
+    {
+        return $this->belongsTo(Shipping::class, 'shipping_id', 'id');
+    }
 }

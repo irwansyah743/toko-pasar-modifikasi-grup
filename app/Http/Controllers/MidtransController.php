@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Mail\OrderMail;
 use App\Models\Shipping;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class MidtransController extends Controller
 {
@@ -66,6 +70,8 @@ class MidtransController extends Controller
 
     public function paymentPost(Request $request)
     {
+
+
         $order = new Order();
         $order->user_id = Auth::id();
         $order->shipping_id = Shipping::latest()->first()->id;
@@ -79,6 +85,22 @@ class MidtransController extends Controller
         $order->pdf_url = isset($request->pdf_url) ? $request->pdf_url : null;
 
         $order->save();
+
+        // Start Send Email 
+        $invoice = Order::where('order_id', $request->order_id)->first();
+        $data = [
+            'order_id' => $request->order_id,
+            'time' =>  $request->transaction_time,
+            'order_id' => $request->order_id,
+            'amount' => $request->gross_amount,
+            'name' => $invoice->user->name,
+            'email' => $invoice->user->email,
+        ];
+
+        Mail::to($invoice->user->email)->send(new OrderMail($data));
+
+        // End Send Email 
+
         return response()->json(['success' => 'Payment was successfull']);
     }
 
@@ -98,5 +120,22 @@ class MidtransController extends Controller
         // Insert Shipping
         Shipping::create($validated);
         return response()->json(['success' => 'Shipping info was saved Successfully']);
+    }
+
+    public function orderItemStore()
+    {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
+
+        $carts = Cart::content();
+        foreach ($carts as $cart) {
+            $item = new OrderItem();
+            $item->product_id = $cart->id;
+            $item->order_id = Order::latest()->first()->id;
+            $item->save();
+        }
+        Cart::destroy();
+        return response()->json(['success' => 'Ordered items were stored Successfully']);
     }
 }
