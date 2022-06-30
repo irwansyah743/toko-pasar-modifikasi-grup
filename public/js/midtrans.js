@@ -69,11 +69,13 @@ function midTrans(){
                 console.log(result);
                 storeShipping(shippingData);
                 send_response_to_form(result);
+                shippingUpdate(result);
                 storeItems();
               },
               onPending: function(result){
                 /* You may add your own implementation here */
                 console.log(result);
+                send_response_to_form(result);
               },
               onError: function(result){
                 /* You may add your own implementation here */
@@ -197,6 +199,47 @@ const storeItems=()=>{
     });
   }
 // -------------------------------------- END ITEMS STORE ----------------------------------
+
+// -------------------------------------- SHIPPING UPDATE ----------------------------------
+const shippingUpdate=(result)=>{
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    fetch(`http://127.0.0.1:8000/midtrans/shippingUpdate`,{
+        method:'POST',
+        body:JSON.stringify(result),
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json, text-plain, */*",
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRF-TOKEN": token
+        }
+    }).then(response=> {
+        if (!response.ok) {
+            throw Error(response.statusText);
+        }
+        return response.json();
+    }).then(
+        // Start Message 
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: "Payment was successfull",
+            showConfirmButton: false,
+            timer: 3000
+        })
+        // End Message 
+    ).catch(error=> {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: error,
+            showConfirmButton: false,
+            timer: 3000
+          })
+    });
+  }
+// -------------------------------------- END SHIPPING UPDATE ----------------------------------
 
 // -------------------------------------- FORM HANDLING VALIDATION ----------------------------------
 const checkForm=()=>{

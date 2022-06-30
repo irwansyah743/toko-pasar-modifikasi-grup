@@ -17,6 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string("product_id");
             $table->string("order_id");
+            $table->string("color");
+            $table->string("size");
+            $table->string("order_id");
+            $table->unsignedBigInteger("qty");
             $table->timestamps();
         });
     }

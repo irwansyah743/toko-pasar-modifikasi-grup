@@ -37,6 +37,9 @@ Route::middleware([
     Route::put('/user/profile/{user}', 'store');
     Route::get('/user/profile/change-password', 'editPassword')->name('user.password');
     Route::put('/user/profile/change-password/{user}', 'changePassword');
+    Route::get('/user/order', 'myOrders')->name('my.orders');
+    Route::get('/user/order/detail/{order}', 'orderDetails');
+    Route::get('/user/invoice_download/{order}', 'invoiceDownload');
 });
 // END USER AUTH
 
@@ -215,4 +218,5 @@ Route::post('/midtrans/getToken', [MidtransController::class, 'getToken']);
 Route::post('/midtrans/postTrans', [MidtransController::class, 'paymentPost']);
 Route::post('/midtrans/shippingStore', [MidtransController::class, 'shippingStore']);
 Route::post('/midtrans/itemStore', [MidtransController::class, 'orderItemStore']);
+Route::post('/midtrans/shippingUpdate', [MidtransController::class, 'shippingUpdate']);
 // END PAYMENT

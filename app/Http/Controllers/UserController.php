@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class UserController extends Controller
 {
@@ -19,13 +22,13 @@ class UserController extends Controller
     public function index()
     {
 
-        $data['user'] = User::find(Auth::user()->id);;
+        $data['user'] = User::find(Auth::user()->id);
         return view('dashboard', $data);
     }
 
     public function profile()
     {
-        $data['user'] = User::find(Auth::user()->id);;
+        $data['user'] = User::find(Auth::user()->id);
         return view('front.profile.profile', $data);
     }
 
@@ -161,4 +164,31 @@ class UserController extends Controller
     {
         //
     }
+
+    public function myOrders()
+    {
+        $data['user'] = User::find(Auth::user()->id);
+        $data['orders'] = Order::where('user_id', Auth::id())->orderBy('id', 'DESC')->get();
+        return view('front.profile.order', $data);
+    }
+
+    public function orderDetails(Order $order)
+    {
+        $user = User::find(Auth::user()->id);
+        $orderDetail = Order::where('order_id', $order->order_id)->where('user_id', Auth::id())->first();
+        $orderItem = OrderItem::where('order_id', $order->id)->orderBy('id', 'DESC')->get();
+        return view('front.profile.order_detail', compact('orderDetail', 'orderItem', 'user'));
+    } // end mehtod 
+
+    public function invoiceDownload(Order $order)
+    {
+        $orderDetail = Order::where('order_id', $order->order_id)->where('user_id', Auth::id())->first();
+        $orderItems = OrderItem::where('order_id', $order->id)->orderBy('id', 'DESC')->get();
+
+        $pdf = PDF::loadView('front.profile.transaction_proof', compact('orderDetail', 'orderItems'))->setPaper('a4')->setOptions([
+            'tempDir' => public_path(),
+            'chroot' => public_path(),
+        ]);
+        return $pdf->download('Transaction Proof ' . $order->order_id . '.pdf');
+    } // end mehtod 
 }

@@ -71,35 +71,41 @@ class MidtransController extends Controller
     public function paymentPost(Request $request)
     {
 
+        if (Order::where('order_id', $request->order_id)->count() > 0) {
+            $validated['shipping_id'] = Shipping::latest()->first()->id;
+            $validated['status'] = $request->transaction_status;
 
-        $order = new Order();
-        $order->user_id = Auth::id();
-        $order->shipping_id = Shipping::latest()->first()->id;
-        $order->status = $request->transaction_status;
-        $order->transaction_id = $request->transaction_id;
-        $order->order_id = $request->order_id;
-        $order->gross_amount = $request->gross_amount;
-        $order->payment_type = $request->payment_type;
-        $order->created_at = $request->transaction_time;
-        $order->payment_code = isset($request->payment_code) ? $request->payment_code : null;
-        $order->pdf_url = isset($request->pdf_url) ? $request->pdf_url : null;
+            Order::where('order_id', $request->order_id)->update($validated);
+        } else {
+            $order = new Order();
+            $order->user_id = Auth::id();
+            $order->status = $request->transaction_status;
+            $order->transaction_id = $request->transaction_id;
+            $order->order_id = $request->order_id;
+            $order->gross_amount = $request->gross_amount;
+            $order->payment_type = $request->payment_type;
+            $order->created_at = $request->transaction_time;
+            $order->payment_code = isset($request->payment_code) ? $request->payment_code : null;
+            $order->pdf_url = isset($request->pdf_url) ? $request->pdf_url : null;
 
-        $order->save();
+            $order->save();
 
-        // Start Send Email 
-        $invoice = Order::where('order_id', $request->order_id)->first();
-        $data = [
-            'order_id' => $request->order_id,
-            'time' =>  $request->transaction_time,
-            'order_id' => $request->order_id,
-            'amount' => $request->gross_amount,
-            'name' => $invoice->user->name,
-            'email' => $invoice->user->email,
-        ];
+            // Start Send Email 
+            $invoice = Order::where('order_id', $request->order_id)->first();
+            $data = [
+                'order_id' => $request->order_id,
+                'time' =>  $request->transaction_time,
+                'order_id' => $request->order_id,
+                'amount' => $request->gross_amount,
+                'name' => $invoice->user->name,
+                'email' => $invoice->user->email,
+            ];
 
-        Mail::to($invoice->user->email)->send(new OrderMail($data));
+            Mail::to($invoice->user->email)->send(new OrderMail($data));
 
-        // End Send Email 
+            // End Send Email 
+        }
+
 
         return response()->json(['success' => 'Payment was successfull']);
     }
@@ -132,10 +138,21 @@ class MidtransController extends Controller
         foreach ($carts as $cart) {
             $item = new OrderItem();
             $item->product_id = $cart->id;
+            $item->qty = $cart->qty;
+            $item->color = $cart->options->color;
+            $item->size = $cart->options->size;
             $item->order_id = Order::latest()->first()->id;
             $item->save();
         }
         Cart::destroy();
         return response()->json(['success' => 'Ordered items were stored Successfully']);
+    }
+
+    public function shippingUpdate(Request $request)
+    {
+        $validated['shipping_id'] = Shipping::latest()->first()->id;
+
+        Order::where('order_id', $request->order_id)->update($validated);
+        return response()->json(['success' => 'Shipping info was saved Successfully']);
     }
 }

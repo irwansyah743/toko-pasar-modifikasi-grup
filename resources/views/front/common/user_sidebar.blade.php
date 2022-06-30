@@ -10,7 +10,7 @@
 
         <a href="{{ route('user.password') }}" class="btn btn-primary btn-sm btn-block">Change Password </a>
 
-        <a href="" class="btn btn-primary btn-sm btn-block">My Orders</a>
+        <a href="{{ route('my.orders') }}" class="btn btn-primary btn-sm btn-block">Orders</a>
 
         <a href="" class="btn btn-primary btn-sm btn-block">Return Orders</a>
 

@@ -376,7 +376,9 @@ const cartRemove=(rowId)=>{
         if(data.validity==true){
             document.getElementById('couponField').style.display='none';
         }
+        return data;
     }).then(data=>{
+        console.log(data);
         Swal.fire({
             toast: true,
             position: 'top-end',
