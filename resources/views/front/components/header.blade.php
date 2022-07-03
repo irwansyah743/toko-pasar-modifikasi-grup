@@ -11,7 +11,7 @@ $subcategories = App\Models\SubCategory::latest()->get();
             <div class="header-top-inner">
                 <div class="cnt-account">
                     <ul class="list-unstyled">
-                        <li><a href="#"><i class="icon fa fa-user"></i>My Account</a></li>
+
                         <li><a href="{{ route('wishlist') }}"><i class="icon fa fa-heart"></i>Wishlist</a></li>
                         <li><a href="{{ route('mycart') }}"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
                         <li><a href="{{ route('checkout') }}"><i class="icon fa fa-check"></i>Checkout</a></li>
@@ -27,29 +27,7 @@ $subcategories = App\Models\SubCategory::latest()->get();
                 </div>
                 <!-- /.cnt-account -->
 
-                <div class="cnt-block">
-                    <ul class="list-unstyled list-inline">
-                        <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle"
-                                data-hover="dropdown" data-toggle="dropdown"><span class="value">USD </span><b
-                                    class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">USD</a></li>
-                                <li><a href="#">INR</a></li>
-                                <li><a href="#">GBP</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle"
-                                data-hover="dropdown" data-toggle="dropdown"><span class="value">English </span><b
-                                    class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">English</a></li>
-                                <li><a href="#">French</a></li>
-                                <li><a href="#">German</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <!-- /.list-unstyled -->
-                </div>
+
                 <!-- /.cnt-cart -->
                 <div class="clearfix"></div>
             </div>
@@ -78,22 +56,6 @@ $subcategories = App\Models\SubCategory::latest()->get();
                     <div class="search-area">
                         <form>
                             <div class="control-group">
-                                <ul class="categories-filter animate-dropdown">
-                                    <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown"
-                                            href="category.html">Categories <b class="caret"></b></a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li class="menu-header">Computer</li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Clothing</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Electronics</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Shoes</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Watches</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
                                 <input class="search-field" placeholder="Search here..." />
                                 <a class="search-button" href="#"></a>
                             </div>
@@ -114,7 +76,7 @@ $subcategories = App\Models\SubCategory::latest()->get();
                                 <div class="basket"> <i class="glyphicon glyphicon-shopping-cart"></i> </div>
                                 <div class="basket-item-count"><span class="count" id="cartQty"> </span></div>
                                 <div class="total-price-basket"> <span class="lbl">Rp -</span>
-                                    <span class="total-price"><span class="sign cartTotal"></span>K</span>
+                                    <span class="total-price"><span class="sign cartTotal"></span></span>
 
                                 </div>
                             </div>
@@ -215,44 +177,7 @@ $subcategories = App\Models\SubCategory::latest()->get();
                                         </ul>
                                     </li>
                                 @endforeach
-                                <li class="dropdown"> <a href="#" class="dropdown-toggle"
-                                        data-hover="dropdown" data-toggle="dropdown">Pages</a>
-                                    <ul class="dropdown-menu pages">
-                                        <li>
-                                            <div class="yamm-content">
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-menu">
-                                                        <ul class="links">
-                                                            <li><a href="home.html">Home</a></li>
-                                                            <li><a href="category.html">Category</a></li>
-                                                            <li><a href="detail.html">Detail</a></li>
-                                                            <li><a href="{{ route('mycart') }}"><i
-                                                                        class="icon fa fa-shopping-cart"></i>My
-                                                                    Cart</a></li>
-                                                            <li><a href="checkout.html">Checkout</a></li>
-                                                            <li><a href="blog.html">Blog</a></li>
-                                                            <li><a href="blog-details.html">Blog Detail</a></li>
-                                                            <li><a href="contact.html">Contact</a></li>
-                                                            <li><a href="{{ route('login') }}">Sign In</a></li>
-                                                            <li><a href="{{ route('wishlist') }}"><i
-                                                                        class="icon fa fa-heart"></i>Wishlist</a></li>
-                                                            <li><a href="terms-conditions.html">Terms and Condition</a>
-                                                            </li>
-                                                            <li><a href="track-orders.html">Track Orders</a></li>
-                                                            <li><a
-                                                                    href="product-comparison.html">Product-Comparison</a>
-                                                            </li>
-                                                            <li><a href="faq.html">FAQ</a></li>
-                                                            <li><a href="404.html">404</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown  navbar-right special-menu"> <a href="#">Todays offer</a>
-                                </li>
+
                             </ul>
                             <!-- /.navbar-nav -->
                             <div class="clearfix"></div>

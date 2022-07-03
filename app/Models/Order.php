@@ -19,6 +19,9 @@ class Order extends Model
         'payment_code',
         'pdf_url',
         'status',
+        'order_date',
+        'order_month',
+        'order_year',
     ];
 
     public function user()

@@ -64,7 +64,7 @@
                                                         @if ($subcategory->category_id == $category->id)
                                                             <ul>
                                                                 <li><a
-                                                                        href="{{ url('subcategory/product/' . $subcategory->id . '/' . $subcategory->subcategory_slug) }}">
+                                                                        href="{{ url('/product/subcategory/' . $subcategory->id) }}">
 
                                                                         {{ $subcategory->subcategory_name }}
 
@@ -102,94 +102,7 @@
                         <!-- /.sidebar-widget -->
                         <!-- ============================================== SIDEBAR CATEGORY : END ============================================== -->
 
-                        <!-- ============================================== PRICE SILDER============================================== -->
-                        <div class="sidebar-widget wow fadeInUp">
-                            <div class="widget-header">
-                                <h4 class="widget-title">Price Slider</h4>
-                            </div>
-                            <div class="sidebar-widget-body m-t-10">
-                                <div class="price-range-holder"> <span class="min-max"> <span
-                                            class="pull-left">$200.00</span> <span class="pull-right">$800.00</span>
-                                    </span>
-                                    <input type="text" id="amount"
-                                        style="border:0; color:#666666; font-weight:bold;text-align:center;">
-                                    <input type="text" class="price-slider" value="">
-                                </div>
-                                <!-- /.price-range-holder -->
-                                <a href="#" class="lnk btn btn-primary">Show Now</a>
-                            </div>
-                            <!-- /.sidebar-widget-body -->
-                        </div>
-                        <!-- /.sidebar-widget -->
-                        <!-- ============================================== PRICE SILDER : END ============================================== -->
-                        <!-- ============================================== MANUFACTURES============================================== -->
-                        <div class="sidebar-widget wow fadeInUp">
-                            <div class="widget-header">
-                                <h4 class="widget-title">Manufactures</h4>
-                            </div>
-                            <div class="sidebar-widget-body">
-                                <ul class="list">
-                                    <li><a href="#">Forever 18</a></li>
-                                    <li><a href="#">Nike</a></li>
-                                    <li><a href="#">Dolce & Gabbana</a></li>
-                                    <li><a href="#">Alluare</a></li>
-                                    <li><a href="#">Chanel</a></li>
-                                    <li><a href="#">Other Brand</a></li>
-                                </ul>
-                                <!--<a href="#" class="lnk btn btn-primary">Show Now</a>-->
-                            </div>
-                            <!-- /.sidebar-widget-body -->
-                        </div>
-                        <!-- /.sidebar-widget -->
-                        <!-- ============================================== MANUFACTURES: END ============================================== -->
-                        <!-- ============================================== COLOR============================================== -->
-                        <div class="sidebar-widget wow fadeInUp">
-                            <div class="widget-header">
-                                <h4 class="widget-title">Colors</h4>
-                            </div>
-                            <div class="sidebar-widget-body">
-                                <ul class="list">
-                                    <li><a href="#">Red</a></li>
-                                    <li><a href="#">Blue</a></li>
-                                    <li><a href="#">Yellow</a></li>
-                                    <li><a href="#">Pink</a></li>
-                                    <li><a href="#">Brown</a></li>
-                                    <li><a href="#">Teal</a></li>
-                                </ul>
-                            </div>
-                            <!-- /.sidebar-widget-body -->
-                        </div>
-                        <!-- /.sidebar-widget -->
-                        <!-- ============================================== COLOR: END ============================================== -->
-                        <!-- == ======= COMPARE==== ==== -->
-                        <div class="sidebar-widget wow fadeInUp outer-top-vs">
-                            <h3 class="section-title">Compare products</h3>
-                            <div class="sidebar-widget-body">
-                                <div class="compare-report">
-                                    <p>You have no <span>item(s)</span> to compare</p>
-                                </div>
-                                <!-- /.compare-report -->
-                            </div>
-                            <!-- /.sidebar-widget-body -->
-                        </div>
-                        <!-- /.sidebar-widget -->
-                        <!-- ============================================== COMPARE: END ============================================== -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-                        <div class="home-banner"> <img
-                                src="{{ asset('frontend/assets/images/banners/LHS-banner.jpg') }}" alt="Image">
-                        </div>
                     </div>
                     <!-- /.sidebar-filter -->
                 </div>
@@ -202,23 +115,35 @@
 
                 <!-- == ==== SECTION – HERO === ====== -->
 
-                <div id="category" class="category-carousel hidden-xs">
-                    <div class="item">
-                        <div class="image"> <img
-                                src="{{ asset('front-theme/assets/images/banners/cat-banner-1.jpg') }}" alt=""
-                                class="img-responsive"> </div>
-                        <div class="container-fluid">
-                            <div class="caption vertical-top text-left">
-                                <div class="big-text"> Big Sale </div>
-                                <div class="excerpt hidden-sm hidden-md"> Save up to 49% off </div>
-                                <div class="excerpt-normal hidden-sm hidden-md"> Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit </div>
+                <!-- ========================================== SECTION – HERO ========================================= -->
+
+                <div id="hero">
+                    <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
+                        @foreach ($sliders as $slider)
+                            <div class="item hero-image"
+                                style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url( {{ asset('storage/' . $slider->slider_img) }});">
+                                <div class="container-fluid ">
+                                    <div class="caption bg-color vertical-center text-left">
+                                        <h1 class="big-text fadeInDown-1 white">{{ $slider->title }} </h1>
+                                        <div class="excerpt fadeInDown-2 hidden-xs white">
+                                            <p>{!! $slider->description !!}</p>
+                                        </div>
+                                        <div class="button-holder fadeInDown-3"> <a href="index.php?page=single-product"
+                                                class="btn-lg btn btn-uppercase btn-primary shop-now-button">Shop
+                                                Now</a>
+                                        </div>
+                                    </div>
+                                    <!-- /.caption -->
+                                </div>
+                                <!-- /.container-fluid -->
                             </div>
-                            <!-- /.caption -->
-                        </div>
-                        <!-- /.container-fluid -->
+                            <!-- /.item -->
+                        @endforeach
                     </div>
+                    <!-- /.owl-carousel -->
                 </div>
+
+                <!-- ========================================= SECTION – HERO : END ========================================= -->
 
 
                 <div class="clearfix filters-container m-t-10">
@@ -240,8 +165,7 @@
                                 <div class="lbl-cnt"> <span class="lbl">Sort by</span>
                                     <div class="fld inline">
                                         <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
-                                            <button data-toggle="dropdown" type="button"
-                                                class="btn dropdown-toggle">
+                                            <button data-toggle="dropdown" type="button" class="btn dropdown-toggle">
                                                 Position <span class="caret"></span> </button>
                                             <ul role="menu" class="dropdown-menu">
                                                 <li role="presentation"><a href="#">position</a></li>
@@ -260,8 +184,7 @@
                                 <div class="lbl-cnt"> <span class="lbl">Show</span>
                                     <div class="fld inline">
                                         <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
-                                            <button data-toggle="dropdown" type="button"
-                                                class="btn dropdown-toggle"> 1
+                                            <button data-toggle="dropdown" type="button" class="btn dropdown-toggle"> 1
                                                 <span class="caret"></span> </button>
                                             <ul role="menu" class="dropdown-menu">
                                                 <li role="presentation"><a href="#">1</a></li>
@@ -382,9 +305,7 @@
                                                                     onclick="addToWishList(this.id)"> <i
                                                                         class="fa fa-heart"></i>
                                                                 </button>
-                                                                <li class="lnk"> <a class="add-to-cart"
-                                                                        href="detail.html" title="Compare"> <i
-                                                                            class="fa fa-signal"></i> </a> </li>
+
                                                             </ul>
                                                         </div>
                                                         <!-- /.action -->
@@ -503,10 +424,7 @@
                                                                             onclick="addToWishList(this.id)"> <i
                                                                                 class="fa fa-heart"></i>
                                                                         </button>
-                                                                        <li class="lnk"> <a class="add-to-cart"
-                                                                                href="detail.html" title="Compare"> <i
-                                                                                    class="fa fa-signal"></i> </a>
-                                                                        </li>
+
                                                                     </ul>
                                                                 </div>
                                                                 <!-- /.action -->

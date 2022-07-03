@@ -55,6 +55,7 @@ class IndexController extends Controller
 
     public function productCategory(Category $category)
     {
+        $data['sliders'] = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
         $data['products'] = Product::where('status', 1)->where('category_id', $category->id)->orderBy('id', 'DESC')->paginate(3);
         $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
@@ -64,6 +65,7 @@ class IndexController extends Controller
 
     public function productSubcategory(Subcategory $subcategory)
     {
+        $data['sliders'] = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
         $data['products'] = Product::where('status', 1)->where('subcategory_id', $subcategory->id)->orderBy('id', 'DESC')->paginate(3);
         $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
@@ -74,6 +76,7 @@ class IndexController extends Controller
 
     public function productTag($keyword)
     {
+        $data['sliders'] = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
         $data['products'] = Product::where('status', 1)->where('product_tags', 'LIKE', '%' . $keyword . '%')->orderBy('id', 'DESC')->paginate(3);
         $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();

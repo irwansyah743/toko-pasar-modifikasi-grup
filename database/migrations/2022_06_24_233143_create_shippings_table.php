@@ -22,7 +22,9 @@ return new class extends Migration
             $table->string('shipping_name');
             $table->string('shipping_email');
             $table->string('shipping_phone');
+            $table->string('delivery_status');
             $table->integer('post_code');
+            $table->string('resi')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
         });

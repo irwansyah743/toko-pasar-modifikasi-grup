@@ -45,7 +45,7 @@
                                 @foreach ($orders as $order)
                                     <tr>
                                         <td class="col-md-1">
-                                            <label for=""> {{ $order->created_at }}</label>
+                                            <label for=""> {{ $order->order_date }}</label>
                                         </td>
 
                                         <td class="col-md-3">
@@ -68,6 +68,10 @@
 
                                             </label>
                                         </td>
+                                        <td> <span
+                                                style="background:{{ $order->shipping->delivery_status == 0 ? '#EF3737' : '#418DB9' }} ; "
+                                                class="badge badge-pill {{ $order->shipping->delivery_status == 0 ? 'badge-danger' : 'badge-primary' }} ">{{ $order->shipping->delivery_status == 0 ? 'In Progress' : 'Sent' }}
+                                            </span> </td>
 
                                         <td class="col-md-1">
                                             <a href="{{ url('/user/order/detail/' . $order->id) }}"

@@ -83,27 +83,15 @@ class MidtransController extends Controller
             $order->transaction_id = $request->transaction_id;
             $order->order_id = $request->order_id;
             $order->gross_amount = $request->gross_amount;
+            $order->order_date = Carbon::now()->format('d F Y');
+            $order->order_month = Carbon::now()->format('F');
+            $order->order_year = Carbon::now()->format('Y');
             $order->payment_type = $request->payment_type;
             $order->created_at = $request->transaction_time;
             $order->payment_code = isset($request->payment_code) ? $request->payment_code : null;
             $order->pdf_url = isset($request->pdf_url) ? $request->pdf_url : null;
 
             $order->save();
-
-            // Start Send Email 
-            $invoice = Order::where('order_id', $request->order_id)->first();
-            $data = [
-                'order_id' => $request->order_id,
-                'time' =>  $request->transaction_time,
-                'order_id' => $request->order_id,
-                'amount' => $request->gross_amount,
-                'name' => $invoice->user->name,
-                'email' => $invoice->user->email,
-            ];
-
-            Mail::to($invoice->user->email)->send(new OrderMail($data));
-
-            // End Send Email 
         }
 
 
@@ -121,6 +109,7 @@ class MidtransController extends Controller
         $validated['kecamatan'] = $request->kecamatan;
         $validated['address'] = $request->address;
         $validated['notes'] = $request->notes;
+        $validated['delivery_status'] = 0;
         $validated['created_at'] = Carbon::now();
 
         // Insert Shipping
@@ -154,5 +143,25 @@ class MidtransController extends Controller
 
         Order::where('order_id', $request->order_id)->update($validated);
         return response()->json(['success' => 'Shipping info was saved Successfully']);
+    }
+
+    public function sendEmail(Request $request)
+    {
+        // Start Send Email 
+        $invoice = Order::where('order_id', $request->order_id)->first();
+        $data = [
+            'order_id' => $request->order_id,
+            'time' =>  $request->transaction_time,
+            'order_id' => $request->order_id,
+            'amount' => $request->gross_amount,
+            'name' => $invoice->user->name,
+            'email' => $invoice->user->email,
+        ];
+
+        Mail::to($invoice->user->email)->send(new OrderMail($data));
+
+        // End Send Email 
+
+        return response()->json(['success' => "Email was sent"]);
     }
 }

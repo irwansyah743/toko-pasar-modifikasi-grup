@@ -4,12 +4,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\MidtransController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\SubSubCategoryController;
@@ -143,6 +147,62 @@ Route::middleware([
 Route::post('/images/{multiimg}', [ProductController::class, 'destroyImages']);
 // END ADMIN PRODUCT
 
+// REVIEW
+Route::middleware([
+    'auth.admin:admin',
+    config('jetstream.auth_session'),
+    'verified'
+])->controller(ReviewController::class)->prefix('review')->group(function () {
+    Route::get('/pending',  'pendingReview')->name('pending.review');
+    Route::put('/admin/approve/{id}', 'reviewApprove')->name('review.approve');
+    Route::get('/admin/all/request',  'publishedReview')->name('publish.review');
+    Route::post('/{review}', 'destroy')->name('review.delete');
+});
+Route::post('/store/{product}', [ReviewController::class, 'store'])->name('review.store');
+
+// END REVIEW
+
+// ADMIN REPORT
+Route::middleware([
+    'auth.admin:admin',
+    config('jetstream.auth_session'),
+    'verified'
+])->controller(ReportController::class)->prefix('report')->group(function () {
+    Route::get('/', 'index')->name('all.report');
+    Route::post('/{report}', 'destroy')->name('report.delete');
+    Route::post('/search/by/date', 'ReportByDate')->name('search-by-date');
+    Route::post('/search/by/month', 'ReportByMonth')->name('search-by-month');
+    Route::post('/search/by/year',  'ReportByYear')->name('search-by-year');
+    Route::get('/invoice/download/{order}',  'invoiceDownload')->name('invoice.download');
+});
+// END ADMIN REPORT
+
+// ADMIN USERS
+Route::middleware([
+    'auth.admin:admin',
+    config('jetstream.auth_session'),
+    'verified'
+])->controller(AdminUserController::class)->prefix('alluser')->group(function () {
+    Route::get('/', 'index')->name('all.user');
+    Route::post('/{user}', 'destroy')->name('user.delete');
+});
+// END ADMIN USERS
+
+// ADMIN ADMIN
+Route::middleware([
+    'auth.admin:admin',
+    config('jetstream.auth_session'),
+    'verified'
+])->controller(AdminUserController::class)->prefix('alladmin')->group(function () {
+    Route::get('/admin', 'allAdmin')->name('all.admin');
+    Route::get('/admin/create', 'addAdmin')->name('add.admin');
+    Route::post('/store', 'storeAdmin')->name('admin.store');
+    Route::get('/edit/{id}', 'editAdmin')->name('admin.edit');
+    Route::put('/update/{admin}', 'updateAdmin')->name('admin.update');
+    Route::post('/{admin}', 'destroy')->name('admin.delete');
+});
+// END ADMIN ADMIN
+
 // ADMIN SLIDER
 Route::middleware([
     'auth.admin:admin',
@@ -176,6 +236,23 @@ Route::middleware([
     Route::post('/{coupon}', 'destroy')->name('coupon.delete');
 });
 // END ADMIN COUPON
+
+// ADMIN ORDERS
+Route::middleware([
+    'auth.admin:admin',
+    config('jetstream.auth_session'),
+    'verified'
+])->controller(OrderController::class)->prefix('orders')->group(function () {
+    Route::get('/pending', 'pendingOrders')->name('pending.orders');
+    Route::get('/capture', 'captureOrders')->name('capture.orders');
+    Route::get('/settlement', 'settlementOrders')->name('settlement.orders');
+    Route::get('/failure', 'failureOrders')->name('failure.orders');
+    Route::get('/pending', 'pendingOrders')->name('pending.orders');
+    Route::get('/pending/detail/{order}', 'orderDetail')->name('pending.order.details');
+    Route::post('/shipping/{shipping}', 'updateDelivery');
+    Route::post('/{order}', 'destroy')->name('order.delete');
+});
+// END ADMIN ORDERS
 
 // MAIN CONTENT
 Route::controller(IndexController::class)->group(function () {
@@ -219,4 +296,5 @@ Route::post('/midtrans/postTrans', [MidtransController::class, 'paymentPost']);
 Route::post('/midtrans/shippingStore', [MidtransController::class, 'shippingStore']);
 Route::post('/midtrans/itemStore', [MidtransController::class, 'orderItemStore']);
 Route::post('/midtrans/shippingUpdate', [MidtransController::class, 'shippingUpdate']);
+Route::post('/midtrans/sendEmail', [MidtransController::class, 'sendEmail']);
 // END PAYMENT

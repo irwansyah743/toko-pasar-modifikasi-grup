@@ -12,9 +12,6 @@
 
         <a href="{{ route('my.orders') }}" class="btn btn-primary btn-sm btn-block">Orders</a>
 
-        <a href="" class="btn btn-primary btn-sm btn-block">Return Orders</a>
-
-        <a href="" class="btn btn-primary btn-sm btn-block">Cancel Orders</a>
         <form method="POST" action="{{ route('logout') }}" class="mt-2">
             @csrf
             <button type="submit" class="btn btn-danger btn-sm btn-block">Logout</button>

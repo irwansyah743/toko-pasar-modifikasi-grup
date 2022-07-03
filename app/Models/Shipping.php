@@ -17,7 +17,9 @@ class Shipping extends Model
         'shipping_name',
         'shipping_email',
         'shipping_phone',
+        'delivery_status',
         'post_code',
+        'resi',
         'notes'
     ];
 }

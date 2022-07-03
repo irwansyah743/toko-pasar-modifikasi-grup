@@ -71,6 +71,7 @@ function midTrans(){
                 send_response_to_form(result);
                 shippingUpdate(result);
                 storeItems();
+                sendEmail(result);
               },
               onPending: function(result){
                 /* You may add your own implementation here */
@@ -80,6 +81,7 @@ function midTrans(){
               onError: function(result){
                 /* You may add your own implementation here */
                 console.log(result);
+                send_response_to_form(result);
               },
               onClose: function(){
                 /* You may add your own implementation here */
@@ -170,6 +172,36 @@ const storeShipping=(data)=>{
     });
   }
 // -------------------------------------- END SHIPPING STORE ----------------------------------
+
+// -------------------------------------- SEND EMAIL ----------------------------------
+const sendEmail=(data)=>{
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    fetch(`http://127.0.0.1:8000/midtrans/sendEmail`,{
+        method:'POST',
+        body:JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json, text-plain, */*",
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRF-TOKEN": token
+        }
+    }).then(response=> {
+        if (!response.ok) {
+            throw Error(response.statusText);
+        }
+        return response.json();
+    }).catch(error=> {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: error,
+            showConfirmButton: false,
+            timer: 3000
+          })
+    });
+  }
+// -------------------------------------- END SEND EMAIL ----------------------------------
 
 // -------------------------------------- ITEMS STORE ----------------------------------
 const storeItems=()=>{

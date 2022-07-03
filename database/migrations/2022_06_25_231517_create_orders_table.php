@@ -21,6 +21,9 @@ return new class extends Migration
             $table->string('transaction_id');
             $table->string('order_id');
             $table->string('payment_type');
+            $table->string('order_date');
+            $table->string('order_month');
+            $table->string('order_year');
             $table->string('payment_code')->nullable();
             $table->string('pdf_url')->nullable();
             $table->string('status');

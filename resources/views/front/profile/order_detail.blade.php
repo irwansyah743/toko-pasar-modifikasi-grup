@@ -50,8 +50,26 @@
 
                                 <tr>
                                     <th> Order Date: </th>
-                                    <th> {{ $orderDetail->created_at }} </th>
+                                    <th> {{ $orderDetail->order_date }} </th>
                                 </tr>
+                                <tr>
+                                    <th> Delivery Status: </th>
+                                    <th>
+                                        <span class="badge badge-pill badge-warning"
+                                            style="background:{{ $orderDetail->shipping->delivery_status == 0 ? '#EF3737' : '#418DB9' }} ; ">{{ $orderDetail->shipping->delivery_status == 0 ? 'Waitlist' : 'Sent' }}
+                                        </span>
+                                    </th>
+                                </tr>
+                                @if ($orderDetail->shipping->delivery_status == 1)
+                                    <tr>
+                                        <th> Resi NO: </th>
+                                        <th>
+                                            <span class="badge badge-pill badge-warning"
+                                                style="background:#EF3737 ; ">{{ $orderDetail->shipping->resi }}
+                                            </span>
+                                        </th>
+                                    </tr>
+                                @endif
 
                             </table>
 
