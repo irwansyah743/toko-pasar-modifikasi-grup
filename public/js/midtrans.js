@@ -67,21 +67,18 @@ function midTrans(){
             onSuccess: function(result){
                 /* You may add your own implementation here */
                 console.log(result);
-                storeShipping(shippingData);
-                send_response_to_form(result);
-                shippingUpdate(result);
-                storeItems();
+               
                 sendEmail(result);
               },
               onPending: function(result){
                 /* You may add your own implementation here */
                 console.log(result);
-                send_response_to_form(result);
+               
               },
               onError: function(result){
                 /* You may add your own implementation here */
                 console.log(result);
-                send_response_to_form(result);
+               
               },
               onClose: function(){
                 /* You may add your own implementation here */

@@ -27,6 +27,47 @@ class MidtransController extends Controller
         \Midtrans\Config::$is3ds = true;
 
         $carts = Cart::content();
+        $order_id = rand();
+
+        // STORE TO DATABASE
+        $shipping['shipping_name'] = $request->name;
+        $shipping['shipping_email'] = $request->email;
+        $shipping['shipping_phone'] = $request->phone;
+        $shipping['post_code'] = $request->postCode;
+        $shipping['provinsi'] = $request->provinsi;
+        $shipping['kabupaten'] = $request->kabupaten;
+        $shipping['kecamatan'] = $request->kecamatan;
+        $shipping['address'] = $request->address;
+        $shipping['notes'] = $request->notes;
+        $shipping['delivery_status'] = 0;
+        $shipping['created_at'] = Carbon::now();
+
+        // Insert Shipping
+        Shipping::create($shipping);
+
+        $order = new Order();
+        $order->user_id = Auth::id();
+        $order->shipping_id = Shipping::latest()->first()->id;
+        $order->status = "to be paid";
+        $order->order_id =  $order_id;
+        $order->order_date = Carbon::now()->format('d F Y');
+        $order->order_month = Carbon::now()->format('F');
+        $order->order_year = Carbon::now()->format('Y');
+        $order->save();
+
+        $carts = Cart::content();
+        foreach ($carts as $cart) {
+            $item = new OrderItem();
+            $item->product_id = $cart->id;
+            $item->qty = $cart->qty;
+            $item->color = $cart->options->color;
+            $item->size = $cart->options->size;
+            $item->order_id = Order::latest()->first()->id;
+            $item->save();
+        }
+        // END STORE TO DATABASE
+
+
         $items = [];
         foreach ($carts as $cart) {
             array_push($items,  [
@@ -47,7 +88,7 @@ class MidtransController extends Controller
 
         $params = array(
             'transaction_details' => array(
-                'order_id' => rand(),
+                'order_id' =>  $order_id,
             ),
             'item_details' => $items,
             'customer_details' => array(
@@ -68,82 +109,6 @@ class MidtransController extends Controller
         return response()->json(['snapToken' => $snapToken]);
     }
 
-    public function paymentPost(Request $request)
-    {
-
-        if (Order::where('order_id', $request->order_id)->count() > 0) {
-            $validated['shipping_id'] = Shipping::latest()->first()->id;
-            $validated['status'] = $request->transaction_status;
-
-            Order::where('order_id', $request->order_id)->update($validated);
-        } else {
-            $order = new Order();
-            $order->user_id = Auth::id();
-            $order->status = $request->transaction_status;
-            $order->transaction_id = $request->transaction_id;
-            $order->order_id = $request->order_id;
-            $order->gross_amount = $request->gross_amount;
-            $order->order_date = Carbon::now()->format('d F Y');
-            $order->order_month = Carbon::now()->format('F');
-            $order->order_year = Carbon::now()->format('Y');
-            $order->payment_type = $request->payment_type;
-            $order->created_at = $request->transaction_time;
-            $order->payment_code = isset($request->payment_code) ? $request->payment_code : null;
-            $order->pdf_url = isset($request->pdf_url) ? $request->pdf_url : null;
-
-            $order->save();
-        }
-
-
-        return response()->json(['success' => 'Payment was successfull']);
-    }
-
-    public function shippingStore(Request $request)
-    {
-        $validated['shipping_name'] = $request->name;
-        $validated['shipping_email'] = $request->email;
-        $validated['shipping_phone'] = $request->phone;
-        $validated['post_code'] = $request->postCode;
-        $validated['provinsi'] = $request->provinsi;
-        $validated['kabupaten'] = $request->kabupaten;
-        $validated['kecamatan'] = $request->kecamatan;
-        $validated['address'] = $request->address;
-        $validated['notes'] = $request->notes;
-        $validated['delivery_status'] = 0;
-        $validated['created_at'] = Carbon::now();
-
-        // Insert Shipping
-        Shipping::create($validated);
-        return response()->json(['success' => 'Shipping info was saved Successfully']);
-    }
-
-    public function orderItemStore()
-    {
-        if (Session::has('coupon')) {
-            Session::forget('coupon');
-        }
-
-        $carts = Cart::content();
-        foreach ($carts as $cart) {
-            $item = new OrderItem();
-            $item->product_id = $cart->id;
-            $item->qty = $cart->qty;
-            $item->color = $cart->options->color;
-            $item->size = $cart->options->size;
-            $item->order_id = Order::latest()->first()->id;
-            $item->save();
-        }
-        Cart::destroy();
-        return response()->json(['success' => 'Ordered items were stored Successfully']);
-    }
-
-    public function shippingUpdate(Request $request)
-    {
-        $validated['shipping_id'] = Shipping::latest()->first()->id;
-
-        Order::where('order_id', $request->order_id)->update($validated);
-        return response()->json(['success' => 'Shipping info was saved Successfully']);
-    }
 
     public function sendEmail(Request $request)
     {
@@ -159,9 +124,54 @@ class MidtransController extends Controller
         ];
 
         Mail::to($invoice->user->email)->send(new OrderMail($data));
+        Cart::destroy();
 
         // End Send Email 
 
         return response()->json(['success' => "Email was sent"]);
+    }
+
+    public function hookTransaction(Request $request)
+    {
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
+
+
+        // $notif = new \Midtrans\Notification();
+        $transaction = $request->transaction_status;
+        $fraud = $request->fraud_status;
+
+
+        $orderModel = Order::where("order_id", $request->order_id)->first();
+        if (!$orderModel) {
+            return response()->json([
+                'status' => 'error',
+            ]);
+        }
+
+        if ($transaction == 'capture' || $transaction == 'pending' || $transaction == 'settlement') {
+            if ($fraud == 'challenge') {
+                $order['status'] = 'pending';
+            }
+            $order['status'] = $transaction;
+            $order['transaction_id'] = $request->transaction_id;
+            $order['gross_amount'] = $request->gross_amount;
+            $order['payment_type'] = $request->payment_type;
+            $order['created_at'] = $request->transaction_time;
+            $order['payment_code '] = isset($request->payment_code) ? $request->payment_code : null;
+            $order['pdf_url'] = isset($request->pdf_url) ? $request->pdf_url : null;
+        } else if ($transaction == 'cancel' || $transaction == 'deny' || $transaction == 'expire' || $transaction == 'failure') {
+            $order['status'] = $transaction;
+        }
+
+        $orderModel->update($order);
+
+        return response()->json(['status' => 'success']);
     }
 }

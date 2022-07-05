@@ -299,4 +299,5 @@ Route::post('/midtrans/shippingStore', [MidtransController::class, 'shippingStor
 Route::post('/midtrans/itemStore', [MidtransController::class, 'orderItemStore']);
 Route::post('/midtrans/shippingUpdate', [MidtransController::class, 'shippingUpdate']);
 Route::post('/midtrans/sendEmail', [MidtransController::class, 'sendEmail']);
+Route::post('/midtrans/hook', [MidtransController::class, 'hookTransaction']);
 // END PAYMENT
