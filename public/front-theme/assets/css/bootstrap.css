@@ -7308,4 +7308,9 @@ button.close {
 .checked {
   color: orange;
 }
+
+.search-field:focus{
+  outline: none;
+  border: none;
+}
 /*# sourceMappingURL=bootstrap.css.map */

@@ -4,12 +4,6 @@
     {{ $product->product_name }} Product Details
 @endsection
 
-<style>
-    .checked {
-        color: orange;
-    }
-</style>
-
 
 
 <!-- ===== ======== HEADER : END ============================================== -->

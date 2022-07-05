@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\MultiImg;
 use App\Models\SubCategory;
+use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
@@ -73,7 +74,7 @@ class IndexController extends Controller
     public function productCategory(Category $category)
     {
         $data['sliders'] = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
-        $data['products'] = Product::where('status', 1)->where('category_id', $category->id)->orderBy('id', 'ASC')->paginate(3);
+        $data['products'] = Product::where('status', 1)->where('category_id', $category->id)->orderBy('id', 'ASC')->paginate(4);
         $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
         $data['category_name'] = $category->category_name;
@@ -83,7 +84,7 @@ class IndexController extends Controller
     public function productSubcategory(Subcategory $subcategory)
     {
         $data['sliders'] = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
-        $data['products'] = Product::where('status', 1)->where('subcategory_id', $subcategory->id)->orderBy('id', 'DESC')->paginate(3);
+        $data['products'] = Product::where('status', 1)->where('subcategory_id', $subcategory->id)->orderBy('id', 'DESC')->paginate(4);
         $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
         $data['subcategory_name'] = $subcategory->subcategory_name;
@@ -94,7 +95,7 @@ class IndexController extends Controller
     public function productTag($keyword)
     {
         $data['sliders'] = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
-        $data['products'] = Product::where('status', 1)->where('product_tags', 'LIKE', '%' . $keyword . '%')->orderBy('id', 'DESC')->paginate(3);
+        $data['products'] = Product::where('status', 1)->where('product_tags', 'LIKE', '%' . $keyword . '%')->orderBy('id', 'DESC')->paginate(4);
         $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
         $data['keyword'] = $keyword;
@@ -118,4 +119,17 @@ class IndexController extends Controller
             'sizes' => $product_size,
         ));
     } // end method 
+
+    public function searchProduct(Request $request)
+    {
+        $request->validate([
+            'keyword' => 'required',
+        ]);
+
+        $data['products'] = Product::where('status', 1)->where('product_name', 'LIKE', '%' . $request->keyword . '%')->orWhere('product_slug', 'LIKE', '%' .  $request->keyword . '%')->orWhere('product_tags', 'LIKE', '%' .  $request->keyword . '%')->orderBy('id', 'DESC')->paginate(4);
+        $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
+        $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
+        $data['keyword'] =  $request->keyword;
+        return view('front.product.search', $data);
+    }
 }

@@ -54,10 +54,13 @@ $subcategories = App\Models\SubCategory::latest()->get();
                     <!-- /.contact-row -->
                     <!-- ============================================================= SEARCH AREA ============================================================= -->
                     <div class="search-area">
-                        <form>
+                        <form action="{{ route('search') }}" method="get">
+                            @csrf
                             <div class="control-group">
-                                <input class="search-field" placeholder="Search here..." />
-                                <a class="search-button" href="#"></a>
+                                <input class="search-field" type="text" name="keyword"
+                                    placeholder="Search here..." />
+
+                                <button class="search-button"></button>
                             </div>
                         </form>
                     </div>

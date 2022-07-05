@@ -2,11 +2,7 @@
 @section('title')
     Home | Flipmart
 @endsection
-<style>
-    .checked {
-        color: orange;
-    }
-</style>
+
 @section('content')
     <div class="body-content outer-top-xs" id="top-banner-and-menu">
         <div class="container">

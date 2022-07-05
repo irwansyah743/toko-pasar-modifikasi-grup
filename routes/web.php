@@ -262,6 +262,7 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/product/tags/{keyword}', 'productTag');
     Route::get('/product/subcategory/{subcategory}', 'productSubcategory');
     Route::get('/product/view/modal/{id}', 'productViewAjax');
+    Route::get('/product/search', 'searchProduct')->name('search');
 });
 
 Route::controller(CartController::class)->group(function () {

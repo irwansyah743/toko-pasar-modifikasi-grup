@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="author" content="">
     <meta name="keywords" content="MediaCenter, Template, eCommerce">
+    <link rel="icon" href="{{ asset('admin-theme/images/favicon.ico') }}">
     <meta name="robots" content="all">
     <title>@yield('title') </title>
 
