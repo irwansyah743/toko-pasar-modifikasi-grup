@@ -51,7 +51,7 @@
                             <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i
                                         class="fa fa-map-marker fa-stack-1x fa-inverse"></i> </span> </div>
                             <div class="media-body">
-                                <p>ThemesGround, 789 Main rd, Anytown, CA 12345 USA</p>
+                                <p>Cicadas, Sagalaherang, Kab Subang, Jawa Barat Indonesia</p>
                             </div>
                         </li>
                     </ul>
