@@ -28,6 +28,7 @@ return new class extends Migration
                 ->onDelete('cascade');
 
             $table->string('status')->default(0);
+            $table->integer('rating')->nullable();
             $table->timestamps();
         });
     }

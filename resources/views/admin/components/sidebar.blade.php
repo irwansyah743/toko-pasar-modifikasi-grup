@@ -54,8 +54,8 @@ $alladmin =
                 <a href="{{ route('admin.dashboard') }}">
                     <!-- logo for regular state and mobile devices -->
                     <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{ asset('admin-theme/images/logo-dark.png') }}" alt="">
-                        <h3><b>Sunny</b> Admin</h3>
+                        <img src="{{ asset('front-theme/assets/images/logo.png') }}" alt="">
+
                     </div>
                 </a>
             </div>
@@ -73,7 +73,7 @@ $alladmin =
             @if ($alluser == true)
                 <li class="treeview {{ $prefix == '/alluser' ? 'active' : '' }}">
                     <a href="#">
-                        <i data-feather="file"></i>
+                        <i data-feather="user"></i>
                         <span>Users</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-right pull-right"></i>
@@ -88,7 +88,7 @@ $alladmin =
             @if ($alladmin == true)
                 <li class="treeview {{ $prefix == '/alladmin' ? 'active' : '' }}">
                     <a href="#">
-                        <i data-feather="file"></i>
+                        <i data-feather="user"></i>
                         <span>Admin</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-right pull-right"></i>
@@ -103,7 +103,7 @@ $alladmin =
             @if ($report == true)
                 <li class="treeview {{ $prefix == '/report' ? 'active' : '' }}">
                     <a href="#">
-                        <i data-feather="file"></i>
+                        <i data-feather="mail"></i>
                         <span>Report</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-right pull-right"></i>
@@ -120,7 +120,7 @@ $alladmin =
             @if ($brand == true)
                 <li class="treeview {{ $prefix == '/brand' ? 'active' : '' }}">
                     <a href="#">
-                        <i data-feather="message-circle"></i>
+                        <i data-feather="file"></i>
                         <span>Brand</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-right pull-right"></i>
@@ -137,7 +137,7 @@ $alladmin =
                 <li
                     class="treeview {{ $prefix == '/category' || $prefix == '/subcategory' || $prefix == '/subsubcategory' ? 'active' : '' }}">
                     <a href="#">
-                        <i data-feather="mail"></i> <span>Category</span>
+                        <i data-feather="file"></i> <span>Category</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-right pull-right"></i>
                         </span>
@@ -206,7 +206,7 @@ $alladmin =
             @if ($orders == true)
                 <li class="treeview {{ $prefix == '/orders' ? 'active' : '' }}">
                     <a href="#">
-                        <i data-feather="file"></i>
+                        <i data-feather="message-circle"></i>
                         <span>Orders</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-right pull-right"></i>
@@ -230,7 +230,7 @@ $alladmin =
             @if ($review == true)
                 <li class="treeview {{ $prefix == '/review' ? 'active' : '' }}">
                     <a href="#">
-                        <i data-feather="file"></i>
+                        <i data-feather="message-circle"></i>
                         <span>Review</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-right pull-right"></i>
@@ -253,15 +253,4 @@ $alladmin =
         </ul>
     </section>
 
-    <div class="sidebar-footer">
-        <!-- item-->
-        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title=""
-            data-original-title="Settings" aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
-        <!-- item-->
-        <a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title=""
-            data-original-title="Email"><i class="ti-email"></i></a>
-        <!-- item-->
-        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title=""
-            data-original-title="Logout"><i class="ti-lock"></i></a>
-    </div>
 </aside>

@@ -70,7 +70,7 @@ async function getWishList() {
         dataType: "json",
     }).then((response) => {
         if (response.status !== 200) {
-            throw new Error(response.statusText);
+            throw new Error(response.json().error);
         }
         return response.json();
     });

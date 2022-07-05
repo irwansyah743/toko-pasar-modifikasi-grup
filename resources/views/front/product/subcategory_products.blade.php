@@ -241,6 +241,9 @@
                                                         @php
                                                             $amount = $product->selling_price - $product->discount_price;
                                                             $discount = ($amount / $product->selling_price) * 100;
+                                                            $avarage = App\Models\Review::where('product_id', $product->id)
+                                                                ->where('status', 1)
+                                                                ->avg('rating');
                                                         @endphp
 
                                                         <div>
@@ -265,17 +268,53 @@
 
                                                             </a>
                                                         </h3>
-                                                        <div class="rating rateit-small"></div>
+                                                        <div>
+
+                                                            @if ($avarage == 0)
+                                                            @elseif($avarage == 1 || $avarage < 2)
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                            @elseif($avarage == 2 || $avarage < 3)
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                            @elseif($avarage == 3 || $avarage < 4)
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                            @elseif($avarage == 4 || $avarage < 5)
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star"></span>
+                                                            @elseif($avarage == 5 || $avarage < 5)
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                            @endif
+
+
+                                                        </div>
                                                         <div class="description"></div>
 
 
                                                         @if ($product->discount_price == null)
                                                             <div class="product-price"> <span class="price">
-                                                                    ${{ $product->selling_price }} </span> </div>
+                                                                    Rp. {{ $product->selling_price }} </span> </div>
                                                         @else
                                                             <div class="product-price"> <span class="price">
-                                                                    ${{ $product->discount_price }} </span> <span
-                                                                    class="price-before-discount">$
+                                                                    Rp. {{ $product->discount_price }} </span> <span
+                                                                    class="price-before-discount">Rp.
                                                                     {{ $product->selling_price }}</span> </div>
                                                         @endif
 
@@ -357,6 +396,13 @@
 
 
                                 @forelse ($products as $product)
+                                    @php
+                                        $amount = $product->selling_price - $product->discount_price;
+                                        $discount = ($amount / $product->selling_price) * 100;
+                                        $avarage = App\Models\Review::where('product_id', $product->id)
+                                            ->where('status', 1)
+                                            ->avg('rating');
+                                    @endphp
                                     <div class="category-product-inner wow fadeInUp">
                                         <div class="products">
                                             <div class="product-list product">
@@ -379,17 +425,55 @@
 
                                                                 </a>
                                                             </h3>
-                                                            <div class="rating rateit-small"></div>
+                                                            <div>
+
+                                                                @if ($avarage == 0)
+                                                                @elseif($avarage == 1 || $avarage < 2)
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif($avarage == 2 || $avarage < 3)
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif($avarage == 3 || $avarage < 4)
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif($avarage == 4 || $avarage < 5)
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif($avarage == 5 || $avarage < 5)
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                @endif
+
+
+                                                            </div>
 
 
                                                             @if ($product->discount_price == null)
                                                                 <div class="product-price"> <span class="price">
-                                                                        ${{ $product->selling_price }} </span> </div>
+                                                                        Rp. {{ $product->selling_price }} </span>
+                                                                </div>
                                                             @else
                                                                 <div class="product-price"> <span class="price">
-                                                                        ${{ $product->discount_price }} </span> <span
-                                                                        class="price-before-discount">$
-                                                                        {{ $product->selling_price }}</span> </div>
+                                                                        Rp. {{ $product->discount_price }} </span>
+                                                                    <span class="price-before-discount">Rp.
+                                                                        {{ $product->selling_price }}</span>
+                                                                </div>
                                                             @endif
 
                                                             <!-- /.product-price -->
@@ -439,10 +523,7 @@
 
 
 
-                                                @php
-                                                    $amount = $product->selling_price - $product->discount_price;
-                                                    $discount = ($amount / $product->selling_price) * 100;
-                                                @endphp
+
 
                                                 <!-- /.product-list-row -->
                                                 <div>

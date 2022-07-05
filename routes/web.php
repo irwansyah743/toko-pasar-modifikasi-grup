@@ -283,10 +283,11 @@ Route::middleware([
 ])->controller(WishlistController::class)->group(function () {
     // Add to Wishlist
     Route::get('/wishlist', 'index')->name('wishlist');
-    Route::post('/wishlist/{product}', 'addToWishlist');
     Route::get('/getwishlist', 'getWishlistProduct');
     Route::post('/wishlist-remove/{id}', 'removeWishlistProduct');
 });
+// Route::post('/wishlist/{product}', 'addToWishlist');
+Route::post('/wishlist/{product}', [WishlistController::class, 'addToWishlist']);
 
 // END MAIN CONTENT
 

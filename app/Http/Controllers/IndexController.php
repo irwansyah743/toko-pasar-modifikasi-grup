@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Review;
+use App\Models\Slider;
+use App\Models\Product;
 use App\Models\Category;
 use App\Models\MultiImg;
-use App\Models\Product;
-use App\Models\Slider;
 use App\Models\SubCategory;
 
 class IndexController extends Controller
@@ -42,7 +43,10 @@ class IndexController extends Controller
 
     public function productDetail($slug)
     {
-        $data['product'] = Product::where('product_slug', $slug)->get()[0];
+        $data['product'] = Product::where('product_slug', $slug)->get()->first();
+        $data['reviewcount'] = Review::where('product_id', $data['product']->id)->where('status', 1)->latest()->get();
+        $data['avarage'] = Review::where('product_id', $data['product']->id)->where('status', 1)->avg('rating');
+
         $data['related_products'] = Product::where('category_id',  $data['product']->category_id)->where('product_slug', '!=', $slug)->get();
         $product_color =  $data['product']->product_color;
         $data['colors'] = explode(',', $product_color);
@@ -50,13 +54,26 @@ class IndexController extends Controller
         $product_size =  $data['product']->product_size;
         $data['sizes'] = explode(',', $product_size);
         $data['multiImages'] = MultiImg::where('product_id',  $data['product']->id)->get();
+
+        $tags =  $data['product']->product_tags;
+
+        $tagsFix = [];
+
+        $tag = explode(',', $tags);
+        $arrayCount = count($tag);
+        for ($i = 0; $i < $arrayCount; $i++) {
+            $tagsFix = array_merge($tagsFix, [$tag[$i]]);
+        }
+
+        $data['productTags'] = $tagsFix;
+
         return view('front.product.product_detail', $data);
     }
 
     public function productCategory(Category $category)
     {
         $data['sliders'] = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
-        $data['products'] = Product::where('status', 1)->where('category_id', $category->id)->orderBy('id', 'DESC')->paginate(3);
+        $data['products'] = Product::where('status', 1)->where('category_id', $category->id)->orderBy('id', 'ASC')->paginate(3);
         $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
         $data['category_name'] = $category->category_name;

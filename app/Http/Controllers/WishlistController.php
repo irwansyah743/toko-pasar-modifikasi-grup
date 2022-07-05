@@ -40,7 +40,6 @@ class WishlistController extends Controller
     public function addToWishlist(Product $product)
     {
         if (Auth::check()) {
-
             $exists = Wishlist::where('user_id', Auth::id())->where('product_id', $product->id)->first();
             if (!$exists) {
                 Wishlist::insert([
@@ -53,7 +52,7 @@ class WishlistController extends Controller
                 return response()->json(['error' => 'This Product has Already on Your Wishlist']);
             }
         } else {
-            return response()->json(['error' => 'At First Login Your Account']);
+            return response()->json(['error' => 'Please Login to Your Account First']);
         }
     }
 
@@ -104,8 +103,12 @@ class WishlistController extends Controller
 
     public function getWishlistProduct()
     {
-        $wishlist = Wishlist::with('product')->where('user_id', Auth::id())->latest()->get();
-        return response()->json($wishlist);
+        if (Auth::check()) {
+            $wishlist = Wishlist::with('product')->where('user_id', Auth::id())->latest()->get();
+            return response()->json($wishlist);
+        } else {
+            return response()->json(['error' => 'Please login first']);
+        }
     } // end mehtod 
 
     public function removeWishlistProduct($id)
