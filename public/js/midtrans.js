@@ -48,7 +48,7 @@ function midTrans(){
         shippingData.discount=discount;
     }
 
-    fetch(`http://127.0.0.1:8000/midtrans/getToken`,{
+    fetch(`${window.location.origin}/midtrans/getToken`,{
         method:'POST',
         body:JSON.stringify(shippingData),
         headers: {
@@ -67,8 +67,6 @@ function midTrans(){
             onSuccess: function(result){
                 /* You may add your own implementation here */
                 console.log(result);
-               
-                sendEmail(result);
               },
               onPending: function(result){
                 /* You may add your own implementation here */
@@ -102,7 +100,7 @@ function midTrans(){
 // -------------------------------------- TRANSACTION DATA HANDLER ----------------------------------
 const send_response_to_form=(result)=>{
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    fetch(`http://127.0.0.1:8000/midtrans/postTrans`,{
+    fetch(`${window.location.origin}/midtrans/postTrans`,{
         method:'POST',
         body:JSON.stringify(result),
         headers: {
@@ -143,7 +141,7 @@ const send_response_to_form=(result)=>{
 // -------------------------------------- SHIPPING STORE ----------------------------------
 const storeShipping=(data)=>{
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    fetch(`http://127.0.0.1:8000/midtrans/shippingStore`,{
+    fetch(`${window.location.origin}/midtrans/shippingStore`,{
         method:'POST',
         body:JSON.stringify(data),
         headers: {
@@ -173,7 +171,7 @@ const storeShipping=(data)=>{
 // -------------------------------------- SEND EMAIL ----------------------------------
 const sendEmail=(data)=>{
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    fetch(`http://127.0.0.1:8000/midtrans/sendEmail`,{
+    fetch(`${window.location.origin}/midtrans/sendEmail`,{
         method:'POST',
         body:JSON.stringify(data),
         headers: {
@@ -203,7 +201,7 @@ const sendEmail=(data)=>{
 // -------------------------------------- ITEMS STORE ----------------------------------
 const storeItems=()=>{
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    fetch(`http://127.0.0.1:8000/midtrans/itemStore`,{
+    fetch(`${window.location.origin}/midtrans/itemStore`,{
         method:'POST',
         headers: {
             "Content-Type": "application/json",
@@ -232,7 +230,7 @@ const storeItems=()=>{
 // -------------------------------------- SHIPPING UPDATE ----------------------------------
 const shippingUpdate=(result)=>{
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    fetch(`http://127.0.0.1:8000/midtrans/shippingUpdate`,{
+    fetch(`${window.location.origin}/midtrans/shippingUpdate`,{
         method:'POST',
         body:JSON.stringify(result),
         headers: {

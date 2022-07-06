@@ -9,25 +9,28 @@ async function productView(id){
         document.getElementById('pcategory').innerHTML=data.product.category.category_name;
         document.getElementById('pbrand').innerHTML=data.product.brand.brand_name;
         document.getElementById('pid').value=data.product.id;
-        document.getElementById('pimage').src=`http://127.0.0.1:8000/storage/${data.product.product_thambnail}`;
+        document.getElementById('pimage').src=`${window.location.origin}/storage/${data.product.product_thambnail}`;
         if(data.product.discount_price==null){
             document.getElementById('price').innerHTML=`Rp.${data.product.selling_price}`;
         }else{
             document.getElementById('price').innerHTML=`Rp.${data.product.discount_price}`;
             document.getElementById('oldprice').innerHTML=` Rp.${data.product.selling_price}`;
         }
-        removeAllChildNodes( document.getElementById('pcolor'));
-        removeAllChildNodes( document.getElementById('psize'));
+
+        const pcolor=document.getElementById('pcolor');
+        const psize=document.getElementById('psize');
+        removeAllChildNodes( pcolor);
+        removeAllChildNodes( psize);
         
         data.colors.forEach(color => {
-            document.getElementById('pcolor').innerHTML+=createSelectOption(color);
-            document.getElementById('pcolor').value=color;
+            pcolor.innerHTML+=createSelectOption(color);
+            pcolor.value=color;
         });
 
 
         data.sizes.forEach(size => {
-            document.getElementById('psize').innerHTML+=createSelectOption(size);
-            document.getElementById('psize').value=size;
+            psize.innerHTML+=createSelectOption(size);
+            psize.value=size;
         });
     } catch (err) {
 
@@ -37,7 +40,7 @@ async function productView(id){
 }
 
 async function getProduct(id) {
-    return fetch(`http://127.0.0.1:8000/product/view/modal/${id}`,{
+    return fetch(`${window.location.origin}/product/view/modal/${id}`,{
         type: "GET",
         dataType: "json",
     }).then((response) => {
@@ -75,7 +78,7 @@ function addToCart(){
         product_qty: pQty,
     };
 
-    fetch(`http://127.0.0.1:8000/cart/data/store/${pId}`,{
+    fetch(`${window.location.origin}/cart/data/store/${pId}`,{
         method:'post',
         body:JSON.stringify(data),
         headers: {
@@ -125,10 +128,13 @@ function addToCart(){
 async function cart(){
     try {
         const data = await getCart();
-    
-        removeAllChildNodes( document.getElementById('cartPage'));
+        if(document.getElementById('cartPage')){
+            removeAllChildNodes( document.getElementById('cartPage'));
+        }
     Object.values(data.carts).forEach((cart) => {
-        document.getElementById('cartPage').innerHTML+=createCartPage(cart);
+        if(document.getElementById('cartPage')){
+            document.getElementById('cartPage').innerHTML+=createCartPage(cart);
+        }
     });
     } catch (err) {
         console.log(err);
@@ -142,7 +148,7 @@ if(document.getElementById('cartPage')){
 
 function createCartPage(cart) {
     return `<tr>
-    <td class="col-md-2"><img src="http://127.0.0.1:8000/storage/${cart.options.image} " alt="${cart.name}" style="width:60px; height:60px;"></td>
+    <td class="col-md-2"><img src="${window.location.origin}/storage/${cart.options.image} " alt="${cart.name}" style="width:60px; height:60px;"></td>
     
     <td class="col-md-2">
         <div class="product-name"><a href="#">${cart.name}</a></div>
@@ -182,7 +188,7 @@ function createCartPage(cart) {
  // -------- CART INCREMENT --------//
  function cartIncrement(rowId){
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    fetch(`http://127.0.0.1:8000/cart-increment/${rowId}`,{
+    fetch(`${window.location.origin}/cart-increment/${rowId}`,{
         method:'post',
         headers: {
             
@@ -213,7 +219,7 @@ function createCartPage(cart) {
  // -------- CART DECREMENT --------//
  function cartDecrement(rowId){
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    fetch(`http://127.0.0.1:8000/cart-decrement/${rowId}`,{
+    fetch(`${window.location.origin}/cart-decrement/${rowId}`,{
         method:'post',
         headers: {
             
@@ -222,8 +228,11 @@ function createCartPage(cart) {
             "X-Requested-With": "XMLHttpRequest",
             "X-CSRF-TOKEN": token
         }
-    }).then(
-        couponCalculation()
+    }).then(()=>{
+        if( document.getElementById('couponCalField')){
+            couponCalculation()
+        }
+    }
     ).then(
         miniCart()
     ).then(
@@ -265,7 +274,7 @@ async function miniCart(){
 miniCart();
 
 async function getCart() {
-    return fetch(`http://127.0.0.1:8000/cart/products`,{
+    return fetch(`${window.location.origin}/cart/products`,{
         type: "GET",
         dataType: "json",
     }).then((response) => {
@@ -280,7 +289,7 @@ function createCartItem(cart) {
     return `<div class="cart-item product-summary">
     <div class="row">
       <div class="col-xs-4">
-        <div class="image"> <a href="detail.html"><img src="http://127.0.0.1:8000/storage/${cart.options.image}" alt=""></a> </div>
+        <div class="image"> <a href="detail.html"><img src="${window.location.origin}/storage/${cart.options.image}" alt=""></a> </div>
       </div>
       <div class="col-xs-6">
         <h3 class="name"><a href="index.php?page-detail">${cart.name}</a></h3>
@@ -301,22 +310,31 @@ function createCartItem(cart) {
 // --------------------------------------  REMOVE MINI CART ----------------------------------
 
 const cartRemove=(rowId)=>{
-            fetch(`http://127.0.0.1:8000/cart/products/${rowId}`,{
+            fetch(`${window.location.origin}/cart/products/${rowId}`,{
                 method:'POST',
                 headers: {
                     "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 }
-            }).then(
-                couponCalculation()
+            }).then(()=>{
+                if( document.getElementById('couponCalField')){
+                    couponCalculation()
+                }
+            }
             ).then(
                 miniCart()
                 
             ).then(
                 cart()
-            ).then(
-                document.getElementById('couponField').style.display='block'
-            ).then(
-                document.getElementById('coupon_name').value=''
+            ).then(()=>{
+                if( document.getElementById('couponField')){
+                    document.getElementById('couponField').style.display='block'
+                }
+            }
+            ).then(()=>{
+                if( document.getElementById('coupon_name')){
+                    document.getElementById('coupon_name').value=''
+                }
+            }
             ).then(
                 // Start Message 
                 Swal.fire({
@@ -350,7 +368,7 @@ const cartRemove=(rowId)=>{
   function applyCoupon(){
     const coupon_name=document.getElementById('coupon_name').value;
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    fetch(`http://127.0.0.1:8000/coupon-apply`,{
+    fetch(`${window.location.origin}/coupon-apply`,{
         method:'post',
         body:JSON.stringify({coupon_name:coupon_name}),
         headers: {
@@ -405,7 +423,7 @@ const cartRemove=(rowId)=>{
 // -------------------------------------- COUPON CALCULATION ----------------------------------
 
   async function couponCalculation() {
-    return fetch(`http://127.0.0.1:8000/coupon-calculation`,{
+    return fetch(`${window.location.origin}/coupon-calculation`,{
         type: "GET",
         dataType: "json",
     }).then((response) => {
@@ -455,7 +473,7 @@ const cartRemove=(rowId)=>{
 
 // -------------------------------------- COUPON REMOVE ----------------------------------
  const couponRemove=()=>{
-    fetch(`http://127.0.0.1:8000/coupon-remove`,{
+    fetch(`${window.location.origin}/coupon-remove`,{
         method:'POST',
         headers: {
             "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')

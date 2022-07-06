@@ -215,14 +215,12 @@ $alladmin =
                     <ul class="treeview-menu">
                         <li class="{{ $route == 'pending.orders' ? 'active' : '' }}"><a
                                 href="{{ route('pending.orders') }}"><i class="ti-more"></i>Pending Orders</a></li>
-                        <li class="{{ $route == 'capture.orders' ? 'active' : '' }}"><a
-                                href="{{ route('capture.orders') }}"><i class="ti-more"></i>Capture Orders</a></li>
-                        <li class="{{ $route == 'settlement.orders' ? 'active' : '' }}"><a
-                                href="{{ route('settlement.orders') }}"><i class="ti-more"></i>Settlement
-                                Orders</a>
-                        </li>
+                        <li class="{{ $route == 'success.orders' ? 'active' : '' }}"><a
+                                href="{{ route('success.orders') }}"><i class="ti-more"></i>Success Orders</a></li>
                         <li class="{{ $route == 'failure.orders' ? 'active' : '' }}"><a
                                 href="{{ route('failure.orders') }}"><i class="ti-more"></i>Failed Orders</a></li>
+                        <li class="{{ $route == 'error.orders' ? 'active' : '' }}"><a
+                                href="{{ route('error.orders') }}"><i class="ti-more"></i>Error Orders</a></li>
                     </ul>
                 </li>
             @endif

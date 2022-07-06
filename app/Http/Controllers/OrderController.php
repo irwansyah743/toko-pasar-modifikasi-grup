@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Auth;
 class OrderController extends Controller
 {
     // Pending Orders 
-    public function captureOrders()
+    public function successOrders()
     {
         $admin = Admin::find(Auth::user()->id);
-        $orderType = "Capture";
-        $orders = Order::where('status', 'capture')->orderBy('id', 'DESC')->get();
+        $orderType = "Success";
+        $orders = Order::where('status', 'capture')->orWhere('status', 'settlement')->orderBy('id', 'DESC')->get();
         return view('back.orders.orders', compact('orders', 'orderType', 'admin'));
     } // end mehtod 
     // Pending Orders 
@@ -29,20 +29,21 @@ class OrderController extends Controller
         return view('back.orders.orders', compact('orders', 'orderType', 'admin'));
     } // end mehtod 
     // Pending Orders 
-    public function settlementOrders()
-    {
-        $admin = Admin::find(Auth::user()->id);
-        $orderType = "Settlement";
-        $orders = Order::where('status', 'settlement')->orderBy('id', 'DESC')->get();
-        return view('back.orders.orders', compact('orders', 'orderType', 'admin'));
-    } // end mehtod 
 
     // Pending Orders 
     public function failureOrders()
     {
         $admin = Admin::find(Auth::user()->id);
         $orderType = "Failed";
-        $orders = Order::where('status', 'failure')->orWhere('status', "cancel")->orWhere('status', "deny")->orderBy('id', 'DESC')->get();
+        $orders = Order::where('status', 'failure')->orWhere('status', "cancel")->orWhere('status', "deny")->orWhere('status', "expire")->orderBy('id', 'DESC')->get();
+        return view('back.orders.orders', compact('orders', 'orderType', 'admin'));
+    } // end mehtod 
+
+    public function errorOrders()
+    {
+        $admin = Admin::find(Auth::user()->id);
+        $orderType = "Notification Error";
+        $orders = Order::where('status', 'to be paid')->orderBy('id', 'DESC')->get();
         return view('back.orders.orders', compact('orders', 'orderType', 'admin'));
     } // end mehtod 
 

@@ -5,7 +5,7 @@ function removeAllChildNodes(parent) {
 }
 // -------------------------------------- ADD WISHLIST ----------------------------------
 const addToWishList=(product_id)=>{
-    fetch(`http://127.0.0.1:8000/wishlist/${product_id}`,{
+    fetch(`${window.location.origin}/wishlist/${product_id}`,{
         method:'POST',
         headers: {
             "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -50,7 +50,9 @@ const addToWishList=(product_id)=>{
 async function wishlist(){
     try {
         const products = await getWishList();
-        removeAllChildNodes( document.getElementById('wishlist'));
+        if(document.getElementById('wishlist')){
+            removeAllChildNodes( document.getElementById('wishlist'));
+        }
 
         products.forEach((product) => {
             document.getElementById('wishlist').innerHTML+=createWishlistItem(product);
@@ -65,7 +67,7 @@ if(document.getElementById('wishlist')){
 }
 
 async function getWishList() {
-    return fetch(`http://127.0.0.1:8000/getwishlist`,{
+    return fetch(`${window.location.origin}/getwishlist`,{
         type: "GET",
         dataType: "json",
     }).then((response) => {
@@ -79,7 +81,7 @@ async function getWishList() {
 
 function createWishlistItem(product) {
     return `<tr>
-    <td class="col-md-2"><img src="http://127.0.0.1:8000/storage/${product.product.product_thambnail} " alt="imga"></td>
+    <td class="col-md-2"><img src="${window.location.origin}/storage/${product.product.product_thambnail} " alt="imga"></td>
     <td class="col-md-7">
         <div class="product-name"><strong><a href="#">${product.product.product_name}</a><strong></div>
          
@@ -105,7 +107,7 @@ function createWishlistItem(product) {
 // -------------------------------------- REMOVE WISHLIST ----------------------------------
 
 const wishlistRemove=(id)=>{
-    fetch(`http://127.0.0.1:8000/wishlist-remove/${id}`,{
+    fetch(`${window.location.origin}/wishlist-remove/${id}`,{
         method:'POST',
         headers: {
             "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')

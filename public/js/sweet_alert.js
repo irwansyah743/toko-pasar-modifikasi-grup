@@ -15,7 +15,7 @@ const deleteConfirmation=(prefix,id)=>{
                     // console.log(formId);
                     const data=new FormData(document.getElementById(formId));
                     const url=`${prefix}/${id}`;
-                    fetch(`http://127.0.0.1:8000/${url}`,{
+                    fetch(`${window.location.origin}/${url}`,{
                         method:'post',
                         body:data
                     }).then(

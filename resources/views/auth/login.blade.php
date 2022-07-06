@@ -20,10 +20,10 @@
                     <div class="col-md-6 col-sm-6 sign-in">
                         <h4 class="">Sign in</h4>
                         <p class="">Hello, Welcome to your account.</p>
-                        <div class="social-sign-in outer-top-xs">
+                        {{-- <div class="social-sign-in outer-top-xs">
                             <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
                             <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
-                        </div>
+                        </div> --}}
                         <form class="register-form outer-top-xs" role="form" method="POST"
                             action="{{ isset($guard) ? url($guard . '/login') : route('login') }}" novalidate>
                             @csrf
@@ -78,7 +78,8 @@
                                 <label class="info-title" for="name">Name <span>*</span></label>
                                 <input type="text"
                                     class="form-control unicase-form-control text-input @error('name') is-invalid @enderror"
-                                    id="name" type="text" name="name" value="{{ old('name') }}" autocomplete="name">
+                                    id="name" type="text" name="name" value="{{ old('name') }}"
+                                    autocomplete="name">
                                 @error('name')
                                     <div class="invalid-feedback">
                                         {{ $message }}

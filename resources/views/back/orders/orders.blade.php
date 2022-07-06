@@ -52,9 +52,9 @@
                                                     <a href="{{ route('pending.order.details', $item->id) }}"
                                                         class="btn btn-info" title="Edit Data"><i class="fa fa-eye"></i>
                                                     </a>
-                                                    <a href="{{ route('order.delete', $item->id) }}"
+                                                    <a href="mailto:{{ $item->shipping->shipping_email }}"
                                                         class="btn btn-danger" title="Delete Data" id="delete">
-                                                        <i class="fa fa-trash"></i></a>
+                                                        <i class="fa fa-envelope"></i></a>
                                                 </td>
 
                                             </tr>

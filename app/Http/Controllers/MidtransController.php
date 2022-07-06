@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Mail\OrderMail;
 use App\Models\Shipping;
 use App\Models\OrderItem;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -121,10 +122,11 @@ class MidtransController extends Controller
             'amount' => $request->gross_amount,
             'name' => $invoice->user->name,
             'email' => $invoice->user->email,
+            'status' => $request->transaction_status
         ];
 
         Mail::to($invoice->user->email)->send(new OrderMail($data));
-        Cart::destroy();
+
 
         // End Send Email 
 
@@ -155,19 +157,24 @@ class MidtransController extends Controller
             ]);
         }
 
-        if ($transaction == 'capture' || $transaction == 'pending' || $transaction == 'settlement') {
+        $order = [];
+        $order['status'] = $transaction;
+
+        if (Str::contains($transaction, ['capture', 'pending', 'settlement'])) {
             if ($fraud == 'challenge') {
                 $order['status'] = 'pending';
             }
-            $order['status'] = $transaction;
             $order['transaction_id'] = $request->transaction_id;
             $order['gross_amount'] = $request->gross_amount;
             $order['payment_type'] = $request->payment_type;
             $order['created_at'] = $request->transaction_time;
             $order['payment_code '] = isset($request->payment_code) ? $request->payment_code : null;
             $order['pdf_url'] = isset($request->pdf_url) ? $request->pdf_url : null;
-        } else if ($transaction == 'cancel' || $transaction == 'deny' || $transaction == 'expire' || $transaction == 'failure') {
-            $order['status'] = $transaction;
+
+            if ($transaction == 'capture' || $transaction == 'settlement') {
+                $this->sendEmail($request);
+                Cart::destroy();
+            }
         }
 
         $orderModel->update($order);

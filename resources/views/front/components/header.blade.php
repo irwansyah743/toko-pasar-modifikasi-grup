@@ -100,7 +100,7 @@ $subcategories = App\Models\SubCategory::latest()->get();
                                         <span class='price cartTotal'> </span>
                                     </div>
                                     <div class="clearfix"></div>
-                                    <a href="checkout.html"
+                                    <a href="{{ route('checkout') }}"
                                         class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
                                 </div>
                                 <!-- /.cart-total-->

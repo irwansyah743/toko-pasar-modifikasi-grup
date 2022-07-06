@@ -244,10 +244,9 @@ Route::middleware([
     'verified'
 ])->controller(OrderController::class)->prefix('orders')->group(function () {
     Route::get('/pending', 'pendingOrders')->name('pending.orders');
-    Route::get('/capture', 'captureOrders')->name('capture.orders');
-    Route::get('/settlement', 'settlementOrders')->name('settlement.orders');
+    Route::get('/success', 'successOrders')->name('success.orders');
     Route::get('/failure', 'failureOrders')->name('failure.orders');
-    Route::get('/pending', 'pendingOrders')->name('pending.orders');
+    Route::get('/error', 'errorOrders')->name('error.orders');
     Route::get('/pending/detail/{order}', 'orderDetail')->name('pending.order.details');
     Route::post('/shipping/{shipping}', 'updateDelivery');
     Route::post('/{order}', 'destroy')->name('order.delete');

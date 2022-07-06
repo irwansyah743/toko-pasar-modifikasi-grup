@@ -148,7 +148,7 @@
 
                             <tr>
                                 <th> Order Total : </th>
-                                <th>${{ $orderDetail->gross_amount }} </th>
+                                <th>Rp. {{ $orderDetail->gross_amount }} </th>
                             </tr>
 
                             <tr>
