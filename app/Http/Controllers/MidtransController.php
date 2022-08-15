@@ -66,6 +66,7 @@ class MidtransController extends Controller
             $item->order_id = Order::latest()->first()->id;
             $item->save();
         }
+        Cart::destroy();
         // END STORE TO DATABASE
 
 
@@ -173,7 +174,6 @@ class MidtransController extends Controller
 
             if ($transaction == 'capture' || $transaction == 'settlement') {
                 $this->sendEmail($request);
-                Cart::destroy();
             }
         }
 
