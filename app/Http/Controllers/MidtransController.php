@@ -50,6 +50,7 @@ class MidtransController extends Controller
         $order->user_id = Auth::id();
         $order->shipping_id = Shipping::latest()->first()->id;
         $order->status = "to be paid";
+        $order->gross_amount = Cart::total();
         $order->order_id =  $order_id;
         $order->order_date = Carbon::now()->format('d F Y');
         $order->order_month = Carbon::now()->format('F');
