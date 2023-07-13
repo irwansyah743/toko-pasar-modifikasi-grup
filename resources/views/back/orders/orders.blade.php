@@ -45,15 +45,15 @@
                                                 <td> <span class="badge badge-pill badge-primary">{{ $item->status }}
                                                     </span> </td>
                                                 <td> <span
-                                                        class="badge badge-pill {{ $item->shipping->delivery_status == 0 ? 'badge-danger' : 'badge-primary' }} ">{{ $item->shipping->delivery_status == 0 ? 'In Progress' : 'Sent' }}
+                                                        class="badge badge-pill {{ $item->shipping->delivery_status == 0 ? 'badge-danger' : 'badge-primary' }} ">{{ $item->shipping->delivery_status == 0 ? 'Waitlist' : 'Sent' }}
                                                     </span> </td>
 
                                                 <td width="25%">
                                                     <a href="{{ route('pending.order.details', $item->id) }}"
-                                                        class="btn btn-info" title="Edit Data"><i class="fa fa-eye"></i>
+                                                        class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i>
                                                     </a>
                                                     <a href="mailto:{{ $item->shipping->shipping_email }}"
-                                                        class="btn btn-danger" title="Delete Data" id="delete">
+                                                        class="btn btn-danger" title="Send Email" id="delete">
                                                         <i class="fa fa-envelope"></i></a>
                                                 </td>
 

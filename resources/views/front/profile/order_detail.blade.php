@@ -20,7 +20,7 @@
 
                                 <tr>
                                     <th> Shipping Phone: </th>
-                                    <th> {{ $orderDetail->user->phone }} </th>
+                                    <th> {{ $orderDetail->shipping->shipping_phone }} </th>
                                 </tr>
 
                                 <tr>

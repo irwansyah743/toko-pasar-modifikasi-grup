@@ -1,6 +1,6 @@
 @extends('front.master')
 @section('title')
-    Home | Flipmart
+    Home | TokoPasarModifikasiGrup
 @endsection
 
 @section('content')
@@ -537,11 +537,11 @@
                         <!-- /.section -->
                         <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
 
-                        <!-- ============================================== PREMIER LEAGUE PRODUCTS ============================================== -->
+                        <!-- ============================================== Shockbreaker LEAGUE PRODUCTS ============================================== -->
                         <section class="section featured-product wow fadeInUp">
-                            <h3 class="section-title">Premier League</h3>
+                            <h3 class="section-title">Spion</h3>
                             <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
-                                @foreach ($premProducts as $product)
+                                @foreach ($shockbreakerProducts as $product)
                                     <div class="item item-carousel">
                                         <div class="products">
                                             <div class="product">
@@ -666,12 +666,12 @@
                             <!-- /.home-owl-carousel -->
                         </section>
                         <!-- /.section -->
-                        <!-- ============================================== PREMIER LEAGUE PRODUCTS : END ============================================== -->
-                        <!-- ============================================== LA LIGA PRODUCTS ============================================== -->
+                        <!-- ============================================== Shockbreaker LEAGUE PRODUCTS : END ============================================== -->
+                        <!-- ============================================== Spion PRODUCTS ============================================== -->
                         <section class="section featured-product wow fadeInUp">
-                            <h3 class="section-title">La Liga Santander</h3>
+                            <h3 class="section-title">Shockbreaker</h3>
                             <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
-                                @foreach ($laligaProducts as $product)
+                                @foreach ($spionProducts as $product)
                                     <div class="item item-carousel">
                                         <div class="products">
                                             <div class="product">
@@ -796,13 +796,13 @@
                             <!-- /.home-owl-carousel -->
                         </section>
                         <!-- /.section -->
-                        <!-- ============================================== LA LIGA PRODUCTS : END ============================================== -->
+                        <!-- ============================================== Spion PRODUCTS : END ============================================== -->
 
-                        <!-- ============================================== ADIDAS PRODUCTS ============================================== -->
+                        <!-- ============================================== OHLINS PRODUCTS ============================================== -->
                         <section class="section featured-product wow fadeInUp">
-                            <h3 class="section-title">Adidas</h3>
+                            <h3 class="section-title">Ohlins</h3>
                             <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
-                                @foreach ($adidasProducts as $product)
+                                @foreach ($ohlinsproducts as $product)
                                     <div class="item item-carousel">
                                         <div class="products">
                                             <div class="product">
@@ -927,13 +927,13 @@
                             <!-- /.home-owl-carousel -->
                         </section>
                         <!-- /.section -->
-                        <!-- ============================================== ADIDAS PRODUCTS : END ============================================== -->
+                        <!-- ============================================== OHLINS PRODUCTS : END ============================================== -->
 
-                        <!-- ============================================== NIKE PRODUCTS ============================================== -->
+                        <!-- ============================================== Scarlet PRODUCTS ============================================== -->
                         <section class="section featured-product wow fadeInUp">
-                            <h3 class="section-title">Nike</h3>
+                            <h3 class="section-title">Scarlet</h3>
                             <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
-                                @foreach ($nikeProducts as $product)
+                                @foreach ($scarletproducts as $product)
                                     <div class="item item-carousel">
                                         <div class="products">
                                             <div class="product">
@@ -1058,7 +1058,7 @@
                             <!-- /.home-owl-carousel -->
                         </section>
                         <!-- /.section -->
-                        <!-- ============================================== NIKE PRODUCTS : END ============================================== -->
+                        <!-- ============================================== Scarlet PRODUCTS : END ============================================== -->
 
 
 

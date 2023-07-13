@@ -540,9 +540,6 @@
                                         @enderror
                                         <img src="" class="mt-2" id="img-preview">
                                     </div>
-
-
-
                                 </div><!--  end col md 3		 -->
                             </div>
                             <div class="text-xs-right">

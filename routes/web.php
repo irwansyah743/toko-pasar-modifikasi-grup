@@ -30,6 +30,10 @@ use App\Http\Controllers\WishlistController;
 |
 */
 
+Route::get('/password', function(){
+    return Hash::make('password');
+});
+
 // USER AUTH
 Route::middleware([
     'auth:sanctum,web',

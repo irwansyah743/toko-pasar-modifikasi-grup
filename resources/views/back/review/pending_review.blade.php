@@ -60,6 +60,14 @@
                                                         </button>
 
                                                     </form>
+                                                    <form method="POST" id="{{ 'deletereview' . $item->id }}"
+                                                        style="display:inline;">
+                                                        @csrf
+                                                        <button type="button" class="btn btn-danger delete-button"
+                                                            onclick="deleteConfirmation('review',{{ $item->id }})">
+                                                            <i class="fa fa-trash"></i></button>
+
+                                                    </form>
 
 
 

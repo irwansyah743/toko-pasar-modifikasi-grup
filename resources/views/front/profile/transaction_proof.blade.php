@@ -63,12 +63,12 @@
         <tr>
             <td valign="top">
                 <!-- {{-- <img src="" alt="" width="150"/> --}} -->
-                <h2 style="color: rgb(7, 0, 89); font-size: 26px;"><strong>VamoStore</strong></h2>
+                <h2 style="color: rgb(7, 0, 89); font-size: 26px;"><strong>tokoPasarModifikasiGrup</strong></h2>
             </td>
             <td align="right">
                 <pre class="font">
-               VamoStore Office
-               Email:support@vamostore.com <br>
+               tokoPasarModifikasiGrup
+               Email:support@tokoPasarModifikasiGrup.com <br>
 
             </pre>
             </td>
@@ -159,8 +159,8 @@
         <p>Thanks For Buying Our Products..!!</p>
     </div>
     <div class="authority float-right mt-5">
-        <p>Mugia Miftahul Choir</p>
-        <h5>CEO of VamoStore</h5>
+        <p>Irwansyah</p>
+        <h5>Ceo of Toko Pasar Modifikasi grup</h5>
     </div>
 </body>
 

@@ -84,7 +84,7 @@ class AdminUserController extends Controller
     {
         $admin = Admin::find(Auth::user()->id);
         $adminuser = Admin::findOrFail($id);
-        return view('back.pages.edit', compact('adminuser', 'admin'));
+        return view('admin.pages.edit', compact('adminuser', 'admin'));
     } // end method 
 
     public function updateAdmin(Request $request, Admin $admin)

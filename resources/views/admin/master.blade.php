@@ -10,7 +10,7 @@
     {{-- <meta name="csrf-token" content="{{ csrf_token() }}" id="csrf-token"> --}}
     <link rel="icon" href="{{ asset('admin-theme/images/favicon.ico') }}">
 
-    <title>Sunny Admin - Dashboard</title>
+    <title>Toko Pasar Modifikasi Grup Admin - Dashboard</title>
 
     <!-- Vendors Style-->
     <link rel="stylesheet" href="{{ asset('admin-theme/css/vendors_css.css') }}">

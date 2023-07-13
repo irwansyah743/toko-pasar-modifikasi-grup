@@ -38,7 +38,7 @@
                             <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i
                                         class="fa fa-envelope fa-stack-1x fa-inverse"></i> </span> </div>
                             <div class="media-body"> <span><a style="color:#666;"
-                                        href="mailto:support@vamostore.com">support@vamostore.com</a></span>
+                                        href="mailto:support@tokoPasarModifikasiGrup.com">support@tokoPasarModifikasiGrup.com</a></span>
                             </div>
                         </li>
                     </ul>
@@ -51,7 +51,7 @@
                             <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i
                                         class="fa fa-map-marker fa-stack-1x fa-inverse"></i> </span> </div>
                             <div class="media-body">
-                                <p>Cicadas, Sagalaherang, Kab Subang, Jawa Barat Indonesia</p>
+                                <p>Altha Regency No F8 Gunungmanik, Haurgombong, Kec. Tanjungsari, Kab. Sumedang, Jawabarat 45362 </p>
                             </div>
                         </li>
                     </ul>
@@ -62,7 +62,7 @@
     <div class="copyright-bar">
         <div class="container">
             <div class="col-xs-12 col-sm-12 no-padding social" style="display: flex; justify-content:center;">
-                <p>&copy; 2022 <a href="#">VamoStore</a>. All Rights Reserved.</p>
+                <p>&copy; 2023 <a href="#">tokoPasarModifikasiGrup</a>. All Rights Reserved.</p>
             </div>
 
         </div>

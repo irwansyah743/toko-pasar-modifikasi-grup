@@ -22,23 +22,16 @@ class IndexController extends Controller
         $data['sliders'] = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
 
         // CATEGORY PRODUCTS
-        $premId = Category::skip(0)->first()->id;
-        $data['premProducts'] = Product::where('status', 1)->where('category_id', $premId)->orderBy('id', 'DESC')->limit(8)->get();
-        $bundId = Category::skip(1)->first()->id;
-        $data['bundProducts'] = Product::where('status', 1)->where('category_id', $bundId)->orderBy('id', 'DESC')->limit(8)->get();
-        $laligaId = Category::skip(2)->first()->id;
-        $data['laligaProducts'] = Product::where('status', 1)->where('category_id', $laligaId)->orderBy('id', 'DESC')->limit(8)->get();
-        $serieId = Category::skip(3)->first()->id;
-        $data['serieProducts'] = Product::where('status', 1)->where('category_id', $serieId)->orderBy('id', 'DESC')->limit(8)->get();
-        $ligoneId = Category::skip(4)->first()->id;
-        $data['ligoneProducts'] = Product::where('status', 1)->where('category_id', $ligoneId)->orderBy('id', 'DESC')->limit(8)->get();
-
+        $spionId = Category::skip(0)->first()->id;
+        $data['spionProducts'] = Product::where('status', 1)->where('category_id', $spionId)->orderBy('id', 'DESC')->limit(8)->get();
+        $shockbreakerId = Category::skip(1)->first()->id;
+        $data['shockbreakerProducts'] = Product::where('status', 1)->where('category_id', $shockbreakerId)->orderBy('id', 'DESC')->limit(8)->get();
+    
         // BRAND PRODUCTS
-        $adidasId = Brand::skip(5)->first()->id;
-        $data['adidasProducts'] = Product::where('status', 1)->where('brand_id', $adidasId)->orderBy('id', 'DESC')->limit(8)->get();
-        $nikeId = Brand::skip(0)->first()->id;
-        $data['nikeProducts'] = Product::where('status', 1)->where('brand_id', $nikeId)->orderBy('id', 'DESC')->limit(8)->get();
-
+        $ohlinsId = Brand::skip(0)->first()->id;
+        $data['ohlinsproducts'] = Product::where('status', 1)->where('brand_id', $ohlinsId)->orderBy('id', 'DESC')->limit(8)->get();
+        $scarletsId = Brand::skip(1)->first()->id;
+        $data['scarletproducts'] = Product::where('status', 1)->where('brand_id', $ohlinsId)->orderBy('id', 'DESC')->limit(8)->get();
         return view('front.index', $data);
     }
 
