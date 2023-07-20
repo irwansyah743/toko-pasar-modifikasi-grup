@@ -42,8 +42,11 @@ $subcategories = App\Models\SubCategory::latest()->get();
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
                     <!-- ============================================================= LOGO ============================================================= -->
-                    <div class="logo"> <a href="{{ url('/') }}"> <img
-                                src="{{ asset('front-theme/assets/images/logo.png') }}" alt="logo"> </a>
+                    <div class="logo">
+                        <a href="{{ url('/') }}" style="font-size: 18px; color: white; font-weight: bold;">
+                            TokoPasarModifikasiGrup
+                            {{-- <img src="{{ asset('front-theme/assets/images/logo.png') }}" alt="logo">  --}}
+                        </a>
                     </div>
                     <!-- /.logo -->
                     <!-- ============================================================= LOGO : END ============================================================= -->
