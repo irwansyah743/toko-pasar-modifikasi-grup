@@ -20,7 +20,7 @@
                     <!-- create a new account -->
                     <div class="col-md-6 col-sm-6 create-new-account">
                         <h4 class="checkout-subtitle">Reset password</h4>
-                        <p class="text title-tag-line">Create your new password.</p>
+                        <p class="text title-tag-line">Membuat Password baru.</p>
                         <form class="register-form outer-top-xs" role="form" method="POST"
                             action="{{ route('password.update') }}">
                             @csrf
@@ -48,7 +48,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label class="info-title" for="password_confirmation">Confirm Password
+                                <label class="info-title" for="password_confirmation">Konfirmasi Password
                                     <span>*</span></label>
                                 <input type="password" class="form-control unicase-form-control text-input"
                                     id="password_confirmation" type="password" name="password_confirmation"

@@ -22,13 +22,13 @@
                 <div class="row">
                     <!-- Sign-in -->
                     <div class="col-md-6 col-sm-6 sign-in">
-                        <h4 class="">Forget password</h4>
-                        <p class="">Forgot your password? Let us help you.</p>
+                        <h4 class="">Lupa Password</h4>
+                        <p class="">Lupa Password?.</p>
                         <form class="register-form outer-top-xs" role="form" method="POST" {{ route('password.email') }}>
                             @csrf
                             <input name="login_form" type="hidden" value=1 />
                             <div class="form-group">
-                                <label class="info-title" for="email">Email Address <span>*</span></label>
+                                <label class="info-title" for="email">Alamat Email <span>*</span></label>
                                 <input type="email" name="email" value="{{ old('email') }}"
                                     class="form-control unicase-form-control text-input  @error('email') is-invalid @enderror"
                                     id="email">

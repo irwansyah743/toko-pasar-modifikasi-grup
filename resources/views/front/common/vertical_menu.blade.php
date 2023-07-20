@@ -5,7 +5,7 @@ $subcategories = App\Models\SubCategory::latest()->get();
 
 <!-- ================================== TOP NAVIGATION ================================== -->
 <div class="side-menu animate-dropdown outer-bottom-xs">
-    <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Categories</div>
+    <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Kategori</div>
     <nav class="yamm megamenu-horizontal">
         <ul class="nav">
 

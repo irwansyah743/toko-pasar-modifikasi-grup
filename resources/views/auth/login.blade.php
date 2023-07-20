@@ -19,17 +19,17 @@
                     <!-- Sign-in -->
                     <div class="col-md-6 col-sm-6 sign-in">
                         <h4 class="">Sign in</h4>
-                        <p class="">Hello, Welcome to your account.</p>
+                        <p class="">Selamat Datang.</p>
                         {{-- <div class="social-sign-in outer-top-xs">
-                            <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
-                            <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
+                            <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Masuk Menggunakan Facebook</a>
+                            <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Masuk menggunakanTwitter</a>
                         </div> --}}
                         <form class="register-form outer-top-xs" role="form" method="POST"
                             action="{{ isset($guard) ? url($guard . '/login') : route('login') }}" novalidate>
                             @csrf
                             <input name="login_form" type="hidden" value=1 />
                             <div class="form-group">
-                                <label class="info-title" for="email_login">Email Address <span>*</span></label>
+                                <label class="info-title" for="email_login">Alamat email <span>*</span></label>
                                 <input type="email" name="email" value="{{ old('email') }}"
                                     class="form-control unicase-form-control text-input  @error('email') is-invalid @enderror"
                                     id="email_login">
@@ -69,13 +69,13 @@
 
                     <!-- create a new account -->
                     <div class="col-md-6 col-sm-6 create-new-account">
-                        <h4 class="checkout-subtitle">Create a new account</h4>
-                        <p class="text title-tag-line">Create your new account.</p>
+                        <h4 class="checkout-subtitle">Membuat akun baru </h4>
+                        <p class="text title-tag-line">Membuat akun baru.</p>
                         <form class="register-form outer-top-xs" role="form" method="POST"
                             action="{{ route('register') }}" novalidate>
                             @csrf
                             <div class="form-group">
-                                <label class="info-title" for="name">Name <span>*</span></label>
+                                <label class="info-title" for="name">Nama <span>*</span></label>
                                 <input type="text"
                                     class="form-control unicase-form-control text-input @error('name') is-invalid @enderror"
                                     id="name" type="text" name="name" value="{{ old('name') }}"
@@ -98,7 +98,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label class="info-title" for="phone">Phone number <span>*</span></label>
+                                <label class="info-title" for="phone">Nomor Telepon <span>*</span></label>
                                 <input type="text"
                                     class="form-control unicase-form-control text-input @error('phone') is-invalid @enderror"
                                     id="phone" name="phone" value="{{ old('phone') }}">
@@ -121,7 +121,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label class="info-title" for="passwordRegister_confirmation">Confirm Password
+                                <label class="info-title" for="passwordRegister_confirmation">Konfirmasi Password
                                     <span>*</span></label>
                                 <input type="password" class="form-control unicase-form-control text-input"
                                     id="passwordRegister_confirmation" type="passwordRegister"

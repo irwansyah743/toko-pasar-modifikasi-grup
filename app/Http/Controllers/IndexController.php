@@ -31,7 +31,7 @@ class IndexController extends Controller
         $ohlinsId = Brand::skip(0)->first()->id;
         $data['ohlinsproducts'] = Product::where('status', 1)->where('brand_id', $ohlinsId)->orderBy('id', 'DESC')->limit(8)->get();
         $scarletsId = Brand::skip(1)->first()->id;
-        $data['scarletproducts'] = Product::where('status', 1)->where('brand_id', $ohlinsId)->orderBy('id', 'DESC')->limit(8)->get();
+        $data['scarletproducts'] = Product::where('status', 1)->where('brand_id', $scarletsId)->orderBy('id', 'DESC')->limit(8)->get();
         return view('front.index', $data);
     }
 

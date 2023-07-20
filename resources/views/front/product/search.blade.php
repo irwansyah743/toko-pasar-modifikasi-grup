@@ -37,9 +37,9 @@
                     <div class="sidebar-filter">
                         <!-- ============================================== SIDEBAR CATEGORY ============================================== -->
                         <div class="sidebar-widget wow fadeInUp">
-                            <h3 class="section-title">shop by</h3>
+                            <h3 class="section-title">Shop by</h3>
                             <div class="widget-header">
-                                <h4 class="widget-title">Category</h4>
+                                <h4 class="widget-title">Kategori</h4>
                             </div>
                             <div class="sidebar-widget-body">
                                 <div class="accordion">

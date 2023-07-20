@@ -26,13 +26,13 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="cart-romove item">Image</th>
-                                    <th class="cart-description item">Name</th>
-                                    <th class="cart-product-name item">Color</th>
-                                    <th class="cart-edit item">Size</th>
-                                    <th class="cart-qty item">Quantity</th>
+                                    <th class="cart-romove item">Gambar</th>
+                                    <th class="cart-description item">Nama</th>
+                                    <th class="cart-product-name item">Warna</th>
+                                    <th class="cart-edit item">Ukuran</th>
+                                    <th class="cart-qty item">Stok</th>
                                     <th class="cart-sub-total item">Subtotal</th>
-                                    <th class="cart-total last-item">Remove</th>
+                                    <th class="cart-total last-item">Hapus</th>
                                 </tr>
                             </thead>
                             <tbody id="cartPage">
@@ -55,8 +55,8 @@
                     <thead>
                         <tr>
                             <th>
-                                <span class="estimate-title">Discount Code</span>
-                                <p>Enter your coupon code if you have one..</p>
+                                <span class="estimate-title">kode Diskon</span>
+                                <p>Masukan kode Diskon jika Memilikinya..</p>
                             </th>
                         </tr>
                     </thead>

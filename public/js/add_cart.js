@@ -59,7 +59,7 @@ function createSelectOption(data) {
 // -------------------------------------- END MODAL ----------------------------------
 
 // -------------------------------------- ADD TO CART ----------------------------------
-function addToCart(){
+function addToCart(product_qty){
     const selectColor=document.getElementById('pcolor');
     const selectSize=document.getElementById('psize');
 
@@ -68,7 +68,24 @@ function addToCart(){
     
     const pColor=selectColor.options[selectColor.selectedIndex].value;
     const pSize=selectSize.options[selectSize.selectedIndex].value;
-    const pQty=document.getElementById('qty').value;
+    let pQty=null;
+
+    console.log(parseInt(document.getElementById('qty').value, 10));
+    console.log(parseInt(product_qty));
+    if(parseInt(document.getElementById('qty').value, 10) > parseInt(product_qty)){
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: 'Pemesanan tidak boleh melebihi ketersediaan',
+            showConfirmButton: false,
+            timer: 3000
+          });
+        throw Error("Pemesanan tidak boleh melebihi ketersediaan");
+    }else{
+        pQty=document.getElementById('qty').value;
+    }
+    
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     const data = {
         product_name: pName,
