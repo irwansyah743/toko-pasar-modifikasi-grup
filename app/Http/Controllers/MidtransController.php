@@ -115,7 +115,7 @@ class MidtransController extends Controller
 
     public function sendEmail(Request $request)
     {
-        // Start Send Email 
+        // Start Send Email
         $invoice = Order::where('order_id', $request->order_id)->first();
         $data = [
             'order_id' => $request->order_id,
@@ -130,7 +130,7 @@ class MidtransController extends Controller
         Mail::to($invoice->user->email)->send(new OrderMail($data));
 
 
-        // End Send Email 
+        // End Send Email
 
         return response()->json(['success' => "Email was sent"]);
     }
@@ -174,7 +174,7 @@ class MidtransController extends Controller
             $order['pdf_url'] = isset($request->pdf_url) ? $request->pdf_url : null;
 
             if ($transaction == 'capture' || $transaction == 'settlement') {
-                $this->sendEmail($request);
+                // $this->sendEmail($request);
             }
         }
 
