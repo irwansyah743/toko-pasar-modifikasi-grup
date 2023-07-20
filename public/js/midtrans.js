@@ -1,5 +1,5 @@
     // -------------------------------------- MIDTRANS ----------------------------------
-  
+
   // For example trigger on button clicked, or any time you need
   const payButton = document.getElementById('pay-button');
   payButton.addEventListener('click',midTrans);
@@ -20,8 +20,8 @@ function midTrans(){
     const address=document.getElementById('address').value;
     const notes=document.getElementById('notes').value;
 
-   
-   
+
+
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     const shippingData = {
         name: name,
@@ -66,21 +66,24 @@ function midTrans(){
         window.snap.pay(data.snapToken, {
             onSuccess: function(result){
                 /* You may add your own implementation here */
+                alert('Pembayaran diterima, terimakasih!');
+                window.location.replace(`${window.location.origin}/user/order/detail/${data.order_id}`);
                 console.log(result);
               },
               onPending: function(result){
                 /* You may add your own implementation here */
                 console.log(result);
-               
+
               },
               onError: function(result){
                 /* You may add your own implementation here */
                 console.log(result);
-               
+
               },
               onClose: function(){
                 /* You may add your own implementation here */
-                alert('you closed the popup without finishing the payment');
+                alert('Mohon untuk menyelesaikan pembayaran di halaman order!');
+                window.location.replace(`${window.location.origin}/user/order/detail/${data.order_id}`);
               }
         });
     }).catch(error=> {
@@ -115,7 +118,7 @@ const send_response_to_form=(result)=>{
         }
         return response.json();
     }).then(
-        // Start Message 
+        // Start Message
         Swal.fire({
             toast: true,
             position: 'top-end',
@@ -124,7 +127,7 @@ const send_response_to_form=(result)=>{
             showConfirmButton: false,
             timer: 3000
         })
-        // End Message 
+        // End Message
     ).catch(error=> {
         Swal.fire({
             toast: true,
@@ -245,7 +248,7 @@ const shippingUpdate=(result)=>{
         }
         return response.json();
     }).then(
-        // Start Message 
+        // Start Message
         Swal.fire({
             toast: true,
             position: 'top-end',
@@ -254,7 +257,7 @@ const shippingUpdate=(result)=>{
             showConfirmButton: false,
             timer: 3000
         })
-        // End Message 
+        // End Message
     ).catch(error=> {
         Swal.fire({
             toast: true,

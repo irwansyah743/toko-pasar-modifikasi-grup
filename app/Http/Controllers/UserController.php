@@ -178,7 +178,7 @@ class UserController extends Controller
         $orderDetail = Order::where('order_id', $order->order_id)->where('user_id', Auth::id())->first();
         $orderItem = OrderItem::where('order_id', $order->id)->orderBy('id', 'DESC')->get();
         return view('front.profile.order_detail', compact('orderDetail', 'orderItem', 'user'));
-    } // end mehtod 
+    } // end mehtod
 
     public function invoiceDownload(Order $order)
     {
@@ -190,5 +190,5 @@ class UserController extends Controller
             'chroot' => public_path(),
         ]);
         return $pdf->download('Transaction Proof ' . $order->order_id . '.pdf');
-    } // end mehtod 
+    } // end mehtod
 }

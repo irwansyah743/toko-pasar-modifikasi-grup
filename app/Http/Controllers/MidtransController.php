@@ -109,7 +109,10 @@ class MidtransController extends Controller
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
 
-        return response()->json(['snapToken' => $snapToken]);
+        $order->snap_token = $snapToken;
+        $order->save();
+
+        return response()->json(['snapToken' => $snapToken, 'order_id' => Order::latest()->first()->id]);
     }
 
 

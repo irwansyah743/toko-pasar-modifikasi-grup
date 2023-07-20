@@ -5,6 +5,17 @@
             <div class="row">
                 @include('front.common.user_sidebar')
 
+                @if ($orderDetail->status == 'to be paid')
+                    <div class="col-md-10">
+                        <div class="alert alert-danger">
+                            <strong>Pembayaran Belum Selesai!</strong> Mohon Selesaikan Pembayaran Terlebih dahulu dengan menekan tombol <b>"Bayar Sekarang"</b> dibawah ini.
+                        </div>
+
+                        <button class="btn btn-success btn-block btn-lg mb-5" onclick="payNow()">Bayar Sekarang</button>
+                    </div>
+                @endif
+
+
                 <div class="col-md-5">
                     <div class="card">
                         <div class="card-header">
@@ -256,4 +267,36 @@
         </div>
 
     </div>
+
+    @if ($orderDetail->status == 'to be paid')
+        <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+        <script>
+            function payNow()
+            {
+                window.snap.pay('{{ $orderDetail->snap_token }}', {
+                    onSuccess: function(result){
+                        /* You may add your own implementation here */
+                        location.reload();
+                        console.log(result);
+                    },
+                    onPending: function(result){
+                        /* You may add your own implementation here */
+                        console.log(result);
+
+                    },
+                    onError: function(result){
+                        /* You may add your own implementation here */
+                        console.log(result);
+
+                    },
+                    onClose: function(){
+                        /* You may add your own implementation here */
+                        alert('Mohon untuk selesaikan pembayaran!');
+                    }
+                });
+            }
+        </script>
+    @endif
+
 @endsection
