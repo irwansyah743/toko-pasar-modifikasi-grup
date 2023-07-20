@@ -6,13 +6,31 @@
                 @include('front.common.user_sidebar')
 
                 @if ($orderDetail->status == 'to be paid')
-                    <div class="col-md-10">
-                        <div class="alert alert-danger">
-                            <strong>Pembayaran Belum Selesai!</strong> Mohon Selesaikan Pembayaran Terlebih dahulu dengan menekan tombol <b>"Bayar Sekarang"</b> dibawah ini.
-                        </div>
 
-                        <button class="btn btn-success btn-block btn-lg mb-5" onclick="payNow()">Bayar Sekarang</button>
+                    <div class="col-md-10">
+                        @if (\Carbon\Carbon::now() < \Carbon\Carbon::parse($orderDetail->created_at)->addHours(24))
+                            <div class="text-center mt-5 mb-5">
+                                <h4>Batas Waktu Pembayaran (1x24 Jam):</43>
+                                <p style="font-size: 30px;" id="countdown"></p>
+                            </div>
+
+                            <div class="text-center alert alert-danger" style="font-size: 18px;">
+                                <strong>Pembayaran Belum Selesai!</strong>
+                                <br>
+                                Mohon Selesaikan Pembayaran dalam waktu 1x24 Jam Terlebih dahulu dengan menekan tombol <b>"Bayar Sekarang"</b> dibawah ini.
+                            </div>
+
+                            <button class="btn btn-success btn-block btn-lg mb-5" onclick="payNow()">Bayar Sekarang</button>
+                        @else
+                            <div class="text-center alert alert-danger" style="font-size: 18px;">
+                                <strong>Order Expire!</strong>
+                                <br>
+                                Silahkan untuk melakukan pembelian dan checkout barang kembali.
+                            </div>
+                        @endif
                     </div>
+
+
                 @endif
 
 
@@ -296,6 +314,37 @@
                     }
                 });
             }
+        </script>
+
+        <script>
+            // Set the date we're counting down to
+            var countDownDate = new Date("{{ \Carbon\Carbon::parse($orderDetail->created_at)->addHours(24)->format('M j, Y H:i:s') }}").getTime();
+
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in an element with id="demo"
+            document.getElementById("countdown").innerHTML = hours + " Jam "
+            + minutes + " Menit " + seconds + " Detik ";
+
+            // If the count down is over, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+            }, 1000);
         </script>
     @endif
 
