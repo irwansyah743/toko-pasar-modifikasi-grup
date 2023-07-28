@@ -178,10 +178,10 @@ function createCartPage(cart) {
             <strong>${cart.options.warna} </strong> 
             </td>
          <td class="col-md-2">
-          ${cart.options.size == null
+          ${cart.options.ukuran == null
             ? `<span> .... </span>`
             :
-          `<strong>${cart.options.size} </strong>` 
+          `<strong>${cart.options.ukuran} </strong>` 
           }           
             </td>
            <td class="col-md-2">

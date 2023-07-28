@@ -42,7 +42,7 @@ class CartController extends Controller
             Cart::add([
                 'id' => $product->id,
                 'name' => $request->nama_produk,
-                'kuantitas' => $request->kuantitas_produk,
+                'qty' => $request->kuantitas_produk,
                 'price' => $product->harga_diskon,
                 'weight' => 1,
                 'options' => [
