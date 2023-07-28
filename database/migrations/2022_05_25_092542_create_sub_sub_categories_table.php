@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->integer('id_kategori');
             $table->integer('id_subkategori');
-            $table->string('subsubcategory_name');
-            $table->string('subsubcategory_slug');
+            $table->string('nama_subsubkategori');
+            $table->string('slug_subsubkategori');
             $table->timestamps();
         });
     }

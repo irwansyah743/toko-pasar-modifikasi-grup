@@ -71,7 +71,7 @@
                                                                     @if (old('id_subkategori') == $subcategory->id || $subcategory->category->id == old('id_kategori'))
                                                                         <option value="{{ $subcategory->id }}"
                                                                             @selected(old('id_subkategori') == $subcategory->id)>
-                                                                            {{ $subcategory->subcategory_name }}</option>
+                                                                            {{ $subcategory->nama_subkategori }}</option>
                                                                     @endif
                                                                 @endforeach
                                                             @endif
@@ -100,7 +100,7 @@
                                                                     @if (old('id_subsubkategori') == $subsubcategory->id || $subsubcategory->subcategory->id == old('id_subkategori'))
                                                                         <option value="{{ $subsubcategory->id }}"
                                                                             @selected(old('id_subsubkategori') == $subsubcategory->id)>
-                                                                            {{ $subsubcategory->subsubcategory_name }}
+                                                                            {{ $subsubcategory->nama_subsubkategori }}
                                                                         </option>
                                                                     @endif
                                                                 @endforeach

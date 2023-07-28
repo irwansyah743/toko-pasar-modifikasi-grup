@@ -44,7 +44,7 @@
 
 
         function createSelectOption(subCategory) {
-            return `<option value=${subCategory.id}>${subCategory.subcategory_name}</option>`;
+            return `<option value=${subCategory.id}>${subCategory.nama_subkategori}</option>`;
         }
 
         // SUB SUB CATEGORY
@@ -77,7 +77,7 @@
         }
 
         function createSelectOptionSubSub(subsubCategory) {
-            return `<option value=${subsubCategory.id}>${subsubCategory.subsubcategory_name}</option>`;
+            return `<option value=${subsubCategory.id}>${subsubCategory.nama_subsubkategori}</option>`;
         }
 
 

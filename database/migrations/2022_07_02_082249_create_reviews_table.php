@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unSignedBigInteger('id_produk')->unsigned();
             $table->unSignedBigInteger('user_id')->unsigned();
-            $table->text('comment');
-            $table->string('summary');
+            $table->text('komentar');
+            $table->string('rangkuman');
             $table->foreign('id_produk')
                 ->references('id')->on('products')
                 ->onDelete('cascade');

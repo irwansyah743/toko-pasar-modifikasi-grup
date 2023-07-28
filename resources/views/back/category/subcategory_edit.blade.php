@@ -45,10 +45,10 @@
                                     <div class="form-group">
                                         <h5>SubCategory<span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" name="subcategory_name"
-                                                class="form-control @error('subcategory_name') is-invalid @enderror"
-                                                value="{{ old('subcategory_name', $subcategory->subcategory_name) }}">
-                                            @error('subcategory_name')
+                                            <input type="text" name="nama_subkategori"
+                                                class="form-control @error('nama_subkategori') is-invalid @enderror"
+                                                value="{{ old('nama_subkategori', $subcategory->nama_subkategori) }}">
+                                            @error('nama_subkategori')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>

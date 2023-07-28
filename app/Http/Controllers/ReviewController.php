@@ -43,8 +43,8 @@ class ReviewController extends Controller
     {
 
         $request->validate([
-            'summary' => 'required',
-            'comment' => 'required',
+            'rangkuman' => 'required',
+            'komentar' => 'required',
         ]);
 
         if (Review::where('id_produk', $product->id)->where('user_id', Auth::id())->count() > 0) {
@@ -59,8 +59,8 @@ class ReviewController extends Controller
         Review::insert([
             'id_produk' => $product->id,
             'user_id' => Auth::id(),
-            'comment' => $request->comment,
-            'summary' => $request->summary,
+            'komentar' => $request->komentar,
+            'rangkuman' => $request->rangkuman,
             'rating' => $request->quality,
             'created_at' => Carbon::now(),
 

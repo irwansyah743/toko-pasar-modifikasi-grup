@@ -227,22 +227,22 @@
                                             </td>
 
                                             <td class="col-md-2">
-                                                <label for=""> {{ ucwords($item->color) }}</label>
+                                                <label for=""> {{ ucwords($item->warna) }}</label>
                                             </td>
 
                                             <td class="col-md-2">
-                                                <label for=""> {{ ucwords($item->size) }}</label>
+                                                <label for=""> {{ ucwords($item->ukuran) }}</label>
                                             </td>
 
                                             <td class="col-md-2">
-                                                <label for=""> {{ $item->qty }}</label>
+                                                <label for=""> {{ $item->kuantitas }}</label>
                                             </td>
 
                                             <td class="col-md-2">
                                                 <label for="">
                                                     Rp.{{ $item->product->harga_diskon ? $item->product->harga_diskon : $item->product->harga_jual }}
                                                     (Rp.
-                                                    {{ $item->product->harga_diskon ? $item->product->harga_diskon * $item->qty : $item->product->harga_jual * $item->qty }})
+                                                    {{ $item->product->harga_diskon ? $item->product->harga_diskon * $item->kuantitas : $item->product->harga_jual * $item->kuantitas }})
                                                 </label>
                                             </td>
 

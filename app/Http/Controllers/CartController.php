@@ -28,13 +28,13 @@ class CartController extends Controller
             Cart::add([
                 'id' => $product->id,
                 'name' => $request->nama_produk,
-                'qty' => $request->kuantitas_produk,
+                'kuantitas' => $request->kuantitas_produk,
                 'price' => $product->harga_jual,
                 'weight' => 1,
                 'options' => [
                     'image' => $product->thumbnail_produk,
-                    'color' => $request->warna_produk,
-                    'size' => $request->ukuran_produk,
+                    'warna' => $request->warna_produk,
+                    'ukuran' => $request->ukuran_produk,
                 ],
             ]);
             return response()->json(['success' => 'Successfully Added on Your Cart']);
@@ -42,13 +42,13 @@ class CartController extends Controller
             Cart::add([
                 'id' => $product->id,
                 'name' => $request->nama_produk,
-                'qty' => $request->kuantitas_produk,
+                'kuantitas' => $request->kuantitas_produk,
                 'price' => $product->harga_diskon,
                 'weight' => 1,
                 'options' => [
                     'image' => $product->thumbnail_produk,
-                    'color' => $request->warna_produk,
-                    'size' => $request->ukuran_produk,
+                    'warna' => $request->warna_produk,
+                    'ukuran' => $request->ukuran_produk,
                 ],
             ]);
             return response()->json(['success' => 'Successfully Added on Your Cart']);
@@ -85,7 +85,7 @@ class CartController extends Controller
     public function cartIncrement($rowId)
     {
         $row = Cart::get($rowId);
-        Cart::update($rowId, $row->qty + 1);
+        Cart::update($rowId, $row->kuantitas + 1);
 
         if (Session::has('coupon')) {
 
@@ -108,7 +108,7 @@ class CartController extends Controller
     {
 
         $row = Cart::get($rowId);
-        Cart::update($rowId, $row->qty - 1);
+        Cart::update($rowId, $row->kuantitas - 1);
 
         if (Session::has('coupon')) {
 

@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string("id_produk");
             $table->string("id_pesanan");
-            $table->string("color");
-            $table->string("size");
-            $table->unsignedBigInteger("qty");
+            $table->string("warna");
+            $table->string("ukuran");
+            $table->unsignedBigInteger("kuantitas");
             $table->timestamps();
         });
     }

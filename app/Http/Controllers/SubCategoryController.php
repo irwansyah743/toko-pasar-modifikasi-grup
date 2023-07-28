@@ -48,16 +48,16 @@ class SubCategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'subcategory_name' => 'required|max:50|unique:sub_categories,subcategory_name',
+            'nama_subkategori' => 'required|max:50|unique:sub_categories,nama_subkategori',
             'id_kategori' => 'required',
         ], [
             'id_kategori.required' => "Subcategory must belong to a category"
         ]);
 
 
-        $validated['subcategory_name'] = $request->subcategory_name;
+        $validated['nama_subkategori'] = $request->nama_subkategori;
         $validated['id_kategori'] = $request->id_kategori;
-        $validated['subcategory_slug'] = strtolower(str_replace(' ', '-', $request->subcategory_name));
+        $validated['slug_subkategori'] = strtolower(str_replace(' ', '-', $request->nama_subkategori));
         $validated['created_at'] = Carbon::now();
 
         // BATCH INSERT
@@ -105,16 +105,16 @@ class SubCategoryController extends Controller
     public function update(Request $request, SubCategory $subCategory)
     {
         $validated = $request->validate([
-            'subcategory_name' => 'required|max:50',
+            'nama_subkategori' => 'required|max:50',
             'id_kategori' => 'required',
         ], [
             'id_kategori.required' => "Subcategory must belong to a category"
         ]);
 
 
-        $validated['subcategory_name'] = $request->subcategory_name;
+        $validated['nama_subkategori'] = $request->nama_subkategori;
         $validated['id_kategori'] = $request->id_kategori;
-        $validated['subcategory_slug'] = strtolower(str_replace(' ', '-', $request->subcategory_name));
+        $validated['slug_subkategori'] = strtolower(str_replace(' ', '-', $request->nama_subkategori));
         $validated['created_at'] = Carbon::now();
 
         SubCategory::where('id', $subCategory->id)->update($validated);
@@ -153,7 +153,7 @@ class SubCategoryController extends Controller
     public function getSubCategory($id_kategori)
     {
 
-        $data = SubCategory::where('id_kategori', $id_kategori)->orderBy('subcategory_name', 'ASC')->get();
+        $data = SubCategory::where('id_kategori', $id_kategori)->orderBy('nama_subkategori', 'ASC')->get();
 
         // MEnggunakan response akan menyesuaikan header menjadi json type
         return response()->json($data);

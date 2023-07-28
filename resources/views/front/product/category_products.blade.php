@@ -65,7 +65,7 @@
                                                                 <li><a
                                                                         href="{{ url('/product/subcategory/' . $subcategory->id) }}">
 
-                                                                        {{ $subcategory->subcategory_name }}
+                                                                        {{ $subcategory->nama_subkategori }}
 
                                                                     </a>
                                                                 </li>

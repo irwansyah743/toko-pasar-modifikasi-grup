@@ -1,7 +1,7 @@
 @extends('front.master')
 @section('content')
 @section('title')
-    {{ $subcategory_name }}
+    {{ $nama_subkategori }}
 @endsection
 
 
@@ -14,7 +14,7 @@
             <ul class="list-inline list-unstyled">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Kategori</a></li>
-                <li class='active'>{{ $subcategory_name }}</li>
+                <li class='active'>{{ $nama_subkategori }}</li>
             </ul>
         </div>
         <!-- /.breadcrumb-inner -->
@@ -66,7 +66,7 @@
                                                                 <li><a
                                                                         href="{{ url('/product/subcategory/' . $subcategory->id) }}">
 
-                                                                        {{ $subcategory->subcategory_name }}
+                                                                        {{ $subcategory->nama_subkategori }}
 
                                                                     </a>
                                                                 </li>

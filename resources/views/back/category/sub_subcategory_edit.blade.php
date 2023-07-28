@@ -61,7 +61,7 @@
                                                         @if (old('id_subkategori') == $subcategory->id || $subcategory->category->id == old('id_kategori') || $subcategory->category->id == $subsubcategory->category->id)
                                                             <option value="{{ $subcategory->id }}"
                                                                 @selected(old('id_subkategori') == $subcategory->id || $subcategory->id == $subsubcategory->subcategory->id)>
-                                                                {{ $subcategory->subcategory_name }}</option>
+                                                                {{ $subcategory->nama_subkategori }}</option>
                                                         @endif
                                                     @endforeach
                                                 @endif
@@ -79,10 +79,10 @@
                                     <div class="form-group">
                                         <h5>subsubcategory<span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" name="subsubcategory_name"
-                                                class="form-control @error('subsubcategory_name') is-invalid @enderror"
-                                                value="{{ old('subsubcategory_name', $subsubcategory->subsubcategory_name) }} ">
-                                            @error('subsubcategory_name')
+                                            <input type="text" name="nama_subsubkategori"
+                                                class="form-control @error('nama_subsubkategori') is-invalid @enderror"
+                                                value="{{ old('nama_subsubkategori', $subsubcategory->nama_subsubkategori) }} ">
+                                            @error('nama_subsubkategori')
                                                 <div class="invalid-feedback text-danger">
                                                     {{ $message }}
                                                 </div>

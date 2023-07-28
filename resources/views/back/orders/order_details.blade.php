@@ -234,22 +234,22 @@
                                         </td>
 
                                         <td width="10%">
-                                            <label for=""> {{ $item->color }}</label>
+                                            <label for=""> {{ $item->warna }}</label>
                                         </td>
 
                                         <td width="10%">
-                                            <label for=""> {{ $item->size }}</label>
+                                            <label for=""> {{ $item->ukuran }}</label>
                                         </td>
 
                                         <td width="10%">
-                                            <label for=""> {{ $item->qty }}</label>
+                                            <label for=""> {{ $item->kuantitas }}</label>
                                         </td>
 
                                         <td width="10%">
                                             <label for="">
                                                 Rp.{{ $item->product->harga_diskon ? $item->product->harga_diskon : $item->product->harga_jual }}
                                                 (Rp.
-                                                {{ $item->product->harga_diskon ? $item->product->harga_diskon * $item->qty : $item->product->harga_jual * $item->qty }})
+                                                {{ $item->product->harga_diskon ? $item->product->harga_diskon * $item->kuantitas : $item->product->harga_jual * $item->kuantitas }})
                                             </label>
                                         </td>
 

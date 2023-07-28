@@ -248,7 +248,7 @@
                                     <div class="row">
 
                                         <div class="col-sm-2">
-                                            <span class="label">Qty :</span>
+                                            <span class="label">kuantitas :</span>
                                         </div>
 
                                         <div class="col-sm-2">
@@ -260,7 +260,7 @@
                                                         <div class="arrow minus gradient"><span class="ir"><i
                                                                     class="icon fa fa-sort-desc"></i></span></div> -->
                                                     </div>
-                                                    <input type="number" id="qty" value="1"
+                                                    <input type="number" id="kuantitas" value="1"
                                                         min="1" max="{{ $product->kuantitas_produk }}">
                                                 </div>
                                             </div>
@@ -378,12 +378,12 @@
 
 
                                                             <div class="review-title"><span
-                                                                    class="summary">{{ $item->summary }}</span><span
+                                                                    class="rangkuman">{{ $item->rangkuman }}</span><span
                                                                     class="date"><i
                                                                         class="fa fa-calendar"></i><span>
                                                                         {{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
                                                                     </span></span></div>
-                                                            <div class="text">"{{ $item->comment }}"</div>
+                                                            <div class="text">"{{ $item->komentar }}"</div>
                                                         </div>
                                                     @endif
                                                 @endforeach
@@ -439,19 +439,19 @@
                                                                 <div class="col-sm-6">
 
                                                                     <div class="form-group">
-                                                                        <label for="summary">Summary <span
+                                                                        <label for="rangkuman">rangkuman <span
                                                                                 class="astk">*</span></label>
-                                                                        <input type="text" name="summary"
-                                                                            class="form-control txt" id="summary"
+                                                                        <input type="text" name="rangkuman"
+                                                                            class="form-control txt" id="rangkuman"
                                                                             placeholder="">
                                                                     </div><!-- /.form-group -->
                                                                 </div>
 
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="comment">Review <span
+                                                                        <label for="komentar">Review <span
                                                                                 class="astk">*</span></label>
-                                                                        <textarea class="form-control txt txt-review" name="comment" id="comment" rows="4" placeholder=""></textarea>
+                                                                        <textarea class="form-control txt txt-review" name="komentar" id="komentar" rows="4" placeholder=""></textarea>
                                                                     </div><!-- /.form-group -->
                                                                 </div>
                                                             </div><!-- /.row -->

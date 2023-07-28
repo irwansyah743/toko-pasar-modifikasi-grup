@@ -14,8 +14,8 @@ class SubSubCategory extends Model
     protected $fillable = [
         'id_kategori',
         'id_subkategori',
-        'subsubcategory_name',
-        'subsubcategory_slug',
+        'nama_subsubkategori',
+        'slug_subsubkategori',
     ];
 
     public function category()

@@ -37,7 +37,7 @@ class SubSubCategoryController extends Controller
     public function getSubSubCategory($id_subkategori)
     {
 
-        $data = SubSubCategory::where('id_subkategori', $id_subkategori)->orderBy('subsubcategory_name', 'ASC')->get();
+        $data = SubSubCategory::where('id_subkategori', $id_subkategori)->orderBy('nama_subsubkategori', 'ASC')->get();
         return response()->json($data);
     }
 
@@ -60,7 +60,7 @@ class SubSubCategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'subsubcategory_name' => 'required|max:50',
+            'nama_subsubkategori' => 'required|max:50',
             'id_kategori' => 'required',
             'id_subkategori' => 'required',
         ], [
@@ -69,10 +69,10 @@ class SubSubCategoryController extends Controller
         ]);
 
 
-        $validated['subsubcategory_name'] = $request->subsubcategory_name;
+        $validated['nama_subsubkategori'] = $request->nama_subsubkategori;
         $validated['id_kategori'] = $request->id_kategori;
         $validated['id_subkategori'] = $request->id_subkategori;
-        $validated['subsubcategory_slug'] = strtolower(str_replace(' ', '-', $request->subsubcategory_name));
+        $validated['slug_subsubkategori'] = strtolower(str_replace(' ', '-', $request->nama_subsubkategori));
         $validated['created_at'] = Carbon::now();
 
         // BATCH INSERT
@@ -121,7 +121,7 @@ class SubSubCategoryController extends Controller
     public function update(Request $request, SubSubCategory $subSubCategory)
     {
         $validated = $request->validate([
-            'subsubcategory_name' => 'required|max:50',
+            'nama_subsubkategori' => 'required|max:50',
             'id_kategori' => 'required',
             'id_subkategori' => 'required',
         ], [
@@ -130,10 +130,10 @@ class SubSubCategoryController extends Controller
         ]);
 
 
-        $validated['subsubcategory_name'] = $request->subsubcategory_name;
+        $validated['nama_subsubkategori'] = $request->nama_subsubkategori;
         $validated['id_kategori'] = $request->id_kategori;
-        $validated['subcategory_id'] = $request->subcategory_id;
-        $validated['subsubcategory_slug'] = strtolower(str_replace(' ', '-', $request->subsubcategory_name));
+        $validated['id_subkategori'] = $request->id_subkategori;
+        $validated['slug_subsubkategori'] = strtolower(str_replace(' ', '-', $request->nama_subsubkategori));
         $validated['created_at'] = Carbon::now();
 
         SubSubCategory::where('id', $subSubCategory->id)->update($validated);

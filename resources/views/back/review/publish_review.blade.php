@@ -24,8 +24,8 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Summary </th>
-                                            <th>Comment </th>
+                                            <th>rangkuman </th>
+                                            <th>komentar </th>
                                             <th>User </th>
                                             <th>Product </th>
                                             <th>Status </th>
@@ -36,8 +36,8 @@
                                     <tbody>
                                         @foreach ($review as $item)
                                             <tr>
-                                                <td> {{ $item->summary }} </td>
-                                                <td> {{ $item->comment }} </td>
+                                                <td> {{ $item->rangkuman }} </td>
+                                                <td> {{ $item->komentar }} </td>
                                                 <td> {{ $item->user->name }} </td>
 
                                                 <td> {{ $item->product->nama_produk }} </td>

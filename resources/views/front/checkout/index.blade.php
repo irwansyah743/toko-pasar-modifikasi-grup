@@ -198,13 +198,13 @@
                                             </li>
 
                                             <li>
-                                                <strong>Qty: </strong>
-                                                ({{ $item->qty }})
+                                                <strong>kuantitas: </strong>
+                                                ({{ $item->kuantitas }})
                                                 <strong>Color: </strong>
-                                                {{ $item->options->color }}
+                                                {{ $item->options->warna }}
 
                                                 <strong>Size: </strong>
-                                                {{ $item->options->size }}
+                                                {{ $item->options->ukuran }}
                                             </li>
                                         @endforeach
                                         <hr>

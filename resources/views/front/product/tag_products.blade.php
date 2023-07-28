@@ -63,9 +63,9 @@
                                                         @if ($subcategory->id_kategori == $category->id)
                                                             <ul>
                                                                 <li><a
-                                                                        href="{{ url('subcategory/product/' . $subcategory->id . '/' . $subcategory->subcategory_slug) }}">
+                                                                        href="{{ url('subcategory/product/' . $subcategory->id . '/' . $subcategory->slug_subkategori) }}">
 
-                                                                        {{ $subcategory->subcategory_name }}
+                                                                        {{ $subcategory->nama_subkategori }}
 
                                                                     </a>
                                                                 </li>

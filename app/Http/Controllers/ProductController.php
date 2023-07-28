@@ -42,8 +42,8 @@ class ProductController extends Controller
         $data['admin'] = Admin::find(Auth::user()->id);
         $data['products'] = Product::latest()->get();
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
-        $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
-        $data['subsubcategories'] = SubSubCategory::orderBy('subsubcategory_name', 'ASC')->get();
+        $data['subcategories'] = SubCategory::orderBy('nama_subkategori', 'ASC')->get();
+        $data['subsubcategories'] = SubSubCategory::orderBy('nama_subsubkategori', 'ASC')->get();
         $data['brands'] = Brand::orderBy('nama_merek', 'ASC')->get();
         return view('back.product.create', $data);
     }
@@ -167,8 +167,8 @@ class ProductController extends Controller
     {
         $data['admin'] = Admin::find(Auth::user()->id);
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
-        $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
-        $data['subsubcategories'] = SubSubCategory::orderBy('subsubcategory_name', 'ASC')->get();
+        $data['subcategories'] = SubCategory::orderBy('nama_subkategori', 'ASC')->get();
+        $data['subsubcategories'] = SubSubCategory::orderBy('nama_subsubkategori', 'ASC')->get();
         $data['brands'] = Brand::orderBy('nama_merek', 'ASC')->get();
         $data['product'] = $product;
         $data['multiimg'] = MultiImg::where('id_produk',  $product->id)->get();

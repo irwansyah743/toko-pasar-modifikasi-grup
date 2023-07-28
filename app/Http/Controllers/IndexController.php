@@ -69,7 +69,7 @@ class IndexController extends Controller
         $data['sliders'] = Slider::where('status', 1)->orderBy('id_banner', 'DESC')->limit(3)->get();
         $data['products'] = Product::where('status', 1)->where('id_kategori', $category->id)->orderBy('id', 'ASC')->paginate(4);
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
-        $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
+        $data['subcategories'] = SubCategory::orderBy('nama_subkategori', 'ASC')->get();
         $data['nama_kategori'] = $category->nama_kategori;
         return view('front.product.category_products', $data);
     }
@@ -79,8 +79,8 @@ class IndexController extends Controller
         $data['sliders'] = Slider::where('status', 1)->orderBy('id_banner', 'DESC')->limit(3)->get();
         $data['products'] = Product::where('status', 1)->where('id_subkategori', $subcategory->id)->orderBy('id', 'DESC')->paginate(4);
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
-        $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
-        $data['subcategory_name'] = $subcategory->subcategory_name;
+        $data['subcategories'] = SubCategory::orderBy('nama_subkategori', 'ASC')->get();
+        $data['nama_subkategori'] = $subcategory->nama_subkategori;
         $data['nama_kategori'] = $subcategory->category->nama_kategori;
         return view('front.product.subcategory_products', $data);
     }
@@ -90,7 +90,7 @@ class IndexController extends Controller
         $data['sliders'] = Slider::where('status', 1)->orderBy('id_banner', 'DESC')->limit(3)->get();
         $data['products'] = Product::where('status', 1)->where('tag_produk', 'LIKE', '%' . $keyword . '%')->orderBy('id', 'DESC')->paginate(4);
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
-        $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
+        $data['subcategories'] = SubCategory::orderBy('nama_subkategori', 'ASC')->get();
         $data['keyword'] = $keyword;
         return view('front.product.tag_products', $data);
     }
@@ -121,7 +121,7 @@ class IndexController extends Controller
 
         $data['products'] = Product::where('status', 1)->where('nama_produk', 'LIKE', '%' . $request->keyword . '%')->orWhere('slug_produk', 'LIKE', '%' .  $request->keyword . '%')->orWhere('tag_produk', 'LIKE', '%' .  $request->keyword . '%')->orderBy('id', 'DESC')->paginate(4);
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
-        $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
+        $data['subcategories'] = SubCategory::orderBy('nama_subkategori', 'ASC')->get();
         $data['keyword'] =  $request->keyword;
         return view('front.product.search', $data);
     }

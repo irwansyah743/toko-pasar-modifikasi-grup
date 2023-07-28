@@ -66,7 +66,7 @@ class OrderController extends Controller
 
         $products = OrderItem::where('id_pesanan', $request->id_pesanan)->get();
         foreach ($products as $product) {
-            $productData['kuantitas_produk'] = $product->product->kuantitas_produk - $product->qty;
+            $productData['kuantitas_produk'] = $product->product->kuantitas_produk - $product->kuantitas;
             Product::where('id', $product->product->id)->update($productData);
         }
 

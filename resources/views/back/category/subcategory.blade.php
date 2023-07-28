@@ -34,7 +34,7 @@
                                     <tbody>
                                         @foreach ($subcategories as $subcategory)
                                             <tr>
-                                                <td>{{ $subcategory->subcategory_name }}</td>
+                                                <td>{{ $subcategory->nama_subkategori }}</td>
                                                 <td> {{ $subcategory->category->nama_kategori }} </td>
                                                 <td width="30%">
                                                     <a href="{{ url('subcategory/' . $subcategory->id) }}"
@@ -109,10 +109,10 @@
                                     <div class="form-group">
                                         <h5>SubCategory<span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" name="subcategory_name"
-                                                class="form-control @error('subcategory_name') is-invalid @enderror"
-                                                value="{{ old('subcategory_name') }}">
-                                            @error('subcategory_name')
+                                            <input type="text" name="nama_subkategori"
+                                                class="form-control @error('nama_subkategori') is-invalid @enderror"
+                                                value="{{ old('nama_subkategori') }}">
+                                            @error('nama_subkategori')
                                                 <div class="invalid-feedback text-danger">
                                                     {{ $message }}
                                                 </div>

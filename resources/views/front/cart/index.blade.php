@@ -30,7 +30,7 @@
                                     <th class="cart-description item">Nama</th>
                                     <th class="cart-product-name item">Warna</th>
                                     <th class="cart-edit item">Ukuran</th>
-                                    <th class="cart-qty item">Stok</th>
+                                    <th class="cart-kuantitas item">Stok</th>
                                     <th class="cart-sub-total item">Subtotal</th>
                                     <th class="cart-total last-item">Hapus</th>
                                 </tr>

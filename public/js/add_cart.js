@@ -175,7 +175,7 @@ function createCartPage(cart) {
                     </div>
                 </td>
              <td class="col-md-2">
-            <strong>${cart.options.color} </strong> 
+            <strong>${cart.options.warna} </strong> 
             </td>
          <td class="col-md-2">
           ${cart.options.size == null

@@ -33,8 +33,8 @@
                                     <tbody>
                                         @foreach ($subsubcategories as $subsubcategory)
                                             <tr>
-                                                <td>{{ $subsubcategory->subsubcategory_name }}</td>
-                                                <td>{{ $subsubcategory->subcategory->subcategory_name }}</td>
+                                                <td>{{ $subsubcategory->nama_subsubkategori }}</td>
+                                                <td>{{ $subsubcategory->subcategory->nama_subkategori }}</td>
                                                 <td> {{ $subsubcategory->category->nama_kategori }} </td>
                                                 <td width="30%">
                                                     <a href="{{ url('subsubcategory/' . $subsubcategory->id) }}"
@@ -113,7 +113,7 @@
                                                         @if (old('id_subkategori') == $subcategory->id || $subcategory->category->id == old('id_kategori'))
                                                             <option value="{{ $subcategory->id }}"
                                                                 @selected(old('id_subkategori') == $subcategory->id)>
-                                                                {{ $subcategory->subcategory_name }}</option>
+                                                                {{ $subcategory->nama_subkategori }}</option>
                                                         @endif
                                                     @endforeach
                                                 @endif
@@ -131,10 +131,10 @@
                                     <div class="form-group">
                                         <h5>subsubcategory<span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" name="subsubcategory_name"
-                                                class="form-control @error('subsubcategory_name') is-invalid @enderror"
-                                                value="{{ old('subsubcategory_name') }}">
-                                            @error('subsubcategory_name')
+                                            <input type="text" name="nama_subsubkategori"
+                                                class="form-control @error('nama_subsubkategori') is-invalid @enderror"
+                                                value="{{ old('nama_subsubkategori') }}">
+                                            @error('nama_subsubkategori')
                                                 <div class="invalid-feedback text-danger">
                                                     {{ $message }}
                                                 </div>
