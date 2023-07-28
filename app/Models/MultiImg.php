@@ -9,6 +9,8 @@ class MultiImg extends Model
 {
     use HasFactory;
 
+    public $table = "gambar_produk";
+
     protected $fillable = [
         'product_id',
         'photo_name',

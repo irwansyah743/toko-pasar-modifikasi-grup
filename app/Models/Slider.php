@@ -9,6 +9,8 @@ class Slider extends Model
 {
     use HasFactory;
 
+    public $table = "banner";
+
     protected $fillable = [
         'slider_img',
         'title',

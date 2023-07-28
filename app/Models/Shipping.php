@@ -9,6 +9,8 @@ class Shipping extends Model
 {
     use HasFactory;
 
+    public $table = 'pengiriman';
+
     protected $fillable = [
         'provinsi',
         'kabupaten',

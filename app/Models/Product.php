@@ -9,6 +9,8 @@ class Product extends Model
 {
     use HasFactory;
 
+    public $table = 'produk';
+
     protected $guarded = [];
 
     public function category()

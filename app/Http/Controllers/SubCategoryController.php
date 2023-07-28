@@ -25,7 +25,7 @@ class SubCategoryController extends Controller
         $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
         $data['admin'] = Admin::find(Auth::user()->id);
         $data['subcategories'] = SubCategory::latest()->get();
-        $data['subsubcategoriesToDelete'] = DB::table('sub_sub_categories')->select('subcategory_id', DB::raw('count(*)'))->groupBy('subcategory_id')->get();
+        $data['subsubcategoriesToDelete'] = DB::table('sub_sub_kategori')->select('subcategory_id', DB::raw('count(*)'))->groupBy('subcategory_id')->get();
         return view('back.category.subcategory', $data);
     }
 

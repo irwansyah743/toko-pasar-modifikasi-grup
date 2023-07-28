@@ -25,7 +25,7 @@ class CategoryController extends Controller
     {
         $data['admin'] = Admin::find(Auth::user()->id);
         $data['categories'] = Category::latest()->get();
-        $data['subcategoriesToDelete'] = DB::table('sub_categories')->select('category_id', DB::raw('count(*)'))->groupBy('category_id')->get();
+        $data['subcategoriesToDelete'] = DB::table('sub_kategori')->select('category_id', DB::raw('count(*)'))->groupBy('category_id')->get();
         return view('back.category.index', $data);
     }
 
