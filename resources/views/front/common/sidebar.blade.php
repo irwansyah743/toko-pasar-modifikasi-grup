@@ -22,7 +22,7 @@ $tagsFix = array_unique($tagsFix);
 @include('front.common.hotdeals')
 <!-- ============================================== SPECIAL OFFER ============================================== -->
 
-@include('front.common.special_offers')
+@include('front.common.penawaran_khusus')
 <!-- /.sidebar-widget -->
 <!-- ============================================== SPECIAL OFFER : END ============================================== -->
 <!-- ============================================== PRODUCT TAGS ============================================== -->
