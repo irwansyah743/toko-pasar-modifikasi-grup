@@ -19,7 +19,7 @@ class IndexController extends Controller
         $data['newProducts'] =  Product::where('status', 1)->orderBy('id', 'DESC')->limit(8)->get();
         $data['featuredProducts'] = Product::where('status', 1)->where('featured', 1)->orderBy('id', 'DESC')->limit(8)->get();
         $data['subcategories'] = SubCategory::latest()->get();
-        $data['sliders'] = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
+        $data['sliders'] = Slider::where('status', 1)->orderBy('id_banner', 'DESC')->limit(3)->get();
 
         // CATEGORY PRODUCTS
         $spionId = Category::skip(0)->first()->id;
@@ -66,7 +66,7 @@ class IndexController extends Controller
 
     public function productCategory(Category $category)
     {
-        $data['sliders'] = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
+        $data['sliders'] = Slider::where('status', 1)->orderBy('id_banner', 'DESC')->limit(3)->get();
         $data['products'] = Product::where('status', 1)->where('category_id', $category->id)->orderBy('id', 'ASC')->paginate(4);
         $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
@@ -76,7 +76,7 @@ class IndexController extends Controller
 
     public function productSubcategory(Subcategory $subcategory)
     {
-        $data['sliders'] = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
+        $data['sliders'] = Slider::where('status', 1)->orderBy('id_banner', 'DESC')->limit(3)->get();
         $data['products'] = Product::where('status', 1)->where('subcategory_id', $subcategory->id)->orderBy('id', 'DESC')->paginate(4);
         $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
@@ -87,7 +87,7 @@ class IndexController extends Controller
 
     public function productTag($keyword)
     {
-        $data['sliders'] = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
+        $data['sliders'] = Slider::where('status', 1)->orderBy('id_banner', 'DESC')->limit(3)->get();
         $data['products'] = Product::where('status', 1)->where('product_tags', 'LIKE', '%' . $keyword . '%')->orderBy('id', 'DESC')->paginate(4);
         $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();

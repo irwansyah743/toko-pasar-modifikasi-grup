@@ -14,7 +14,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Edit Slider </h3>
+                            <h3 class="box-judul">Edit Slider </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -27,11 +27,11 @@
                                     @method('put')
 
                                     <div class="form-group">
-                                        <h5>Slider Title <span class="text-danger">*</span></h5>
+                                        <h5>Judul <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" value="{{ old('title', $slider->title) }}" name="title"
-                                                class="form-control @error('title') is-invalid @enderror">
-                                            @error('title')
+                                            <input type="text" value="{{ old('judul', $slider->judul) }}" name="judul"
+                                                class="form-control @error('judul') is-invalid @enderror">
+                                            @error('judul')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
@@ -41,9 +41,9 @@
                                     <div class="form-group">
                                         <h5>Slider Decriptio <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <textarea id="editor1" name="description" rows="10" cols="80"
-                                                class="form-control @error('description') is-invalid @enderror">{{ old('description', $slider->description) }}</textarea>
-                                            @error('description')
+                                            <textarea id="editor1" name="deskripsi" rows="10" cols="80"
+                                                class="form-control @error('deskripsi') is-invalid @enderror">{{ old('deskripsi', $slider->deskripsi) }}</textarea>
+                                            @error('deskripsi')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
@@ -54,20 +54,20 @@
 
 
                                     <div class="form-group">
-                                        <h5>Slider Image <span class="text-danger">*</span></h5>
+                                        <h5>Gambar Banner <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="hidden" name="old_image" value="{{ $slider->slider_img }}">
-                                            <input type="file" name="slider_img"
-                                                class="form-control @error('slider_img') is-invalid @enderror"
+                                            <input type="hidden" name="old_image" value="{{ $slider->gambar_banner }}">
+                                            <input type="file" name="gambar_banner"
+                                                class="form-control @error('gambar_banner') is-invalid @enderror"
                                                 onchange="previewImage()" id="input_image">
-                                            @error('slider_img')
+                                            @error('gambar_banner')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
                                             @enderror
-                                            <img class="mt-2" alt="Slider Image"
+                                            <img class="mt-2" alt="Gambar Banner"
                                                 style="width:1000px; height:500px;" id="img-preview"
-                                                src="{{ asset('storage/' . $slider->slider_img) }}">
+                                                src="{{ asset('storage/' . $slider->gambar_banner) }}">
                                         </div>
                                     </div>
 

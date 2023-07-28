@@ -121,10 +121,10 @@
                     <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
                         @foreach ($sliders as $slider)
                             <div class="item hero-image"
-                                style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url( {{ asset('storage/' . $slider->slider_img) }});">
+                                style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url( {{ asset('storage/' . $slider->gambar_banner) }});">
                                 <div class="container-fluid ">
                                     <div class="caption bg-color vertical-center text-left">
-                                        <h1 class="big-text fadeInDown-1 white">{{ $slider->title }} </h1>
+                                        <h1 class="big-text fadeInDown-1 white">{{ $slider->judul }} </h1>
                                         <div class="excerpt fadeInDown-2 hidden-xs white">
                                             <p>{!! $slider->description !!}</p>
                                         </div>

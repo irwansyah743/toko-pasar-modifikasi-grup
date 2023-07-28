@@ -24,8 +24,8 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Slider Image </th>
-                                            <th>Title</th>
+                                            <th>Gambar Banner </th>
+                                            <th>Judul</th>
                                             <th>Decription</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -35,17 +35,17 @@
                                         @foreach ($sliders as $slider)
                                             <tr>
 
-                                                <td><img src="{{ asset('storage/' . $slider->slider_img) }}"
+                                                <td><img src="{{ asset('storage/' . $slider->gambar_banner) }}"
                                                         style="width: 70px; height: 40px;"> </td>
                                                 <td>
-                                                    @if ($slider->title == null)
+                                                    @if ($slider->judul == null)
                                                         <span class="badge badge-pill badge-danger"> No Title </span>
                                                     @else
-                                                        {{ $slider->title }}
+                                                        {{ $slider->judul }}
                                                     @endif
                                                 </td>
 
-                                                <td>{!! $slider->description !!}</td>
+                                                <td>{!! $slider->deskripsi !!}</td>
                                                 <td>
                                                     @if ($slider->status == 1)
                                                         <span class="badge badge-pill badge-success"> Active </span>
@@ -125,12 +125,12 @@
                                     @csrf
 
                                     <div class="form-group">
-                                        <h5>Slider Title <span class="text-danger">*</span>
+                                        <h5>Judul <span class="text-danger">*</span>
                                         </h5>
                                         <div class="controls">
-                                            <input type="text" name="title" value="{{ old('title') }}"
-                                                class="form-control @error('title') is-invalid @enderror">
-                                            @error('title')
+                                            <input type="text" name="judul" value="{{ old('judul') }}"
+                                                class="form-control @error('judul') is-invalid @enderror">
+                                            @error('judul')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
@@ -139,11 +139,11 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <h5>Slider Description <span class="text-danger">*</span></h5>
+                                        <h5>Deskripsi Banner <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <textarea id="editor1" name="description" rows="10" cols="80"
-                                                class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
-                                            @error('description')
+                                            <textarea id="editor1" name="deskripsi" rows="10" cols="80"
+                                                class="form-control @error('deskripsi') is-invalid @enderror">{{ old('deskripsi') }}</textarea>
+                                            @error('deskripsi')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
@@ -153,18 +153,18 @@
 
 
                                     <div class="form-group">
-                                        <h5>Slider Image <span class="text-danger">*</span></h5>
+                                        <h5>Gambar Banner <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="file" name="slider_img"
-                                                class="form-control @error('slider_img') is-invalid @enderror"
+                                            <input type="file" name="gambar_banner"
+                                                class="form-control @error('gambar_banner') is-invalid @enderror"
                                                 onchange="previewImage()" id="input_image">
-                                            @error('slider_img')
+                                            @error('gambar_banner')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
                                             @enderror
                                             <img class="mt-2" src="" style="display: none; width:100%;"
-                                                alt="Slider Image" id="img-preview">
+                                                alt="Gambar Banner" id="img-preview">
                                         </div>
                                     </div>
 

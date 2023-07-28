@@ -10,11 +10,12 @@ class Slider extends Model
     use HasFactory;
 
     public $table = "banner";
+    protected $primaryKey = 'id_banner';
 
     protected $fillable = [
-        'slider_img',
-        'title',
-        'description',
+        'gambar_banner',
+        'judul',
+        'deskripsi',
         'status',
     ];
 }

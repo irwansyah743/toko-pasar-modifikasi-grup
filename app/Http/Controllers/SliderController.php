@@ -45,18 +45,18 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'max:100',
-            'slider_img' => 'required|image|max:2048',
+            'judul' => 'max:100',
+            'gambar_banner' => 'required|image|max:2048',
         ]);
 
-        $image = $request->file('slider_img');
+        $image = $request->file('gambar_banner');
         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
         Image::make($image)->resize(1000, 500)->save('storage/sliders/' . $name_gen);
         $save_url = 'sliders/' . $name_gen;
 
-        $validated['title'] = $request->title;
-        $validated['description'] = $request->description;
-        $validated['slider_img'] = $save_url;
+        $validated['judul'] = $request->judul;
+        $validated['deskripsi'] = $request->deskripsi;
+        $validated['gambar_banner'] = $save_url;
         $validated['created_at'] = Carbon::now();
 
         // BATCH INSERT
@@ -104,23 +104,23 @@ class SliderController extends Controller
     public function update(Request $request, Slider $slider)
     {
         $validated = $request->validate([
-            'title' => 'max:100',
-            'slider_img' => 'image|max:2048',
+            'judul' => 'max:100',
+            'gambar_banner' => 'image|max:2048',
         ]);
 
-        if ($request->file('slider_img')) {
+        if ($request->file('gambar_banner')) {
             if ($request->old_image) {
                 Storage::delete($request->old_image);
             }
-            $image = $request->file('slider_img');
+            $image = $request->file('gambar_banner');
             $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             Image::make($image)->resize(1000, 500)->save('storage/sliders/' . $name_gen);
             $save_url = 'sliders/' . $name_gen;
-            $validated['slider_img'] = $save_url;
+            $validated['gambar_banner'] = $save_url;
         }
 
-        $validated['title'] = $request->title;
-        $validated['description'] = $request->description;
+        $validated['judul'] = $request->judul;
+        $validated['deskripsi'] = $request->deskripsi;
         $validated['updated_at'] = Carbon::now();
 
         // BATCH INSERT
@@ -143,7 +143,7 @@ class SliderController extends Controller
     {
 
         if ($slider->slider_image) {
-            Storage::delete($slider->slider_img);
+            Storage::delete($slider->gambar_banner);
         }
         Slider::destroy($slider->id);
         $notification = array(
@@ -157,7 +157,7 @@ class SliderController extends Controller
     {
         $slider->update(['status' => 0]);
         $notification = array(
-            'message' => 'Slider ' . $slider->title . ' is Inactive',
+            'message' => 'Slider ' . $slider->judul . ' is Inactive',
             'alert-type' => 'success'
         );
 
@@ -169,7 +169,7 @@ class SliderController extends Controller
     {
         $slider->update(['status' => 1]);
         $notification = array(
-            'message' => 'Slider ' . $slider->title . ' is Active',
+            'message' => 'Slider ' . $slider->judul . ' is Active',
             'alert-type' => 'success'
         );
 
