@@ -199,7 +199,7 @@
 
                                             <li>
                                                 <strong>kuantitas: </strong>
-                                                ({{ $item->kuantitas }})
+                                                ({{ $item->qty }})
                                                 <strong>Color: </strong>
                                                 {{ $item->options->warna }}
 
