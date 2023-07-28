@@ -16,7 +16,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Slider List</h3>
+                            <h3 class="box-title">List Banner</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -114,7 +114,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Add Slider </h3>
+                            <h3 class="box-title">Tambah Banner </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">

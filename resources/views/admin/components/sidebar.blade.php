@@ -155,7 +155,7 @@ $alladmin =
                 <li class="treeview {{ $prefix == '/product' ? 'active' : '' }}">
                     <a href="#">
                         <i data-feather="file"></i>
-                        <span>Product</span>
+                        <span>Produk</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-right pull-right"></i>
                         </span>

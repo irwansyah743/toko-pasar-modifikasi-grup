@@ -397,7 +397,7 @@
                                             <div class="col-md-12">
 
                                                 <div class="form-group">
-                                                    <h5>Long Description English <span class="text-danger">*</span></h5>
+                                                    <h5>Deskripsi panjang <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <textarea id="editor1" name="deskripsi_panjang" rows="10" cols="80" required=""
                                                             class="form-control @error('deskripsi_panjang') is-invalid @enderror">{{ old('deskripsi_panjang') }}</textarea>
