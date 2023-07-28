@@ -48,18 +48,18 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'category_name' => 'required|max:50|unique:categories,category_name',
-            'category_icon' => 'required|max:255',
-            'category_image' => 'required|image|max:2048',
+            'nama_kategori' => 'required|max:50|unique:categories,nama_kategori',
+            'ikon_kategori' => 'required|max:255',
+            'gambar_kategori' => 'required|image|max:2048',
         ]);
 
-        if ($request->file('category_image')) {
-            $validated['category_image'] = $request->file('category_image')->store('category-images');
+        if ($request->file('gambar_kategori')) {
+            $validated['gambar_kategori'] = $request->file('gambar_kategori')->store('category-images');
         }
 
-        $validated['category_name'] = $request->category_name;
-        $validated['category_icon'] = $request->category_icon;
-        $validated['category_slug'] = strtolower(str_replace(' ', '-', $request->category_name));
+        $validated['nama_kategori'] = $request->nama_kategori;
+        $validated['ikon_kategori'] = $request->ikon_kategori;
+        $validated['slug_kategori'] = strtolower(str_replace(' ', '-', $request->nama_kategori));
         $validated['created_at'] = Carbon::now();
 
         // BATCH INSERT
@@ -106,20 +106,20 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $validated = $request->validate([
-            'category_name' => 'required|max:50',
-            'category_icon' => 'required|max:255',
+            'nama_kategori' => 'required|max:50',
+            'ikon_kategori' => 'required|max:255',
 
         ]);
 
-        if ($request->file('category_image')) {
+        if ($request->file('gambar_kategori')) {
             if ($request->old_image) {
                 Storage::delete($request->old_image);
             }
-            $validated['category_image'] = $request->file('category_image')->store('category-images');
+            $validated['gambar_kategori'] = $request->file('gambar_kategori')->store('category-images');
         }
 
-        $validated['category_name'] = $request->category_name;
-        $validated['category_icon'] = $request->category_icon;
+        $validated['nama_kategori'] = $request->nama_kategori;
+        $validated['ikon_kategori'] = $request->ikon_kategori;
         $validated['updated_at'] = Carbon::now();
 
         Category::where('id', $category->id)->update($validated);

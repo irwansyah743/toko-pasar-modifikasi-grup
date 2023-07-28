@@ -51,7 +51,7 @@
                                             <div class="accordion-heading"> <a href="#collapse{{ $category->id }}"
                                                     data-toggle="collapse" class="accordion-toggle collapsed">
 
-                                                    {{ $category->category_name }}
+                                                    {{ $category->nama_kategori }}
 
                                                 </a> </div>
                                             <!-- /.accordion-heading -->

@@ -25,10 +25,10 @@
                         <div class="form-group">
                             <h5>Category name <span class="text-danger">*</span></h5>
                             <div class="controls">
-                                <input type="text" name="category_name"
-                                    class="form-control  @error('category_name') is-invalid @enderror"
-                                    value="{{ old('category_name', $category->category_name) }}">
-                                @error('category_name')
+                                <input type="text" name="nama_kategori"
+                                    class="form-control  @error('nama_kategori') is-invalid @enderror"
+                                    value="{{ old('nama_kategori', $category->nama_kategori) }}">
+                                @error('nama_kategori')
                                     <div class="invalid-feedback text-danger">
                                         {{ $message }}
                                     </div>
@@ -38,10 +38,10 @@
                         <div class="form-group">
                             <h5>Category icon <span class="text-danger">*</span></h5>
                             <div class="controls">
-                                <input type="text" name="category_icon"
-                                    class="form-control  @error('category_icon') is-invalid @enderror"
-                                    value="{{ old('category_icon', $category->category_icon) }}">
-                                @error('category_icon')
+                                <input type="text" name="ikon_kategori"
+                                    class="form-control  @error('ikon_kategori') is-invalid @enderror"
+                                    value="{{ old('ikon_kategori', $category->ikon_kategori) }}">
+                                @error('ikon_kategori')
                                     <div class="invalid-feedback text-danger">
                                         {{ $message }}
                                     </div>
@@ -53,11 +53,11 @@
                                 <div class="form-group">
                                     <h5>Category image <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="hidden" value="{{ $category->category_image }}" name="old_image">
-                                        <input type="file" name="category_image"
-                                            class="form-control  @error('category_image') is-invalid @enderror"
+                                        <input type="hidden" value="{{ $category->gambar_kategori }}" name="old_image">
+                                        <input type="file" name="gambar_kategori"
+                                            class="form-control  @error('gambar_kategori') is-invalid @enderror"
                                             onchange="previewImage()" id="input_image">
-                                        @error('category_image')
+                                        @error('gambar_kategori')
                                             <div class="invalid-feedback text-danger">
                                                 {{ $message }}
                                             </div>
@@ -66,7 +66,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <img src="{{ url('storage/' . $category->category_image) }}" alt="User Avatar"
+                                <img src="{{ url('storage/' . $category->gambar_kategori) }}" alt="User Avatar"
                                     style="width: 100px; height:100px;" id="img-preview">
                             </div>
                         </div>

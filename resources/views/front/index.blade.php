@@ -99,8 +99,8 @@
                                             data-toggle="tab">All</a></li>
 
                                     @foreach ($categories as $category)
-                                        <li><a data-transition-type="backSlide" href="#{{ $category->category_slug }}"
-                                                data-toggle="tab">{{ $category->category_name }}</a>
+                                        <li><a data-transition-type="backSlide" href="#{{ $category->slug_kategori }}"
+                                                data-toggle="tab">{{ $category->nama_kategori }}</a>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -250,7 +250,7 @@
                                 <!-- /.tab-pane -->
 
                                 @foreach ($categories as $category)
-                                    <div class="tab-pane" id="{{ $category->category_slug }}">
+                                    <div class="tab-pane" id="{{ $category->slug_kategori }}">
                                         <div class="product-slider">
                                             <div class="owl-carousel home-owl-carousel custom-carousel owl-theme"
                                                 data-item="4">

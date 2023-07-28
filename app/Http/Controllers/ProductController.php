@@ -41,7 +41,7 @@ class ProductController extends Controller
     {
         $data['admin'] = Admin::find(Auth::user()->id);
         $data['products'] = Product::latest()->get();
-        $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
+        $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
         $data['subsubcategories'] = SubSubCategory::orderBy('subsubcategory_name', 'ASC')->get();
         $data['brands'] = Brand::orderBy('brand_name', 'ASC')->get();
@@ -166,7 +166,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $data['admin'] = Admin::find(Auth::user()->id);
-        $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
+        $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
         $data['subsubcategories'] = SubSubCategory::orderBy('subsubcategory_name', 'ASC')->get();
         $data['brands'] = Brand::orderBy('brand_name', 'ASC')->get();

@@ -35,7 +35,7 @@
                                             <tr>
                                                 <td>{{ $subsubcategory->subsubcategory_name }}</td>
                                                 <td>{{ $subsubcategory->subcategory->subcategory_name }}</td>
-                                                <td> {{ $subsubcategory->category->category_name }} </td>
+                                                <td> {{ $subsubcategory->category->nama_kategori }} </td>
                                                 <td width="30%">
                                                     <a href="{{ url('subsubcategory/' . $subsubcategory->id) }}"
                                                         class="btn btn-info" title="Edit Data"><i
@@ -89,7 +89,7 @@
                                                 </option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>
-                                                        {{ $category->category_name }}</option>
+                                                        {{ $category->nama_kategori }}</option>
                                                 @endforeach
                                             </select>
                                             @error('category_id')

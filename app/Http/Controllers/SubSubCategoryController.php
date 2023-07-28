@@ -21,7 +21,7 @@ class SubSubCategoryController extends Controller
      */
     public function index()
     {
-        $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
+        $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['admin'] = Admin::find(Auth::user()->id);
         $data['subcategories'] = SubCategory::latest()->get();
         $data['subsubcategories'] = SubSubCategory::latest()->get();
@@ -105,7 +105,7 @@ class SubSubCategoryController extends Controller
     public function edit(SubSubCategory $subSubCategory)
     {
         $data['admin'] = Admin::find(Auth::user()->id);
-        $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
+        $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['subcategories'] = SubCategory::latest()->get();
         $data['subsubcategory'] = $subSubCategory;
         return view('back.category.sub_subcategory_edit', $data);

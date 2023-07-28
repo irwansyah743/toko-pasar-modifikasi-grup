@@ -12,9 +12,9 @@ class Category extends Model
     public $table = "kategori";
 
     protected $fillable = [
-        'category_name',
-        'category_slug',
-        'category_icon',
-        'category_image',
+        'nama_kategori',
+        'slug_kategori',
+        'ikon_kategori',
+        'gambar_kategori',
     ];
 }

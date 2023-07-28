@@ -22,7 +22,7 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
+        $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['admin'] = Admin::find(Auth::user()->id);
         $data['subcategories'] = SubCategory::latest()->get();
         $data['subsubcategoriesToDelete'] = DB::table('sub_sub_kategori')->select('subcategory_id', DB::raw('count(*)'))->groupBy('subcategory_id')->get();
@@ -90,7 +90,7 @@ class SubCategoryController extends Controller
     public function edit(SubCategory $subCategory)
     {
         $data['admin'] = Admin::find(Auth::user()->id);
-        $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
+        $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['subcategory'] = $subCategory;
         return view('back.category.subcategory_edit', $data);
     }

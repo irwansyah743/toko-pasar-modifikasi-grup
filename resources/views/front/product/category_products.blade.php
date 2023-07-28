@@ -1,7 +1,7 @@
 @extends('front.master')
 @section('content')
 @section('title')
-    {{ $category_name }}
+    {{ $nama_kategori }}
 @endsection
 
 
@@ -13,7 +13,7 @@
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
                 <li><a href="#">Home</a></li>
-                <li class='active'>{{ $category_name }}</li>
+                <li class='active'>{{ $nama_kategori }}</li>
             </ul>
         </div>
         <!-- /.breadcrumb-inner -->
@@ -50,7 +50,7 @@
                                             <div class="accordion-heading"> <a href="#collapse{{ $category->id }}"
                                                     data-toggle="collapse" class="accordion-toggle collapsed">
 
-                                                    {{ $category->category_name }}
+                                                    {{ $category->nama_kategori }}
 
                                                 </a> </div>
                                             <!-- /.accordion-heading -->

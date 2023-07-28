@@ -1,5 +1,5 @@
 @php
-$categories = App\Models\Category::orderBy('category_name', 'ASC')->get();
+$categories = App\Models\Category::orderBy('nama_kategori', 'ASC')->get();
 $subcategories = App\Models\SubCategory::latest()->get();
 @endphp
 
@@ -11,15 +11,15 @@ $subcategories = App\Models\SubCategory::latest()->get();
 
             @foreach ($categories as $category)
                 <li class="dropdown menu-item"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                            class="icon {{ $category->category_icon }}"
-                            aria-hidden="true"></i>{{ $category->category_name }}</a>
+                            class="icon {{ $category->ikon_kategori }}"
+                            aria-hidden="true"></i>{{ $category->nama_kategori }}</a>
                     <ul class="dropdown-menu mega-menu">
                         <li class="yamm-content">
                             <div class="row">
                                 <div class="px-5 col-menu">
                                     <ul class="links">
                                         @foreach ($subcategories as $subcategory)
-                                            @if ($subcategory->category->category_name == $category->category_name)
+                                            @if ($subcategory->category->nama_kategori == $category->nama_kategori)
                                                 <li class="col-xs-12 col-sm-6 col-md-3"><a
                                                         href="{{ url('/product/subcategory/' . $subcategory->id) }}">{{ $subcategory->subcategory_name }}</a>
                                                 </li>

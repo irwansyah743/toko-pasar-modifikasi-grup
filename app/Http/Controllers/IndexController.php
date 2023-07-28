@@ -15,7 +15,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
+        $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['newProducts'] =  Product::where('status', 1)->orderBy('id', 'DESC')->limit(8)->get();
         $data['featuredProducts'] = Product::where('status', 1)->where('featured', 1)->orderBy('id', 'DESC')->limit(8)->get();
         $data['subcategories'] = SubCategory::latest()->get();
@@ -68,9 +68,9 @@ class IndexController extends Controller
     {
         $data['sliders'] = Slider::where('status', 1)->orderBy('id_banner', 'DESC')->limit(3)->get();
         $data['products'] = Product::where('status', 1)->where('category_id', $category->id)->orderBy('id', 'ASC')->paginate(4);
-        $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
+        $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
-        $data['category_name'] = $category->category_name;
+        $data['nama_kategori'] = $category->nama_kategori;
         return view('front.product.category_products', $data);
     }
 
@@ -78,10 +78,10 @@ class IndexController extends Controller
     {
         $data['sliders'] = Slider::where('status', 1)->orderBy('id_banner', 'DESC')->limit(3)->get();
         $data['products'] = Product::where('status', 1)->where('subcategory_id', $subcategory->id)->orderBy('id', 'DESC')->paginate(4);
-        $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
+        $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
         $data['subcategory_name'] = $subcategory->subcategory_name;
-        $data['category_name'] = $subcategory->category->category_name;
+        $data['nama_kategori'] = $subcategory->category->nama_kategori;
         return view('front.product.subcategory_products', $data);
     }
 
@@ -89,7 +89,7 @@ class IndexController extends Controller
     {
         $data['sliders'] = Slider::where('status', 1)->orderBy('id_banner', 'DESC')->limit(3)->get();
         $data['products'] = Product::where('status', 1)->where('product_tags', 'LIKE', '%' . $keyword . '%')->orderBy('id', 'DESC')->paginate(4);
-        $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
+        $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
         $data['keyword'] = $keyword;
         return view('front.product.tag_products', $data);
@@ -120,7 +120,7 @@ class IndexController extends Controller
         ]);
 
         $data['products'] = Product::where('status', 1)->where('product_name', 'LIKE', '%' . $request->keyword . '%')->orWhere('product_slug', 'LIKE', '%' .  $request->keyword . '%')->orWhere('product_tags', 'LIKE', '%' .  $request->keyword . '%')->orderBy('id', 'DESC')->paginate(4);
-        $data['categories'] = Category::orderBy('category_name', 'ASC')->get();
+        $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
         $data['keyword'] =  $request->keyword;
         return view('front.product.search', $data);
