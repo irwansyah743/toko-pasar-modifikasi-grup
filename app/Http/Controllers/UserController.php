@@ -175,20 +175,20 @@ class UserController extends Controller
     public function orderDetails(Order $order)
     {
         $user = User::find(Auth::user()->id);
-        $orderDetail = Order::where('order_id', $order->order_id)->where('user_id', Auth::id())->first();
-        $orderItem = OrderItem::where('order_id', $order->id)->orderBy('id', 'DESC')->get();
+        $orderDetail = Order::where('id_pesanan', $order->id_pesanan)->where('user_id', Auth::id())->first();
+        $orderItem = OrderItem::where('id_pesanan', $order->id)->orderBy('id', 'DESC')->get();
         return view('front.profile.order_detail', compact('orderDetail', 'orderItem', 'user'));
     } // end mehtod
 
     public function invoiceDownload(Order $order)
     {
-        $orderDetail = Order::where('order_id', $order->order_id)->where('user_id', Auth::id())->first();
-        $orderItems = OrderItem::where('order_id', $order->id)->orderBy('id', 'DESC')->get();
+        $orderDetail = Order::where('id_pesanan', $order->id_pesanan)->where('user_id', Auth::id())->first();
+        $orderItems = OrderItem::where('id_pesanan', $order->id)->orderBy('id', 'DESC')->get();
 
         $pdf = PDF::loadView('front.profile.transaction_proof', compact('orderDetail', 'orderItems'))->setPaper('a4')->setOptions([
             'tempDir' => public_path(),
             'chroot' => public_path(),
         ]);
-        return $pdf->download('Transaction Proof ' . $order->order_id . '.pdf');
+        return $pdf->download('Transaction Proof ' . $order->id_pesanan . '.pdf');
     } // end mehtod
 }

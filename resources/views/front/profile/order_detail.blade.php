@@ -79,7 +79,7 @@
 
                                 <tr>
                                     <th> Order Date: </th>
-                                    <th> {{ $orderDetail->order_date }} </th>
+                                    <th> {{ $orderDetail->tanggal_pesanan }} </th>
                                 </tr>
                                 <tr>
                                     <th> Delivery Status: </th>
@@ -130,22 +130,22 @@
 
                                 <tr>
                                     <th> Payment Type: </th>
-                                    <th> {{ ucwords($orderDetail->payment_type) }} </th>
+                                    <th> {{ ucwords($orderDetail->tipe_pembayaran) }} </th>
                                 </tr>
 
                                 <tr>
                                     <th> Trans ID: </th>
-                                    <th> {{ $orderDetail->transaction_id }} </th>
+                                    <th> {{ $orderDetail->id_transaksi }} </th>
                                 </tr>
 
                                 <tr>
                                     <th> Order ID: </th>
-                                    <th class="text-danger"> {{ $orderDetail->order_id }} </th>
+                                    <th class="text-danger"> {{ $orderDetail->id_pesanan }} </th>
                                 </tr>
 
                                 <tr>
                                     <th> Order Total: </th>
-                                    <th>{{ $orderDetail->gross_amount }} </th>
+                                    <th>{{ $orderDetail->nominal_total }} </th>
                                 </tr>
 
                                 <tr>

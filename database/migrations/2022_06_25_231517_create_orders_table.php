@@ -16,15 +16,15 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
-            $table->string('shipping_id')->nullable();
-            $table->string('gross_amount');
-            $table->string('transaction_id');
-            $table->string('order_id');
-            $table->string('payment_type');
-            $table->string('order_date');
-            $table->string('order_month');
-            $table->string('order_year');
-            $table->string('payment_code')->nullable();
+            $table->string('id_pengiriman')->nullable();
+            $table->string('nominal_total');
+            $table->string('id_transaksi');
+            $table->string('id_pesanan');
+            $table->string('tipe_pembayaran');
+            $table->string('tanggal_pesanan');
+            $table->string('bulan_pesanan');
+            $table->string('tahun_pesanan');
+            $table->string('kode_pembayaran')->nullable();
             $table->string('pdf_url')->nullable();
             $table->string('status');
             $table->timestamps();

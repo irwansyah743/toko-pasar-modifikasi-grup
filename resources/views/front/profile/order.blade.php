@@ -45,20 +45,20 @@
                                 @foreach ($orders as $order)
                                     <tr>
                                         <td class="col-md-1">
-                                            <label for=""> {{ $order->order_date }}</label>
+                                            <label for=""> {{ $order->tanggal_pesanan }}</label>
                                         </td>
 
                                         <td class="col-md-3">
-                                            <label for=""> Rp.{{ $order->gross_amount }}</label>
+                                            <label for=""> Rp.{{ $order->nominal_total }}</label>
                                         </td>
 
 
                                         <td class="col-md-3">
-                                            <label for=""> {{ ucwords($order->payment_type) }}</label>
+                                            <label for=""> {{ ucwords($order->tipe_pembayaran) }}</label>
                                         </td>
 
                                         <td class="col-md-2">
-                                            <label for=""> {{ $order->order_id }}</label>
+                                            <label for=""> {{ $order->id_pesanan }}</label>
                                         </td>
 
                                         <td class="col-md-2">

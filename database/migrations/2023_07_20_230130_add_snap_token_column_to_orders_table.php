@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             //
-            $table->string('snap_token')->after('order_id')->nullable()->default(null);
+            $table->string('snap_token')->after('id_pesanan')->nullable()->default(null);
         });
     }
 

@@ -28,7 +28,7 @@ class MidtransController extends Controller
         \Midtrans\Config::$is3ds = true;
 
         $carts = Cart::content();
-        $order_id = rand();
+        $id_pesanan = rand();
 
         // STORE TO DATABASE
         $shipping['nama_pengiriman'] = $request->name;
@@ -48,13 +48,13 @@ class MidtransController extends Controller
 
         $order = new Order();
         $order->user_id = Auth::id();
-        $order->shipping_id = Shipping::latest()->first()->id;
+        $order->id_pengiriman = Shipping::latest()->first()->id;
         $order->status = "to be paid";
-        $order->gross_amount = Cart::total();
-        $order->order_id =  $order_id;
-        $order->order_date = Carbon::now()->format('d F Y');
+        $order->nominal_total = Cart::total();
+        $order->id_pesanan =  $id_pesanan;
+        $order->tanggal_pesanan = Carbon::now()->format('d F Y');
         $order->order_month = Carbon::now()->format('F');
-        $order->order_year = Carbon::now()->format('Y');
+        $order->tahun_pesanan = Carbon::now()->format('Y');
         $order->save();
 
         $carts = Cart::content();
@@ -64,7 +64,7 @@ class MidtransController extends Controller
             $item->qty = $cart->qty;
             $item->color = $cart->options->color;
             $item->size = $cart->options->size;
-            $item->order_id = Order::latest()->first()->id;
+            $item->id_pesanan = Order::latest()->first()->id;
             $item->save();
         }
         Cart::destroy();
@@ -91,7 +91,7 @@ class MidtransController extends Controller
 
         $params = array(
             'transaction_details' => array(
-                'order_id' =>  $order_id,
+                'id_pesanan' =>  $id_pesanan,
             ),
             'item_details' => $items,
             'customer_details' => array(
@@ -112,19 +112,19 @@ class MidtransController extends Controller
         $order->snap_token = $snapToken;
         $order->save();
 
-        return response()->json(['snapToken' => $snapToken, 'order_id' => Order::latest()->first()->id]);
+        return response()->json(['snapToken' => $snapToken, 'id_pesanan' => Order::latest()->first()->id]);
     }
 
 
     public function sendEmail(Request $request)
     {
         // Start Send Email
-        $invoice = Order::where('order_id', $request->order_id)->first();
+        $invoice = Order::where('id_pesanan', $request->id_pesanan)->first();
         $data = [
-            'order_id' => $request->order_id,
+            'id_pesanan' => $request->id_pesanan,
             'time' =>  $request->transaction_time,
-            'order_id' => $request->order_id,
-            'amount' => $request->gross_amount,
+            'id_pesanan' => $request->id_pesanan,
+            'amount' => $request->nominal_total,
             'name' => $invoice->user->name,
             'email' => $invoice->user->email,
             'status' => $request->transaction_status
@@ -155,7 +155,7 @@ class MidtransController extends Controller
         $fraud = $request->fraud_status;
 
 
-        $orderModel = Order::where("order_id", $request->order_id)->first();
+        $orderModel = Order::where("id_pesanan", $request->id_pesanan)->first();
         if (!$orderModel) {
             return response()->json([
                 'status' => 'error',
@@ -169,9 +169,9 @@ class MidtransController extends Controller
             if ($fraud == 'challenge') {
                 $order['status'] = 'pending';
             }
-            $order['transaction_id'] = $request->transaction_id;
-            $order['gross_amount'] = $request->gross_amount;
-            $order['payment_type'] = $request->payment_type;
+            $order['id_transaksi'] = $request->id_transaksi;
+            $order['nominal_total'] = $request->nominal_total;
+            $order['tipe_pembayaran'] = $request->tipe_pembayaran;
             $order['created_at'] = $request->transaction_time;
             $order['payment_code '] = isset($request->payment_code) ? $request->payment_code : null;
             $order['pdf_url'] = isset($request->pdf_url) ? $request->pdf_url : null;

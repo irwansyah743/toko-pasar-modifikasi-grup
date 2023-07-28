@@ -29,7 +29,7 @@ class ReportController extends Controller
         $formatDate = $date->format('d F Y');
         // return $formatDate;
         $admin = Admin::find(Auth::user()->id);
-        $orders = Order::where('order_date', $formatDate)->latest()->get();
+        $orders = Order::where('tanggal_pesanan', $formatDate)->latest()->get();
         return view('back.report.report_show', compact('orders', 'admin'));
     } // end mehtod 
 
@@ -44,7 +44,7 @@ class ReportController extends Controller
 
         $admin = Admin::find(Auth::user()->id);
 
-        $orders = Order::where('order_month', $request->month)->where('order_year', $request->year_name)->latest()->get();
+        $orders = Order::where('bulan_pesanan', $request->month)->where('tahun_pesanan', $request->year_name)->latest()->get();
         return view('back.report.report_show', compact('orders', 'admin'));
     } // end mehtod 
 
@@ -56,19 +56,19 @@ class ReportController extends Controller
         ]);
 
         $admin = Admin::find(Auth::user()->id);
-        $orders = Order::where('order_year', $request->year)->latest()->get();
+        $orders = Order::where('tahun_pesanan', $request->year)->latest()->get();
         return view('back.report.report_show', compact('orders', 'admin'));
     } // end mehtod 
 
     public function invoiceDownload(Order $order)
     {
-        $orderDetail = Order::where('order_id', $order->order_id)->first();
-        $orderItems = OrderItem::where('order_id', $order->id)->orderBy('id', 'DESC')->get();
+        $orderDetail = Order::where('id_pesanan', $order->id_pesanan)->first();
+        $orderItems = OrderItem::where('id_pesanan', $order->id)->orderBy('id', 'DESC')->get();
 
         $pdf = PDF::loadView('front.profile.transaction_proof', compact('orderDetail', 'orderItems'))->setPaper('a4')->setOptions([
             'tempDir' => public_path(),
             'chroot' => public_path(),
         ]);
-        return $pdf->download('Transaction Proof ' . $order->order_id . '.pdf');
+        return $pdf->download('Transaction Proof ' . $order->id_pesanan . '.pdf');
     } // end mehtod 
 }

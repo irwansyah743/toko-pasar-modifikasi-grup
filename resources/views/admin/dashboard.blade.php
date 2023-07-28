@@ -2,9 +2,9 @@
 @section('content')
     @php
     $month = date('F');
-    $month = App\Models\Order::where('order_month', $month)->sum('gross_amount');
+    $month = App\Models\Order::where('bulan_pesanan', $month)->sum('nominal_total');
     $year = date('Y');
-    $year = App\Models\Order::where('order_year', $year)->sum('gross_amount');
+    $year = App\Models\Order::where('tahun_pesanan', $year)->sum('nominal_total');
     $pending = App\Models\Order::where('status', 'pending')->get();
     $Waitlist = App\Models\Shipping::where('status_pengiriman', 0)->get();
     @endphp
@@ -101,20 +101,20 @@
                                             <tr>
                                                 <td class="pl-0 py-8">
                                                     <span class="text-white font-weight-600 d-block font-size-16">
-                                                        {{ Carbon\Carbon::parse($item->order_date)->diffForHumans() }}
+                                                        {{ Carbon\Carbon::parse($item->tanggal_pesanan)->diffForHumans() }}
                                                     </span>
                                                 </td>
 
                                                 <td>
 
                                                     <span class="text-white font-weight-600 d-block font-size-16">
-                                                        {{ $item->order_id }}
+                                                        {{ $item->id_pesanan }}
                                                     </span>
                                                 </td>
 
                                                 <td>
                                                     <span class="text-fade font-weight-600 d-block font-size-16">
-                                                        Rp. {{ $item->gross_amount }}
+                                                        Rp. {{ $item->nominal_total }}
                                                     </span>
 
                                                 </td>
@@ -122,7 +122,7 @@
                                                 <td>
 
                                                     <span class="text-white font-weight-600 d-block font-size-16">
-                                                        {{ ucwords($item->payment_type) }}
+                                                        {{ ucwords($item->tipe_pembayaran) }}
                                                     </span>
                                                 </td>
                                                 <td>

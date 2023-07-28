@@ -14,17 +14,17 @@ class Order extends Model
 
     protected $fillable = [
         'user_id',
-        'shipping_id',
-        'transaction_id',
-        'order_id',
-        'gross_amount',
-        'payment_type',
-        'payment_code',
+        'id_pengiriman',
+        'id_transaksi',
+        'id_pesanan',
+        'nominal_total',
+        'tipe_pembayaran',
+        'kode_pembayaran',
         'pdf_url',
         'status',
-        'order_date',
-        'order_month',
-        'order_year',
+        'tanggal_pesanan',
+        'bulan_pesanan',
+        'tahun_pesanan',
     ];
 
     public function user()
@@ -34,12 +34,12 @@ class Order extends Model
 
     public function orderItem()
     {
-        return $this->belongsTo(OrderItem::class, 'order_id', 'order_id');
+        return $this->belongsTo(OrderItem::class, 'id_pesanan', 'id_pesanan');
     }
 
     public function shipping()
     {
-        return $this->belongsTo(Shipping::class, 'shipping_id', 'id');
+        return $this->belongsTo(Shipping::class, 'id_pengiriman', 'id');
     }
 
     // Tambahkan method untuk cek jangka waktu pembayaran 1x24 jam

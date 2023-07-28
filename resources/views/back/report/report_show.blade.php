@@ -36,11 +36,11 @@
                                     <tbody>
                                         @foreach ($orders as $item)
                                             <tr>
-                                                <td> {{ $item->order_date }} </td>
-                                                <td> {{ $item->order_id }} </td>
-                                                <td> Rp. {{ $item->gross_amount }} </td>
+                                                <td> {{ $item->tanggal_pesanan }} </td>
+                                                <td> {{ $item->id_pesanan }} </td>
+                                                <td> Rp. {{ $item->nominal_total }} </td>
 
-                                                <td> {{ ucwords($item->payment_type) }} </td>
+                                                <td> {{ ucwords($item->tipe_pembayaran) }} </td>
 
                                                 <td> <span class="badge badge-pill badge-primary">{{ $item->status }}
                                                     </span> </td>

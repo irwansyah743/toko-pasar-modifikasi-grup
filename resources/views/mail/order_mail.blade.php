@@ -82,7 +82,7 @@
                                                                     style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
                                                                     <tr>
                                                                         <td style="padding-right: 8px;">Order No</td>
-                                                                        <td> <strong>{{ $order['order_id'] }}</strong>
+                                                                        <td> <strong>{{ $order['id_pesanan'] }}</strong>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>

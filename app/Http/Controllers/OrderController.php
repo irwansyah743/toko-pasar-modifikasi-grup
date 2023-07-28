@@ -51,8 +51,8 @@ class OrderController extends Controller
     public function orderDetail(Order $order)
     {
         $admin = Admin::find(Auth::user()->id);
-        $orderDetail = Order::where('order_id', $order->order_id)->first();
-        $orderItem = OrderItem::where('order_id', $order->id)->orderBy('id', 'DESC')->get();
+        $orderDetail = Order::where('id_pesanan', $order->id_pesanan)->first();
+        $orderItem = OrderItem::where('id_pesanan', $order->id)->orderBy('id', 'DESC')->get();
         return view('back.orders.order_details', compact('orderDetail', 'orderItem', 'admin'));
     } // end method 
 
@@ -64,7 +64,7 @@ class OrderController extends Controller
             'resi.required' => "You have to input the Resi Number before you mark this order as Sent"
         ]);
 
-        $products = OrderItem::where('order_id', $request->order_id)->get();
+        $products = OrderItem::where('id_pesanan', $request->id_pesanan)->get();
         foreach ($products as $product) {
             $productData['product_qty'] = $product->product->product_qty - $product->qty;
             Product::where('id', $product->product->id)->update($productData);

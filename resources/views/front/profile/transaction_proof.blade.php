@@ -92,9 +92,9 @@
             </td>
             <td>
                 <p class="font">
-                <h3><span style="color: rgb(7, 0, 89);">Order:</span> {{ $orderDetail->order_id }}</h3>
+                <h3><span style="color: rgb(7, 0, 89);">Order:</span> {{ $orderDetail->id_pesanan }}</h3>
                 Order Date: {{ $orderDetail->created_at }} <br>
-                Payment Type : {{ ucwords($orderDetail->payment_type) }} </span>
+                Payment Type : {{ ucwords($orderDetail->tipe_pembayaran) }} </span>
                 </p>
             </td>
         </tr>
@@ -144,13 +144,13 @@
         <tr>
             <td align="right">
                 <h2><span style="color: rgb(7, 0, 89);">Subtotal: </span>Rp. {{ $subtotal }}</h2>
-                @if ($subtotal != $orderDetail->gross_amount)
+                @if ($subtotal != $orderDetail->nominal_total)
                     <h2><span style="color: rgb(7, 0, 89);">Discount: </span>
-                        Rp. {{ $subtotal - $orderDetail->gross_amount }} | Rp.
-                        {{ (100 / $subtotal) * ($subtotal - $orderDetail->gross_amount) }}%
+                        Rp. {{ $subtotal - $orderDetail->nominal_total }} | Rp.
+                        {{ (100 / $subtotal) * ($subtotal - $orderDetail->nominal_total) }}%
                     </h2>
                 @endif
-                <h2><span style="color: rgb(7, 0, 89);">Total: </span>Rp. {{ $orderDetail->gross_amount }}</h2>
+                <h2><span style="color: rgb(7, 0, 89);">Total: </span>Rp. {{ $orderDetail->nominal_total }}</h2>
                 {{-- <h2><span style="color: rgb(7, 0, 89);">Full Payment PAID</h2> --}}
             </td>
         </tr>
