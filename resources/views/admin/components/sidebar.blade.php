@@ -120,34 +120,34 @@ $alladmin =
                 <li class="treeview {{ $prefix == '/brand' ? 'active' : '' }}">
                     <a href="#">
                         <i data-feather="file"></i>
-                        <span>Brand</span>
+                        <span>Merek</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-right pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
                         <li class="{{ $route == 'all.brand' ? 'active' : '' }}"><a href="{{ route('all.brand') }}"><i
-                                    class="ti-more"></i>All Brands</a></li>
-                        <li><a href="calendar.html"><i class="ti-more"></i>Calendar</a></li>
+                                    class="ti-more"></i>Semua Merek</a></li>
+                        <li><a href="calendar.html"><i class="ti-more"></i>Kalender</a></li>
                     </ul>
                 </li>
             
                 <li
                     class="treeview {{ $prefix == '/category' || $prefix == '/subcategory' || $prefix == '/subsubcategory' ? 'active' : '' }}">
                     <a href="#">
-                        <i data-feather="file"></i> <span>Category</span>
+                        <i data-feather="file"></i> <span>Kategori</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-right pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
                         <li class="{{ $route == 'all.category' ? 'active' : '' }}"><a
-                                href="{{ route('all.category') }}"><i class="ti-more"></i>All Categories</a></li>
+                                href="{{ route('all.category') }}"><i class="ti-more"></i>Semua kategori</a></li>
                         <li class="{{ $route == 'all.subcategory' ? 'active' : '' }}"><a
-                                href="{{ route('all.subcategory') }}"><i class="ti-more"></i>SubCategories</a>
+                                href="{{ route('all.subcategory') }}"><i class="ti-more"></i>SubKategori</a>
                         </li>
                         <li class="{{ $route == 'all.subsubcategory' ? 'active' : '' }}"><a
-                                href="{{ route('all.subsubcategory') }}"><i class="ti-more"></i>SubSubCategories</a>
+                                href="{{ route('all.subsubcategory') }}"><i class="ti-more"></i>SubSubKategori</a>
                         </li>
                     </ul>
                 </li>
@@ -162,10 +162,10 @@ $alladmin =
                     </a>
                     <ul class="treeview-menu">
                         <li class="{{ $route == 'create.product' ? 'active' : '' }}"><a
-                                href="{{ route('create.product') }}"><i class="ti-more"></i>Add Product</a></li>
+                                href="{{ route('create.product') }}"><i class="ti-more"></i>Tambah Produk</a></li>
 
                         <li class="{{ $route == 'manage.product' ? 'active' : '' }}"><a
-                                href="{{ route('manage.product') }}"><i class="ti-more"></i>Manage Products</a>
+                                href="{{ route('manage.product') }}"><i class="ti-more"></i>Mengelola Produk</a>
                         </li>
                     </ul>
                 </li>
@@ -173,48 +173,48 @@ $alladmin =
                 <li class="treeview {{ $prefix == '/slider' ? 'active' : '' }}  ">
                     <a href="#">
                         <i data-feather="file"></i>
-                        <span>Slider</span>
+                        <span>Banner</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-right pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
                         <li class="{{ $route == 'manage.slider' ? 'active' : '' }}"><a
-                                href="{{ route('manage.slider') }}"><i class="ti-more"></i>Manage Slider</a></li>
+                                href="{{ route('manage.slider') }}"><i class="ti-more"></i>Mengelola Banner</a></li>
                     </ul>
                 </li>
             
                 <li class="treeview {{ $prefix == '/coupon' ? 'active' : '' }}  ">
                     <a href="#">
                         <i data-feather="file"></i>
-                        <span>Coupons</span>
+                        <span>Kupon</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-right pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
                         <li class="{{ $route == 'manage.coupon' ? 'active' : '' }}"><a
-                                href="{{ route('manage.coupon') }}"><i class="ti-more"></i>Manage Coupon</a></li>
+                                href="{{ route('manage.coupon') }}"><i class="ti-more"></i>Mengelola Kupon</a></li>
                     </ul>
                 </li>
             
                 <li class="treeview {{ $prefix == '/orders' ? 'active' : '' }}">
                     <a href="#">
                         <i data-feather="message-circle"></i>
-                        <span>Orders</span>
+                        <span>pesanan</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-right pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
                         <li class="{{ $route == 'pending.orders' ? 'active' : '' }}"><a
-                                href="{{ route('pending.orders') }}"><i class="ti-more"></i>Pending Orders</a></li>
+                                href="{{ route('pending.orders') }}"><i class="ti-more"></i>Pesanan Tertunda</a></li>
                         <li class="{{ $route == 'success.orders' ? 'active' : '' }}"><a
-                                href="{{ route('success.orders') }}"><i class="ti-more"></i>Success Orders</a></li>
+                                href="{{ route('success.orders') }}"><i class="ti-more"></i>Pesanan Sukses</a></li>
                         <li class="{{ $route == 'failure.orders' ? 'active' : '' }}"><a
-                                href="{{ route('failure.orders') }}"><i class="ti-more"></i>Failed Orders</a></li>
+                                href="{{ route('failure.orders') }}"><i class="ti-more"></i>Pesanan Gagal</a></li>
                         <li class="{{ $route == 'error.orders' ? 'active' : '' }}"><a
-                                href="{{ route('error.orders') }}"><i class="ti-more"></i>Error Orders</a></li>
+                                href="{{ route('error.orders') }}"><i class="ti-more"></i>Pesanan Error</a></li>
                     </ul>
                 </li>
             
