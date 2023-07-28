@@ -61,7 +61,7 @@ class MidtransController extends Controller
         foreach ($carts as $cart) {
             $item = new OrderItem();
             $item->id_produk = $cart->id;
-            $item->kuantitas = $cart->kuantitas;
+            $item->kuantitas = $cart->qty;
             $item->warna = $cart->options->warna;
             $item->ukuran = $cart->options->ukuran;
             $item->id_pesanan = Order::latest()->first()->id;
@@ -76,7 +76,7 @@ class MidtransController extends Controller
             array_push($items,  [
                 'id' => $cart->rowId,
                 'price' => $cart->price,
-                'quantity' => $cart->kuantitas,
+                'quantity' => $cart->qty,
                 'name' => $cart->name,
             ]);
         }
