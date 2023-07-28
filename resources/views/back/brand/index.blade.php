@@ -38,14 +38,14 @@
                                                 <td><img src="{{ asset('storage/' . $brand->gambar_merek) }}"
                                                         style="width: 70px; height: 40px;"> </td>
                                                 <td>
-                                                    <a href="{{ url('brand/' . $brand->id) }}" class="btn btn-info"
+                                                    <a href="{{ url('brand/' . $brand->getKey()) }}" class="btn btn-info"
                                                         title="Edit Data"><i class="fa fa-pencil"></i> </a>
 
-                                                    <form method="POST" id="{{ 'deletebrand' . $brand->id }}"
+                                                    <form method="POST" id="{{ 'deletebrand' . $brand->getKey() }}"
                                                         style="display:inline;">
                                                         @csrf
                                                         <button type="button" class="btn btn-danger delete-button"
-                                                            onclick="deleteConfirmation('brand',{{ $brand->id }})">
+                                                            onclick="deleteConfirmation('brand',{{ $brand->getKey() }})">
                                                             <i class="fa fa-trash"></i></button>
                                                     </form>
 

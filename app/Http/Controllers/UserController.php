@@ -22,13 +22,13 @@ class UserController extends Controller
     public function index()
     {
 
-        $data['user'] = User::find(Auth::user()->id);
+        $data['user'] = User::find(Auth::user()->getKey());
         return view('dashboard', $data);
     }
 
     public function profile()
     {
-        $data['user'] = User::find(Auth::user()->id);
+        $data['user'] = User::find(Auth::user()->getKey());
         return view('front.profile.profile', $data);
     }
 
@@ -73,7 +73,7 @@ class UserController extends Controller
         $validated['phone'] = $request->phone;
         $validated['updated_at'] = Carbon::now();
 
-        User::where('id', $user->id)->update($validated);
+        User::where('id', $user->getKey())->update($validated);
 
         $notification = array(
             'message' => 'Your profile has been updated',
@@ -85,7 +85,7 @@ class UserController extends Controller
 
     public function editPassword()
     {
-        $data['user'] = User::find(Auth::user()->id);;
+        $data['user'] = User::find(Auth::user()->getKey());;
         return view('front.profile.change_password', $data);
     }
 
@@ -167,23 +167,23 @@ class UserController extends Controller
 
     public function myOrders()
     {
-        $data['user'] = User::find(Auth::user()->id);
+        $data['user'] = User::find(Auth::user()->getKey());
         $data['orders'] = Order::where('user_id', Auth::id())->orderBy('id', 'DESC')->get();
         return view('front.profile.order', $data);
     }
 
     public function orderDetails(Order $order)
     {
-        $user = User::find(Auth::user()->id);
+        $user = User::find(Auth::user()->getKey());
         $orderDetail = Order::where('id_pesanan', $order->id_pesanan)->where('user_id', Auth::id())->first();
-        $orderItem = OrderItem::where('id_pesanan', $order->id)->orderBy('id', 'DESC')->get();
+        $orderItem = OrderItem::where('id_pesanan', $order->getKey())->orderBy('id_pesanan_produk', 'DESC')->get();
         return view('front.profile.order_detail', compact('orderDetail', 'orderItem', 'user'));
     } // end mehtod
 
     public function invoiceDownload(Order $order)
     {
         $orderDetail = Order::where('id_pesanan', $order->id_pesanan)->where('user_id', Auth::id())->first();
-        $orderItems = OrderItem::where('id_pesanan', $order->id)->orderBy('id', 'DESC')->get();
+        $orderItems = OrderItem::where('id_pesanan', $order->getKey())->orderBy('id_pesanan_produk', 'DESC')->get();
 
         $pdf = PDF::loadView('front.profile.transaction_proof', compact('orderDetail', 'orderItems'))->setPaper('a4')->setOptions([
             'tempDir' => public_path(),

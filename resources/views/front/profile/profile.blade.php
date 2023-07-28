@@ -21,7 +21,7 @@
 
 
 
-                            <form method="post" action="{{ url('user/profile/' . $user->id) }}"
+                            <form method="post" action="{{ url('user/profile/' . $user->getKey()) }}"
                                 enctype="multipart/form-data" novalidate>
                                 @csrf
                                 @method('put')

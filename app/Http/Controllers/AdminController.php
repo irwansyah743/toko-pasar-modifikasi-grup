@@ -52,19 +52,19 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        $data['admin'] = Admin::find(Auth::user()->id);
+        $data['admin'] = Admin::find(Auth::user()->getKey());
         return view('admin.dashboard', $data);
     }
 
     public function profile()
     {
-        $data['admin'] = Admin::find(Auth::user()->id);
+        $data['admin'] = Admin::find(Auth::user()->getKey());
         return view('admin.profile', $data);
     }
 
     public function profileEdit()
     {
-        $data['admin'] = Admin::find(Auth::user()->id);
+        $data['admin'] = Admin::find(Auth::user()->getKey());
         return view('admin.profile-edit', $data);
     }
 
@@ -95,7 +95,7 @@ class AdminController extends Controller
         $validated['email'] = $request->email;
         $validated['updated_at'] = Carbon::now();
 
-        Admin::where('id', $admin->id)->update($validated);
+        Admin::where('id', $admin->getKey())->update($validated);
 
         $notification = array(
             'message' => 'Your profile has been updated',

@@ -19,8 +19,8 @@ class CouponController extends Controller
      */
     public function index()
     {
-        $data['admin'] = Admin::find(Auth::user()->id);
-        $data['coupons'] = Coupon::orderBy('id', 'DESC')->get();
+        $data['admin'] = Admin::find(Auth::user()->getKey());
+        $data['coupons'] = Coupon::orderBy('id_kupon', 'DESC')->get();
         return view('back.coupon.index', $data);
     }
 
@@ -78,7 +78,7 @@ class CouponController extends Controller
      */
     public function edit(Coupon $coupon)
     {
-        $data['admin'] = Admin::find(Auth::user()->id);
+        $data['admin'] = Admin::find(Auth::user()->getKey());
         $data['coupon'] = $coupon;
         return view('back.coupon.coupon_edit', $data);
     }
@@ -99,7 +99,7 @@ class CouponController extends Controller
         ]);
         $validated['updated_at'] = Carbon::now();
 
-        Coupon::where('id', $coupon->id)->update($validated);
+        Coupon::where('id', $coupon->getKey())->update($validated);
 
         $notification = array(
             'message' => 'A coupon has been updated',
@@ -117,7 +117,7 @@ class CouponController extends Controller
      */
     public function destroy(Coupon $coupon)
     {
-        Coupon::destroy($coupon->id);
+        Coupon::destroy($coupon->getKey());
         $notification = array(
             'message' => 'A coupon has been deleted',
             'alert-type' => 'success'

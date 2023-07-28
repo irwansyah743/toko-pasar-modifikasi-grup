@@ -16,7 +16,7 @@
                         <h3 class="text-center"><span class="text-danger">Change Password</span><strong> </strong> </h3>
 
                         <div class="card-body">
-                            <form method="post" action="{{ url('/user/profile/change-password/' . $user->id) }}"
+                            <form method="post" action="{{ url('/user/profile/change-password/' . $user->getKey()) }}"
                                 novalidate>
                                 @csrf
                                 @method('put')

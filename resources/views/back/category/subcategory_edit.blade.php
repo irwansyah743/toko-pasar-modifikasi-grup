@@ -17,10 +17,10 @@
                             <div class="table-responsive">
 
 
-                                <form method="post" action="{{ url('subcategory/' . $subcategory->id) }}">
+                                <form method="post" action="{{ url('subcategory/' . $subcategory->getKey()) }}">
                                     @csrf
                                     @method('put')
-                                    <input type="hidden" name="id" value="{{ $subcategory->id }}">
+                                    <input type="hidden" name="id" value="{{ $subcategory->getKey() }}">
 
                                     <div class="form-group">
                                         <h5>Category Select <span class="text-danger">*</span></h5>
@@ -31,7 +31,7 @@
                                                     Category -
                                                 </option>
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}" @selected(old('id_kategori') == $category->id || $subcategory->id_kategori == $category->id)>
+                                                    <option value="{{ $category->getKey() }}" @selected(old('id_kategori') == $category->getKey() || $subcategory->id_kategori == $category->getKey())>
                                                         {{ $category->nama_kategori }}</option>
                                                 @endforeach
                                             </select>

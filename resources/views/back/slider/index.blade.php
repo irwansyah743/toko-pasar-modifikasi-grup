@@ -56,22 +56,22 @@
                                                 </td>
 
                                                 <td width="30%">
-                                                    <a href="{{ route('slider.edit', $slider->id) }}"
+                                                    <a href="{{ route('slider.edit', $slider->getKey()) }}"
                                                         class="btn btn-info" title="Edit Data"><i
                                                             class="fa fa-pencil"></i> </a>
 
 
-                                                    <form method="POST" id="{{ 'deleteslider' . $slider->id }}"
+                                                    <form method="POST" id="{{ 'deleteslider' . $slider->getKey() }}"
                                                         style="display:inline;">
                                                         @csrf
                                                         <button type="button" class="btn btn-danger delete-button"
-                                                            onclick="deleteConfirmation('slider',{{ $slider->id }})">
+                                                            onclick="deleteConfirmation('slider',{{ $slider->getKey() }})">
                                                             <i class="fa fa-trash"></i></button>
                                                     </form>
 
                                                     @if ($slider->status == 1)
                                                         <form method="POST"
-                                                            action="{{ route('slider.inactive', $slider->id) }}"
+                                                            action="{{ route('slider.inactive', $slider->getKey()) }}"
                                                             style="display:inline;">
                                                             @csrf
                                                             @method('put')
@@ -80,7 +80,7 @@
                                                         </form>
                                                     @else
                                                         <form method="POST"
-                                                            action="{{ route('slider.active', $slider->id) }}"
+                                                            action="{{ route('slider.active', $slider->getKey()) }}"
                                                             style="display:inline;">
                                                             @csrf
                                                             @method('put')

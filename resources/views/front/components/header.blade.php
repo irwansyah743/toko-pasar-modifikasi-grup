@@ -145,7 +145,7 @@ $subcategories = App\Models\SubCategory::latest()->get();
                                         class="dropdown-toggle">Home</a> </li>
                                 @foreach ($categories as $category)
                                     <li class="dropdown yamm mega-menu">
-                                        <a href="{{ url('/product/category/' . $category->id) }}"
+                                        <a href="{{ url('/product/category/' . $category->getKey()) }}"
                                             data-hover="dropdown"
                                             class="dropdown-toggle">{{ $category->nama_kategori }}</a>
                                         <ul class="dropdown-menu container">
@@ -157,7 +157,7 @@ $subcategories = App\Models\SubCategory::latest()->get();
                                                                 @foreach ($subcategories as $subcategory)
                                                                     @if ($subcategory->category->nama_kategori == $category->nama_kategori)
                                                                         <li class="col-xs-12 col-sm-6 col-md-3 link"><a
-                                                                                href="{{ url('/product/subcategory/' . $subcategory->id) }}">{{ $subcategory->nama_subkategori }}</a>
+                                                                                href="{{ url('/product/subcategory/' . $subcategory->getKey()) }}">{{ $subcategory->nama_subkategori }}</a>
                                                                         </li>
                                                                     @endif
                                                                 @endforeach

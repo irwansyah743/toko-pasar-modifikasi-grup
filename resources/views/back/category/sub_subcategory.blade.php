@@ -37,15 +37,15 @@
                                                 <td>{{ $subsubcategory->subcategory->nama_subkategori }}</td>
                                                 <td> {{ $subsubcategory->category->nama_kategori }} </td>
                                                 <td width="30%">
-                                                    <a href="{{ url('subsubcategory/' . $subsubcategory->id) }}"
+                                                    <a href="{{ url('subsubcategory/' . $subsubcategory->getKey()) }}"
                                                         class="btn btn-info" title="Edit Data"><i
                                                             class="fa fa-pencil"></i> </a>
                                                     <form method="POST"
-                                                        id="{{ 'deletesubsubcategory' . $subsubcategory->id }}"
+                                                        id="{{ 'deletesubsubcategory' . $subsubcategory->getKey() }}"
                                                         style="display:inline;">
                                                         @csrf
                                                         <button type="button" class="btn btn-danger delete-button"
-                                                            onclick="deleteConfirmation('subsubcategory',{{ $subsubcategory->id }})">
+                                                            onclick="deleteConfirmation('subsubcategory',{{ $subsubcategory->getKey() }})">
                                                             <i class="fa fa-trash"></i></button>
                                                     </form>
                                                 </td>
@@ -88,7 +88,7 @@
                                                     Category -
                                                 </option>
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}" @selected(old('id_kategori') == $category->id)>
+                                                    <option value="{{ $category->getKey() }}" @selected(old('id_kategori') == $category->getKey())>
                                                         {{ $category->nama_kategori }}</option>
                                                 @endforeach
                                             </select>
@@ -110,9 +110,9 @@
                                                 </option>
                                                 @if (old('id_subkategori'))
                                                     @foreach ($subcategories as $subcategory)
-                                                        @if (old('id_subkategori') == $subcategory->id || $subcategory->category->id == old('id_kategori'))
-                                                            <option value="{{ $subcategory->id }}"
-                                                                @selected(old('id_subkategori') == $subcategory->id)>
+                                                        @if (old('id_subkategori') == $subcategory->getKey() || $subcategory->category->getKey() == old('id_kategori'))
+                                                            <option value="{{ $subcategory->getKey() }}"
+                                                                @selected(old('id_subkategori') == $subcategory->getKey())>
                                                                 {{ $subcategory->nama_subkategori }}</option>
                                                         @endif
                                                     @endforeach

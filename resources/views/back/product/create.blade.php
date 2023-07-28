@@ -41,8 +41,8 @@
                                                                 Category -
                                                             </option>
                                                             @foreach ($categories as $category)
-                                                                <option value="{{ $category->id }}"
-                                                                    @selected(old('id_kategori') == $category->id)>
+                                                                <option value="{{ $category->getKey() }}"
+                                                                    @selected(old('id_kategori') == $category->getKey())>
                                                                     {{ $category->nama_kategori }}</option>
                                                             @endforeach
                                                         </select>
@@ -68,9 +68,9 @@
                                                             </option>
                                                             @if (old('id_subkategori'))
                                                                 @foreach ($subcategories as $subcategory)
-                                                                    @if (old('id_subkategori') == $subcategory->id || $subcategory->category->id == old('id_kategori'))
-                                                                        <option value="{{ $subcategory->id }}"
-                                                                            @selected(old('id_subkategori') == $subcategory->id)>
+                                                                    @if (old('id_subkategori') == $subcategory->getKey() || $subcategory->category->getKey() == old('id_kategori'))
+                                                                        <option value="{{ $subcategory->getKey() }}"
+                                                                            @selected(old('id_subkategori') == $subcategory->getKey())>
                                                                             {{ $subcategory->nama_subkategori }}</option>
                                                                     @endif
                                                                 @endforeach
@@ -97,9 +97,9 @@
                                                             </option>
                                                             @if (old('id_subsubkategori'))
                                                                 @foreach ($subsubcategories as $subsubcategory)
-                                                                    @if (old('id_subsubkategori') == $subsubcategory->id || $subsubcategory->subcategory->id == old('id_subkategori'))
-                                                                        <option value="{{ $subsubcategory->id }}"
-                                                                            @selected(old('id_subsubkategori') == $subsubcategory->id)>
+                                                                    @if (old('id_subsubkategori') == $subsubcategory->getKey() || $subsubcategory->subcategory->getKey() == old('id_subkategori'))
+                                                                        <option value="{{ $subsubcategory->getKey() }}"
+                                                                            @selected(old('id_subsubkategori') == $subsubcategory->getKey())>
                                                                             {{ $subsubcategory->nama_subsubkategori }}
                                                                         </option>
                                                                     @endif
@@ -132,8 +132,8 @@
                                                             <option value="" selected="" disabled="">Select
                                                                 Brand</option>
                                                             @foreach ($brands as $brand)
-                                                                <option @selected(old('id_merek') == $brand->id)
-                                                                    value="{{ $brand->id }}">
+                                                                <option @selected(old('id_merek') == $brand->getKey())
+                                                                    value="{{ $brand->getKey() }}">
                                                                     {{ $brand->nama_merek }}</option>
                                                             @endforeach
                                                         </select>

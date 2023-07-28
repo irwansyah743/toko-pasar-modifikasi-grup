@@ -8,7 +8,7 @@ async function productView(id){
         document.getElementById('pstock').innerHTML=data.product.kuantitas_produk;
         document.getElementById('pcategory').innerHTML=data.product.category.nama_kategori;
         document.getElementById('pbrand').innerHTML=data.product.brand.nama_merek;
-        document.getElementById('pid').value=data.product.id;
+        document.getElementById('pid').value=data.product.id_produk;
         document.getElementById('pimage').src=`${window.location.origin}/storage/${data.product.thumbnail_produk}`;
         if(data.product.harga_diskon==null){
             document.getElementById('price').innerHTML=`Rp.${data.product.harga_jual}`;

@@ -48,7 +48,7 @@ class MidtransController extends Controller
 
         $order = new Order();
         $order->user_id = Auth::id();
-        $order->id_pengiriman = Shipping::latest()->first()->id;
+        $order->id_pengiriman = Shipping::latest()->first()->getKey();
         $order->status = "to be paid";
         $order->nominal_total = Cart::total();
         $order->id_pesanan =  $id_pesanan;
@@ -64,7 +64,7 @@ class MidtransController extends Controller
             $item->kuantitas = $cart->qty;
             $item->warna = $cart->options->warna;
             $item->ukuran = $cart->options->ukuran;
-            $item->id_pesanan = $order->id;
+            $item->id_pesanan = $order->getKey();
             $item->save();
         }
         Cart::destroy();
@@ -112,7 +112,7 @@ class MidtransController extends Controller
         $order->snap_token = $snapToken;
         $order->save();
 
-        return response()->json(['snapToken' => $snapToken, 'id_pesanan' => Order::latest()->first()->id]);
+        return response()->json(['snapToken' => $snapToken, 'id_pesanan' => Order::latest()->first()->getKey()]);
     }
 
 

@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data['admin'] = Admin::find(Auth::user()->id);
+        $data['admin'] = Admin::find(Auth::user()->getKey());
         $data['products'] = Product::latest()->get();
         return view('back.product.index', $data);
     }
@@ -39,7 +39,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $data['admin'] = Admin::find(Auth::user()->id);
+        $data['admin'] = Admin::find(Auth::user()->getKey());
         $data['products'] = Product::latest()->get();
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('nama_subkategori', 'ASC')->get();
@@ -165,13 +165,13 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $data['admin'] = Admin::find(Auth::user()->id);
+        $data['admin'] = Admin::find(Auth::user()->getKey());
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('nama_subkategori', 'ASC')->get();
         $data['subsubcategories'] = SubSubCategory::orderBy('nama_subsubkategori', 'ASC')->get();
         $data['brands'] = Brand::orderBy('nama_merek', 'ASC')->get();
         $data['product'] = $product;
-        $data['multiimg'] = MultiImg::where('id_produk',  $product->id)->get();
+        $data['multiimg'] = MultiImg::where('id_produk',  $product->getKey())->get();
         return view('back.product.edit', $data);
     }
 
@@ -200,7 +200,7 @@ class ProductController extends Controller
             'deskripsi_panjang' => 'required',
         ]);
 
-        Product::where('id', $product->id)->update([
+        Product::where('id', $product->getKey())->update([
             'id_merek' => $request->id_merek,
             'id_kategori' => $request->id_kategori,
             'id_subkategori' => $request->id_subkategori,
@@ -271,7 +271,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
 
-        if ($images = MultiImg::where('id_produk',  $product->id)->get()) {
+        if ($images = MultiImg::where('id_produk',  $product->getKey())->get()) {
             foreach ($images as $image) {
                 Storage::delete($image->nama_gambar_produk);
             }
@@ -280,8 +280,8 @@ class ProductController extends Controller
         if ($product->thumbnail_produk) {
             Storage::delete($product->thumbnail_produk);
         }
-        MultiImg::where('id_produk', $product->id)->delete();
-        Product::destroy($product->id);
+        MultiImg::where('id_produk', $product->getKey())->delete();
+        Product::destroy($product->getKey());
 
         $notification = array(
             'message' => 'A product has been deleted',
@@ -331,7 +331,7 @@ class ProductController extends Controller
         if ($multiimg->nama_gambar_produk) {
             Storage::delete($multiimg->nama_gambar_produk);
         }
-        MultiImg::destroy($multiimg->id);
+        MultiImg::destroy($multiimg->getKey());
         $notification = array(
             'message' => 'An image has been deleted',
             'alert-type' => 'success'
@@ -351,7 +351,7 @@ class ProductController extends Controller
         Image::make($image)->resize(917, 1000)->save('storage/thumbnails/' . $name_gen);
         $save_url = 'thumbnails/' . $name_gen;
 
-        Product::findOrFail($product->id)->update([
+        Product::findOrFail($product->getKey())->update([
             'thumbnail_produk' => $save_url,
             'updated_at' => Carbon::now(),
         ]);

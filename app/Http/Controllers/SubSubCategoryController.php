@@ -22,7 +22,7 @@ class SubSubCategoryController extends Controller
     public function index()
     {
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
-        $data['admin'] = Admin::find(Auth::user()->id);
+        $data['admin'] = Admin::find(Auth::user()->getKey());
         $data['subcategories'] = SubCategory::latest()->get();
         $data['subsubcategories'] = SubSubCategory::latest()->get();
         return view('back.category.sub_subcategory', $data);
@@ -104,7 +104,7 @@ class SubSubCategoryController extends Controller
      */
     public function edit(SubSubCategory $subSubCategory)
     {
-        $data['admin'] = Admin::find(Auth::user()->id);
+        $data['admin'] = Admin::find(Auth::user()->getKey());
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['subcategories'] = SubCategory::latest()->get();
         $data['subsubcategory'] = $subSubCategory;
@@ -136,7 +136,7 @@ class SubSubCategoryController extends Controller
         $validated['slug_subsubkategori'] = strtolower(str_replace(' ', '-', $request->nama_subsubkategori));
         $validated['created_at'] = Carbon::now();
 
-        SubSubCategory::where('id', $subSubCategory->id)->update($validated);
+        SubSubCategory::where('id', $subSubCategory->getKey())->update($validated);
 
         $notification = array(
             'message' => 'A sub-subcategory has been updated',
@@ -154,7 +154,7 @@ class SubSubCategoryController extends Controller
      */
     public function destroy(SubSubCategory $subSubCategory)
     {
-        SubSubCategory::destroy($subSubCategory->id);
+        SubSubCategory::destroy($subSubCategory->getKey());
         $notification = array(
             'message' => 'A sub-subcategory has been deleted',
             'alert-type' => 'success'

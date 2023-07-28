@@ -16,12 +16,12 @@
                 <!-- /.box-header -->
                 <div class="box-body">
 
-                    <form method="post" action="{{ url('category/' . $category->id) }}" enctype="multipart/form-data"
+                    <form method="post" action="{{ url('category/' . $category->getKey()) }}" enctype="multipart/form-data"
                         novalidate>
                         @csrf
                         @method('put')
 
-                        <input type="hidden" name="id" value="{{ $category->id }}">
+                        <input type="hidden" name="id" value="{{ $category->getKey() }}">
                         <div class="form-group">
                             <h5>Category name <span class="text-danger">*</span></h5>
                             <div class="controls">

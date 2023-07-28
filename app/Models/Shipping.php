@@ -11,7 +11,10 @@ class Shipping extends Model
 
     public $table = 'pengiriman';
 
+    protected $primaryKey = 'id_pengiriman';
+
     protected $fillable = [
+        'id_pengiriman',
         'provinsi',
         'kabupaten',
         'kecamatan',
@@ -24,4 +27,21 @@ class Shipping extends Model
         'resi',
         'catatan'
     ];
+
+    // Accessor for the old 'id' attribute
+    public function getIdAttribute()
+    {
+        return $this->attributes['id_pengiriman'];
+    }
+
+    // Mutator for the old 'id' attribute
+    public function setIdAttribute($value)
+    {
+        $this->attributes['id_pengiriman'] = $value;
+    }
+
+    public function getKeyName()
+    {
+        return 'id_pengiriman';
+    }
 }

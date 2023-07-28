@@ -14,7 +14,7 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col">
-                            <form method="post" action="{{ route('admin.update', $adminuser->id) }}"
+                            <form method="post" action="{{ route('admin.update', $adminuser->getKey()) }}"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('put')

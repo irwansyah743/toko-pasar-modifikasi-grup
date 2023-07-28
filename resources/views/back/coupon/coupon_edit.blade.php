@@ -29,7 +29,7 @@
                             <div class="table-responsive">
 
 
-                                <form method="post" action="{{ route('coupon.update', $coupon->id) }}" novalidate>
+                                <form method="post" action="{{ route('coupon.update', $coupon->getKey()) }}" novalidate>
                                     @csrf
                                     @method('put')
 

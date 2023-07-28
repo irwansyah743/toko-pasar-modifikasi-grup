@@ -23,7 +23,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data['admin'] = Admin::find(Auth::user()->id);
+        $data['admin'] = Admin::find(Auth::user()->getKey());
         $data['categories'] = Category::latest()->get();
         $data['subcategoriesToDelete'] = DB::table('sub_kategori')->select('id_kategori', DB::raw('count(*)'))->groupBy('id_kategori')->get();
         return view('back.category.index', $data);
@@ -91,7 +91,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $data['admin'] = Admin::find(Auth::user()->id);
+        $data['admin'] = Admin::find(Auth::user()->getKey());
         $data['category'] = $category;
         return view('back.category.category_edit', $data);
     }
@@ -122,7 +122,7 @@ class CategoryController extends Controller
         $validated['ikon_kategori'] = $request->ikon_kategori;
         $validated['updated_at'] = Carbon::now();
 
-        Category::where('id', $category->id)->update($validated);
+        Category::where('id', $category->getKey())->update($validated);
 
         $notification = array(
             'message' => 'A category has been updated',
@@ -140,9 +140,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        Category::destroy($category->id);
-        SubCategory::where('id_kategori', $category->id)->delete();
-        SubSubCategory::where('id_kategori', $category->id)->delete();
+        Category::destroy($category->getKey());
+        SubCategory::where('id_kategori', $category->getKey())->delete();
+        SubSubCategory::where('id_kategori', $category->getKey())->delete();
         $notification = array(
             'message' => 'A category has been deleted',
             'alert-type' => 'success'

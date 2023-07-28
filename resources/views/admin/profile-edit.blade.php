@@ -14,7 +14,7 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col">
-                            <form novalidate method="POST" action="{{ url('/admin/profile/' . $admin->id) }}"
+                            <form novalidate method="POST" action="{{ url('/admin/profile/' . $admin->getKey()) }}"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('put')

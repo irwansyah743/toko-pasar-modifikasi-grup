@@ -16,12 +16,12 @@
                 <!-- /.box-header -->
                 <div class="box-body">
 
-                    <form method="post" action="{{ url('brand/' . $brand->id) }}" enctype="multipart/form-data"
+                    <form method="post" action="{{ url('brand/' . $brand->getKey()) }}" enctype="multipart/form-data"
                         novalidate>
                         @csrf
                         @method('put')
 
-                        <input type="hidden" name="id" value="{{ $brand->id }}">
+                        <input type="hidden" name="id" value="{{ $brand->getKey() }}">
                         <div class="form-group">
                             <h5>Brand name <span class="text-danger">*</span></h5>
                             <div class="controls">

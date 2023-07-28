@@ -47,7 +47,7 @@ class ReviewController extends Controller
             'komentar' => 'required',
         ]);
 
-        if (Review::where('id_produk', $product->id)->where('user_id', Auth::id())->count() > 0) {
+        if (Review::where('id_produk', $product->getKey())->where('user_id', Auth::id())->count() > 0) {
             $notification = array(
                 'message' => 'You have already wrote a review for this product',
                 'alert-type' => 'warning'
@@ -57,7 +57,7 @@ class ReviewController extends Controller
         }
 
         Review::insert([
-            'id_produk' => $product->id,
+            'id_produk' => $product->getKey(),
             'user_id' => Auth::id(),
             'komentar' => $request->komentar,
             'rangkuman' => $request->rangkuman,
@@ -116,7 +116,7 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-        Review::destroy($review->id);
+        Review::destroy($review->getKey());
 
         $notification = array(
             'message' => 'A review has been deleted',
@@ -129,8 +129,8 @@ class ReviewController extends Controller
 
     public function pendingReview()
     {
-        $admin = Admin::find(Auth::user()->id);
-        $review = Review::where('status', 0)->orderBy('id', 'DESC')->get();
+        $admin = Admin::find(Auth::user()->getKey());
+        $review = Review::where('status', 0)->orderBy('id_review', 'DESC')->get();
         return view('back.review.pending_review', compact('review', 'admin'));
     } // end method 
 
@@ -151,8 +151,8 @@ class ReviewController extends Controller
 
     public function publishedReview()
     {
-        $admin = Admin::find(Auth::user()->id);
-        $review = Review::where('status', 1)->orderBy('id', 'DESC')->get();
+        $admin = Admin::find(Auth::user()->getKey());
+        $review = Review::where('status', 1)->orderBy('id_review', 'DESC')->get();
         return view('back.review.publish_review', compact('review', 'admin'));
     }
 }

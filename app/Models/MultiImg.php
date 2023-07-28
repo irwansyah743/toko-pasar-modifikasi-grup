@@ -11,8 +11,22 @@ class MultiImg extends Model
 
     public $table = "gambar_produk";
 
+    protected $primaryKey = 'id_gambar_produk';
+
     protected $fillable = [
         'id_produk',
         'nama_gambar_produk',
     ];
+
+    // Accessor for the old 'id' attribute
+    public function getIdAttribute()
+    {
+        return $this->attributes['id_gambar_produk'];
+    }
+
+    // Mutator for the old 'id' attribute
+    public function setIdAttribute($value)
+    {
+        $this->attributes['id_gambar_produk'] = $value;
+    }
 }

@@ -26,7 +26,7 @@ class CartController extends Controller
         $product = Product::find($id);
         if ($product->harga_diskon == NULL) {
             Cart::add([
-                'id' => $product->id,
+                'id' => $product->getKey(),
                 'name' => $request->nama_produk,
                 'qty' => $request->kuantitas_produk,
                 'price' => $product->harga_jual,
@@ -40,7 +40,7 @@ class CartController extends Controller
             return response()->json(['success' => 'Successfully Added on Your Cart']);
         } else {
             Cart::add([
-                'id' => $product->id,
+                'id' => $product->getKey(),
                 'name' => $request->nama_produk,
                 'qty' => $request->kuantitas_produk,
                 'price' => $product->harga_diskon,

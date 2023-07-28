@@ -24,7 +24,7 @@
                             <div class="table-responsive">
 
 
-                                <form method="post" action="{{ url('subsubcategory/' . $subsubcategory->id) }}">
+                                <form method="post" action="{{ url('subsubcategory/' . $subsubcategory->getKey()) }}">
                                     @csrf
                                     @method('put')
                                     <div class="form-group">
@@ -36,7 +36,7 @@
                                                     Category -
                                                 </option>
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}" @selected($category->id == $subsubcategory->category->id || old('id_kategori') == $category->id)>
+                                                    <option value="{{ $category->getKey() }}" @selected($category->getKey() == $subsubcategory->category->getKey() || old('id_kategori') == $category->getKey())>
                                                         {{ $category->nama_kategori }}</option>
                                                 @endforeach
                                             </select>
@@ -56,11 +56,11 @@
                                                 <option value="" @selected(old('id_subkategori') == '') disabled>- Select
                                                     SubCategory -
                                                 </option>
-                                                @if (old('id_subkategori', $subsubcategory->subcategory->id))
+                                                @if (old('id_subkategori', $subsubcategory->subcategory->getKey()))
                                                     @foreach ($subcategories as $subcategory)
-                                                        @if (old('id_subkategori') == $subcategory->id || $subcategory->category->id == old('id_kategori') || $subcategory->category->id == $subsubcategory->category->id)
-                                                            <option value="{{ $subcategory->id }}"
-                                                                @selected(old('id_subkategori') == $subcategory->id || $subcategory->id == $subsubcategory->subcategory->id)>
+                                                        @if (old('id_subkategori') == $subcategory->getKey() || $subcategory->category->getKey() == old('id_kategori') || $subcategory->category->getKey() == $subsubcategory->category->getKey())
+                                                            <option value="{{ $subcategory->getKey() }}"
+                                                                @selected(old('id_subkategori') == $subcategory->getKey() || $subcategory->getKey() == $subsubcategory->subcategory->getKey())>
                                                                 {{ $subcategory->nama_subkategori }}</option>
                                                         @endif
                                                     @endforeach

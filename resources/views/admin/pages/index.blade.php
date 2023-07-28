@@ -102,14 +102,14 @@
 
 
                                                 <td width="25%">
-                                                    <a href="{{ route('admin.edit', $item->id) }}" class="btn btn-info"
+                                                    <a href="{{ route('admin.edit', $item->getKey()) }}" class="btn btn-info"
                                                         title="Edit Data"><i class="fa fa-pencil"></i> </a>
 
-                                                    <form method="POST" id="{{ 'deleteadmin' . $item->id }}"
+                                                    <form method="POST" id="{{ 'deleteadmin' . $item->getKey() }}"
                                                         style="display:inline;">
                                                         @csrf
                                                         <button type="button" class="btn btn-danger delete-button"
-                                                            onclick="deleteConfirmation('admin',{{ $item->id }})">
+                                                            onclick="deleteConfirmation('admin',{{ $item->getKey() }})">
                                                             <i class="fa fa-trash"></i></button>
                                                     </form>
                                                 </td>

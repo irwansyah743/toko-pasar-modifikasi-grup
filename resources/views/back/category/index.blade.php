@@ -36,16 +36,16 @@
 
                                                 <td>{{ $category->nama_kategori }}</td>
                                                 <td>
-                                                    <a href="{{ url('category/' . $category->id) }}"
+                                                    <a href="{{ url('category/' . $category->getKey()) }}"
                                                         class="btn btn-info" title="Edit Data"><i
                                                             class="fa fa-pencil"></i> </a>
 
-                                                    <form method="POST" id="{{ 'deletecategory' . $category->id }}"
+                                                    <form method="POST" id="{{ 'deletecategory' . $category->getKey() }}"
                                                         style="display:inline;">
                                                         @csrf
-                                                        @if (!$subcategoriesToDelete->contains('id_kategori', $category->id))
+                                                        @if (!$subcategoriesToDelete->contains('id_kategori', $category->getKey()))
                                                             <button type="button" class="btn btn-danger delete-button"
-                                                                onclick="deleteConfirmation('category',{{ $category->id }})">
+                                                                onclick="deleteConfirmation('category',{{ $category->getKey() }})">
                                                                 <i class="fa fa-trash"></i></button>
                                                         @endif
                                                     </form>

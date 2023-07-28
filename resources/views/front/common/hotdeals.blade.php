@@ -2,7 +2,7 @@
      $hotDeals = App\Models\Product::where('status', 1)
          ->where('harga_diskon', '!=', null)
          ->where('diskon_besar', 1)
-         ->orderBy('id', 'ASC')
+         ->orderBy('id_produk', 'ASC')
          ->limit(8)
          ->get();
  @endphp
@@ -21,7 +21,7 @@
                          @php
                              $amount = $product->harga_jual - $product->harga_diskon;
                              $discount = ($amount / $product->harga_jual) * 100;
-                             $avarage = App\Models\Review::where('id_produk', $product->id)
+                             $avarage = App\Models\Review::where('id_produk', $product->getKey())
                                  ->where('status', 1)
                                  ->avg('rating');
                          @endphp
@@ -95,11 +95,11 @@
                          <div class="action">
                              <div class="add-cart-button btn-group" style="display: flex;">
                                  <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary icon"
-                                     type="button" title="Add Cart" id="{{ $product->id }}"
+                                     type="button" title="Add Cart" id="{{ $product->getKey() }}"
                                      style="display:flex; align-items: center;" onclick="productView(this.id)">
                                      <i class="fa fa-shopping-cart"></i> </button>
                                  <button data-toggle="modal" data-target="#exampleModal" title="Add Cart"
-                                     id="{{ $product->id }}" onclick="productView(this.id)"
+                                     id="{{ $product->getKey() }}" onclick="productView(this.id)"
                                      class="btn btn-primary cart-btn" type="button">Add to cart</button>
                              </div>
                          </div>

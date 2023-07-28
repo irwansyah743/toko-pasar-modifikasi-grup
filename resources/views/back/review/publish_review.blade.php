@@ -51,11 +51,11 @@
                                                 </td>
 
                                                 <td width="25%">
-                                                    <form method="POST" id="{{ 'deletereview' . $item->id }}"
+                                                    <form method="POST" id="{{ 'deletereview' . $item->getKey() }}"
                                                         style="display:inline;">
                                                         @csrf
                                                         <button type="button" class="btn btn-danger delete-button"
-                                                            onclick="deleteConfirmation('review',{{ $item->id }})">
+                                                            onclick="deleteConfirmation('review',{{ $item->getKey() }})">
                                                             <i class="fa fa-trash"></i></button>
 
                                                     </form>

@@ -20,7 +20,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $data['admin'] = Admin::find(Auth::user()->id);
+        $data['admin'] = Admin::find(Auth::user()->getKey());
         $data['brands'] = Brand::latest()->get();
         return view('back.brand.index', $data);
     }
@@ -91,7 +91,7 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        $data['admin'] = Admin::find(Auth::user()->id);
+        $data['admin'] = Admin::find(Auth::user()->getKey());
         $data['brand'] = $brand;
         return view('back.brand.brand_edit', $data);
     }
@@ -122,7 +122,7 @@ class BrandController extends Controller
         $validated['nama_merek'] = $request->nama_merek;
         $validated['updated_at'] = Carbon::now();
 
-        Brand::where('id', $brand->id)->update($validated);
+        Brand::where('id', $brand->getKey())->update($validated);
 
         $notification = array(
             'message' => 'A brand has been updated',
@@ -144,7 +144,7 @@ class BrandController extends Controller
         if ($brand->gambar_merek) {
             Storage::delete($brand->gambar_merek);
         }
-        Brand::destroy($brand->id);
+        Brand::destroy($brand->getKey());
         $notification = array(
             'message' => 'A brand has been deleted',
             'alert-type' => 'success'

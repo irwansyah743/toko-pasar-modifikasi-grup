@@ -46,7 +46,7 @@
                                                     </span> </td>
 
                                                 <td width="25%">
-                                                    <a target="_blank" href="{{ route('invoice.download', $item->id) }}"
+                                                    <a target="_blank" href="{{ route('invoice.download', $item->getKey()) }}"
                                                         class="btn btn-danger" title="Invoice Download">
                                                         <i class="fa fa-download"></i></a>
                                                 </td>

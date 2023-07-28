@@ -51,13 +51,13 @@
                                                 </td>
 
                                                 <td width="25%">
-                                                    <a href="{{ route('coupon.edit', $coupon->id) }}" class="btn btn-info"
+                                                    <a href="{{ route('coupon.edit', $coupon->getKey()) }}" class="btn btn-info"
                                                         title="Edit Data"><i class="fa fa-pencil"></i> </a>
-                                                    <form method="POST" id="{{ 'deletecoupon' . $coupon->id }}"
+                                                    <form method="POST" id="{{ 'deletecoupon' . $coupon->getKey() }}"
                                                         style="display:inline;">
                                                         @csrf
                                                         <button type="button" class="btn btn-danger delete-button"
-                                                            onclick="deleteConfirmation('coupon',{{ $coupon->id }})">
+                                                            onclick="deleteConfirmation('coupon',{{ $coupon->getKey() }})">
                                                             <i class="fa fa-trash"></i></button>
                                                     </form>
                                                 </td>

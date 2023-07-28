@@ -29,7 +29,7 @@ class DeleteApiTokenTest extends TestCase
         ]);
 
         Livewire::test(ApiTokenManager::class)
-                    ->set(['apiTokenIdBeingDeleted' => $token->id])
+                    ->set(['apiTokenIdBeingDeleted' => $token->getKey()])
                     ->call('deleteApiToken');
 
         $this->assertCount(0, $user->fresh()->tokens);

@@ -40,11 +40,11 @@ class WishlistController extends Controller
     public function addToWishlist(Product $product)
     {
         if (Auth::check()) {
-            $exists = Wishlist::where('user_id', Auth::id())->where('id_produk', $product->id)->first();
+            $exists = Wishlist::where('user_id', Auth::id())->where('id_produk', $product->getKey())->first();
             if (!$exists) {
                 Wishlist::insert([
                     'user_id' => Auth::id(),
-                    'id_produk' => $product->id,
+                    'id_produk' => $product->getKey(),
                     'created_at' => Carbon::now(),
                 ]);
                 return response()->json(['success' => 'Successfully Added On Your Wishlist']);

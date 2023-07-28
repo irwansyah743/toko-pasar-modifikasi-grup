@@ -125,7 +125,7 @@
                                                                 @php
                                                                     $amount = $product->harga_jual - $product->harga_diskon;
                                                                     $discount = ($amount / $product->harga_jual) * 100;
-                                                                    $avarage = App\Models\Review::where('id_produk', $product->id)
+                                                                    $avarage = App\Models\Review::where('id_produk', $product->getKey())
                                                                         ->where('status', 1)
                                                                         ->avg('rating');
                                                                     
@@ -212,7 +212,7 @@
                                                                                 data-target="#exampleModal"
                                                                                 class="btn btn-primary icon"
                                                                                 type="button" title="Add Cart"
-                                                                                id="{{ $product->id }}"
+                                                                                id="{{ $product->getKey() }}"
                                                                                 onclick="productView(this.id)">
                                                                                 <i class="fa fa-shopping-cart"></i>
                                                                             </button>
@@ -221,7 +221,7 @@
                                                                         </li>
                                                                         <button class="btn btn-primary icon"
                                                                             type="button" title="Wishlist"
-                                                                            id="{{ $product->id }}"
+                                                                            id="{{ $product->getKey() }}"
                                                                             onclick="addToWishList(this.id)"> <i
                                                                                 class="fa fa-heart"></i> </button>
 
@@ -255,7 +255,7 @@
                                             <div class="owl-carousel home-owl-carousel custom-carousel owl-theme"
                                                 data-item="4">
                                                 @forelse ($newProducts as $product)
-                                                    @if ($product->id_kategori == $category->id)
+                                                    @if ($product->id_kategori == $category->getKey())
                                                         <div class="item item-carousel">
                                                             <div class="products">
                                                                 <div class="product">
@@ -268,7 +268,7 @@
                                                                         @php
                                                                             $amount = $product->harga_jual - $product->harga_diskon;
                                                                             $discount = ($amount / $product->harga_jual) * 100;
-                                                                            $avarage = App\Models\Review::where('id_produk', $product->id)
+                                                                            $avarage = App\Models\Review::where('id_produk', $product->getKey())
                                                                                 ->where('status', 1)
                                                                                 ->avg('rating');
                                                                         @endphp
@@ -354,21 +354,21 @@
                                                                                         data-target="#exampleModal"
                                                                                         class="btn btn-primary icon"
                                                                                         type="button" title="Add Cart"
-                                                                                        id="{{ $product->id }}"
+                                                                                        id="{{ $product->getKey() }}"
                                                                                         onclick="productView(this.id)">
                                                                                         <i class="fa fa-shopping-cart"></i>
                                                                                     </button>
                                                                                     <button data-toggle="modal"
                                                                                         data-target="#exampleModal"
                                                                                         title="Add Cart"
-                                                                                        id="{{ $product->id }}"
+                                                                                        id="{{ $product->getKey() }}"
                                                                                         onclick="productView(this.id)"
                                                                                         class="btn btn-primary cart-btn"
                                                                                         type="button">Tambah ke keranjang</button>
                                                                                 </li>
                                                                                 <button class="btn btn-primary icon"
                                                                                     type="button" title="Wishlist"
-                                                                                    id="{{ $product->id }}"
+                                                                                    id="{{ $product->getKey() }}"
                                                                                     onclick="addToWishList(this.id)">
                                                                                     <i class="fa fa-heart"></i>
                                                                                 </button>
@@ -423,7 +423,7 @@
                                                     @php
                                                         $amount = $product->harga_jual - $product->harga_diskon;
                                                         $discount = ($amount / $product->harga_jual) * 100;
-                                                        $avarage = App\Models\Review::where('id_produk', $product->id)
+                                                        $avarage = App\Models\Review::where('id_produk', $product->getKey())
                                                             ->where('status', 1)
                                                             ->avg('rating');
                                                     @endphp
@@ -504,7 +504,7 @@
                                                             <li class="add-cart-button btn-group">
                                                                 <button data-toggle="modal" data-target="#exampleModal"
                                                                     class="btn btn-primary icon" type="button"
-                                                                    title="Add Cart" id="{{ $product->id }}"
+                                                                    title="Add Cart" id="{{ $product->getKey() }}"
                                                                     onclick="productView(this.id)"> <i
                                                                         class="fa fa-shopping-cart"></i>
                                                                 </button>
@@ -512,7 +512,7 @@
                                                                     type="button">Tambah ke keranjang</button>
                                                             </li>
                                                             <button class="btn btn-primary icon" type="button"
-                                                                title="Wishlist" id="{{ $product->id }}"
+                                                                title="Wishlist" id="{{ $product->getKey() }}"
                                                                 onclick="addToWishList(this.id)"> <i
                                                                     class="fa fa-heart"></i> </button>
 
@@ -553,7 +553,7 @@
                                                     @php
                                                         $amount = $product->harga_jual - $product->harga_diskon;
                                                         $discount = ($amount / $product->harga_jual) * 100;
-                                                        $avarage = App\Models\Review::where('id_produk', $product->id)
+                                                        $avarage = App\Models\Review::where('id_produk', $product->getKey())
                                                             ->where('status', 1)
                                                             ->avg('rating');
                                                     @endphp
@@ -634,7 +634,7 @@
                                                             <li class="add-cart-button btn-group">
                                                                 <button data-toggle="modal" data-target="#exampleModal"
                                                                     class="btn btn-primary icon" type="button"
-                                                                    title="Add Cart" id="{{ $product->id }}"
+                                                                    title="Add Cart" id="{{ $product->getKey() }}"
                                                                     onclick="productView(this.id)"> <i
                                                                         class="fa fa-shopping-cart"></i>
                                                                 </button>
@@ -642,7 +642,7 @@
                                                                     type="button">Tambah ke keranjang</button>
                                                             </li>
                                                             <button class="btn btn-primary icon" type="button"
-                                                                title="Wishlist" id="{{ $product->id }}"
+                                                                title="Wishlist" id="{{ $product->getKey() }}"
                                                                 onclick="addToWishList(this.id)"> <i
                                                                     class="fa fa-heart"></i> </button>
 
@@ -682,7 +682,7 @@
                                                     @php
                                                         $amount = $product->harga_jual - $product->harga_diskon;
                                                         $discount = ($amount / $product->harga_jual) * 100;
-                                                        $avarage = App\Models\Review::where('id_produk', $product->id)
+                                                        $avarage = App\Models\Review::where('id_produk', $product->getKey())
                                                             ->where('status', 1)
                                                             ->avg('rating');
                                                     @endphp
@@ -763,7 +763,7 @@
                                                             <li class="add-cart-button btn-group">
                                                                 <button data-toggle="modal" data-target="#exampleModal"
                                                                     class="btn btn-primary icon" type="button"
-                                                                    title="Add Cart" id="{{ $product->id }}"
+                                                                    title="Add Cart" id="{{ $product->getKey() }}"
                                                                     onclick="productView(this.id)"> <i
                                                                         class="fa fa-shopping-cart"></i>
                                                                 </button>
@@ -771,7 +771,7 @@
                                                                     type="button">Tambah Ke keranjang</button>
                                                             </li>
                                                             <button class="btn btn-primary icon" type="button"
-                                                                title="Wishlist" id="{{ $product->id }}"
+                                                                title="Wishlist" id="{{ $product->getKey() }}"
                                                                 onclick="addToWishList(this.id)"> <i
                                                                     class="fa fa-heart"></i> </button>
 
@@ -812,7 +812,7 @@
                                                     @php
                                                         $amount = $product->harga_jual - $product->harga_diskon;
                                                         $discount = ($amount / $product->harga_jual) * 100;
-                                                        $avarage = App\Models\Review::where('id_produk', $product->id)
+                                                        $avarage = App\Models\Review::where('id_produk', $product->getKey())
                                                             ->where('status', 1)
                                                             ->avg('rating');
                                                     @endphp
@@ -893,7 +893,7 @@
                                                             <li class="add-cart-button btn-group">
                                                                 <button data-toggle="modal" data-target="#exampleModal"
                                                                     class="btn btn-primary icon" type="button"
-                                                                    title="Add Cart" id="{{ $product->id }}"
+                                                                    title="Add Cart" id="{{ $product->getKey() }}"
                                                                     onclick="productView(this.id)"> <i
                                                                         class="fa fa-shopping-cart"></i>
                                                                 </button>
@@ -901,7 +901,7 @@
                                                                     type="button">Tambah ke keranjang</button>
                                                             </li>
                                                             <button class="btn btn-primary icon" type="button"
-                                                                title="Wishlist" id="{{ $product->id }}"
+                                                                title="Wishlist" id="{{ $product->getKey() }}"
                                                                 onclick="addToWishList(this.id)"> <i
                                                                     class="fa fa-heart"></i> </button>
 
@@ -942,7 +942,7 @@
                                                     @php
                                                         $amount = $product->harga_jual - $product->harga_diskon;
                                                         $discount = ($amount / $product->harga_jual) * 100;
-                                                        $avarage = App\Models\Review::where('id_produk', $product->id)
+                                                        $avarage = App\Models\Review::where('id_produk', $product->getKey())
                                                             ->where('status', 1)
                                                             ->avg('rating');
                                                     @endphp
@@ -1023,7 +1023,7 @@
                                                             <li class="add-cart-button btn-group">
                                                                 <button data-toggle="modal" data-target="#exampleModal"
                                                                     class="btn btn-primary icon" type="button"
-                                                                    title="Add Cart" id="{{ $product->id }}"
+                                                                    title="Add Cart" id="{{ $product->getKey() }}"
                                                                     onclick="productView(this.id)"> <i
                                                                         class="fa fa-shopping-cart"></i>
                                                                 </button>
@@ -1031,7 +1031,7 @@
                                                                     type="button">Tambah ke keranjang</button>
                                                             </li>
                                                             <button class="btn btn-primary icon" type="button"
-                                                                title="Wishlist" id="{{ $product->id }}"
+                                                                title="Wishlist" id="{{ $product->getKey() }}"
                                                                 onclick="addToWishList(this.id)"> <i
                                                                     class="fa fa-heart"></i> </button>
 

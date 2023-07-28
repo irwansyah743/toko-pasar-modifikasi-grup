@@ -49,7 +49,7 @@
                                                     </span> </td>
 
                                                 <td width="25%">
-                                                    <a href="{{ route('pending.order.details', $item->id) }}"
+                                                    <a href="{{ route('pending.order.details', $item->getKey()) }}"
                                                         class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i>
                                                     </a>
                                                     <a href="mailto:{{ $item->shipping->email_pengiriman }}"

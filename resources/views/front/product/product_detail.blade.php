@@ -48,7 +48,7 @@
                                 <div id="owl-single-product">
 
                                     @foreach ($multiImages as $img)
-                                        <div class="single-product-gallery-item" id="slide{{ $img->id }}">
+                                        <div class="single-product-gallery-item" id="slide{{ $img->getKey() }}">
                                             <a data-lightbox="image-1" data-title="Gallery"
                                                 href="{{ asset('storage/' . $img->nama_gambar_produk) }} ">
                                                 <img class="img-responsive" alt=""
@@ -69,7 +69,7 @@
                                         @foreach ($multiImages as $img)
                                             <div class="item">
                                                 <a class="horizontal-thumb active" data-target="#owl-single-product"
-                                                    data-slide="1" href="#slide{{ $img->id }}">
+                                                    data-slide="1" href="#slide{{ $img->getKey() }}">
                                                     <img class="img-responsive" width="85" alt=""
                                                         src="{{ asset('storage/' . $img->nama_gambar_produk) }} "
                                                         data-echo="{{ asset('storage/' . $img->nama_gambar_produk) }} " />
@@ -192,7 +192,7 @@
                                         <div class="col-sm-6">
                                             <div class="favorite-button m-t-10">
                                                 <button class="btn btn-primary icon" type="button" title="Wishlist"
-                                                    id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i
+                                                    id="{{ $product->getKey() }}" onclick="addToWishList(this.id)"> <i
                                                         class="fa fa-heart"></i>
                                                 </button>
 
@@ -265,7 +265,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input type="hidden" id="pid" value="{{ $product->id }}">
+                                        <input type="hidden" id="pid" value="{{ $product->getKey() }}">
                                         <div class="col-sm-7">
                                             <button type="submit" onclick="addToCart({{ $product->kuantitas_produk }})" class="btn btn-primary"><i
                                                     class="fa fa-shopping-cart inner-right-vs"></i> ADD TO
@@ -317,7 +317,7 @@
                                             <h4 class="title">Customer Reviews</h4>
 
                                             @php
-                                                $reviews = App\Models\Review::where('id_produk', $product->id)
+                                                $reviews = App\Models\Review::where('id_produk', $product->getKey())
                                                     ->latest()
                                                     ->limit(5)
                                                     ->get();
@@ -406,7 +406,7 @@
                                                     <div class="form-container">
 
                                                         <form role="form" class="cnt-form" method="post"
-                                                            action="{{ route('review.store', $product->id) }}">
+                                                            action="{{ route('review.store', $product->getKey()) }}">
                                                             @csrf
                                                             <table class="table">
                                                                 <thead>

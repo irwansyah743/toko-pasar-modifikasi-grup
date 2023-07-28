@@ -95,7 +95,7 @@
                                     @csrf
                                     <tr>
                                         <th> Resi NO </th>
-                                        <th><input type="hidden" name="id_pesanan" value="{{ $orderDetail->id }}">
+                                        <th><input type="hidden" name="id_pesanan" value="{{ $orderDetail->getKey() }}">
                                             <input type="text" name="resi" required>
                                         </th>
                                     </tr>

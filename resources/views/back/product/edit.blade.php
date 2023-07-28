@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col">
 
-                            <form method="post" action="{{ route('product.update', $product->id) }}"
+                            <form method="post" action="{{ route('product.update', $product->getKey()) }}"
                                 enctype="multipart/form-data" novalidate>
                                 @csrf
                                 @method('put')
@@ -41,8 +41,8 @@
                                                                 Category -
                                                             </option>
                                                             @foreach ($categories as $category)
-                                                                <option value="{{ $category->id }}"
-                                                                    @selected($category->id == $product->id_kategori || old('id_kategori') == $category->id)>
+                                                                <option value="{{ $category->getKey() }}"
+                                                                    @selected($category->getKey() == $product->id_kategori || old('id_kategori') == $category->getKey())>
                                                                     {{ $category->nama_kategori }}</option>
                                                             @endforeach
                                                         </select>
@@ -67,9 +67,9 @@
                                                             </option>
                                                             @if (old('id_subkategori', $product->id_subkategori))
                                                                 @foreach ($subcategories as $subcategory)
-                                                                    @if (old('id_subkategori') == $subcategory->id || $subcategory->category->id == old('id_kategori') || $subcategory->category->id == $product->id_kategori)
-                                                                        <option value="{{ $subcategory->id }}"
-                                                                            @selected(old('id_subkategori') == $subcategory->id || $subcategory->id == $product->id_subkategori)>
+                                                                    @if (old('id_subkategori') == $subcategory->getKey() || $subcategory->category->getKey() == old('id_kategori') || $subcategory->category->getKey() == $product->id_kategori)
+                                                                        <option value="{{ $subcategory->getKey() }}"
+                                                                            @selected(old('id_subkategori') == $subcategory->getKey() || $subcategory->getKey() == $product->id_subkategori)>
                                                                             {{ $subcategory->nama_subkategori }}</option>
                                                                     @endif
                                                                 @endforeach
@@ -95,9 +95,9 @@
                                                             </option>
                                                             @if (old('id_subsubkategori', $product->id_subsubkategori))
                                                                 @foreach ($subsubcategories as $subsubcategory)
-                                                                    @if (old('id_subsubkategori') == $subsubcategory->id || $subsubcategory->subcategory->id == old('id_subkategori') || $subsubcategory->subcategory->id == $product->id_subkategori)
-                                                                        <option value="{{ $subsubcategory->id }}"
-                                                                            @selected(old('id_subsubkategori') == $subsubcategory->id || $subsubcategory->id == $product->id_subsubkategori)>
+                                                                    @if (old('id_subsubkategori') == $subsubcategory->getKey() || $subsubcategory->subcategory->getKey() == old('id_subkategori') || $subsubcategory->subcategory->getKey() == $product->id_subkategori)
+                                                                        <option value="{{ $subsubcategory->getKey() }}"
+                                                                            @selected(old('id_subsubkategori') == $subsubcategory->getKey() || $subsubcategory->getKey() == $product->id_subsubkategori)>
                                                                             {{ $subsubcategory->nama_subsubkategori }}
                                                                         </option>
                                                                     @endif
@@ -129,8 +129,8 @@
                                                             required="">
                                                             <option value="" selected="" disabled="">Select Brand</option>
                                                             @foreach ($brands as $brand)
-                                                                <option @selected(old('id_merek') == $brand->id || $brand->id == $product->id_merek)
-                                                                    value="{{ $brand->id }}">
+                                                                <option @selected(old('id_merek') == $brand->getKey() || $brand->getKey() == $product->id_merek)
+                                                                    value="{{ $brand->getKey() }}">
                                                                     {{ $brand->nama_merek }}</option>
                                                             @endforeach
                                                         </select>
@@ -445,10 +445,10 @@
                                         style="height: 130px; width: 280px;">
                                     <div class="card-body">
 
-                                        <form method="POST" id="{{ 'deleteimages' . $img->id }}" style="display:inline;">
+                                        <form method="POST" id="{{ 'deleteimages' . $img->getKey() }}" style="display:inline;">
                                             @csrf
                                             <button style="width:100%;" type="button" class="btn btn-danger delete-button"
-                                                onclick="deleteConfirmation('images',{{ $img->id }})">
+                                                onclick="deleteConfirmation('images',{{ $img->getKey() }})">
                                                 <i class="fa fa-trash"></i></button>
                                         </form>
 
@@ -470,7 +470,7 @@
                             <form action="{{ route('product.images.store') }}" method="post"
                                 enctype="multipart/form-data" novalidate>
                                 @csrf
-                                <input type="hidden" value="{{ $product->id }}" name="id_produk">
+                                <input type="hidden" value="{{ $product->getKey() }}" name="id_produk">
                                 <div class="form-group">
                                     <div class="controls">
                                         <input type="file" name="multi_img[]"
@@ -518,7 +518,7 @@
                         <h4 class="box-title">Product Thambnail Image <strong>Update</strong></h4>
                     </div>
                     <div class="box-body">
-                        <form method="post" action="{{ route('update.product.thumbnail', $product->id) }}"
+                        <form method="post" action="{{ route('update.product.thumbnail', $product->getKey()) }}"
                             enctype="multipart/form-data">
                             @csrf
                             @method('put')

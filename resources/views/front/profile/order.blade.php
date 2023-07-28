@@ -74,10 +74,10 @@
                                             </span> </td>
 
                                         <td class="col-md-1">
-                                            <a href="{{ url('/user/order/detail/' . $order->id) }}"
+                                            <a href="{{ url('/user/order/detail/' . $order->getKey()) }}"
                                                 class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> View</a>
 
-                                            <a target="_blank" href="{{ url('user/invoice_download/' . $order->id) }}"
+                                            <a target="_blank" href="{{ url('user/invoice_download/' . $order->getKey()) }}"
                                                 class="btn btn-sm btn-danger" style="margin-top: 5px;"><i
                                                     class="fa fa-download" style="color: white;"></i> Invoice </a>
 

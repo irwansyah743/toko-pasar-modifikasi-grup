@@ -21,7 +21,7 @@ class SliderController extends Controller
      */
     public function index()
     {
-        $data['admin'] = Admin::find(Auth::user()->id);
+        $data['admin'] = Admin::find(Auth::user()->getKey());
         $data['sliders'] = Slider::latest()->get();
         return view('back.slider.index', $data);
     }
@@ -124,7 +124,7 @@ class SliderController extends Controller
         $validated['updated_at'] = Carbon::now();
 
         // BATCH INSERT
-        Slider::where('id', $slider->id)->update($validated);
+        Slider::where('id', $slider->getKey())->update($validated);
 
         $notification = array(
             'message' => 'A slider has been updated',
@@ -145,7 +145,7 @@ class SliderController extends Controller
         if ($slider->slider_image) {
             Storage::delete($slider->gambar_banner);
         }
-        Slider::destroy($slider->id);
+        Slider::destroy($slider->getKey());
         $notification = array(
             'message' => 'A slider has been deleted',
             'alert-type' => 'success'

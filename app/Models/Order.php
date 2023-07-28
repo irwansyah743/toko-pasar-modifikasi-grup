@@ -39,7 +39,7 @@ class Order extends Model
 
     public function shipping()
     {
-        return $this->belongsTo(Shipping::class, 'id_pengiriman', 'id');
+        return $this->belongsTo(Shipping::class, 'id_pengiriman', 'id_pengiriman');
     }
 
     // Tambahkan method untuk cek jangka waktu pembayaran 1x24 jam

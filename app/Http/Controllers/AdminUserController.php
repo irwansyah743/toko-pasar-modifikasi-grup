@@ -15,14 +15,14 @@ class AdminUserController extends Controller
 {
     public function index()
     {
-        $admin = Admin::find(Auth::user()->id);
+        $admin = Admin::find(Auth::user()->getKey());
         $users = User::latest()->get();
         return view('back.user.index', compact('users', 'admin'));
     }
 
     public function allAdmin()
     {
-        $admin = Admin::find(Auth::user()->id);
+        $admin = Admin::find(Auth::user()->getKey());
 
         $adminuser = Admin::where('type', 2)->latest()->get();
         return view('admin.pages.index', compact('adminuser', 'admin'));
@@ -30,7 +30,7 @@ class AdminUserController extends Controller
 
     public function addAdmin()
     {
-        $admin = Admin::find(Auth::user()->id);
+        $admin = Admin::find(Auth::user()->getKey());
         return view('admin.pages.create', compact('admin'));
     }
 
@@ -82,7 +82,7 @@ class AdminUserController extends Controller
 
     public function editAdmin($id)
     {
-        $admin = Admin::find(Auth::user()->id);
+        $admin = Admin::find(Auth::user()->getKey());
         $adminuser = Admin::findOrFail($id);
         return view('admin.pages.edit', compact('adminuser', 'admin'));
     } // end method 
@@ -127,7 +127,7 @@ class AdminUserController extends Controller
         $validated['type'] = 2;
         $validated['updated_at'] = Carbon::now();
 
-        Admin::where('id', $admin->id)->update($validated);
+        Admin::where('id', $admin->getKey())->update($validated);
 
         $notification = array(
             'message' => 'New Admin Created Successfully',
@@ -144,7 +144,7 @@ class AdminUserController extends Controller
             Storage::delete($admin->profile_photo_path);
         }
 
-        Admin::destroy($admin->id);
+        Admin::destroy($admin->getKey());
 
         $notification = array(
             'message' => 'An admin has been deleted',

@@ -1,7 +1,7 @@
 @php
 $specDeals = App\Models\Product::where('status', 1)
     ->where('penawaran_khusus', 1)
-    ->orderBy('id', 'DESC')
+    ->orderBy('id_produk', 'DESC')
     ->limit(4)
     ->get();
 
@@ -37,7 +37,7 @@ $specDeals = App\Models\Product::where('status', 1)
                                                     href="{{ url('product/detail/' . $product->slug_produk) }}">{{ $product->nama_produk }}</a>
                                             </h3>
                                             @php
-                                                $avarage = App\Models\Review::where('id_produk', $product->id)
+                                                $avarage = App\Models\Review::where('id_produk', $product->getKey())
                                                     ->where('status', 1)
                                                     ->avg('rating');
                                             @endphp

@@ -21,7 +21,7 @@
                             <div class="table-responsive">
 
 
-                                <form method="post" action="{{ route('slider.update', $slider->id) }}"
+                                <form method="post" action="{{ route('slider.update', $slider->getKey()) }}"
                                     enctype="multipart/form-data" novalidate>
                                     @csrf
                                     @method('put')
