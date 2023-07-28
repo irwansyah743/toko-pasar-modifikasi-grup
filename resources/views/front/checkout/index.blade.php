@@ -50,44 +50,44 @@
 
                                             <div class="col-md-6 col-sm-6 already-registered-login">
                                                 <div class="form-group">
-                                                    <label class="info-title" for="shipping_name"><b>Shipping
+                                                    <label class="info-title" for="nama_pengiriman"><b>Shipping
                                                             Name</b> <span class="text-danger">*</span></label>
-                                                    <input type="text" name="shipping_name"
+                                                    <input type="text" name="nama_pengiriman"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="shipping_name" placeholder="Full Name"
+                                                        id="nama_pengiriman" placeholder="Full Name"
                                                         value="{{ Auth::user()->name }}" required=""
                                                         onchange="checkForm()">
                                                 </div> <!-- // end form group  -->
 
 
                                                 <div class="form-group">
-                                                    <label class="info-title" for="shipping_email"><b>Email </b>
+                                                    <label class="info-title" for="email_pengiriman"><b>Email </b>
                                                         <span class="text-danger">*</span></label>
-                                                    <input type="email" name="shipping_email"
+                                                    <input type="email" name="email_pengiriman"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="shipping_email" placeholder="Email"
+                                                        id="email_pengiriman" placeholder="Email"
                                                         value="{{ Auth::user()->email }}" required=""
                                                         onchange="checkForm()">
                                                 </div> <!-- // end form group  -->
 
 
                                                 <div class="form-group">
-                                                    <label class="info-title" for="shipping_phone"><b>Phone</b>
+                                                    <label class="info-title" for="no_telepon_pengiriman"><b>Phone</b>
                                                         <span class="text-danger">*</span></label>
-                                                    <input type="number" name="shipping_phone"
+                                                    <input type="number" name="no_telepon_pengiriman"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="shipping_phone" placeholder="Phone"
+                                                        id="no_telepon_pengiriman" placeholder="Phone"
                                                         value="{{ Auth::user()->phone }}" required=""
                                                         onchange="checkForm()">
                                                 </div> <!-- // end form group  -->
 
 
                                                 <div class="form-group">
-                                                    <label class="info-title" for="post_code"><b>Post Code </b>
+                                                    <label class="info-title" for="kode_pos"><b>Post Code </b>
                                                         <span class="text-danger">*</span></label>
-                                                    <input type="text" name="post_code"
+                                                    <input type="text" name="kode_pos"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="post_code" placeholder="Post Code" required
+                                                        id="kode_pos" placeholder="Post Code" required
                                                         onchange="checkForm()">
                                                 </div> <!-- // end form group  -->
                                                 <hr>
@@ -123,19 +123,19 @@
                                                 </div> <!-- // end form group  -->
 
                                                 <div class="form-group">
-                                                    <label class="info-title" for="address"><b>Address</b>
+                                                    <label class="info-title" for="alamat"><b>Alamat</b>
                                                         <span class="text-danger">*</span></label>
-                                                    <input type="text" name="address"
+                                                    <input type="text" name="alamat"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="address" value="{{ old('address') }}" required
+                                                        id="alamat" value="{{ old('alamat') }}" required
                                                         onchange="checkForm()">
                                                 </div> <!-- // end form group  -->
 
 
                                                 <div class="form-group">
-                                                    <label class="info-title" for="notes">Notes
+                                                    <label class="info-title" for="catatan">catatan
                                                     </label>
-                                                    <textarea id="notes" class="form-control" cols="30" rows="5" placeholder="Notes" name="notes"
+                                                    <textarea id="catatan" class="form-control" cols="30" rows="5" placeholder="catatan" name="catatan"
                                                         onchange="checkForm()"></textarea>
                                                 </div> <!-- // end form group  -->
 
@@ -216,12 +216,12 @@
                                                 <strong>Coupon Name : </strong>
                                                 <span
                                                     id="nama_kupon">{{ session()->get('coupon')['nama_kupon'] }}</span>
-                                                ( {{ session()->get('coupon')['diskon_kupon'] }} % )
+                                                ( {{ session()->get('coupon')['coupon_discount'] }} % )
                                                 <hr>
 
                                                 <strong>Coupon Discount : </strong>
                                                 Rp. <span
-                                                    id="diskon_kupon">{{ session()->get('coupon')['discount_amount'] }}</span>
+                                                    id="coupon_discount">{{ session()->get('coupon')['discount_amount'] }}</span>
                                                 <hr>
 
                                                 <strong>Grand Total :

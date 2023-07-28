@@ -6,7 +6,7 @@
     $year = date('Y');
     $year = App\Models\Order::where('order_year', $year)->sum('gross_amount');
     $pending = App\Models\Order::where('status', 'pending')->get();
-    $Waitlist = App\Models\Shipping::where('delivery_status', 0)->get();
+    $Waitlist = App\Models\Shipping::where('status_pengiriman', 0)->get();
     @endphp
     <div class="container-full">
 

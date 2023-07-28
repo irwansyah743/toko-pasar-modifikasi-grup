@@ -71,7 +71,7 @@ class OrderController extends Controller
         }
 
         $validated['resi'] = $request->resi;
-        $validated['delivery_status'] = 1;
+        $validated['status_pengiriman'] = 1;
         Shipping::where('id', $shipping->id)->update($validated);
 
         $notification = array(

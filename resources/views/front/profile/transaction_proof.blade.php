@@ -86,8 +86,8 @@
                     <strong>Email:</strong> {{ $orderDetail->user->email }} <br>
                     <strong>Phone:</strong> {{ $orderDetail->user->phone }} <br>
 
-                    <strong>Address:</strong> {{ $orderDetail->shipping->address }} <br>
-                    <strong>Post Code:</strong> {{ $orderDetail->shipping->post_code }}
+                    <strong>Alamat:</strong> {{ $orderDetail->shipping->alamat }} <br>
+                    <strong>Post Code:</strong> {{ $orderDetail->shipping->kode_pos }}
                 </p>
             </td>
             <td>

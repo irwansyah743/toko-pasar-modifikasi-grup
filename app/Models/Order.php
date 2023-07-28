@@ -10,7 +10,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    public $table = 'penjualan';
+    public $table = 'pesanan';
 
     protected $fillable = [
         'user_id',

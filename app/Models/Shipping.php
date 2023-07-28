@@ -15,13 +15,13 @@ class Shipping extends Model
         'provinsi',
         'kabupaten',
         'kecamatan',
-        'address',
-        'shipping_name',
-        'shipping_email',
-        'shipping_phone',
-        'delivery_status',
-        'post_code',
+        'alamat',
+        'nama_pengiriman',
+        'email_pengiriman',
+        'no_telepon_pengiriman',
+        'status_pengiriman',
+        'kode_pos',
         'resi',
-        'notes'
+        'catatan'
     ];
 }

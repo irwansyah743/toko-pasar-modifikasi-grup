@@ -69,8 +69,8 @@
                                             </label>
                                         </td>
                                         <td> <span
-                                                style="background:{{ $order->shipping->delivery_status == 0 ? '#EF3737' : '#418DB9' }} ; "
-                                                class="badge badge-pill {{ $order->shipping->delivery_status == 0 ? 'badge-danger' : 'badge-primary' }} ">{{ $order->shipping->delivery_status == 0 ? 'In Progress' : 'Sent' }}
+                                                style="background:{{ $order->shipping->status_pengiriman == 0 ? '#EF3737' : '#418DB9' }} ; "
+                                                class="badge badge-pill {{ $order->shipping->status_pengiriman == 0 ? 'badge-danger' : 'badge-primary' }} ">{{ $order->shipping->status_pengiriman == 0 ? 'In Progress' : 'Sent' }}
                                             </span> </td>
 
                                         <td class="col-md-1">

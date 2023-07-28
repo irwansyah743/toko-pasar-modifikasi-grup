@@ -18,14 +18,14 @@ return new class extends Migration
             $table->string('provinsi');
             $table->string('kabupaten');
             $table->string('kecamatan');
-            $table->string('address');
-            $table->string('shipping_name');
-            $table->string('shipping_email');
-            $table->string('shipping_phone');
-            $table->string('delivery_status');
-            $table->integer('post_code');
+            $table->string('alamat');
+            $table->string('nama_pengiriman');
+            $table->string('email_pengiriman');
+            $table->string('no_telepon_pengiriman');
+            $table->string('status_pengiriman');
+            $table->integer('kode_pos');
             $table->string('resi')->nullable();
-            $table->text('notes')->nullable();
+            $table->text('catatan')->nullable();
             $table->timestamps();
         });
     }

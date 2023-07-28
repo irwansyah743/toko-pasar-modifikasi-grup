@@ -200,15 +200,15 @@ class CartController extends Controller
 
     public function checkoutStore(Request $request)
     {
-        $data['shipping_name'] = $request->shipping_name;
-        $data['shipping_email'] = $request->shipping_email;
-        $data['shipping_phone'] = $request->shipping_phone;
-        $data['post_code'] = $request->post_code;
+        $data['nama_pengiriman'] = $request->nama_pengiriman;
+        $data['email_pengiriman'] = $request->email_pengiriman;
+        $data['no_telepon_pengiriman'] = $request->no_telepon_pengiriman;
+        $data['kode_pos'] = $request->kode_pos;
         $data['provinsi'] = $request->provinsi;
         $data['kabupaten'] = $request->kabupaten;
         $data['kecamatan'] = $request->kecamatan;
-        $data['address'] = $request->address;
-        $data['notes'] = $request->notes;
+        $data['alamat'] = $request->alamat;
+        $data['catatan'] = $request->catatan;
 
 
         if ($request->payment_method == 'stripe') {

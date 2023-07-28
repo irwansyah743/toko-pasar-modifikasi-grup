@@ -70,7 +70,7 @@
 
                             <tr>
                                 <th> Post Code : </th>
-                                <th> {{ $orderDetail->shipping->post_code }} </th>
+                                <th> {{ $orderDetail->shipping->kode_pos }} </th>
                             </tr>
 
                             <tr>
@@ -81,7 +81,7 @@
                                 <th> Delivery Status : </th>
                                 <th>
                                     <span class="badge badge-pill badge-warning"
-                                        style="background:{{ $orderDetail->shipping->delivery_status == 0 ? '#EF3737' : '#418DB9' }} ; ">{{ $orderDetail->shipping->delivery_status == 0 ? 'Waitlist' : 'Sent' }}
+                                        style="background:{{ $orderDetail->shipping->status_pengiriman == 0 ? '#EF3737' : '#418DB9' }} ; ">{{ $orderDetail->shipping->status_pengiriman == 0 ? 'Waitlist' : 'Sent' }}
                                     </span>
                                 </th>
                             </tr>

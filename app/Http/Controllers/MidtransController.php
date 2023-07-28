@@ -31,16 +31,16 @@ class MidtransController extends Controller
         $order_id = rand();
 
         // STORE TO DATABASE
-        $shipping['shipping_name'] = $request->name;
-        $shipping['shipping_email'] = $request->email;
-        $shipping['shipping_phone'] = $request->phone;
-        $shipping['post_code'] = $request->postCode;
+        $shipping['nama_pengiriman'] = $request->name;
+        $shipping['email_pengiriman'] = $request->email;
+        $shipping['no_telepon_pengiriman'] = $request->phone;
+        $shipping['kode_pos'] = $request->postCode;
         $shipping['provinsi'] = $request->provinsi;
         $shipping['kabupaten'] = $request->kabupaten;
         $shipping['kecamatan'] = $request->kecamatan;
-        $shipping['address'] = $request->address;
-        $shipping['notes'] = $request->notes;
-        $shipping['delivery_status'] = 0;
+        $shipping['alamat'] = $request->alamat;
+        $shipping['catatan'] = $request->catatan;
+        $shipping['status_pengiriman'] = 0;
         $shipping['created_at'] = Carbon::now();
 
         // Insert Shipping
@@ -101,7 +101,7 @@ class MidtransController extends Controller
             ),
             "shipping_address" =>  array(
                 "provinsi" => $request->provinsi,
-                "address" => $request->address,
+                "alamat" => $request->alamat,
                 "city" => $request->kabupaten,
                 "postal_code" => $request->postCode,
             )
