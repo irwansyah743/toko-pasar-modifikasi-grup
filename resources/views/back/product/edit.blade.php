@@ -464,7 +464,7 @@
                 <div class="col-md-6">
                     <div class="box bt-3 border-info">
                         <div class="box-header">
-                            <h4 class="box-title">Add Product Images</h4>
+                            <h4 class="box-title">Gambar Tambah Produk</h4>
                         </div>
                         <div class="box-body">
                             <form action="{{ route('product.images.store') }}" method="post"

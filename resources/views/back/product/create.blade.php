@@ -12,7 +12,7 @@
             <!-- Basic Forms -->
             <div class="box">
                 <div class="box-header with-border">
-                    <h4 class="box-title">Add Product </h4>
+                    <h4 class="box-title">Tambah Produk </h4>
 
                 </div>
                 <!-- /.box-header -->
@@ -429,7 +429,7 @@
                                                         <fieldset>
                                                             <input type="checkbox" id="checkbox_2" name="diskon_besar"
                                                                 value="1" @checked(old('diskon_besar'))>
-                                                            <label for="checkbox_2">Hot Deals</label>
+                                                            <label for="checkbox_2">Diskon besar</label>
                                                         </fieldset>
                                                         <fieldset>
                                                             <input type="checkbox" id="checkbox_3" name="unggulan"
@@ -449,12 +449,12 @@
                                                         <fieldset>
                                                             <input type="checkbox" id="checkbox_4" name="penawaran_spesial"
                                                                 value="1" @checked(old('penawaran_spesial'))>
-                                                            <label for="checkbox_4">Special Offer</label>
+                                                            <label for="checkbox_4">Penawaran spesial</label>
                                                         </fieldset>
                                                         <fieldset>
                                                             <input type="checkbox" id="checkbox_5" name="penawaran_khusus"
                                                                 value="1" @checked(old('penawaran_khusus'))>
-                                                            <label for="checkbox_5">Special Deals</label>
+                                                            <label for="checkbox_5">Penawaran khusus</label>
                                                         </fieldset>
                                                     </div>
                                                 </div>

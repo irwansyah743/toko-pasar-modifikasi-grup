@@ -15,7 +15,7 @@
                 <div class="col-8">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">SubSubCategory List <span class="badge badge-pill badge-danger">
+                            <h3 class="box-title">list Subsub kategori <span class="badge badge-pill badge-danger">
                                     {{ count($subsubcategories) }} </span> </h3>
                         </div>
                         <!-- /.box-header -->
@@ -24,9 +24,9 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>SubSubCategory</th>
-                                            <th>SubCategory</th>
-                                            <th>Category </th>
+                                            <th>SubSubKategori</th>
+                                            <th>SubKategori</th>
+                                            <th>Kategori </th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>

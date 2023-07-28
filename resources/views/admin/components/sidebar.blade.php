@@ -81,7 +81,7 @@ $alladmin =
                     </a>
                     <ul class="treeview-menu">
                         <li class="{{ $route == 'all.user' ? 'active' : '' }}"><a href="{{ route('all.user') }}"><i
-                                    class="ti-more"></i>All Users</a></li>
+                                    class="ti-more"></i>Semua Users</a></li>
                     </ul>
                 </li>
             
@@ -96,21 +96,21 @@ $alladmin =
                     </a>
                     <ul class="treeview-menu">
                         <li class="{{ $route == 'all.admin' ? 'active' : '' }}"><a href="{{ route('all.admin') }}"><i
-                                    class="ti-more"></i>All Admin</a></li>
+                                    class="ti-more"></i>Semua Admin</a></li>
                     </ul>
                 </li>
             
                 <li class="treeview {{ $prefix == '/report' ? 'active' : '' }}">
                     <a href="#">
                         <i data-feather="mail"></i>
-                        <span>Report</span>
+                        <span>Laporan</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-right pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
                         <li class="{{ $route == 'all.report' ? 'active' : '' }}"><a
-                                href="{{ route('all.report') }}"><i class="ti-more"></i>All Report</a></li>
+                                href="{{ route('all.report') }}"><i class="ti-more"></i>Semua Laporan</a></li>
                     </ul>
                 </li>
             
@@ -144,10 +144,10 @@ $alladmin =
                         <li class="{{ $route == 'all.category' ? 'active' : '' }}"><a
                                 href="{{ route('all.category') }}"><i class="ti-more"></i>Semua kategori</a></li>
                         <li class="{{ $route == 'all.subcategory' ? 'active' : '' }}"><a
-                                href="{{ route('all.subcategory') }}"><i class="ti-more"></i>SubKategori</a>
+                                href="{{ route('all.subcategory') }}"><i class="ti-more"></i>Sub Kategori</a>
                         </li>
                         <li class="{{ $route == 'all.subsubcategory' ? 'active' : '' }}"><a
-                                href="{{ route('all.subsubcategory') }}"><i class="ti-more"></i>SubSubKategori</a>
+                                href="{{ route('all.subsubcategory') }}"><i class="ti-more"></i>SubSub Kategori</a>
                         </li>
                     </ul>
                 </li>
@@ -228,9 +228,9 @@ $alladmin =
                     </a>
                     <ul class="treeview-menu">
                         <li class="{{ $route == 'pending.review' ? 'active' : '' }}"><a
-                                href="{{ route('pending.review') }}"><i class="ti-more"></i>Pending Review</a></li>
+                                href="{{ route('pending.review') }}"><i class="ti-more"></i>Review Tertunda</a></li>
                         <li class="{{ $route == 'publish.review' ? 'active' : '' }}"><a
-                                href="{{ route('publish.review') }}"><i class="ti-more"></i>Published Review</a>
+                                href="{{ route('publish.review') }}"><i class="ti-more"></i>Review publish</a>
                         </li>
                     </ul>
                 </li>

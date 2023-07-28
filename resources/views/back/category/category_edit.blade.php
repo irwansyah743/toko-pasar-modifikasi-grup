@@ -51,7 +51,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <h5>Category image <span class="text-danger">*</span></h5>
+                                    <h5>Gambar Kategori <span class="text-danger">*</span></h5>
                                     <div class="controls">
                                         <input type="hidden" value="{{ $category->gambar_kategori }}" name="old_image">
                                         <input type="file" name="gambar_kategori"

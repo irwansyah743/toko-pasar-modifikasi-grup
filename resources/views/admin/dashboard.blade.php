@@ -88,12 +88,12 @@
                                 <table class="table no-border">
                                     <thead>
                                         <tr class="text-uppercase bg-lightest">
-                                            <th style="min-width: 250px"><span class="text-white">Date</span></th>
-                                            <th style="min-width: 100px"><span class="text-fade">Order</span></th>
-                                            <th style="min-width: 100px"><span class="text-fade">Amount</span></th>
-                                            <th style="min-width: 150px"><span class="text-fade">Payment</span></th>
+                                            <th style="min-width: 250px"><span class="text-white">Tanggal</span></th>
+                                            <th style="min-width: 100px"><span class="text-fade">Pesanan</span></th>
+                                            <th style="min-width: 100px"><span class="text-fade">Jumlah</span></th>
+                                            <th style="min-width: 150px"><span class="text-fade">Pembayarant</span></th>
                                             <th style="min-width: 130px"><span class="text-fade">Status</span></th>
-                                            <th style="min-width: 120px"><span class="text-fade">Process</span> </th>
+                                            <th style="min-width: 120px"><span class="text-fade">Proses</span> </th>
                                         </tr>
                                     </thead>
                                     <tbody>
