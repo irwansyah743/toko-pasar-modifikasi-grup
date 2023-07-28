@@ -53,7 +53,7 @@ class MidtransController extends Controller
         $order->nominal_total = Cart::total();
         $order->id_pesanan =  $id_pesanan;
         $order->tanggal_pesanan = Carbon::now()->format('d F Y');
-        $order->order_month = Carbon::now()->format('F');
+        $order->bulan_pesanan = Carbon::now()->format('F');
         $order->tahun_pesanan = Carbon::now()->format('Y');
         $order->save();
 
