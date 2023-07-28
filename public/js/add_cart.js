@@ -6,8 +6,8 @@ async function productView(id){
         
         document.getElementById('pcode').innerHTML=data.product.kode_produk;
         document.getElementById('pstock').innerHTML=data.product.kuantitas_produk;
-        document.getElementById('pcategory').innerHTML=data.product.category.category_name;
-        document.getElementById('pbrand').innerHTML=data.product.brand.brand_name;
+        document.getElementById('pcategory').innerHTML=data.product.category.nama_kategori;
+        document.getElementById('pbrand').innerHTML=data.product.brand.nama_merek;
         document.getElementById('pid').value=data.product.id;
         document.getElementById('pimage').src=`${window.location.origin}/storage/${data.product.thumbnail_produk}`;
         if(data.product.harga_diskon==null){
@@ -70,9 +70,9 @@ function addToCart(kuantitas_produk){
     const pSize=selectSize.options[selectSize.selectedIndex].value;
     let pQty=null;
 
-    console.log(parseInt(document.getElementById('qty').value, 10));
+    console.log(parseInt(document.getElementById('kuantitas').value, 10));
     console.log(parseInt(kuantitas_produk));
-    if(parseInt(document.getElementById('qty').value, 10) > parseInt(kuantitas_produk)){
+    if(parseInt(document.getElementById('kuantitas').value, 10) > parseInt(kuantitas_produk)){
         Swal.fire({
             toast: true,
             position: 'top-end',
@@ -83,7 +83,7 @@ function addToCart(kuantitas_produk){
           });
         throw Error("Pemesanan tidak boleh melebihi ketersediaan");
     }else{
-        pQty=document.getElementById('qty').value;
+        pQty=document.getElementById('kuantitas').value;
     }
     
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -470,7 +470,7 @@ const cartRemove=(rowId)=>{
             Subtotal<span class="inner-left-md" style="float:right;">Rp. ${cart.subtotal}</span>
         </div>
         <div class="cart-sub-total">
-            Coupon<span class="inner-left-md" style="float:right;"> ${cart.coupon_name}</span>
+            Coupon<span class="inner-left-md" style="float:right;"> ${cart.nama_kupon}</span>
             <button type="submit" onclick="couponRemove()"><i class="fa fa-times"></i>  </button>
         </div>
          <div class="cart-sub-total">
@@ -500,7 +500,7 @@ const cartRemove=(rowId)=>{
     ).then(
         document.getElementById('couponField').style.display='block'
     ).then(
-            document.getElementById('coupon_name').value=''
+            document.getElementById('nama_kupon').value=''
     ).then(
         // Start Message 
         Swal.fire({
