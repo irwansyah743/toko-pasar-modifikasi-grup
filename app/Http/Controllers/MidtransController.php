@@ -64,7 +64,7 @@ class MidtransController extends Controller
             $item->kuantitas = $cart->qty;
             $item->warna = $cart->options->warna;
             $item->ukuran = $cart->options->ukuran;
-            $item->id_pesanan = Order::latest()->first()->id;
+            $item->id_pesanan = $order->id;
             $item->save();
         }
         Cart::destroy();
