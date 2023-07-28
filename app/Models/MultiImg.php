@@ -12,7 +12,7 @@ class MultiImg extends Model
     public $table = "gambar_produk";
 
     protected $fillable = [
-        'product_id',
-        'photo_name',
+        'id_produk',
+        'nama_gambar_produk',
     ];
 }

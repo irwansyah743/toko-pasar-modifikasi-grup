@@ -60,7 +60,7 @@ class MidtransController extends Controller
         $carts = Cart::content();
         foreach ($carts as $cart) {
             $item = new OrderItem();
-            $item->product_id = $cart->id;
+            $item->id_produk = $cart->id;
             $item->qty = $cart->qty;
             $item->color = $cart->options->color;
             $item->size = $cart->options->size;

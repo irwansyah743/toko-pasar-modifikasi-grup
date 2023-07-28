@@ -50,10 +50,10 @@
                                     @foreach ($multiImages as $img)
                                         <div class="single-product-gallery-item" id="slide{{ $img->id }}">
                                             <a data-lightbox="image-1" data-title="Gallery"
-                                                href="{{ asset('storage/' . $img->photo_name) }} ">
+                                                href="{{ asset('storage/' . $img->nama_gambar_produk) }} ">
                                                 <img class="img-responsive" alt=""
-                                                    src="{{ asset('storage/' . $img->photo_name) }} "
-                                                    data-echo="{{ asset('storage/' . $img->photo_name) }} " />
+                                                    src="{{ asset('storage/' . $img->nama_gambar_produk) }} "
+                                                    data-echo="{{ asset('storage/' . $img->nama_gambar_produk) }} " />
                                             </a>
                                         </div><!-- /.single-product-gallery-item -->
                                     @endforeach
@@ -71,8 +71,8 @@
                                                 <a class="horizontal-thumb active" data-target="#owl-single-product"
                                                     data-slide="1" href="#slide{{ $img->id }}">
                                                     <img class="img-responsive" width="85" alt=""
-                                                        src="{{ asset('storage/' . $img->photo_name) }} "
-                                                        data-echo="{{ asset('storage/' . $img->photo_name) }} " />
+                                                        src="{{ asset('storage/' . $img->nama_gambar_produk) }} "
+                                                        data-echo="{{ asset('storage/' . $img->nama_gambar_produk) }} " />
                                                 </a>
                                             </div>
                                         @endforeach
@@ -317,7 +317,7 @@
                                             <h4 class="title">Customer Reviews</h4>
 
                                             @php
-                                                $reviews = App\Models\Review::where('product_id', $product->id)
+                                                $reviews = App\Models\Review::where('id_produk', $product->id)
                                                     ->latest()
                                                     ->limit(5)
                                                     ->get();

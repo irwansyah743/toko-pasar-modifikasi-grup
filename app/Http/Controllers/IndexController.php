@@ -38,8 +38,8 @@ class IndexController extends Controller
     public function productDetail($slug)
     {
         $data['product'] = Product::where('product_slug', $slug)->get()->first();
-        $data['reviewcount'] = Review::where('product_id', $data['product']->id)->where('status', 1)->latest()->get();
-        $data['avarage'] = Review::where('product_id', $data['product']->id)->where('status', 1)->avg('rating');
+        $data['reviewcount'] = Review::where('id_produk', $data['product']->id)->where('status', 1)->latest()->get();
+        $data['avarage'] = Review::where('id_produk', $data['product']->id)->where('status', 1)->avg('rating');
 
         $data['related_products'] = Product::where('category_id',  $data['product']->category_id)->where('product_slug', '!=', $slug)->get();
         $product_color =  $data['product']->product_color;
@@ -47,7 +47,7 @@ class IndexController extends Controller
         $data['sizes'] = Product::where('product_slug', $slug)->select('product_size')->get();
         $product_size =  $data['product']->product_size;
         $data['sizes'] = explode(',', $product_size);
-        $data['multiImages'] = MultiImg::where('product_id',  $data['product']->id)->get();
+        $data['multiImages'] = MultiImg::where('id_produk',  $data['product']->id)->get();
 
         $tags =  $data['product']->product_tags;
 

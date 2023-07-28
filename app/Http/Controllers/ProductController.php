@@ -89,7 +89,7 @@ class ProductController extends Controller
 
 
 
-        $product_id = DB::table('products')->insertGetId([
+        $id_produk = DB::table('products')->insertGetId([
             'brand_id' => $request->brand_id,
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
@@ -131,8 +131,8 @@ class ProductController extends Controller
             Image::make($img)->resize(917, 1000)->save('storage/product-images/' . $make_name);
             $uploadPath = 'product-images/' . $make_name;
             MultiImg::insert([
-                'product_id' => $product_id,
-                'photo_name' => $uploadPath,
+                'id_produk' => $id_produk,
+                'nama_gambar_produk' => $uploadPath,
                 'created_at' => Carbon::now(),
             ]);
         }
@@ -171,7 +171,7 @@ class ProductController extends Controller
         $data['subsubcategories'] = SubSubCategory::orderBy('subsubcategory_name', 'ASC')->get();
         $data['brands'] = Brand::orderBy('brand_name', 'ASC')->get();
         $data['product'] = $product;
-        $data['multiimg'] = MultiImg::where('product_id',  $product->id)->get();
+        $data['multiimg'] = MultiImg::where('id_produk',  $product->id)->get();
         return view('back.product.edit', $data);
     }
 
@@ -271,16 +271,16 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
 
-        if ($images = MultiImg::where('product_id',  $product->id)->get()) {
+        if ($images = MultiImg::where('id_produk',  $product->id)->get()) {
             foreach ($images as $image) {
-                Storage::delete($image->photo_name);
+                Storage::delete($image->nama_gambar_produk);
             }
         }
 
         if ($product->product_thambnail) {
             Storage::delete($product->product_thambnail);
         }
-        MultiImg::where('product_id', $product->id)->delete();
+        MultiImg::where('id_produk', $product->id)->delete();
         Product::destroy($product->id);
 
         $notification = array(
@@ -306,8 +306,8 @@ class ProductController extends Controller
             Image::make($img)->resize(917, 1000)->save('storage/product-images/' . $make_name);
             $uploadPath = 'product-images/' . $make_name;
             MultiImg::insert([
-                'product_id' => $request->product_id,
-                'photo_name' => $uploadPath,
+                'id_produk' => $request->id_produk,
+                'nama_gambar_produk' => $uploadPath,
                 'created_at' => Carbon::now(),
 
             ]);
@@ -328,8 +328,8 @@ class ProductController extends Controller
     public function destroyImages(MultiImg $multiimg)
     {
 
-        if ($multiimg->photo_name) {
-            Storage::delete($multiimg->photo_name);
+        if ($multiimg->nama_gambar_produk) {
+            Storage::delete($multiimg->nama_gambar_produk);
         }
         MultiImg::destroy($multiimg->id);
         $notification = array(

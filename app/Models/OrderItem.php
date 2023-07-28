@@ -12,13 +12,13 @@ class OrderItem extends Model
     public $table = 'penjualan_produk';
 
     protected $fillable = [
-        'product_id',
+        'id_produk',
         'order_id'
     ];
 
     public function product()
     {
-        return $this->belongsTo(Product::class, 'product_id', 'id');
+        return $this->belongsTo(Product::class, 'id_produk', 'id');
     }
 
     public function order()

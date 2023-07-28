@@ -441,7 +441,7 @@
                         @foreach ($multiimg as $img)
                             <div class="col-md-4">
                                 <div class="card">
-                                    <img src="{{ asset('storage/' . $img->photo_name) }}" class="card-img-top"
+                                    <img src="{{ asset('storage/' . $img->nama_gambar_produk) }}" class="card-img-top"
                                         style="height: 130px; width: 280px;">
                                     <div class="card-body">
 
@@ -470,7 +470,7 @@
                             <form action="{{ route('product.images.store') }}" method="post"
                                 enctype="multipart/form-data" novalidate>
                                 @csrf
-                                <input type="hidden" value="{{ $product->id }}" name="product_id">
+                                <input type="hidden" value="{{ $product->id }}" name="id_produk">
                                 <div class="form-group">
                                     <div class="controls">
                                         <input type="file" name="multi_img[]"

@@ -47,7 +47,7 @@ class ReviewController extends Controller
             'comment' => 'required',
         ]);
 
-        if (Review::where('product_id', $product->id)->where('user_id', Auth::id())->count() > 0) {
+        if (Review::where('id_produk', $product->id)->where('user_id', Auth::id())->count() > 0) {
             $notification = array(
                 'message' => 'You have already wrote a review for this product',
                 'alert-type' => 'warning'
@@ -57,7 +57,7 @@ class ReviewController extends Controller
         }
 
         Review::insert([
-            'product_id' => $product->id,
+            'id_produk' => $product->id,
             'user_id' => Auth::id(),
             'comment' => $request->comment,
             'summary' => $request->summary,

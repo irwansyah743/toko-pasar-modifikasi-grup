@@ -40,11 +40,11 @@ class WishlistController extends Controller
     public function addToWishlist(Product $product)
     {
         if (Auth::check()) {
-            $exists = Wishlist::where('user_id', Auth::id())->where('product_id', $product->id)->first();
+            $exists = Wishlist::where('user_id', Auth::id())->where('id_produk', $product->id)->first();
             if (!$exists) {
                 Wishlist::insert([
                     'user_id' => Auth::id(),
-                    'product_id' => $product->id,
+                    'id_produk' => $product->id,
                     'created_at' => Carbon::now(),
                 ]);
                 return response()->json(['success' => 'Successfully Added On Your Wishlist']);
@@ -113,7 +113,7 @@ class WishlistController extends Controller
 
     public function removeWishlistProduct($id)
     {
-        Wishlist::where('user_id', Auth::id())->where('product_id', $id)->delete();
+        Wishlist::where('user_id', Auth::id())->where('id_produk', $id)->delete();
         return response()->json(['success' => 'Product Successfully Remove']);
     }
 }

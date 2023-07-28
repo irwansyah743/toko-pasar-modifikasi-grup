@@ -21,7 +21,7 @@
                          @php
                              $amount = $product->selling_price - $product->discount_price;
                              $discount = ($amount / $product->selling_price) * 100;
-                             $avarage = App\Models\Review::where('product_id', $product->id)
+                             $avarage = App\Models\Review::where('id_produk', $product->id)
                                  ->where('status', 1)
                                  ->avg('rating');
                          @endphp

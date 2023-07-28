@@ -36,7 +36,7 @@ $specOffers = App\Models\Product::where('status', 1)
                                                     href="{{ url('product/detail/' . $product->product_slug) }}">{{ $product->product_name }}</a>
                                             </h3>
                                             @php
-                                                $avarage = App\Models\Review::where('product_id', $product->id)
+                                                $avarage = App\Models\Review::where('id_produk', $product->id)
                                                     ->where('status', 1)
                                                     ->avg('rating');
                                             @endphp
