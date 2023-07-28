@@ -12,13 +12,13 @@ function midTrans(){
     const name=document.getElementById('nama_pengiriman').value;
     const email=document.getElementById('email_pengiriman').value;
     const phone=document.getElementById('no_telepon_pengiriman').value;
-    const postCode=document.getElementById('kode_pos').value;
+    const kodePos=document.getElementById('kode_pos').value;
 
     const provinsi=document.getElementById('provinsi').value;
     const kabupaten=document.getElementById('kabupaten').value;
     const kecamatan=document.getElementById('kecamatan').value;
     const address=document.getElementById('alamat').value;
-    const notes=document.getElementById('catatan').value;
+    const catatan=document.getElementById('catatan').value;
 
 
 
@@ -27,15 +27,15 @@ function midTrans(){
         name: name,
         email: email,
         phone: phone,
-        postCode: postCode,
+        kodePos: kodePos,
         provinsi: provinsi,
         kabupaten: kabupaten,
         kecamatan: kecamatan,
-        address: address,
+        alamat: address,
     };
 
-    if(notes){
-        shippingData.notes=notes;
+    if(catatan){
+        shippingData.catatan=catatan;
     }
 
     if(document.getElementById('coupon_discount')){

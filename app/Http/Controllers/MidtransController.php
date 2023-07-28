@@ -34,7 +34,7 @@ class MidtransController extends Controller
         $shipping['nama_pengiriman'] = $request->name;
         $shipping['email_pengiriman'] = $request->email;
         $shipping['no_telepon_pengiriman'] = $request->phone;
-        $shipping['kode_pos'] = $request->postCode;
+        $shipping['kode_pos'] = $request->kodePos;
         $shipping['provinsi'] = $request->provinsi;
         $shipping['kabupaten'] = $request->kabupaten;
         $shipping['kecamatan'] = $request->kecamatan;
@@ -103,7 +103,7 @@ class MidtransController extends Controller
                 "provinsi" => $request->provinsi,
                 "alamat" => $request->alamat,
                 "city" => $request->kabupaten,
-                "postal_code" => $request->postCode,
+                "postal_code" => $request->kodePos,
             )
         );
 
