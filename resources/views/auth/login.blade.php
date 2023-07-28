@@ -19,7 +19,7 @@
                     <!-- Sign-in -->
                     <div class="col-md-6 col-sm-6 sign-in">
                         <h4 class="">Sign in</h4>
-                        <p class="">Selamat Datang.</p>
+                        <p class="">Selamat Datang </p>
                         {{-- <div class="social-sign-in outer-top-xs">
                             <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Masuk Menggunakan Facebook</a>
                             <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Masuk menggunakanTwitter</a>
@@ -69,8 +69,8 @@
 
                     <!-- create a new account -->
                     <div class="col-md-6 col-sm-6 create-new-account">
-                        <h4 class="checkout-subtitle">Membuat akun baru </h4>
-                        <p class="text title-tag-line">Membuat akun baru.</p>
+                        <h4 class="checkout-subtitle">Daftar Sekarang</h4>
+                        <p class="text title-tag-line">Membuat akun baru</p>
                         <form class="register-form outer-top-xs" role="form" method="POST"
                             action="{{ route('register') }}" novalidate>
                             @csrf

@@ -28,8 +28,7 @@
                                                 </div>
                                                 <div class="button-holder fadeInDown-3"> <a
                                                         href="{{ url('product/detail/real-madrid-home-kit-2022-2023') }}"
-                                                        class="btn-lg btn btn-uppercase btn-primary shop-now-button">Shop
-                                                        Now</a>
+                                                        class="btn-lg btn btn-uppercase btn-primary shop-now-button">Belanja sekarang</a>
                                                 </div>
                                             </div>
                                             <!-- /.caption -->
@@ -64,10 +63,10 @@
                                         <div class="info-box">
                                             <div class="row">
                                                 <div class="col-xs-12">
-                                                    <h4 class="info-box-heading green">free shipping</h4>
+                                                    <h4 class="info-box-heading green">Gratis Pengiriman</h4>
                                                 </div>
                                             </div>
-                                            <h6 class="text">On orders over Rp. 300.000</h6>
+                                            <h6 class="text">Pemesanan dengan Rp. 300.000</h6>
                                         </div>
                                     </div>
                                     <!-- .col -->
@@ -79,7 +78,7 @@
                                                     <h4 class="info-box-heading green">Special Sale</h4>
                                                 </div>
                                             </div>
-                                            <h6 class="text">20% Off this month only </h6>
+                                            <h6 class="text">20% Hanya pada bulan ini </h6>
                                         </div>
                                     </div>
                                     <!-- .col -->
@@ -218,7 +217,7 @@
                                                                                 <i class="fa fa-shopping-cart"></i>
                                                                             </button>
                                                                             <button class="btn btn-primary cart-btn"
-                                                                                type="button">Add to cart</button>
+                                                                                type="button">Tambah ke keranjang</button>
                                                                         </li>
                                                                         <button class="btn btn-primary icon"
                                                                             type="button" title="Wishlist"
@@ -365,7 +364,7 @@
                                                                                         id="{{ $product->id }}"
                                                                                         onclick="productView(this.id)"
                                                                                         class="btn btn-primary cart-btn"
-                                                                                        type="button">Add to cart</button>
+                                                                                        type="button">Tambah ke keranjang</button>
                                                                                 </li>
                                                                                 <button class="btn btn-primary icon"
                                                                                     type="button" title="Wishlist"
@@ -510,8 +509,7 @@
                                                                         class="fa fa-shopping-cart"></i>
                                                                 </button>
                                                                 <button class="btn btn-primary cart-btn"
-                                                                    type="button">Add
-                                                                    to cart</button>
+                                                                    type="button">Tambah ke keranjang</button>
                                                             </li>
                                                             <button class="btn btn-primary icon" type="button"
                                                                 title="Wishlist" id="{{ $product->id }}"
@@ -641,8 +639,7 @@
                                                                         class="fa fa-shopping-cart"></i>
                                                                 </button>
                                                                 <button class="btn btn-primary cart-btn"
-                                                                    type="button">Add
-                                                                    to cart</button>
+                                                                    type="button">Tambah ke keranjang</button>
                                                             </li>
                                                             <button class="btn btn-primary icon" type="button"
                                                                 title="Wishlist" id="{{ $product->id }}"
@@ -771,8 +768,7 @@
                                                                         class="fa fa-shopping-cart"></i>
                                                                 </button>
                                                                 <button class="btn btn-primary cart-btn"
-                                                                    type="button">Add
-                                                                    to cart</button>
+                                                                    type="button">Tambah Ke keranjang</button>
                                                             </li>
                                                             <button class="btn btn-primary icon" type="button"
                                                                 title="Wishlist" id="{{ $product->id }}"
@@ -902,8 +898,7 @@
                                                                         class="fa fa-shopping-cart"></i>
                                                                 </button>
                                                                 <button class="btn btn-primary cart-btn"
-                                                                    type="button">Add
-                                                                    to cart</button>
+                                                                    type="button">Tambah ke keranjang</button>
                                                             </li>
                                                             <button class="btn btn-primary icon" type="button"
                                                                 title="Wishlist" id="{{ $product->id }}"
@@ -1033,8 +1028,7 @@
                                                                         class="fa fa-shopping-cart"></i>
                                                                 </button>
                                                                 <button class="btn btn-primary cart-btn"
-                                                                    type="button">Add
-                                                                    to cart</button>
+                                                                    type="button">Tambah ke keranjang</button>
                                                             </li>
                                                             <button class="btn btn-primary icon" type="button"
                                                                 title="Wishlist" id="{{ $product->id }}"
