@@ -131,7 +131,7 @@
                                                             @foreach ($brands as $brand)
                                                                 <option @selected(old('brand_id') == $brand->id || $brand->id == $product->brand_id)
                                                                     value="{{ $brand->id }}">
-                                                                    {{ $brand->brand_name }}</option>
+                                                                    {{ $brand->nama_merek }}</option>
                                                             @endforeach
                                                         </select>
                                                         @error('brand_id')

@@ -25,10 +25,10 @@
                         <div class="form-group">
                             <h5>Brand name <span class="text-danger">*</span></h5>
                             <div class="controls">
-                                <input type="text" name="brand_name"
-                                    class="form-control  @error('brand_name') is-invalid @enderror"
-                                    value="{{ old('brand_name', $brand->brand_name) }}">
-                                @error('brand_name')
+                                <input type="text" name="nama_merek"
+                                    class="form-control  @error('nama_merek') is-invalid @enderror"
+                                    value="{{ old('nama_merek', $brand->nama_merek) }}">
+                                @error('nama_merek')
                                     <div class="invalid-feedback text-danger">
                                         {{ $message }}
                                     </div>
@@ -41,11 +41,11 @@
                                 <div class="form-group">
                                     <h5>Brand image <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="hidden" value="{{ $brand->brand_image }}" name="old_image">
-                                        <input type="file" name="brand_image"
-                                            class="form-control  @error('brand_image') is-invalid @enderror"
+                                        <input type="hidden" value="{{ $brand->gambar_merek }}" name="old_image">
+                                        <input type="file" name="gambar_merek"
+                                            class="form-control  @error('gambar_merek') is-invalid @enderror"
                                             onchange="previewImage()" id="input_image">
-                                        @error('brand_image')
+                                        @error('gambar_merek')
                                             <div class="invalid-feedback text-danger">
                                                 {{ $message }}
                                             </div>
@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <img class="rounded-circle" src="{{ url('storage/' . $brand->brand_image) }}"
+                                <img class="rounded-circle" src="{{ url('storage/' . $brand->gambar_merek) }}"
                                     alt="User Avatar" style="width: 100px; height:100px;" id="img-preview">
                             </div>
                         </div>

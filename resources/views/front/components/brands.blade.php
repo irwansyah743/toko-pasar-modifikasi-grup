@@ -8,7 +8,7 @@ $brands = App\Models\Brand::latest()->get();
 
             @foreach ($brands as $brand)
                 <div class="item m-t-15"> <a href="#" class="image"> <img
-                            data-echo=" {{ asset('storage/' . $brand->brand_image) }}"
+                            data-echo=" {{ asset('storage/' . $brand->gambar_merek) }}"
                             src=" {{ asset('front-theme/assets/images/blank.gif') }}" alt=""
                             style="max-height: 120px; max-width:120px;"> </a>
                 </div>

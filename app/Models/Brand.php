@@ -12,8 +12,8 @@ class Brand extends Model
     public $table = "merek";
 
     protected $fillable = [
-        'brand_name',
-        'brand_slug',
-        'brand_image',
+        'nama_merek',
+        'slug_merek',
+        'gambar_merek',
     ];
 }

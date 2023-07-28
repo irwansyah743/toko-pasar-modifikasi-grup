@@ -44,22 +44,22 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'brand_name' => 'required|max:255|unique:brands,brand_name',
-            'brand_image' => 'required|image|file|max:2024',
+            'nama_merek' => 'required|max:255|unique:brands,nama_merek',
+            'gambar_merek' => 'required|image|file|max:2024',
         ], [
-            'brand_name.required' => 'Please input the brand name',
-            'brand_name.max' => 'Max length is 255 characters',
-            'brand_name.unique' => 'This brand has already been added',
-            'brand_image.required' => 'Please upload the brand image',
+            'nama_merek.required' => 'Please input the brand name',
+            'nama_merek.max' => 'Max length is 255 characters',
+            'nama_merek.unique' => 'This brand has already been added',
+            'gambar_merek.required' => 'Please upload the brand image',
         ]);
 
 
-        if ($request->file('brand_image')) {
-            $validated['brand_image'] = $request->file('brand_image')->store('brand-images');
+        if ($request->file('gambar_merek')) {
+            $validated['gambar_merek'] = $request->file('gambar_merek')->store('brand-images');
         }
 
-        $validated['brand_name'] = $request->brand_name;
-        $validated['brand_slug'] = strtolower(str_replace(' ', '-', $request->brand_name));
+        $validated['nama_merek'] = $request->nama_merek;
+        $validated['slug_merek'] = strtolower(str_replace(' ', '-', $request->nama_merek));
         $validated['created_at'] = Carbon::now();
 
         // BATCH INSERT
@@ -106,20 +106,20 @@ class BrandController extends Controller
     public function update(Request $request, Brand $brand)
     {
         $validated = $request->validate([
-            'brand_name' => 'required|max:255',
-            'brand_image' => 'image|file|max:2024',
+            'nama_merek' => 'required|max:255',
+            'gambar_merek' => 'image|file|max:2024',
         ], [
-            'brand_name.required' => 'Please input the brand name',
-            'brand_name.max' => 'Max length is 255 characters',
+            'nama_merek.required' => 'Please input the brand name',
+            'nama_merek.max' => 'Max length is 255 characters',
         ]);
-        if ($request->file('brand_image')) {
+        if ($request->file('gambar_merek')) {
             if ($request->old_image) {
                 Storage::delete($request->old_image);
             }
-            $validated['brand_image'] = $request->file('brand_image')->store('brand-images');
+            $validated['gambar_merek'] = $request->file('gambar_merek')->store('brand-images');
         }
 
-        $validated['brand_name'] = $request->brand_name;
+        $validated['nama_merek'] = $request->nama_merek;
         $validated['updated_at'] = Carbon::now();
 
         Brand::where('id', $brand->id)->update($validated);
@@ -141,8 +141,8 @@ class BrandController extends Controller
     public function destroy(Brand $brand)
     {
 
-        if ($brand->brand_image) {
-            Storage::delete($brand->brand_image);
+        if ($brand->gambar_merek) {
+            Storage::delete($brand->gambar_merek);
         }
         Brand::destroy($brand->id);
         $notification = array(

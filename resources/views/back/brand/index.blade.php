@@ -34,8 +34,8 @@
                                     <tbody>
                                         @foreach ($brands as $brand)
                                             <tr>
-                                                <td>{{ $brand->brand_name }}</td>
-                                                <td><img src="{{ asset('storage/' . $brand->brand_image) }}"
+                                                <td>{{ $brand->nama_merek }}</td>
+                                                <td><img src="{{ asset('storage/' . $brand->gambar_merek) }}"
                                                         style="width: 70px; height: 40px;"> </td>
                                                 <td>
                                                     <a href="{{ url('brand/' . $brand->id) }}" class="btn btn-info"
@@ -87,10 +87,10 @@
                                     <div class="form-group">
                                         <h5>Brand name <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" name="brand_name"
-                                                class="form-control @error('brand_name') is-invalid @enderror"
-                                                value="{{ old('brand_name') }}">
-                                            @error('brand_name')
+                                            <input type="text" name="nama_merek"
+                                                class="form-control @error('nama_merek') is-invalid @enderror"
+                                                value="{{ old('nama_merek') }}">
+                                            @error('nama_merek')
                                                 <div class="invalid-feedback text-danger">
                                                     {{ $message }}
                                                 </div>
@@ -101,10 +101,10 @@
                                     <div class="form-group">
                                         <h5>Brand image <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="file" name="brand_image"
-                                                class="form-control @error('brand_image') is-invalid @enderror"
+                                            <input type="file" name="gambar_merek"
+                                                class="form-control @error('gambar_merek') is-invalid @enderror"
                                                 onchange="previewImage()" id="input_image">
-                                            @error('brand_image')
+                                            @error('gambar_merek')
                                                 <div class="invalid-feedback text-danger">
                                                     {{ $message }}
                                                 </div>
