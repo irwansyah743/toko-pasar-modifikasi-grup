@@ -9,16 +9,16 @@
   // -------------------------------------- GET TOKEN ----------------------------------
 
 function midTrans(){
-    const name=document.getElementById('shipping_name').value;
-    const email=document.getElementById('shipping_email').value;
-    const phone=document.getElementById('shipping_phone').value;
-    const postCode=document.getElementById('post_code').value;
+    const name=document.getElementById('nama_pengiriman').value;
+    const email=document.getElementById('email_pengiriman').value;
+    const phone=document.getElementById('no_telepon_pengiriman').value;
+    const postCode=document.getElementById('kode_pos').value;
 
     const provinsi=document.getElementById('provinsi').value;
     const kabupaten=document.getElementById('kabupaten').value;
     const kecamatan=document.getElementById('kecamatan').value;
-    const address=document.getElementById('address').value;
-    const notes=document.getElementById('notes').value;
+    const address=document.getElementById('alamat').value;
+    const notes=document.getElementById('catatan').value;
 
 
 
@@ -274,14 +274,14 @@ const shippingUpdate=(result)=>{
 // -------------------------------------- FORM HANDLING VALIDATION ----------------------------------
 const checkForm=()=>{
     if(
-    document.getElementById('shipping_name').value !== '' &&
-    document.getElementById('shipping_email').value !=='' &&
-    document.getElementById('shipping_phone').value !=='' &&
-    document.getElementById('post_code').value!=='' &&
+    document.getElementById('nama_pengiriman').value !== '' &&
+    document.getElementById('email_pengiriman').value !=='' &&
+    document.getElementById('no_telepon_pengiriman').value !=='' &&
+    document.getElementById('kode_pos').value!=='' &&
     document.getElementById('provinsi').value !==''&&
     document.getElementById('kabupaten').value !==''&&
     document.getElementById('kecamatan').value !==''&&
-    document.getElementById('address').value!==''){
+    document.getElementById('alamat').value!==''){
         document.getElementById('pay-button').disabled = false
     }else{
         document.getElementById('pay-button').disabled = true
