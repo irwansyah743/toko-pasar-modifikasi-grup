@@ -15,31 +15,31 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->integer('brand_id');
-            $table->integer('category_id');
-            $table->integer('subcategory_id');
-            $table->integer('subsubcategory_id');
-            $table->string('product_name');
+            $table->integer('id_merek');
+            $table->integer('id_kategori');
+            $table->integer('id_subkategori');
+            $table->integer('id_subsubkategori');
+            $table->string('nama_produk');
 
-            $table->string('product_slug');
+            $table->string('slug_produk');
 
-            $table->string('product_code');
-            $table->string('product_qty');
-            $table->string('product_tags');
+            $table->string('kode_produk');
+            $table->string('kuantitas_produk');
+            $table->string('tag_produk');
 
-            $table->string('product_size');
+            $table->string('ukuran_produk');
 
-            $table->string('product_color');
+            $table->string('warna_produk');
 
-            $table->string('selling_price');
-            $table->string('discount_price')->nullable();
-            $table->string('short_descp');
-            $table->string('long_descp');
-            $table->string('product_thambnail');
-            $table->integer('hot_deals')->nullable();
-            $table->integer('featured')->nullable();
-            $table->integer('special_offer')->nullable();
-            $table->integer('special_deals')->nullable();
+            $table->string('harga_jual');
+            $table->string('harga_diskon')->nullable();
+            $table->string('deskripsi_singkat');
+            $table->string('deskripsi_panjang');
+            $table->string('thumbnail_produk');
+            $table->integer('diskon_besar')->nullable();
+            $table->integer('unggulan')->nullable();
+            $table->integer('penawaran_spesial')->nullable();
+            $table->integer('penawaran_khusus')->nullable();
             $table->integer('status')->default(0);
             $table->timestamps();
         });

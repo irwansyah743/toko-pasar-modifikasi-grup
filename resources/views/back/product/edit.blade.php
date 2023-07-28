@@ -35,18 +35,18 @@
                                                 <div class="form-group">
                                                     <h5>Category Select <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <select name="category_id" id="category_id"
-                                                            class="form-control @error('category_id') is-invalid @enderror">
-                                                            <option value="" @selected(old('category_id') == '') disabled>- Select
+                                                        <select name="id_kategori" id="id_kategori"
+                                                            class="form-control @error('id_kategori') is-invalid @enderror">
+                                                            <option value="" @selected(old('id_kategori') == '') disabled>- Select
                                                                 Category -
                                                             </option>
                                                             @foreach ($categories as $category)
                                                                 <option value="{{ $category->id }}"
-                                                                    @selected($category->id == $product->category_id || old('category_id') == $category->id)>
+                                                                    @selected($category->id == $product->id_kategori || old('id_kategori') == $category->id)>
                                                                     {{ $category->nama_kategori }}</option>
                                                             @endforeach
                                                         </select>
-                                                        @error('category_id')
+                                                        @error('id_kategori')
                                                             <div class="invalid-feedback">
                                                                 {{ $message }}
                                                             </div>
@@ -60,22 +60,22 @@
                                                 <div class="form-group">
                                                     <h5>SubCategory Select <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <select name="subcategory_id" id="subcategory_id"
-                                                            class="form-control @error('subcategory_id') is-invalid @enderror">
-                                                            <option value="" @selected(old('subcategory_id') == '') disabled>- Select
+                                                        <select name="id_subkategori" id="id_subkategori"
+                                                            class="form-control @error('id_subkategori') is-invalid @enderror">
+                                                            <option value="" @selected(old('id_subkategori') == '') disabled>- Select
                                                                 SubCategory -
                                                             </option>
-                                                            @if (old('subcategory_id', $product->subcategory_id))
+                                                            @if (old('id_subkategori', $product->id_subkategori))
                                                                 @foreach ($subcategories as $subcategory)
-                                                                    @if (old('subcategory_id') == $subcategory->id || $subcategory->category->id == old('category_id') || $subcategory->category->id == $product->category_id)
+                                                                    @if (old('id_subkategori') == $subcategory->id || $subcategory->category->id == old('id_kategori') || $subcategory->category->id == $product->id_kategori)
                                                                         <option value="{{ $subcategory->id }}"
-                                                                            @selected(old('subcategory_id') == $subcategory->id || $subcategory->id == $product->subcategory_id)>
+                                                                            @selected(old('id_subkategori') == $subcategory->id || $subcategory->id == $product->id_subkategori)>
                                                                             {{ $subcategory->subcategory_name }}</option>
                                                                     @endif
                                                                 @endforeach
                                                             @endif
                                                         </select>
-                                                        @error('subcategory_id')
+                                                        @error('id_subkategori')
                                                             <div class="invalid-feedback">
                                                                 {{ $message }}
                                                             </div>
@@ -88,23 +88,23 @@
                                                 <div class="form-group">
                                                     <h5>Sub-SubCategory Select <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <select name="subsubcategory_id" id="subsubcategory_id"
-                                                            class="form-control @error('subsubcategory_id') is-invalid @enderror">
-                                                            <option value="" @selected(old('subsubcategory_id') == '') disabled>- Select
+                                                        <select name="id_subsubkategori" id="id_subsubkategori"
+                                                            class="form-control @error('id_subsubkategori') is-invalid @enderror">
+                                                            <option value="" @selected(old('id_subsubkategori') == '') disabled>- Select
                                                                 Sub-SubCategory -
                                                             </option>
-                                                            @if (old('subsubcategory_id', $product->subsubcategory_id))
+                                                            @if (old('id_subsubkategori', $product->id_subsubkategori))
                                                                 @foreach ($subsubcategories as $subsubcategory)
-                                                                    @if (old('subsubcategory_id') == $subsubcategory->id || $subsubcategory->subcategory->id == old('subcategory_id') || $subsubcategory->subcategory->id == $product->subcategory_id)
+                                                                    @if (old('id_subsubkategori') == $subsubcategory->id || $subsubcategory->subcategory->id == old('id_subkategori') || $subsubcategory->subcategory->id == $product->id_subkategori)
                                                                         <option value="{{ $subsubcategory->id }}"
-                                                                            @selected(old('subsubcategory_id') == $subsubcategory->id || $subsubcategory->id == $product->subsubcategory_id)>
+                                                                            @selected(old('id_subsubkategori') == $subsubcategory->id || $subsubcategory->id == $product->id_subsubkategori)>
                                                                             {{ $subsubcategory->subsubcategory_name }}
                                                                         </option>
                                                                     @endif
                                                                 @endforeach
                                                             @endif
                                                         </select>
-                                                        @error('subsubcategory_id')
+                                                        @error('id_subsubkategori')
                                                             <div class="invalid-feedback">
                                                                 {{ $message }}
                                                             </div>
@@ -124,17 +124,17 @@
                                                 <div class="form-group">
                                                     <h5>Brand Select <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <select name="brand_id"
-                                                            class="form-control @error('brand_id') is-invalid @enderror"
+                                                        <select name="id_merek"
+                                                            class="form-control @error('id_merek') is-invalid @enderror"
                                                             required="">
                                                             <option value="" selected="" disabled="">Select Brand</option>
                                                             @foreach ($brands as $brand)
-                                                                <option @selected(old('brand_id') == $brand->id || $brand->id == $product->brand_id)
+                                                                <option @selected(old('id_merek') == $brand->id || $brand->id == $product->id_merek)
                                                                     value="{{ $brand->id }}">
                                                                     {{ $brand->nama_merek }}</option>
                                                             @endforeach
                                                         </select>
-                                                        @error('brand_id')
+                                                        @error('id_merek')
                                                             <div class="invalid-feedback">
                                                                 {{ $message }}
                                                             </div>
@@ -150,11 +150,11 @@
                                                     <h5>Product Name <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="text"
-                                                            value="{{ old('product_name', $product->product_name) }}"
-                                                            name="product_name"
-                                                            class="form-control @error('product_name') is-invalid @enderror"
+                                                            value="{{ old('nama_produk', $product->nama_produk) }}"
+                                                            name="nama_produk"
+                                                            class="form-control @error('nama_produk') is-invalid @enderror"
                                                             required="">
-                                                        @error('product_name')
+                                                        @error('nama_produk')
                                                             <div class="invalid-feedback">
                                                                 {{ $message }}
                                                             </div>
@@ -168,11 +168,11 @@
                                                 <div class="form-group">
                                                     <h5>Product Code <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <input type="text" name="product_code"
-                                                            value="{{ old('product_code', $product->product_code) }}"
-                                                            class="form-control @error('product_code') is-invalid @enderror"
+                                                        <input type="text" name="kode_produk"
+                                                            value="{{ old('kode_produk', $product->kode_produk) }}"
+                                                            class="form-control @error('kode_produk') is-invalid @enderror"
                                                             required="">
-                                                        @error('product_code')
+                                                        @error('kode_produk')
                                                             <div class="invalid-feedback">
                                                                 {{ $message }}
                                                             </div>
@@ -198,11 +198,11 @@
                                                 <div class="form-group">
                                                     <h5>Product Quantity <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <input type="number" name="product_qty"
-                                                            value="{{ old('product_qty', $product->product_qty) }}"
-                                                            class="form-control @error('product_qty') is-invalid @enderror"
+                                                        <input type="number" name="kuantitas_produk"
+                                                            value="{{ old('kuantitas_produk', $product->kuantitas_produk) }}"
+                                                            class="form-control @error('kuantitas_produk') is-invalid @enderror"
                                                             required="">
-                                                        @error('product_qty')
+                                                        @error('kuantitas_produk')
                                                             <div class="invalid-feedback">
                                                                 {{ $message }}
                                                             </div>
@@ -217,11 +217,11 @@
                                                     <h5>Product Selling Price (Rp) <span class="text-danger">*</span>
                                                     </h5>
                                                     <div class="controls">
-                                                        <input type="text" name="selling_price"
-                                                            value="{{ old('selling_price', $product->selling_price) }}"
-                                                            class="form-control @error('selling_price') is-invalid @enderror"
+                                                        <input type="text" name="harga_jual"
+                                                            value="{{ old('harga_jual', $product->harga_jual) }}"
+                                                            class="form-control @error('harga_jual') is-invalid @enderror"
                                                             required="">
-                                                        @error('selling_price')
+                                                        @error('harga_jual')
                                                             <div class="invalid-feedback">
                                                                 {{ $message }}
                                                             </div>
@@ -235,8 +235,8 @@
                                                 <div class="form-group">
                                                     <h5>After Discount Price</h5>
                                                     <div class="controls">
-                                                        <input type="text" name="discount_price" class="form-control"
-                                                            value="{{ old('discount_price', $product->discount_price) }}">
+                                                        <input type="text" name="harga_diskon" class="form-control"
+                                                            value="{{ old('harga_diskon', $product->harga_diskon) }}">
 
                                                     </div>
                                                 </div>
@@ -255,11 +255,11 @@
                                                 <div class="form-group">
                                                     <h5>Product Tags <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <input type="text" name="product_tags"
-                                                            value="{{ old('product_tags') ? old('product_tags') : $product->product_tags }}"
-                                                            class="form-control @error('product_tags') is-invalid @enderror"
+                                                        <input type="text" name="tag_produk"
+                                                            value="{{ old('tag_produk') ? old('tag_produk') : $product->tag_produk }}"
+                                                            class="form-control @error('tag_produk') is-invalid @enderror"
                                                             data-role="tagsinput" required="">
-                                                        @error('product_tags')
+                                                        @error('tag_produk')
                                                             <div class="invalid-feedback">
                                                                 {{ $message }}
                                                             </div>
@@ -276,11 +276,11 @@
                                                 <div class="form-group">
                                                     <h5>Product Size<span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <input type="text" name="product_size"
-                                                            value="{{ old('product_size') ? old('product_size') : $product->product_size }}"
-                                                            class="form-control @error('product_size') is-invalid @enderror"
+                                                        <input type="text" name="ukuran_produk"
+                                                            value="{{ old('ukuran_produk') ? old('ukuran_produk') : $product->ukuran_produk }}"
+                                                            class="form-control @error('ukuran_produk') is-invalid @enderror"
                                                             data-role="tagsinput" required="">
-                                                        @error('product_size')
+                                                        @error('ukuran_produk')
                                                             <div class="invalid-feedback">
                                                                 {{ $message }}
                                                             </div>
@@ -295,11 +295,11 @@
                                                 <div class="form-group">
                                                     <h5>Product Color<span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <input type="text" name="product_color"
-                                                            value="{{ old('product_color') ? old('product_color') : $product->product_color }}"
-                                                            class="form-control @error('product_color') is-invalid @enderror"
+                                                        <input type="text" name="warna_produk"
+                                                            value="{{ old('warna_produk') ? old('warna_produk') : $product->warna_produk }}"
+                                                            class="form-control @error('warna_produk') is-invalid @enderror"
                                                             data-role="tagsinput" required="">
-                                                        @error('product_color')
+                                                        @error('warna_produk')
                                                             <div class="invalid-feedback">
                                                                 {{ $message }}
                                                             </div>
@@ -324,9 +324,9 @@
                                                     <h5>Short Description<span class="text-danger">*</span>
                                                     </h5>
                                                     <div class="controls">
-                                                        <textarea name="short_descp" id="textarea" class="form-control @error('short_descp') is-invalid @enderror" required
-                                                            placeholder="Textarea text">{{ old('short_descp', $product->short_descp) }}</textarea>
-                                                        @error('short_descp')
+                                                        <textarea name="deskripsi_singkat" id="textarea" class="form-control @error('deskripsi_singkat') is-invalid @enderror" required
+                                                            placeholder="Textarea text">{{ old('deskripsi_singkat', $product->deskripsi_singkat) }}</textarea>
+                                                        @error('deskripsi_singkat')
                                                             <div class="invalid-feedback">
                                                                 {{ $message }}
                                                             </div>
@@ -351,9 +351,9 @@
                                                 <div class="form-group">
                                                     <h5>Long Description <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <textarea id="editor1" name="long_descp" rows="10" cols="80" required=""
-                                                            class="form-control @error('long_descp') is-invalid @enderror">{{ old('long_descp', $product->long_descp) }}</textarea>
-                                                        @error('long_descp')
+                                                        <textarea id="editor1" name="deskripsi_panjang" rows="10" cols="80" required=""
+                                                            class="form-control @error('deskripsi_panjang') is-invalid @enderror">{{ old('deskripsi_panjang', $product->deskripsi_panjang) }}</textarea>
+                                                        @error('deskripsi_panjang')
                                                             <div class="invalid-feedback">
                                                                 {{ $message }}
                                                             </div>
@@ -379,14 +379,14 @@
 
                                                     <div class="controls">
                                                         <fieldset>
-                                                            <input type="checkbox" id="checkbox_2" name="hot_deals"
-                                                                value="1" @checked(old('hot_deals', $product->hot_deals))>
+                                                            <input type="checkbox" id="checkbox_2" name="diskon_besar"
+                                                                value="1" @checked(old('diskon_besar', $product->diskon_besar))>
                                                             <label for="checkbox_2">Hot Deals</label>
                                                         </fieldset>
                                                         <fieldset>
-                                                            <input type="checkbox" id="checkbox_3" name="featured" value="1"
-                                                                @checked(old('featured', $product->featured))>
-                                                            <label for="checkbox_3">Featured</label>
+                                                            <input type="checkbox" id="checkbox_3" name="unggulan" value="1"
+                                                                @checked(old('unggulan', $product->unggulan))>
+                                                            <label for="checkbox_3">unggulan</label>
                                                         </fieldset>
                                                     </div>
                                                 </div>
@@ -399,13 +399,13 @@
 
                                                     <div class="controls">
                                                         <fieldset>
-                                                            <input type="checkbox" id="checkbox_4" name="special_offer"
-                                                                value="1" @checked(old('special_offer', $product->special_offer))>
+                                                            <input type="checkbox" id="checkbox_4" name="penawaran_spesial"
+                                                                value="1" @checked(old('penawaran_spesial', $product->penawaran_spesial))>
                                                             <label for="checkbox_4">Special Offer</label>
                                                         </fieldset>
                                                         <fieldset>
-                                                            <input type="checkbox" id="checkbox_5" name="special_deals"
-                                                                value="1" @checked(old('special_deals', $product->special_deals))>
+                                                            <input type="checkbox" id="checkbox_5" name="penawaran_khusus"
+                                                                value="1" @checked(old('penawaran_khusus', $product->penawaran_khusus))>
                                                             <label for="checkbox_5">Special Deals</label>
                                                         </fieldset>
                                                     </div>
@@ -522,18 +522,18 @@
                             enctype="multipart/form-data">
                             @csrf
                             @method('put')
-                            <input type="hidden" name="old_img" value="{{ $product->product_thambnail }}">
+                            <input type="hidden" name="old_img" value="{{ $product->thumbnail_produk }}">
                             <div class="row row-sm">
                                 <div class="col-md-4">
-                                    <img src="{{ asset('storage/' . $product->product_thambnail) }}"
+                                    <img src="{{ asset('storage/' . $product->thumbnail_produk) }}"
                                         class="card-img-top mb-3">
                                     <div class="form-group">
                                         <label class="form-control-label">Change Image <span
                                                 class="text-danger">*</span></label>
-                                        <input type="file" name="product_thambnail"
-                                            class="form-control    @error('product_thambnail') is-invalid @enderror"
+                                        <input type="file" name="thumbnail_produk"
+                                            class="form-control    @error('thumbnail_produk') is-invalid @enderror"
                                             onchange="previewImage()" id="input_image">
-                                        @error('product_thambnail')
+                                        @error('thumbnail_produk')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>

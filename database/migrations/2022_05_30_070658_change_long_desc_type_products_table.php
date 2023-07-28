@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->text('long_descp')->change();
+            $table->text('deskripsi_panjang')->change();
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('long_descp')->change();
+            $table->string('deskripsi_panjang')->change();
         });
     }
 };

@@ -57,22 +57,22 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'brand_id' => 'required',
-            'category_id' => 'required',
-            'subcategory_id' => 'required',
-            'subsubcategory_id' => 'required',
-            'product_name' => 'required|unique:products,product_name',
-            'product_code' => 'required|unique:products,product_code',
-            'product_qty' => 'required|numeric',
-            'product_tags' => 'required',
-            'product_size' => 'required',
-            'product_color' => 'required',
-            'selling_price' => 'required',
-            'short_descp' => 'required|max:255',
-            'long_descp' => 'required',
+            'id_merek' => 'required',
+            'id_kategori' => 'required',
+            'id_subkategori' => 'required',
+            'id_subsubkategori' => 'required',
+            'nama_produk' => 'required|unique:products,nama_produk',
+            'kode_produk' => 'required|unique:products,kode_produk',
+            'kuantitas_produk' => 'required|numeric',
+            'tag_produk' => 'required',
+            'ukuran_produk' => 'required',
+            'warna_produk' => 'required',
+            'harga_jual' => 'required',
+            'deskripsi_singkat' => 'required|max:255',
+            'deskripsi_panjang' => 'required',
             'multi_img' => 'required',
             'multi_img.*' => 'image|max:2048',
-            'product_thambnail' => 'required|image|max:2048',
+            'thumbnail_produk' => 'required|image|max:2048',
         ], [
             'multi_img.*.image' => 'The product images must be images',
             'multi_img.*.max' => 'Maximum size is 2MB each'
@@ -82,7 +82,7 @@ class ProductController extends Controller
 
 
 
-        $image = $request->file('product_thambnail');
+        $image = $request->file('thumbnail_produk');
         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
         Image::make($image)->resize(917, 1000)->save('storage/thumbnails/' . $name_gen);
         $save_url = 'thumbnails/' . $name_gen;
@@ -90,34 +90,34 @@ class ProductController extends Controller
 
 
         $id_produk = DB::table('products')->insertGetId([
-            'brand_id' => $request->brand_id,
-            'category_id' => $request->category_id,
-            'subcategory_id' => $request->subcategory_id,
-            'subsubcategory_id' => $request->subsubcategory_id,
-            'product_name' => $request->product_name,
+            'id_merek' => $request->id_merek,
+            'id_kategori' => $request->id_kategori,
+            'id_subkategori' => $request->id_subkategori,
+            'id_subsubkategori' => $request->id_subsubkategori,
+            'nama_produk' => $request->nama_produk,
 
-            'product_slug' =>  strtolower(str_replace(' ', '-', $request->product_name)),
+            'slug_produk' =>  strtolower(str_replace(' ', '-', $request->nama_produk)),
 
-            'product_code' => $request->product_code,
+            'kode_produk' => $request->kode_produk,
 
-            'product_qty' => $request->product_qty,
-            'product_tags' => $request->product_tags,
+            'kuantitas_produk' => $request->kuantitas_produk,
+            'tag_produk' => $request->tag_produk,
 
-            'product_size' => $request->product_size,
+            'ukuran_produk' => $request->ukuran_produk,
 
-            'product_color' => $request->product_color,
+            'warna_produk' => $request->warna_produk,
 
 
-            'selling_price' => $request->selling_price,
-            'discount_price' => $request->discount_price,
-            'short_descp' => $request->short_descp,
+            'harga_jual' => $request->harga_jual,
+            'harga_diskon' => $request->harga_diskon,
+            'deskripsi_singkat' => $request->deskripsi_singkat,
 
-            'long_descp' => $request->long_descp,
-            'hot_deals' => $request->hot_deals,
-            'featured' => $request->featured,
-            'special_offer' => $request->special_offer,
-            'special_deals' => $request->special_deals,
-            'product_thambnail' => $save_url,
+            'deskripsi_panjang' => $request->deskripsi_panjang,
+            'diskon_besar' => $request->diskon_besar,
+            'unggulan' => $request->unggulan,
+            'penawaran_spesial' => $request->penawaran_spesial,
+            'penawaran_khusus' => $request->penawaran_khusus,
+            'thumbnail_produk' => $save_url,
             'status' => 1,
             'created_at' => Carbon::now(),
 
@@ -185,49 +185,49 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $request->validate([
-            'brand_id' => 'required',
-            'category_id' => 'required',
-            'subcategory_id' => 'required',
-            'subsubcategory_id' => 'required',
-            'product_name' => 'required',
-            'product_code' => 'required',
-            'product_qty' => 'required|numeric',
-            'product_tags' => 'required',
-            'product_size' => 'required',
-            'product_color' => 'required',
-            'selling_price' => 'required',
-            'short_descp' => 'required|max:255',
-            'long_descp' => 'required',
+            'id_merek' => 'required',
+            'id_kategori' => 'required',
+            'id_subkategori' => 'required',
+            'id_subsubkategori' => 'required',
+            'nama_produk' => 'required',
+            'kode_produk' => 'required',
+            'kuantitas_produk' => 'required|numeric',
+            'tag_produk' => 'required',
+            'ukuran_produk' => 'required',
+            'warna_produk' => 'required',
+            'harga_jual' => 'required',
+            'deskripsi_singkat' => 'required|max:255',
+            'deskripsi_panjang' => 'required',
         ]);
 
         Product::where('id', $product->id)->update([
-            'brand_id' => $request->brand_id,
-            'category_id' => $request->category_id,
-            'subcategory_id' => $request->subcategory_id,
-            'subsubcategory_id' => $request->subsubcategory_id,
-            'product_name' => $request->product_name,
+            'id_merek' => $request->id_merek,
+            'id_kategori' => $request->id_kategori,
+            'id_subkategori' => $request->id_subkategori,
+            'id_subsubkategori' => $request->id_subsubkategori,
+            'nama_produk' => $request->nama_produk,
 
-            'product_slug' =>  strtolower(str_replace(' ', '-', $request->product_name)),
+            'product_slug' =>  strtolower(str_replace(' ', '-', $request->nama_produk)),
 
             'product_code' => $request->product_code,
 
-            'product_qty' => $request->product_qty,
-            'product_tags' => $request->product_tags,
+            'kuantitas_produk' => $request->kuantitas_produk,
+            'tag_produk' => $request->tag_produk,
 
-            'product_size' => $request->product_size,
+            'ukuran_produk' => $request->ukuran_produk,
 
-            'product_color' => $request->product_color,
+            'warna_produk' => $request->warna_produk,
 
 
-            'selling_price' => $request->selling_price,
-            'discount_price' => $request->discount_price,
-            'short_descp' => $request->short_descp,
+            'harga_jual' => $request->harga_jual,
+            'harga_diskon' => $request->harga_diskon,
+            'deskripsi_singkat' => $request->deskripsi_singkat,
 
-            'long_descp' => $request->long_descp,
-            'hot_deals' => $request->hot_deals,
-            'featured' => $request->featured,
-            'special_offer' => $request->special_offer,
-            'special_deals' => $request->special_deals,
+            'deskripsi_panjang' => $request->deskripsi_panjang,
+            'diskon_besar' => $request->diskon_besar,
+            'unggulan' => $request->unggulan,
+            'penawaran_spesial' => $request->penawaran_spesial,
+            'penawaran_khusus' => $request->penawaran_khusus,
             'updated_at' => Carbon::now(),
 
         ]);
@@ -243,7 +243,7 @@ class ProductController extends Controller
     {
         $product->update(['status' => 0]);
         $notification = array(
-            'message' => 'Product ' . $product->product_name . ' is Inactive',
+            'message' => 'Product ' . $product->nama_produk . ' is Inactive',
             'alert-type' => 'success'
         );
 
@@ -255,7 +255,7 @@ class ProductController extends Controller
     {
         $product->update(['status' => 1]);
         $notification = array(
-            'message' => 'Product ' . $product->product_name . ' is Active',
+            'message' => 'Product ' . $product->nama_produk . ' is Active',
             'alert-type' => 'success'
         );
 
@@ -277,8 +277,8 @@ class ProductController extends Controller
             }
         }
 
-        if ($product->product_thambnail) {
-            Storage::delete($product->product_thambnail);
+        if ($product->thumbnail_produk) {
+            Storage::delete($product->thumbnail_produk);
         }
         MultiImg::where('id_produk', $product->id)->delete();
         Product::destroy($product->id);
@@ -342,17 +342,17 @@ class ProductController extends Controller
     public function updateThumbnail(Request $request, Product $product)
     {
         $request->validate([
-            'product_thambnail' => 'required|image|max:2048'
+            'thumbnail_produk' => 'required|image|max:2048'
         ]);
         Storage::delete($request->old_img);
 
-        $image = $request->file('product_thambnail');
+        $image = $request->file('thumbnail_produk');
         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
         Image::make($image)->resize(917, 1000)->save('storage/thumbnails/' . $name_gen);
         $save_url = 'thumbnails/' . $name_gen;
 
         Product::findOrFail($product->id)->update([
-            'product_thambnail' => $save_url,
+            'thumbnail_produk' => $save_url,
             'updated_at' => Carbon::now(),
         ]);
 

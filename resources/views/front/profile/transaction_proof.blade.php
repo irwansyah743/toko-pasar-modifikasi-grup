@@ -119,22 +119,22 @@
             @endphp
             @foreach ($orderItems as $orderItem)
                 <tr class="font">
-                    <td style="padding:4px;">{{ $orderItem->product->product_name }}</td>
+                    <td style="padding:4px;">{{ $orderItem->product->nama_produk }}</td>
                     <td style="padding:4px;">
                         {{ ucwords($orderItem->size) }}
                     </td>
                     <td style="padding:4px;">{{ ucwords($orderItem->color) }}</td>
-                    <td style="padding:4px;">{{ $orderItem->product->product_code }}</td>
+                    <td style="padding:4px;">{{ $orderItem->product->kode_produk }}</td>
                     <td style="padding:4px;">{{ $orderItem->qty }}</td>
                     <td style="padding:4px;">
-                        {{ $orderItem->product->discount_price ? $orderItem->product->discount_price : $orderItem->product->selling_price }}
+                        {{ $orderItem->product->harga_diskon ? $orderItem->product->harga_diskon : $orderItem->product->harga_jual }}
                     </td>
                     <td style="padding:4px;">
-                        {{ $orderItem->product->discount_price ? $orderItem->product->discount_price * $orderItem->qty : $orderItem->product->selling_price * $orderItem->qty }}
+                        {{ $orderItem->product->harga_diskon ? $orderItem->product->harga_diskon * $orderItem->qty : $orderItem->product->harga_jual * $orderItem->qty }}
                     </td>
                 </tr>
                 @php
-                    $subtotal += $orderItem->product->discount_price ? $orderItem->product->discount_price * $orderItem->qty : $orderItem->product->selling_price * $orderItem->qty;
+                    $subtotal += $orderItem->product->harga_diskon ? $orderItem->product->harga_diskon * $orderItem->qty : $orderItem->product->harga_jual * $orderItem->qty;
                 @endphp
             @endforeach
         </tbody>

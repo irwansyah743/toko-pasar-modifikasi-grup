@@ -67,7 +67,7 @@ function midTrans(){
             onSuccess: function(result){
                 /* You may add your own implementation here */
                 alert('Pembayaran diterima, terimakasih!');
-                window.location.replace(`${window.location.origin}/user/order/detail/${data.order_id}`);
+                window.location.replace(`${window.location.origin}/user/order/detail/${data.id_pesanan}`);
                 console.log(result);
               },
               onPending: function(result){
@@ -83,7 +83,7 @@ function midTrans(){
               onClose: function(){
                 /* You may add your own implementation here */
                 alert('Mohon untuk menyelesaikan pembayaran di halaman order!');
-                window.location.replace(`${window.location.origin}/user/order/detail/${data.order_id}`);
+                window.location.replace(`${window.location.origin}/user/order/detail/${data.id_pesanan}`);
               }
         });
     }).catch(error=> {

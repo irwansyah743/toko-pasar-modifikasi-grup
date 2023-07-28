@@ -38,19 +38,19 @@
                                     <tbody>
                                         @foreach ($products as $item)
                                             <tr>
-                                                <td> <img src="{{ asset('storage/' . $item->product_thambnail) }}"
+                                                <td> <img src="{{ asset('storage/' . $item->thumbnail_produk) }}"
                                                         style="width: 60px; height: 50px;"> </td>
-                                                <td>{{ $item->product_name }}</td>
-                                                <td>Rp.{{ $item->selling_price }}</td>
-                                                <td>{{ $item->product_qty }} Pcs</td>
+                                                <td>{{ $item->nama_produk }}</td>
+                                                <td>Rp.{{ $item->harga_jual }}</td>
+                                                <td>{{ $item->kuantitas_produk }} Pcs</td>
 
                                                 <td>
-                                                    @if ($item->discount_price == null)
+                                                    @if ($item->harga_diskon == null)
                                                         <span class="badge badge-pill badge-danger">No Discount</span>
                                                     @else
                                                         @php
-                                                            $amount = $item->selling_price - $item->discount_price;
-                                                            $discount = ($amount / $item->selling_price) * 100;
+                                                            $amount = $item->harga_jual - $item->harga_diskon;
+                                                            $discount = ($amount / $item->harga_jual) * 100;
                                                         @endphp
                                                         <span class="badge badge-pill badge-danger">{{ round($discount) }}
                                                             %</span>

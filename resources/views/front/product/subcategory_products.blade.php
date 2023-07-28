@@ -61,7 +61,7 @@
 
 
                                                     @foreach ($subcategories as $subcategory)
-                                                        @if ($subcategory->category_id == $category->id)
+                                                        @if ($subcategory->id_kategori == $category->id)
                                                             <ul>
                                                                 <li><a
                                                                         href="{{ url('/product/subcategory/' . $subcategory->id) }}">
@@ -233,21 +233,21 @@
                                                 <div class="product">
                                                     <div class="product-image">
                                                         <div class="image"> <a
-                                                                href="{{ url('product/detail/' . $product->product_slug) }}"><img
-                                                                    src="{{ asset('storage/' . $product->product_thambnail) }}"
+                                                                href="{{ url('product/detail/' . $product->slug_produk) }}"><img
+                                                                    src="{{ asset('storage/' . $product->thumbnail_produk) }}"
                                                                     alt=""></a> </div>
                                                         <!-- /.image -->
 
                                                         @php
-                                                            $amount = $product->selling_price - $product->discount_price;
-                                                            $discount = ($amount / $product->selling_price) * 100;
+                                                            $amount = $product->harga_jual - $product->harga_diskon;
+                                                            $discount = ($amount / $product->harga_jual) * 100;
                                                             $avarage = App\Models\Review::where('id_produk', $product->id)
                                                                 ->where('status', 1)
                                                                 ->avg('rating');
                                                         @endphp
 
                                                         <div>
-                                                            @if ($product->discount_price == null)
+                                                            @if ($product->harga_diskon == null)
                                                                 <div class="tag new"><span>new</span></div>
                                                             @else
                                                                 <div class="tag hot">
@@ -262,9 +262,9 @@
 
                                                     <div class="product-info text-left">
                                                         <h3 class="name"><a
-                                                                href="{{ url('product/detail/' . $product->product_slug) }}">
+                                                                href="{{ url('product/detail/' . $product->slug_produk) }}">
 
-                                                                {{ $product->product_name }}
+                                                                {{ $product->nama_produk }}
 
                                                             </a>
                                                         </h3>
@@ -308,14 +308,14 @@
                                                         <div class="description"></div>
 
 
-                                                        @if ($product->discount_price == null)
+                                                        @if ($product->harga_diskon == null)
                                                             <div class="product-price"> <span class="price">
-                                                                    Rp. {{ $product->selling_price }} </span> </div>
+                                                                    Rp. {{ $product->harga_jual }} </span> </div>
                                                         @else
                                                             <div class="product-price"> <span class="price">
-                                                                    Rp. {{ $product->discount_price }} </span> <span
+                                                                    Rp. {{ $product->harga_diskon }} </span> <span
                                                                     class="price-before-discount">Rp.
-                                                                    {{ $product->selling_price }}</span> </div>
+                                                                    {{ $product->harga_jual }}</span> </div>
                                                         @endif
 
 
@@ -397,8 +397,8 @@
 
                                 @forelse ($products as $product)
                                     @php
-                                        $amount = $product->selling_price - $product->discount_price;
-                                        $discount = ($amount / $product->selling_price) * 100;
+                                        $amount = $product->harga_jual - $product->harga_diskon;
+                                        $discount = ($amount / $product->harga_jual) * 100;
                                         $avarage = App\Models\Review::where('id_produk', $product->id)
                                             ->where('status', 1)
                                             ->avg('rating');
@@ -410,7 +410,7 @@
                                                     <div class="col col-sm-4 col-lg-4">
                                                         <div class="product-image">
                                                             <div class="image"> <img
-                                                                    src="{{ asset('storage/' . $product->product_thambnail) }}"
+                                                                    src="{{ asset('storage/' . $product->thumbnail_produk) }}"
                                                                     alt=""> </div>
                                                         </div>
                                                         <!-- /.product-image -->
@@ -419,9 +419,9 @@
                                                     <div class="col col-sm-8 col-lg-8">
                                                         <div class="product-info">
                                                             <h3 class="name"><a
-                                                                    href="{{ url('product/detail/' . $product->product_slug) }}">
+                                                                    href="{{ url('product/detail/' . $product->slug_produk) }}">
 
-                                                                    {{ $product->product_name }}
+                                                                    {{ $product->nama_produk }}
 
                                                                 </a>
                                                             </h3>
@@ -464,22 +464,22 @@
                                                             </div>
 
 
-                                                            @if ($product->discount_price == null)
+                                                            @if ($product->harga_diskon == null)
                                                                 <div class="product-price"> <span class="price">
-                                                                        Rp. {{ $product->selling_price }} </span>
+                                                                        Rp. {{ $product->harga_jual }} </span>
                                                                 </div>
                                                             @else
                                                                 <div class="product-price"> <span class="price">
-                                                                        Rp. {{ $product->discount_price }} </span>
+                                                                        Rp. {{ $product->harga_diskon }} </span>
                                                                     <span class="price-before-discount">Rp.
-                                                                        {{ $product->selling_price }}</span>
+                                                                        {{ $product->harga_jual }}</span>
                                                                 </div>
                                                             @endif
 
                                                             <!-- /.product-price -->
                                                             <div class="description m-t-10">
 
-                                                                {{ $product->short_descp }}
+                                                                {{ $product->deskripsi_singkat }}
 
                                                             </div>
                                                             <div class="cart clearfix animate-effect">
@@ -527,7 +527,7 @@
 
                                                 <!-- /.product-list-row -->
                                                 <div>
-                                                    @if ($product->discount_price == null)
+                                                    @if ($product->harga_diskon == null)
                                                         <div class="tag new"><span>new</span></div>
                                                     @else
                                                         <div class="tag hot">

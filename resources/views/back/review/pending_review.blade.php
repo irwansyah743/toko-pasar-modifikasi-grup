@@ -40,7 +40,7 @@
                                                 <td> {{ $item->comment }} </td>
                                                 <td> {{ $item->user->name }} </td>
 
-                                                <td> {{ $item->product->product_name }} </td>
+                                                <td> {{ $item->product->nama_produk }} </td>
                                                 <td>
                                                     @if ($item->status == 0)
                                                         <span class="badge badge-pill badge-primary">Pending </span>

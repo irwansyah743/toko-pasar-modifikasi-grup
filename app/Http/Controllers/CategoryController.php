@@ -25,7 +25,7 @@ class CategoryController extends Controller
     {
         $data['admin'] = Admin::find(Auth::user()->id);
         $data['categories'] = Category::latest()->get();
-        $data['subcategoriesToDelete'] = DB::table('sub_kategori')->select('category_id', DB::raw('count(*)'))->groupBy('category_id')->get();
+        $data['subcategoriesToDelete'] = DB::table('sub_kategori')->select('id_kategori', DB::raw('count(*)'))->groupBy('id_kategori')->get();
         return view('back.category.index', $data);
     }
 
@@ -141,8 +141,8 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         Category::destroy($category->id);
-        SubCategory::where('category_id', $category->id)->delete();
-        SubSubCategory::where('category_id', $category->id)->delete();
+        SubCategory::where('id_kategori', $category->id)->delete();
+        SubSubCategory::where('id_kategori', $category->id)->delete();
         $notification = array(
             'message' => 'A category has been deleted',
             'alert-type' => 'success'

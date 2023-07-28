@@ -12,19 +12,19 @@ class SubSubCategory extends Model
     public $table = 'sub_sub_kategori';
 
     protected $fillable = [
-        'category_id',
-        'subcategory_id',
+        'id_kategori',
+        'id_subkategori',
         'subsubcategory_name',
         'subsubcategory_slug',
     ];
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id', 'id');
+        return $this->belongsTo(Category::class, 'id_kategori', 'id');
     }
 
     public function subcategory()
     {
-        return $this->belongsTo(SubCategory::class, 'subcategory_id', 'id');
+        return $this->belongsTo(SubCategory::class, 'id_subkategori', 'id');
     }
 }

@@ -24,31 +24,31 @@ class CartController extends Controller
             Session::forget('coupon');
         }
         $product = Product::find($id);
-        if ($product->discount_price == NULL) {
+        if ($product->harga_diskon == NULL) {
             Cart::add([
                 'id' => $product->id,
-                'name' => $request->product_name,
-                'qty' => $request->product_qty,
-                'price' => $product->selling_price,
+                'name' => $request->nama_produk,
+                'qty' => $request->kuantitas_produk,
+                'price' => $product->harga_jual,
                 'weight' => 1,
                 'options' => [
-                    'image' => $product->product_thambnail,
-                    'color' => $request->product_color,
-                    'size' => $request->product_size,
+                    'image' => $product->thumbnail_produk,
+                    'color' => $request->warna_produk,
+                    'size' => $request->ukuran_produk,
                 ],
             ]);
             return response()->json(['success' => 'Successfully Added on Your Cart']);
         } else {
             Cart::add([
                 'id' => $product->id,
-                'name' => $request->product_name,
-                'qty' => $request->product_qty,
-                'price' => $product->discount_price,
+                'name' => $request->nama_produk,
+                'qty' => $request->kuantitas_produk,
+                'price' => $product->harga_diskon,
                 'weight' => 1,
                 'options' => [
-                    'image' => $product->product_thambnail,
-                    'color' => $request->product_color,
-                    'size' => $request->product_size,
+                    'image' => $product->thumbnail_produk,
+                    'color' => $request->warna_produk,
+                    'size' => $request->ukuran_produk,
                 ],
             ]);
             return response()->json(['success' => 'Successfully Added on Your Cart']);

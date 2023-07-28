@@ -81,15 +81,15 @@ async function getWishList() {
 
 function createWishlistItem(product) {
     return `<tr>
-    <td class="col-md-2"><img src="${window.location.origin}/storage/${product.product.product_thambnail} " alt="imga"></td>
+    <td class="col-md-2"><img src="${window.location.origin}/storage/${product.product.thumbnail_produk} " alt="imga"></td>
     <td class="col-md-7">
-        <div class="product-name"><strong><a href="#">${product.product.product_name}</a><strong></div>
+        <div class="product-name"><strong><a href="#">${product.product.nama_produk}</a><strong></div>
          
         <div class="price">
-        ${product.product.discount_price == null
-            ? `${product.product.selling_price}`
+        ${product.product.harga_diskon == null
+            ? `${product.product.harga_jual}`
             :
-            `${product.product.discount_price} <span>${product.product.selling_price}</span>`
+            `${product.product.harga_diskon} <span>${product.product.harga_jual}</span>`
         }
         </div>
     </td>

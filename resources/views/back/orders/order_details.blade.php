@@ -220,17 +220,17 @@
                                     <tr>
                                         <td width="10%">
                                             <label for=""><img
-                                                    src="{{ asset('storage/' . $item->product->product_thambnail) }}"
+                                                    src="{{ asset('storage/' . $item->product->thumbnail_produk) }}"
                                                     height="70px;" width="50px;"> </label>
                                         </td>
 
                                         <td width="20%">
-                                            <label for=""> {{ $item->product->product_name }}</label>
+                                            <label for=""> {{ $item->product->nama_produk }}</label>
                                         </td>
 
 
                                         <td width="10%">
-                                            <label for=""> {{ $item->product->product_code }}</label>
+                                            <label for=""> {{ $item->product->kode_produk }}</label>
                                         </td>
 
                                         <td width="10%">
@@ -247,9 +247,9 @@
 
                                         <td width="10%">
                                             <label for="">
-                                                Rp.{{ $item->product->discount_price ? $item->product->discount_price : $item->product->selling_price }}
+                                                Rp.{{ $item->product->harga_diskon ? $item->product->harga_diskon : $item->product->harga_jual }}
                                                 (Rp.
-                                                {{ $item->product->discount_price ? $item->product->discount_price * $item->qty : $item->product->selling_price * $item->qty }})
+                                                {{ $item->product->harga_diskon ? $item->product->harga_diskon * $item->qty : $item->product->harga_jual * $item->qty }})
                                             </label>
                                         </td>
 

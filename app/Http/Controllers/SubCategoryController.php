@@ -25,7 +25,7 @@ class SubCategoryController extends Controller
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['admin'] = Admin::find(Auth::user()->id);
         $data['subcategories'] = SubCategory::latest()->get();
-        $data['subsubcategoriesToDelete'] = DB::table('sub_sub_kategori')->select('subcategory_id', DB::raw('count(*)'))->groupBy('subcategory_id')->get();
+        $data['subsubcategoriesToDelete'] = DB::table('sub_sub_kategori')->select('id_subkategori', DB::raw('count(*)'))->groupBy('id_subkategori')->get();
         return view('back.category.subcategory', $data);
     }
 
@@ -49,14 +49,14 @@ class SubCategoryController extends Controller
     {
         $validated = $request->validate([
             'subcategory_name' => 'required|max:50|unique:sub_categories,subcategory_name',
-            'category_id' => 'required',
+            'id_kategori' => 'required',
         ], [
-            'category_id.required' => "Subcategory must belong to a category"
+            'id_kategori.required' => "Subcategory must belong to a category"
         ]);
 
 
         $validated['subcategory_name'] = $request->subcategory_name;
-        $validated['category_id'] = $request->category_id;
+        $validated['id_kategori'] = $request->id_kategori;
         $validated['subcategory_slug'] = strtolower(str_replace(' ', '-', $request->subcategory_name));
         $validated['created_at'] = Carbon::now();
 
@@ -106,14 +106,14 @@ class SubCategoryController extends Controller
     {
         $validated = $request->validate([
             'subcategory_name' => 'required|max:50',
-            'category_id' => 'required',
+            'id_kategori' => 'required',
         ], [
-            'category_id.required' => "Subcategory must belong to a category"
+            'id_kategori.required' => "Subcategory must belong to a category"
         ]);
 
 
         $validated['subcategory_name'] = $request->subcategory_name;
-        $validated['category_id'] = $request->category_id;
+        $validated['id_kategori'] = $request->id_kategori;
         $validated['subcategory_slug'] = strtolower(str_replace(' ', '-', $request->subcategory_name));
         $validated['created_at'] = Carbon::now();
 
@@ -136,7 +136,7 @@ class SubCategoryController extends Controller
     public function destroy(SubCategory $subCategory)
     {
         SubCategory::destroy($subCategory->id);
-        SubSubCategory::where('subcategory_id', $subCategory->id)->delete();
+        SubSubCategory::where('id_subkategori', $subCategory->id)->delete();
         $notification = array(
             'message' => 'A subcategory has been deleted',
             'alert-type' => 'success'
@@ -150,10 +150,10 @@ class SubCategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function getSubCategory($category_id)
+    public function getSubCategory($id_kategori)
     {
 
-        $data = SubCategory::where('category_id', $category_id)->orderBy('subcategory_name', 'ASC')->get();
+        $data = SubCategory::where('id_kategori', $id_kategori)->orderBy('subcategory_name', 'ASC')->get();
 
         // MEnggunakan response akan menyesuaikan header menjadi json type
         return response()->json($data);

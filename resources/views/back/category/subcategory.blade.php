@@ -43,7 +43,7 @@
                                                     <form method="POST" id="{{ 'deletesubcategory' . $subcategory->id }}"
                                                         style="display:inline;">
                                                         @csrf
-                                                        @if (!$subsubcategoriesToDelete->contains('subcategory_id', $subcategory->id))
+                                                        @if (!$subsubcategoriesToDelete->contains('id_subkategori', $subcategory->id))
                                                             <button type="button" class="btn btn-danger delete-button"
                                                                 onclick="deleteConfirmation('subcategory',{{ $subcategory->id }})">
                                                                 <i class="fa fa-trash"></i></button>
@@ -86,17 +86,17 @@
                                     <div class="form-group">
                                         <h5>Category Select <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <select name="category_id" id="category_id"
-                                                class="form-control @error('category_id') is-invalid @enderror">
-                                                <option value="" @selected(old('category_id') == '') disabled>- Select
+                                            <select name="id_kategori" id="id_kategori"
+                                                class="form-control @error('id_kategori') is-invalid @enderror">
+                                                <option value="" @selected(old('id_kategori') == '') disabled>- Select
                                                     Category -
                                                 </option>
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>
+                                                    <option value="{{ $category->id }}" @selected(old('id_kategori') == $category->id)>
                                                         {{ $category->nama_kategori }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('category_id')
+                                            @error('id_kategori')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>

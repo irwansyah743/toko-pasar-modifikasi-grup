@@ -17,39 +17,39 @@ class IndexController extends Controller
     {
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['newProducts'] =  Product::where('status', 1)->orderBy('id', 'DESC')->limit(8)->get();
-        $data['featuredProducts'] = Product::where('status', 1)->where('featured', 1)->orderBy('id', 'DESC')->limit(8)->get();
+        $data['featuredProducts'] = Product::where('status', 1)->where('unggulan', 1)->orderBy('id', 'DESC')->limit(8)->get();
         $data['subcategories'] = SubCategory::latest()->get();
         $data['sliders'] = Slider::where('status', 1)->orderBy('id_banner', 'DESC')->limit(3)->get();
 
         // CATEGORY PRODUCTS
         $spionId = Category::skip(0)->first()->id;
-        $data['spionProducts'] = Product::where('status', 1)->where('category_id', $spionId)->orderBy('id', 'DESC')->limit(8)->get();
+        $data['spionProducts'] = Product::where('status', 1)->where('id_kategori', $spionId)->orderBy('id', 'DESC')->limit(8)->get();
         $shockbreakerId = Category::skip(1)->first()->id;
-        $data['shockbreakerProducts'] = Product::where('status', 1)->where('category_id', $shockbreakerId)->orderBy('id', 'DESC')->limit(8)->get();
+        $data['shockbreakerProducts'] = Product::where('status', 1)->where('id_kategori', $shockbreakerId)->orderBy('id', 'DESC')->limit(8)->get();
     
         // BRAND PRODUCTS
         $ohlinsId = Brand::skip(0)->first()->id;
-        $data['ohlinsproducts'] = Product::where('status', 1)->where('brand_id', $ohlinsId)->orderBy('id', 'DESC')->limit(8)->get();
+        $data['ohlinsproducts'] = Product::where('status', 1)->where('id_merek', $ohlinsId)->orderBy('id', 'DESC')->limit(8)->get();
         $scarletsId = Brand::skip(1)->first()->id;
-        $data['scarletproducts'] = Product::where('status', 1)->where('brand_id', $scarletsId)->orderBy('id', 'DESC')->limit(8)->get();
+        $data['scarletproducts'] = Product::where('status', 1)->where('id_merek', $scarletsId)->orderBy('id', 'DESC')->limit(8)->get();
         return view('front.index', $data);
     }
 
     public function productDetail($slug)
     {
-        $data['product'] = Product::where('product_slug', $slug)->get()->first();
+        $data['product'] = Product::where('slug_produk', $slug)->get()->first();
         $data['reviewcount'] = Review::where('id_produk', $data['product']->id)->where('status', 1)->latest()->get();
         $data['avarage'] = Review::where('id_produk', $data['product']->id)->where('status', 1)->avg('rating');
 
-        $data['related_products'] = Product::where('category_id',  $data['product']->category_id)->where('product_slug', '!=', $slug)->get();
-        $product_color =  $data['product']->product_color;
-        $data['colors'] = explode(',', $product_color);
-        $data['sizes'] = Product::where('product_slug', $slug)->select('product_size')->get();
-        $product_size =  $data['product']->product_size;
-        $data['sizes'] = explode(',', $product_size);
+        $data['related_products'] = Product::where('id_kategori',  $data['product']->id_kategori)->where('slug_produk', '!=', $slug)->get();
+        $warna_produk =  $data['product']->warna_produk;
+        $data['colors'] = explode(',', $warna_produk);
+        $data['sizes'] = Product::where('slug_produk', $slug)->select('ukuran_produk')->get();
+        $ukuran_produk =  $data['product']->ukuran_produk;
+        $data['sizes'] = explode(',', $ukuran_produk);
         $data['multiImages'] = MultiImg::where('id_produk',  $data['product']->id)->get();
 
-        $tags =  $data['product']->product_tags;
+        $tags =  $data['product']->tag_produk;
 
         $tagsFix = [];
 
@@ -67,7 +67,7 @@ class IndexController extends Controller
     public function productCategory(Category $category)
     {
         $data['sliders'] = Slider::where('status', 1)->orderBy('id_banner', 'DESC')->limit(3)->get();
-        $data['products'] = Product::where('status', 1)->where('category_id', $category->id)->orderBy('id', 'ASC')->paginate(4);
+        $data['products'] = Product::where('status', 1)->where('id_kategori', $category->id)->orderBy('id', 'ASC')->paginate(4);
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
         $data['nama_kategori'] = $category->nama_kategori;
@@ -77,7 +77,7 @@ class IndexController extends Controller
     public function productSubcategory(Subcategory $subcategory)
     {
         $data['sliders'] = Slider::where('status', 1)->orderBy('id_banner', 'DESC')->limit(3)->get();
-        $data['products'] = Product::where('status', 1)->where('subcategory_id', $subcategory->id)->orderBy('id', 'DESC')->paginate(4);
+        $data['products'] = Product::where('status', 1)->where('id_subkategori', $subcategory->id)->orderBy('id', 'DESC')->paginate(4);
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
         $data['subcategory_name'] = $subcategory->subcategory_name;
@@ -88,7 +88,7 @@ class IndexController extends Controller
     public function productTag($keyword)
     {
         $data['sliders'] = Slider::where('status', 1)->orderBy('id_banner', 'DESC')->limit(3)->get();
-        $data['products'] = Product::where('status', 1)->where('product_tags', 'LIKE', '%' . $keyword . '%')->orderBy('id', 'DESC')->paginate(4);
+        $data['products'] = Product::where('status', 1)->where('tag_produk', 'LIKE', '%' . $keyword . '%')->orderBy('id', 'DESC')->paginate(4);
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
         $data['keyword'] = $keyword;
@@ -100,16 +100,16 @@ class IndexController extends Controller
     {
         $product = Product::with('category', 'brand')->findOrFail($id);
 
-        $color = $product->product_color;
-        $product_color = explode(',', $color);
+        $color = $product->warna_produk;
+        $warna_produk = explode(',', $color);
 
-        $size = $product->product_size;
-        $product_size = explode(',', $size);
+        $size = $product->ukuran_produk;
+        $ukuran_produk = explode(',', $size);
 
         return response()->json(array(
             'product' => $product,
-            'colors' => $product_color,
-            'sizes' => $product_size,
+            'colors' => $warna_produk,
+            'sizes' => $ukuran_produk,
         ));
     } // end method 
 
@@ -119,7 +119,7 @@ class IndexController extends Controller
             'keyword' => 'required',
         ]);
 
-        $data['products'] = Product::where('status', 1)->where('product_name', 'LIKE', '%' . $request->keyword . '%')->orWhere('product_slug', 'LIKE', '%' .  $request->keyword . '%')->orWhere('product_tags', 'LIKE', '%' .  $request->keyword . '%')->orderBy('id', 'DESC')->paginate(4);
+        $data['products'] = Product::where('status', 1)->where('nama_produk', 'LIKE', '%' . $request->keyword . '%')->orWhere('slug_produk', 'LIKE', '%' .  $request->keyword . '%')->orWhere('tag_produk', 'LIKE', '%' .  $request->keyword . '%')->orderBy('id', 'DESC')->paginate(4);
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('subcategory_name', 'ASC')->get();
         $data['keyword'] =  $request->keyword;

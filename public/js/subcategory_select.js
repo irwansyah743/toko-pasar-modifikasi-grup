@@ -1,6 +1,6 @@
-        const categoryInput=document.getElementById('category_id');
-        const subCategoryInput=document.getElementById('subcategory_id');
-        const subsubCategoryInput=document.getElementById('subsubcategory_id');
+        const categoryInput=document.getElementById('id_kategori');
+        const subCategoryInput=document.getElementById('id_subkategori');
+        const subsubCategoryInput=document.getElementById('id_subsubkategori');
         function removeAllChildNodes(parent) {
             while (parent.firstElementChild) {
                 parent.removeChild(parent.firstElementChild);

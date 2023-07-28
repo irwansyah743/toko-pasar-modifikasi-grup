@@ -1,28 +1,27 @@
 @php
-$specDeals = App\Models\Product::where('status', 1)
-    ->where('special_deals', 1)
+$specOffers = App\Models\Product::where('status', 1)
+    ->where('penawaran_spesial', 1)
     ->orderBy('id', 'DESC')
     ->limit(4)
     ->get();
-
 @endphp
 
 <div class="sidebar-widget outer-bottom-small wow fadeInUp">
-    <h3 class="section-title">Special Deals</h3>
+    <h3 class="section-title">Special Offer</h3>
     <div class="sidebar-widget-body outer-top-xs">
         <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
+
             <div class="item">
                 <div class="products special-product">
-
-                    @foreach ($specDeals as $product)
+                    @foreach ($specOffers as $product)
                         <div class="product">
                             <div class="product-micro">
                                 <div class="row product-micro-row">
                                     <div class="col col-xs-5">
                                         <div class="product-image">
                                             <div class="image"> <a
-                                                    href="{{ url('product/detail/' . $product->product_slug) }}"> <img
-                                                        src=" {{ asset('storage/' . $product->product_thambnail) }}"
+                                                    href="{{ url('product/detail/' . $product->slug_produk) }}"> <img
+                                                        src=" {{ asset('storage/' . $product->thumbnail_produk) }}"
                                                         alt=""> </a>
                                             </div>
                                             <!-- /.image -->
@@ -34,7 +33,7 @@ $specDeals = App\Models\Product::where('status', 1)
                                     <div class="col col-xs-7">
                                         <div class="product-info">
                                             <h3 class="name"><a
-                                                    href="{{ url('product/detail/' . $product->product_slug) }}">{{ $product->product_name }}</a>
+                                                    href="{{ url('product/detail/' . $product->slug_produk) }}">{{ $product->nama_produk }}</a>
                                             </h3>
                                             @php
                                                 $avarage = App\Models\Review::where('id_produk', $product->id)
@@ -79,16 +78,16 @@ $specDeals = App\Models\Product::where('status', 1)
 
                                             </div>
                                             <div class="product-price">
-                                                @if ($product->discount_price)
+                                                @if ($product->harga_diskon)
                                                     <span class="price">
-                                                        Rp.{{ $product->discount_price }}K
+                                                        Rp.{{ $product->harga_diskon }}
                                                     </span>
                                                     <span
-                                                        class="price-before-discount">Rp.{{ $product->selling_price }}K
+                                                        class="price-before-discount">Rp.{{ $product->harga_jual }}
                                                     </span>
                                                 @else
                                                     <span class="price">
-                                                        Rp.{{ $product->selling_price }}K
+                                                        Rp.{{ $product->harga_jual }}
                                                     </span>
                                                 @endif
                                             </div>

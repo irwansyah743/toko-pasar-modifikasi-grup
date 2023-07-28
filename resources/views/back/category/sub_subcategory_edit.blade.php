@@ -30,17 +30,17 @@
                                     <div class="form-group">
                                         <h5>Category Select <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <select name="category_id" id="category_id"
-                                                class="form-control @error('category_id') is-invalid @enderror">
-                                                <option value="" @selected(old('category_id') == '') disabled>- Select
+                                            <select name="id_kategori" id="id_kategori"
+                                                class="form-control @error('id_kategori') is-invalid @enderror">
+                                                <option value="" @selected(old('id_kategori') == '') disabled>- Select
                                                     Category -
                                                 </option>
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}" @selected($category->id == $subsubcategory->category->id || old('category_id') == $category->id)>
+                                                    <option value="{{ $category->id }}" @selected($category->id == $subsubcategory->category->id || old('id_kategori') == $category->id)>
                                                         {{ $category->nama_kategori }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('category_id')
+                                            @error('id_kategori')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
@@ -51,22 +51,22 @@
                                     <div class="form-group">
                                         <h5>SubCategory Select <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <select name="subcategory_id" id="subcategory_id"
-                                                class="form-control @error('subcategory_id') is-invalid @enderror">
-                                                <option value="" @selected(old('subcategory_id') == '') disabled>- Select
+                                            <select name="id_subkategori" id="id_subkategori"
+                                                class="form-control @error('id_subkategori') is-invalid @enderror">
+                                                <option value="" @selected(old('id_subkategori') == '') disabled>- Select
                                                     SubCategory -
                                                 </option>
-                                                @if (old('subcategory_id', $subsubcategory->subcategory->id))
+                                                @if (old('id_subkategori', $subsubcategory->subcategory->id))
                                                     @foreach ($subcategories as $subcategory)
-                                                        @if (old('subcategory_id') == $subcategory->id || $subcategory->category->id == old('category_id') || $subcategory->category->id == $subsubcategory->category->id)
+                                                        @if (old('id_subkategori') == $subcategory->id || $subcategory->category->id == old('id_kategori') || $subcategory->category->id == $subsubcategory->category->id)
                                                             <option value="{{ $subcategory->id }}"
-                                                                @selected(old('subcategory_id') == $subcategory->id || $subcategory->id == $subsubcategory->subcategory->id)>
+                                                                @selected(old('id_subkategori') == $subcategory->id || $subcategory->id == $subsubcategory->subcategory->id)>
                                                                 {{ $subcategory->subcategory_name }}</option>
                                                         @endif
                                                     @endforeach
                                                 @endif
                                             </select>
-                                            @error('subcategory_id')
+                                            @error('id_subkategori')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>

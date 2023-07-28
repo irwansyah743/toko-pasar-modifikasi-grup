@@ -1,7 +1,7 @@
 @extends('front.master')
 @section('content')
 @section('title')
-    {{ $product->product_name }} Product Details
+    {{ $product->nama_produk }} Product Details
 @endsection
 
 
@@ -12,7 +12,7 @@
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
                 <li><a href="{{ url('/') }}">Home</a></li>
-                <li class='active'> {{ $product->product_name }}</li>
+                <li class='active'> {{ $product->nama_produk }}</li>
             </ul>
         </div><!-- /.breadcrumb-inner -->
     </div><!-- /.container -->
@@ -94,7 +94,7 @@
 
                                 <h1 class="name" id="pname">
 
-                                    {{ $product->product_name }}
+                                    {{ $product->nama_produk }}
 
                                 </h1>
 
@@ -159,7 +159,7 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <div class="stock-box">
-                                                <span class="value">{{ $product->product_qty }}</span>
+                                                <span class="value">{{ $product->kuantitas_produk }}</span>
                                             </div>
                                         </div>
                                     </div><!-- /.row -->
@@ -167,7 +167,7 @@
 
                                 <div class="description-container m-t-20">
 
-                                    {{ $product->short_descp }}
+                                    {{ $product->deskripsi_singkat }}
 
                                 </div><!-- /.description-container -->
 
@@ -177,12 +177,12 @@
 
                                         <div class="col-sm-6">
                                             <div class="price-box">
-                                                @if ($product->discount_price == null)
-                                                    <span class="price">Rp. {{ $product->selling_price }}</span>
+                                                @if ($product->harga_diskon == null)
+                                                    <span class="price">Rp. {{ $product->harga_jual }}</span>
                                                 @else
-                                                    <span class="price">Rp. {{ $product->discount_price }}</span>
+                                                    <span class="price">Rp. {{ $product->harga_diskon }}</span>
                                                     <span
-                                                        class="price-strike">Rp.{{ $product->selling_price }}</span>
+                                                        class="price-strike">Rp.{{ $product->harga_jual }}</span>
                                                 @endif
 
 
@@ -261,13 +261,13 @@
                                                                     class="icon fa fa-sort-desc"></i></span></div> -->
                                                     </div>
                                                     <input type="number" id="qty" value="1"
-                                                        min="1" max="{{ $product->product_qty }}">
+                                                        min="1" max="{{ $product->kuantitas_produk }}">
                                                 </div>
                                             </div>
                                         </div>
                                         <input type="hidden" id="pid" value="{{ $product->id }}">
                                         <div class="col-sm-7">
-                                            <button type="submit" onclick="addToCart({{ $product->product_qty }})" class="btn btn-primary"><i
+                                            <button type="submit" onclick="addToCart({{ $product->kuantitas_produk }})" class="btn btn-primary"><i
                                                     class="fa fa-shopping-cart inner-right-vs"></i> ADD TO
                                                 CART</button>
                                         </div>
@@ -304,7 +304,7 @@
                                     <div class="product-tab">
                                         <p class="text">
 
-                                            {!! $product->long_descp !!}
+                                            {!! $product->deskripsi_panjang !!}
 
                                         </p>
                                     </div>

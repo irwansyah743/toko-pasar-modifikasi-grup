@@ -1,12 +1,12 @@
 @php
 
-$tags = App\Models\Product::groupBy('product_tags')
-    ->select('product_tags')
+$tags = App\Models\Product::groupBy('tag_produk')
+    ->select('tag_produk')
     ->get();
 
 $tagsFix = [];
 foreach ($tags as $tag) {
-    $tag = explode(',', $tag->product_tags);
+    $tag = explode(',', $tag->tag_produk);
     $arrayCount = count($tag);
     for ($i = 0; $i < $arrayCount; $i++) {
         $tagsFix = array_merge($tagsFix, [$tag[$i]]);
@@ -42,7 +42,7 @@ $tagsFix = array_unique($tagsFix);
 <!-- /.sidebar-widget -->
 <!-- ============================================== PRODUCT TAGS : END ============================================== -->
 <!-- ============================================== SPECIAL DEALS ============================================== -->
-@include('front.common.special_deals')
+@include('front.common.penawaran_khusus')
 <!-- /.sidebar-widget -->
 <!-- ============================================== SPECIAL DEALS : END ============================================== -->
 

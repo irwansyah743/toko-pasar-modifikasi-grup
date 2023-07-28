@@ -2,19 +2,19 @@
 async function productView(id){
     try {
         const data = await getProduct(id);
-        document.getElementById('pname').innerHTML=data.product.product_name;
+        document.getElementById('pname').innerHTML=data.product.nama_produk;
         
-        document.getElementById('pcode').innerHTML=data.product.product_code;
-        document.getElementById('pstock').innerHTML=data.product.product_qty;
+        document.getElementById('pcode').innerHTML=data.product.kode_produk;
+        document.getElementById('pstock').innerHTML=data.product.kuantitas_produk;
         document.getElementById('pcategory').innerHTML=data.product.category.category_name;
         document.getElementById('pbrand').innerHTML=data.product.brand.brand_name;
         document.getElementById('pid').value=data.product.id;
-        document.getElementById('pimage').src=`${window.location.origin}/storage/${data.product.product_thambnail}`;
-        if(data.product.discount_price==null){
-            document.getElementById('price').innerHTML=`Rp.${data.product.selling_price}`;
+        document.getElementById('pimage').src=`${window.location.origin}/storage/${data.product.thumbnail_produk}`;
+        if(data.product.harga_diskon==null){
+            document.getElementById('price').innerHTML=`Rp.${data.product.harga_jual}`;
         }else{
-            document.getElementById('price').innerHTML=`Rp.${data.product.discount_price}`;
-            document.getElementById('oldprice').innerHTML=` Rp.${data.product.selling_price}`;
+            document.getElementById('price').innerHTML=`Rp.${data.product.harga_diskon}`;
+            document.getElementById('oldprice').innerHTML=` Rp.${data.product.harga_jual}`;
         }
 
         const pcolor=document.getElementById('pcolor');
@@ -59,7 +59,7 @@ function createSelectOption(data) {
 // -------------------------------------- END MODAL ----------------------------------
 
 // -------------------------------------- ADD TO CART ----------------------------------
-function addToCart(product_qty){
+function addToCart(kuantitas_produk){
     const selectColor=document.getElementById('pcolor');
     const selectSize=document.getElementById('psize');
 
@@ -71,8 +71,8 @@ function addToCart(product_qty){
     let pQty=null;
 
     console.log(parseInt(document.getElementById('qty').value, 10));
-    console.log(parseInt(product_qty));
-    if(parseInt(document.getElementById('qty').value, 10) > parseInt(product_qty)){
+    console.log(parseInt(kuantitas_produk));
+    if(parseInt(document.getElementById('qty').value, 10) > parseInt(kuantitas_produk)){
         Swal.fire({
             toast: true,
             position: 'top-end',
@@ -88,11 +88,11 @@ function addToCart(product_qty){
     
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     const data = {
-        product_name: pName,
+        nama_produk: pName,
         product_id: pId,
-        product_color: pColor,
-        product_size: pSize,
-        product_qty: pQty,
+        warna_produk: pColor,
+        ukuran_produk: pSize,
+        kuantitas_produk: pQty,
     };
 
     fetch(`${window.location.origin}/cart/data/store/${pId}`,{

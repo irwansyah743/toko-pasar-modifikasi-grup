@@ -34,10 +34,10 @@ class SubSubCategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function getSubSubCategory($subcategory_id)
+    public function getSubSubCategory($id_subkategori)
     {
 
-        $data = SubSubCategory::where('subcategory_id', $subcategory_id)->orderBy('subsubcategory_name', 'ASC')->get();
+        $data = SubSubCategory::where('id_subkategori', $id_subkategori)->orderBy('subsubcategory_name', 'ASC')->get();
         return response()->json($data);
     }
 
@@ -61,17 +61,17 @@ class SubSubCategoryController extends Controller
     {
         $validated = $request->validate([
             'subsubcategory_name' => 'required|max:50',
-            'category_id' => 'required',
-            'subcategory_id' => 'required',
+            'id_kategori' => 'required',
+            'id_subkategori' => 'required',
         ], [
-            'category_id.required' => "Sub-subcategory must belong to a category",
-            'subcategory_id.required' => "Sub-subcategory must belong to a subcategory"
+            'id_kategori.required' => "Sub-subcategory must belong to a category",
+            'id_subkategori.required' => "Sub-subcategory must belong to a subcategory"
         ]);
 
 
         $validated['subsubcategory_name'] = $request->subsubcategory_name;
-        $validated['category_id'] = $request->category_id;
-        $validated['subcategory_id'] = $request->subcategory_id;
+        $validated['id_kategori'] = $request->id_kategori;
+        $validated['id_subkategori'] = $request->id_subkategori;
         $validated['subsubcategory_slug'] = strtolower(str_replace(' ', '-', $request->subsubcategory_name));
         $validated['created_at'] = Carbon::now();
 
@@ -122,16 +122,16 @@ class SubSubCategoryController extends Controller
     {
         $validated = $request->validate([
             'subsubcategory_name' => 'required|max:50',
-            'category_id' => 'required',
-            'subcategory_id' => 'required',
+            'id_kategori' => 'required',
+            'id_subkategori' => 'required',
         ], [
-            'category_id.required' => "Sub-subcategory must belong to a category",
-            'subcategory_id.required' => "Sub-subcategory must belong to a subcategory"
+            'id_kategori.required' => "Sub-subcategory must belong to a category",
+            'id_subkategori.required' => "Sub-subcategory must belong to a subcategory"
         ]);
 
 
         $validated['subsubcategory_name'] = $request->subsubcategory_name;
-        $validated['category_id'] = $request->category_id;
+        $validated['id_kategori'] = $request->id_kategori;
         $validated['subcategory_id'] = $request->subcategory_id;
         $validated['subsubcategory_slug'] = strtolower(str_replace(' ', '-', $request->subsubcategory_name));
         $validated['created_at'] = Carbon::now();

@@ -1,7 +1,7 @@
  @php
      $hotDeals = App\Models\Product::where('status', 1)
-         ->where('discount_price', '!=', null)
-         ->where('hot_deals', 1)
+         ->where('harga_diskon', '!=', null)
+         ->where('diskon_besar', 1)
          ->orderBy('id', 'ASC')
          ->limit(8)
          ->get();
@@ -15,12 +15,12 @@
              <div class="item">
                  <div class="products">
                      <div class="hot-deal-wrapper">
-                         <div class="image"> <img src="{{ asset('storage/' . $product->product_thambnail) }}"
-                                 alt="{{ $product->product_name }}">
+                         <div class="image"> <img src="{{ asset('storage/' . $product->thumbnail_produk) }}"
+                                 alt="{{ $product->nama_produk }}">
                          </div>
                          @php
-                             $amount = $product->selling_price - $product->discount_price;
-                             $discount = ($amount / $product->selling_price) * 100;
+                             $amount = $product->harga_jual - $product->harga_diskon;
+                             $discount = ($amount / $product->harga_jual) * 100;
                              $avarage = App\Models\Review::where('id_produk', $product->id)
                                  ->where('status', 1)
                                  ->avg('rating');
@@ -37,7 +37,7 @@
 
                      <div class="product-info text-left m-t-20">
                          <h3 class="name"><a
-                                 href="{{ url('product/detail/' . $product->product_slug) }}">{{ $product->product_name }}</a>
+                                 href="{{ url('product/detail/' . $product->slug_produk) }}">{{ $product->nama_produk }}</a>
                          </h3>
                          <div>
 
@@ -80,9 +80,9 @@
 
                              {{-- HOT DEALS ARE GUARANTEED TO HAVE DISCOUNT --}}
                              <span class="price">
-                                 Rp.{{ $product->discount_price }}
+                                 Rp.{{ $product->harga_diskon }}
                              </span>
-                             <span class="price-before-discount">Rp.{{ $product->selling_price }}
+                             <span class="price-before-discount">Rp.{{ $product->harga_jual }}
                              </span>
 
                          </div>
