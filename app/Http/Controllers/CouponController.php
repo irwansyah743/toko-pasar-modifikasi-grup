@@ -43,9 +43,9 @@ class CouponController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'coupon_name' => 'required',
-            'coupon_discount' => 'required',
-            'coupon_validity' => 'required',
+            'nama_kupon' => 'required',
+            'diskon_kupon' => 'required',
+            'validitas_kupon' => 'required',
         ]);
         $validated['created_at'] = Carbon::now();
 
@@ -93,9 +93,9 @@ class CouponController extends Controller
     public function update(Request $request, Coupon $coupon)
     {
         $validated = $request->validate([
-            'coupon_name' => 'required',
-            'coupon_discount' => 'required',
-            'coupon_validity' => 'required',
+            'nama_kupon' => 'required',
+            'diskon_kupon' => 'required',
+            'validitas_kupon' => 'required',
         ]);
         $validated['updated_at'] = Carbon::now();
 

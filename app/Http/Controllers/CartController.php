@@ -89,14 +89,14 @@ class CartController extends Controller
 
         if (Session::has('coupon')) {
 
-            $coupon_name = Session::get('coupon')['coupon_name'];
-            $coupon = Coupon::where('coupon_name', $coupon_name)->first();
+            $nama_kupon = Session::get('coupon')['nama_kupon'];
+            $coupon = Coupon::where('nama_kupon', $nama_kupon)->first();
 
             Session::put('coupon', [
-                'coupon_name' => $coupon->coupon_name,
-                'coupon_discount' => $coupon->coupon_discount,
-                'discount_amount' => Cart::priceTotal() * $coupon->coupon_discount / 100,
-                'total_amount' => Cart::priceTotal() - Cart::priceTotal() * $coupon->coupon_discount / 100
+                'nama_kupon' => $coupon->nama_kupon,
+                'diskon_kupon' => $coupon->diskon_kupon,
+                'discount_amount' => Cart::priceTotal() * $coupon->diskon_kupon / 100,
+                'total_amount' => Cart::priceTotal() - Cart::priceTotal() * $coupon->diskon_kupon / 100
             ]);
         }
 
@@ -112,14 +112,14 @@ class CartController extends Controller
 
         if (Session::has('coupon')) {
 
-            $coupon_name = Session::get('coupon')['coupon_name'];
-            $coupon = Coupon::where('coupon_name', $coupon_name)->first();
+            $nama_kupon = Session::get('coupon')['nama_kupon'];
+            $coupon = Coupon::where('nama_kupon', $nama_kupon)->first();
 
             Session::put('coupon', [
-                'coupon_name' => $coupon->coupon_name,
-                'coupon_discount' => $coupon->coupon_discount,
-                'discount_amount' => Cart::priceTotal() * $coupon->coupon_discount / 100,
-                'total_amount' => Cart::priceTotal() - Cart::priceTotal() * $coupon->coupon_discount / 100
+                'nama_kupon' => $coupon->nama_kupon,
+                'diskon_kupon' => $coupon->diskon_kupon,
+                'discount_amount' => Cart::priceTotal() * $coupon->diskon_kupon / 100,
+                'total_amount' => Cart::priceTotal() - Cart::priceTotal() * $coupon->diskon_kupon / 100
             ]);
         }
 
@@ -128,14 +128,14 @@ class CartController extends Controller
 
     public function couponApply(Request $request)
     {
-        $coupon = Coupon::where('coupon_name', $request->coupon_name)->where('coupon_validity', '>=', Carbon::now()->format('Y-m-d'))->first();
+        $coupon = Coupon::where('nama_kupon', $request->nama_kupon)->where('validitas_kupon', '>=', Carbon::now()->format('Y-m-d'))->first();
         if ($coupon) {
 
             Session::put('coupon', [
-                'coupon_name' => $coupon->coupon_name,
-                'coupon_discount' => $coupon->coupon_discount,
-                'discount_amount' => Cart::priceTotal() * $coupon->coupon_discount / 100,
-                'total_amount' => Cart::priceTotal() - Cart::priceTotal() * $coupon->coupon_discount / 100
+                'nama_kupon' => $coupon->nama_kupon,
+                'diskon_kupon' => $coupon->diskon_kupon,
+                'discount_amount' => Cart::priceTotal() * $coupon->diskon_kupon / 100,
+                'total_amount' => Cart::priceTotal() - Cart::priceTotal() * $coupon->diskon_kupon / 100
             ]);
 
             return response()->json(array(
@@ -153,8 +153,8 @@ class CartController extends Controller
         if (Session::has('coupon')) {
             return response()->json(array(
                 'subtotal' => Cart::priceTotal(),
-                'coupon_name' => session()->get('coupon')['coupon_name'],
-                'coupon_discount' => session()->get('coupon')['coupon_discount'],
+                'nama_kupon' => session()->get('coupon')['nama_kupon'],
+                'diskon_kupon' => session()->get('coupon')['diskon_kupon'],
                 'discount_amount' => session()->get('coupon')['discount_amount'],
                 'total_amount' => session()->get('coupon')['total_amount'],
             ));

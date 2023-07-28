@@ -215,13 +215,13 @@
 
                                                 <strong>Coupon Name : </strong>
                                                 <span
-                                                    id="coupon_name">{{ session()->get('coupon')['coupon_name'] }}</span>
-                                                ( {{ session()->get('coupon')['coupon_discount'] }} % )
+                                                    id="nama_kupon">{{ session()->get('coupon')['nama_kupon'] }}</span>
+                                                ( {{ session()->get('coupon')['diskon_kupon'] }} % )
                                                 <hr>
 
                                                 <strong>Coupon Discount : </strong>
                                                 Rp. <span
-                                                    id="coupon_discount">{{ session()->get('coupon')['discount_amount'] }}</span>
+                                                    id="diskon_kupon">{{ session()->get('coupon')['discount_amount'] }}</span>
                                                 <hr>
 
                                                 <strong>Grand Total :

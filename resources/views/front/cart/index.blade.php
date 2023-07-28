@@ -65,7 +65,7 @@
                             <td>
                                 <div class="form-group">
                                     <input type="text" class="form-control unicase-form-control text-input"
-                                        placeholder="You Coupon.." id="coupon_name">
+                                        placeholder="You Coupon.." id="nama_kupon">
                                 </div>
                                 <div class="clearfix pull-right">
                                     <button type="submit" class="btn-upper btn btn-primary"

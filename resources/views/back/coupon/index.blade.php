@@ -35,14 +35,14 @@
                                     <tbody>
                                         @foreach ($coupons as $coupon)
                                             <tr>
-                                                <td> {{ $coupon->coupon_name }} </td>
-                                                <td> {{ $coupon->coupon_discount }}% </td>
+                                                <td> {{ $coupon->nama_kupon }} </td>
+                                                <td> {{ $coupon->diskon_kupon }}% </td>
                                                 <td width="25%">
-                                                    {{ Carbon\Carbon::parse($coupon->coupon_validity)->format('D, d F Y') }}
+                                                    {{ Carbon\Carbon::parse($coupon->validitas_kupon)->format('D, d F Y') }}
                                                 </td>
 
                                                 <td>
-                                                    @if ($coupon->coupon_validity >= Carbon\Carbon::now()->format('Y-m-d'))
+                                                    @if ($coupon->validitas_kupon >= Carbon\Carbon::now()->format('Y-m-d'))
                                                         <span class="badge badge-pill badge-success"> Valid </span>
                                                     @else
                                                         <span class="badge badge-pill badge-danger"> Invalid </span>
@@ -99,9 +99,9 @@
                                     <div class="form-group">
                                         <h5>Coupon Name <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" name="coupon_name"
-                                                class="form-control @error('coupon_name') is-invalid @enderror">
-                                            @error('coupon_name')
+                                            <input type="text" name="nama_kupon"
+                                                class="form-control @error('nama_kupon') is-invalid @enderror">
+                                            @error('nama_kupon')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
@@ -113,9 +113,9 @@
                                     <div class="form-group">
                                         <h5>Coupon Discount(%) <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="number" name="coupon_discount"
-                                                class="form-control @error('coupon_discount') is-invalid @enderror">
-                                            @error('coupon_discount')
+                                            <input type="number" name="diskon_kupon"
+                                                class="form-control @error('diskon_kupon') is-invalid @enderror">
+                                            @error('diskon_kupon')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
@@ -127,10 +127,10 @@
                                     <div class="form-group">
                                         <h5>Coupon Validity Date <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="date" name="coupon_validity"
-                                                class="form-control @error('coupon_validity') is-invalid @enderror"
+                                            <input type="date" name="validitas_kupon"
+                                                class="form-control @error('validitas_kupon') is-invalid @enderror"
                                                 min="{{ Carbon\Carbon::now()->format('Y-m-d') }}">
-                                            @error('coupon_validity')
+                                            @error('validitas_kupon')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>

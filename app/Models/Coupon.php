@@ -12,9 +12,9 @@ class Coupon extends Model
     public $table = "kupon";
 
     protected $fillable = [
-        'coupon_name',
-        'coupon_discount',
-        'coupon_validity',
+        'nama_kupon',
+        'diskon_kupon',
+        'validitas_kupon',
         'status',
     ];
 }
