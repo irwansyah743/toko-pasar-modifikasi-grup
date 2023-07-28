@@ -91,7 +91,7 @@ class MidtransController extends Controller
 
         $params = array(
             'transaction_details' => array(
-                'id_pesanan' =>  $id_pesanan,
+                'order_id' =>  $id_pesanan,
             ),
             'item_details' => $items,
             'customer_details' => array(
@@ -100,8 +100,8 @@ class MidtransController extends Controller
                 'phone' => $request->phone,
             ),
             "shipping_address" =>  array(
-                "provinsi" => $request->provinsi,
-                "alamat" => $request->alamat,
+                "province" => $request->provinsi,
+                "address" => $request->alamat,
                 "city" => $request->kabupaten,
                 "postal_code" => $request->kodePos,
             )
@@ -155,7 +155,7 @@ class MidtransController extends Controller
         $fraud = $request->fraud_status;
 
 
-        $orderModel = Order::where("id_pesanan", $request->id_pesanan)->first();
+        $orderModel = Order::where("id_pesanan", $request->order_id)->first();
         if (!$orderModel) {
             return response()->json([
                 'status' => 'error',
@@ -170,10 +170,10 @@ class MidtransController extends Controller
                 $order['status'] = 'pending';
             }
             $order['id_transaksi'] = $request->id_transaksi;
-            $order['nominal_total'] = $request->nominal_total;
-            $order['tipe_pembayaran'] = $request->tipe_pembayaran;
+            $order['nominal_total'] = $request->gross_amount;
+            $order['tipe_pembayaran'] = $request->payment_type;
             $order['created_at'] = $request->transaction_time;
-            $order['payment_code '] = isset($request->payment_code) ? $request->payment_code : null;
+            $order['payment_code'] = isset($request->payment_code) ? $request->payment_code : null;
             $order['pdf_url'] = isset($request->pdf_url) ? $request->pdf_url : null;
 
             if ($transaction == 'capture' || $transaction == 'settlement') {
