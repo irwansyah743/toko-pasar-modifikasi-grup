@@ -9,12 +9,12 @@
         <div class="content-header">
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
-                    <h3 class="page-title">Order Details</h3>
+                    <h3 class="page-title">Detail Pesanan</h3>
                     <div class="d-inline-block align-items-center">
                         <nav>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a></li>
-                                <li class="breadcrumb-item" aria-current="page">Order Details</li>
+                                <li class="breadcrumb-item" aria-current="page">Detail Pesanan</li>
 
                             </ol>
                         </nav>
@@ -33,23 +33,23 @@
                 <div class="col-md-6 col-12">
                     <div class="box box-bordered border-primary">
                         <div class="box-header with-border">
-                            <h4 class="box-title"><strong>Shipping Details</strong> </h4>
+                            <h4 class="box-title"><strong>Detail Pengiriman</strong> </h4>
                         </div>
 
 
                         <table class="table">
                             <tr>
-                                <th> Shipping Name : </th>
+                                <th> Nama Pengirim : </th>
                                 <th> {{ $orderDetail->user->name }} </th>
                             </tr>
 
                             <tr>
-                                <th> Shipping Phone : </th>
+                                <th> SNo Telepon Pengirim : </th>
                                 <th> {{ $orderDetail->user->phone }} </th>
                             </tr>
 
                             <tr>
-                                <th> Shipping Email : </th>
+                                <th> Email Pengirim : </th>
                                 <th> {{ $orderDetail->user->email }} </th>
                             </tr>
 
@@ -69,16 +69,16 @@
                             </tr>
 
                             <tr>
-                                <th> Post Code : </th>
+                                <th> Kode pos : </th>
                                 <th> {{ $orderDetail->shipping->kode_pos }} </th>
                             </tr>
 
                             <tr>
-                                <th> Order Date : </th>
+                                <th> Tanggal Pesanan : </th>
                                 <th> {{ $orderDetail->tanggal_pesanan }} </th>
                             </tr>
                             <tr>
-                                <th> Delivery Status : </th>
+                                <th> Status Kirim : </th>
                                 <th>
                                     <span class="badge badge-pill badge-warning"
                                         style="background:{{ $orderDetail->shipping->status_pengiriman == 0 ? '#EF3737' : '#418DB9' }} ; ">{{ $orderDetail->shipping->status_pengiriman == 0 ? 'Waitlist' : 'Sent' }}
@@ -87,14 +87,14 @@
                             </tr>
                             @if ($orderDetail->shipping->resi !== null)
                                 <tr>
-                                    <th> Resi NO : </th>
+                                    <th> No Resi : </th>
                                     <th> {{ $orderDetail->shipping->resi }} </th>
                                 </tr>
                             @else
                                 <form action="{{ url('orders/shipping/' . $orderDetail->id_pengiriman) }}" method="post">
                                     @csrf
                                     <tr>
-                                        <th> Resi NO </th>
+                                        <th> No Resi </th>
                                         <th><input type="hidden" name="id_pesanan" value="{{ $orderDetail->getKey() }}">
                                             <input type="text" name="resi" required>
                                         </th>
@@ -116,43 +116,43 @@
                 <div class="col-md-6 col-12">
                     <div class="box box-bordered border-primary">
                         <div class="box-header with-border">
-                            <h4 class="box-title"><strong>Order Details</strong></h4>
+                            <h4 class="box-title"><strong>Detail Pesanan</strong></h4>
                         </div>
 
 
                         <table class="table">
                             <tr>
-                                <th> Name : </th>
+                                <th> Nama : </th>
                                 <th> {{ $orderDetail->user->name }} </th>
                             </tr>
 
                             <tr>
-                                <th> Phone : </th>
+                                <th> Telepon : </th>
                                 <th> {{ $orderDetail->user->phone }} </th>
                             </tr>
 
                             <tr>
-                                <th> Payment Type : </th>
+                                <th> tipe Pembayaran : </th>
                                 <th> {{ ucwords($orderDetail->tipe_pembayaran) }} </th>
                             </tr>
 
                             <tr>
-                                <th> Tranx ID : </th>
+                                <th> ID Transaksi : </th>
                                 <th> {{ $orderDetail->id_transaksi }} </th>
                             </tr>
 
                             <tr>
-                                <th> Order : </th>
+                                <th> Pesanan : </th>
                                 <th class="text-danger"> {{ $orderDetail->id_pesanan }} </th>
                             </tr>
 
                             <tr>
-                                <th> Order Total : </th>
+                                <th> Total Pesanan : </th>
                                 <th>Rp. {{ $orderDetail->nominal_total }} </th>
                             </tr>
 
                             <tr>
-                                <th> Order : </th>
+                                <th> Pesanan : </th>
                                 <th>
                                     <span class="badge badge-pill badge-warning"
                                         style="background: #418DB9;">{{ $orderDetail->status }} </span>

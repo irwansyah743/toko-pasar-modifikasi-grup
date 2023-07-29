@@ -35,7 +35,7 @@
 
 
                                     <div class="form-group">
-                                        <h5>Coupon Name <span class="text-danger">*</span></h5>
+                                        <h5>Nama Kupon <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" name="nama_kupon" class="form-control"
                                                 value="{{ old('nama_kupon', $coupon->nama_kupon) }}">
@@ -47,7 +47,7 @@
 
 
                                     <div class="form-group">
-                                        <h5>Coupon Discount(%) <span class="text-danger">*</span></h5>
+                                        <h5>Kupon Diskon(%) <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" name="diskon_kupon" class="form-control"
                                                 value="{{ old('diskon_kupon', $coupon->diskon_kupon) }}">
@@ -59,7 +59,7 @@
 
 
                                     <div class="form-group">
-                                        <h5>Coupon Validity Date <span class="text-danger">*</span></h5>
+                                        <h5>Tanggal Validitas kupon <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="date" name="validitas_kupon" class="form-control"
                                                 min="{{ Carbon\Carbon::now()->format('Y-m-d') }}"

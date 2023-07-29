@@ -15,7 +15,7 @@
                 <div class="col-8">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">list Subsub kategori <span class="badge badge-pill badge-danger">
+                            <h3 class="box-title">Daftar Subsub kategori <span class="badge badge-pill badge-danger">
                                     {{ count($subsubcategories) }} </span> </h3>
                         </div>
                         <!-- /.box-header -->
@@ -70,7 +70,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Add SubSubCategory </h3>
+                            <h3 class="box-title">Tambah SubSubCategory </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -80,12 +80,11 @@
                                 <form method="post" action="{{ route('subsubcategory.store') }}">
                                     @csrf
                                     <div class="form-group">
-                                        <h5>Category Select <span class="text-danger">*</span></h5>
+                                        <h5>Pilih Kategori <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <select name="id_kategori" id="id_kategori"
                                                 class="form-control @error('id_kategori') is-invalid @enderror">
-                                                <option value="" @selected(old('id_kategori') == '') disabled>- Select
-                                                    Category -
+                                                <option value="" @selected(old('id_kategori') == '') disabled>- Pilih Kategori -
                                                 </option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->getKey() }}" @selected(old('id_kategori') == $category->getKey())>

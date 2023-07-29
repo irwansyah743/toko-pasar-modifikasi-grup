@@ -16,7 +16,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">All User </h3>
+                            <h3 class="box-title">Semua User </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -24,10 +24,10 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Image </th>
-                                            <th>Name </th>
+                                            <th>Gambar </th>
+                                            <th>Nama </th>
                                             <th>Email</th>
-                                            <th>Phone</th>
+                                            <th>Telepon</th>
                                             <th>Status</th>
                                             <th>Action</th>
 
@@ -44,7 +44,7 @@
 
                                                 <td>
                                                     @if ($user->UserOnline())
-                                                        <span class="badge badge-pill badge-success">Active Now</span>
+                                                        <span class="badge badge-pill badge-success">Sekarang Aktif</span>
                                                     @else
                                                         <span
                                                             class="badge badge-pill badge-danger">{{ Carbon\Carbon::parse($user->last_seen)->diffForHumans() }}</span>

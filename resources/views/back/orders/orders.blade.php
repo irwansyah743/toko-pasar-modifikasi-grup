@@ -16,7 +16,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">{{ $orderType }} Orders List</h3>
+                            <h3 class="box-title">{{ $orderType }} Daftar Pesanan</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -24,12 +24,12 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Date </th>
-                                            <th>Order </th>
-                                            <th>Amount </th>
-                                            <th>Payment </th>
+                                            <th>Tanggal </th>
+                                            <th>Pesanan </th>
+                                            <th>Jumlah </th>
+                                            <th>Pembayaran </th>
                                             <th>Status </th>
-                                            <th>Delivery </th>
+                                            <th>Kirim </th>
                                             <th>Action</th>
 
                                         </tr>

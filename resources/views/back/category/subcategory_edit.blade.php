@@ -23,12 +23,11 @@
                                     <input type="hidden" name="id" value="{{ $subcategory->getKey() }}">
 
                                     <div class="form-group">
-                                        <h5>Category Select <span class="text-danger">*</span></h5>
+                                        <h5>pilih Kategori <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <select name="id_kategori"
                                                 class="form-control @error('id_kategori') is-invalid @enderror">
-                                                <option value="" @selected(old('id_kategori') == '') disabled>- Select
-                                                    Category -
+                                                <option value="" @selected(old('id_kategori') == '') disabled>- Pilih Kategori -
                                                 </option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->getKey() }}" @selected(old('id_kategori') == $category->getKey() || $subcategory->id_kategori == $category->getKey())>
@@ -43,7 +42,7 @@
 
 
                                     <div class="form-group">
-                                        <h5>SubCategory<span class="text-danger">*</span></h5>
+                                        <h5>SubKategori<span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" name="nama_subkategori"
                                                 class="form-control @error('nama_subkategori') is-invalid @enderror"

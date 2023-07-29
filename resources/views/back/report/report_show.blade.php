@@ -16,7 +16,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Order List</h3>
+                            <h3 class="box-title">Daftar Pesanan</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -24,10 +24,10 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Date </th>
-                                            <th>Invoice </th>
-                                            <th>Amount </th>
-                                            <th>Payment </th>
+                                            <th>Tanggal </th>
+                                            <th>Faktur </th>
+                                            <th>Jumlah </th>
+                                            <th>Pembayaran </th>
                                             <th>Status </th>
                                             <th>Action</th>
 

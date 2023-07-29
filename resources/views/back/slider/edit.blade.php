@@ -14,7 +14,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-judul">Edit Slider </h3>
+                            <h3 class="box-judul">Edit Banner </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">

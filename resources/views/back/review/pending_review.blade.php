@@ -16,7 +16,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Pending All Reviews </h3>
+                            <h3 class="box-title">Semua Review Pending </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -27,7 +27,7 @@
                                             <th>rangkuman </th>
                                             <th>komentar </th>
                                             <th>User </th>
-                                            <th>Product </th>
+                                            <th>Produk </th>
                                             <th>Status </th>
                                             <th>Action</th>
 

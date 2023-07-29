@@ -16,7 +16,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Brand List <span class="badge badge-pill badge-danger">
+                            <h3 class="box-title">Daftar Merek <span class="badge badge-pill badge-danger">
                                     {{ count($brands) }} </span></h3>
                         </div>
                         <!-- /.box-header -->
@@ -25,8 +25,8 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Brand</th>
-                                            <th>Image</th>
+                                            <th>Merek</th>
+                                            <th>Gambar</th>
                                             <th>Action</th>
 
                                         </tr>
@@ -74,7 +74,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Add Brand </h3>
+                            <h3 class="box-title">Tambah merek </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -85,7 +85,7 @@
 
 
                                     <div class="form-group">
-                                        <h5>Brand name <span class="text-danger">*</span></h5>
+                                        <h5>Nama Merek <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" name="nama_merek"
                                                 class="form-control @error('nama_merek') is-invalid @enderror"
@@ -99,7 +99,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <h5>Brand image <span class="text-danger">*</span></h5>
+                                        <h5>Gambar merek <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="file" name="gambar_merek"
                                                 class="form-control @error('gambar_merek') is-invalid @enderror"

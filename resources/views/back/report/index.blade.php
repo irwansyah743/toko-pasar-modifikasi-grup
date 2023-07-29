@@ -16,7 +16,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Search By Date </h3>
+                            <h3 class="box-title">Pencarian berdasarkan Tanggal </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -28,7 +28,7 @@
 
 
                                     <div class="form-group">
-                                        <h5>Select Date <span class="text-danger">*</span></h5>
+                                        <h5>Pilih Tanggal <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="date" name="date" class="form-control">
                                             @error('date')
@@ -58,7 +58,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Search By Month </h3>
+                            <h3 class="box-title">Pencarian Berdasarkan bulan </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -70,23 +70,23 @@
 
 
                                     <div class="form-group">
-                                        <h5>Select Month <span class="text-danger">*</span></h5>
+                                        <h5>Pilih Bulan <span class="text-danger">*</span></h5>
                                         <div class="controls">
 
                                             <select name="month" class="form-control" required>
                                                 <option label="Choose One"></option>
-                                                <option value="January">January</option>
-                                                <option value="February">February</option>
-                                                <option value="March">March</option>
+                                                <option value="January">Januari</option>
+                                                <option value="February">Februari</option>
+                                                <option value="March">Maret</option>
                                                 <option value="April">April</option>
-                                                <option value="May">May</option>
-                                                <option value="June">June</option>
-                                                <option value="July">July</option>
-                                                <option value="August">August</option>
+                                                <option value="May">Mei</option>
+                                                <option value="June">Juni</option>
+                                                <option value="July">Juli</option>
+                                                <option value="August">Augustus</option>
                                                 <option value="September">September</option>
-                                                <option value="October">October</option>
+                                                <option value="October">Oktober</option>
                                                 <option value="November">November</option>
-                                                <option value="December">December</option>
+                                                <option value="December">Desember</option>
 
 
                                             </select>
@@ -99,7 +99,7 @@
 
 
                                     <div class="form-group">
-                                        <h5>Select Year <span class="text-danger">*</span></h5>
+                                        <h5>Pilih Tahun <span class="text-danger">*</span></h5>
                                         <div class="controls">
 
                                             <select name="year_name" class="form-control">

@@ -16,7 +16,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Coupon List</h3>
+                            <h3 class="box-title">Daftar Kupon</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -24,9 +24,9 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Coupon Name </th>
-                                            <th>Coupon Discount</th>
-                                            <th>Validity </th>
+                                            <th>Nama Kupon </th>
+                                            <th>Kupon Diskon</th>
+                                            <th>Validitas </th>
                                             <th>Status </th>
                                             <th>Action</th>
 

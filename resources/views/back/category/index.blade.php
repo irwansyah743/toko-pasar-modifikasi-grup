@@ -12,7 +12,7 @@
                 <div class="col-8">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">list Kategori <span class="badge badge-pill badge-danger">
+                            <h3 class="box-title">Daftar Kategori <span class="badge badge-pill badge-danger">
                                     {{ count($categories) }} </span></h3>
                         </div>
                         <!-- /.box-header -->
@@ -75,7 +75,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Add Category </h3>
+                            <h3 class="box-title">Tambah Kategori </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -84,7 +84,7 @@
                                     novalidate>
                                     @csrf
                                     <div class="form-group">
-                                        <h5>Category name <span class="text-danger">*</span></h5>
+                                        <h5>Nama Kategori <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" name="nama_kategori"
                                                 class="form-control @error('nama_kategori') is-invalid @enderror"
@@ -98,7 +98,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <h5>Category icon <span class="text-danger">*</span></h5>
+                                        <h5>ikon Kategori <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" name="ikon_kategori"
                                                 class="form-control @error('ikon_kategori') is-invalid @enderror"

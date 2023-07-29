@@ -32,8 +32,7 @@
                                         <div class="controls">
                                             <select name="id_kategori" id="id_kategori"
                                                 class="form-control @error('id_kategori') is-invalid @enderror">
-                                                <option value="" @selected(old('id_kategori') == '') disabled>- Select
-                                                    Category -
+                                                <option value="" @selected(old('id_kategori') == '') disabled>- pilih Kategori -
                                                 </option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->getKey() }}" @selected($category->getKey() == $subsubcategory->category->getKey() || old('id_kategori') == $category->getKey())>
@@ -49,12 +48,11 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <h5>SubCategory Select <span class="text-danger">*</span></h5>
+                                        <h5>Pilih sub Kategori <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <select name="id_subkategori" id="id_subkategori"
                                                 class="form-control @error('id_subkategori') is-invalid @enderror">
-                                                <option value="" @selected(old('id_subkategori') == '') disabled>- Select
-                                                    SubCategory -
+                                                <option value="" @selected(old('id_subkategori') == '') disabled>- Pilih Kategori -
                                                 </option>
                                                 @if (old('id_subkategori', $subsubcategory->subcategory->getKey()))
                                                     @foreach ($subcategories as $subcategory)
