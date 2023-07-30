@@ -21,7 +21,7 @@
                                 <i class="text-warning mr-0 font-size-24  mdi mdi-sale "></i>
                             </div>
                             <div>
-                                <p class="text-mute mt-20 mb-0 font-size-16">Monthly Sale </p>
+                                <p class="text-mute mt-20 mb-0 font-size-16">Penjualan Bulanan </p>
                                 <h3 class="text-white mb-0 font-weight-500">Rp. {{ $month }} <small
                                         class="text-success"><i class="fa fa-caret-up"></i> IDR</small></h3>
                             </div>
@@ -35,7 +35,7 @@
                                 <i class="text-info mr-0 font-size-24 mdi mdi-sale"></i>
                             </div>
                             <div>
-                                <p class="text-mute mt-20 mb-0 font-size-16">Yearly Sale </p>
+                                <p class="text-mute mt-20 mb-0 font-size-16">Penjualan Tahunan </p>
                                 <h3 class="text-white mb-0 font-weight-500">Rp. {{ $year }} <small
                                         class="text-success"><i class="fa fa-caret-up"></i> IDR</small></h3>
                             </div>
@@ -49,7 +49,7 @@
                                 <i class="text-danger mr-0 font-size-24 mdi mdi-phone-incoming"></i>
                             </div>
                             <div>
-                                <p class="text-mute mt-20 mb-0 font-size-16">Pending Orders </p>
+                                <p class="text-mute mt-20 mb-0 font-size-16">Pesanan Tertunda </p>
                                 <h3 class="text-white mb-0 font-weight-500">{{ count($pending) }} <small
                                         class="text-danger"><i class="fa fa-caret-up"></i> Order </small></h3>
                             </div>
@@ -63,7 +63,7 @@
                                 <i class="text-danger mr-0 font-size-24 mdi mdi-car"></i>
                             </div>
                             <div>
-                                <p class="text-mute mt-20 mb-0 font-size-16">Waitlist Delivery </p>
+                                <p class="text-mute mt-20 mb-0 font-size-16">Pengiriman Daftar Tunggu </p>
                                 <h3 class="text-white mb-0 font-weight-500">{{ count($Waitlist) }} <small
                                         class="text-danger"><i class="fa fa-caret-up"></i> Order </small></h3>
                             </div>
@@ -75,7 +75,7 @@
                     <div class="box">
                         <div class="box-header">
                             <h4 class="box-title align-items-start flex-column">
-                                Recent All Orders
+                            Semua Pesanan Terbaru
                             </h4>
                         </div>
                         @php
