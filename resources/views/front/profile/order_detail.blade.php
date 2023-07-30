@@ -37,23 +37,23 @@
                 <div class="col-md-5">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Shipping Details</h4>
+                            <h4>Detail Pengiriman</h4>
                         </div>
                         <hr>
                         <div class="card-body" style="background: #E9EBEC;">
                             <table class="table">
                                 <tr>
-                                    <th> Shipping Name: </th>
+                                    <th> Nama Pengiriman: </th>
                                     <th> {{ $orderDetail->user->name }} </th>
                                 </tr>
 
                                 <tr>
-                                    <th> Shipping Phone: </th>
+                                    <th> No telepon Pengiriman: </th>
                                     <th> {{ $orderDetail->shipping->no_telepon_pengiriman }} </th>
                                 </tr>
 
                                 <tr>
-                                    <th> Shipping Email: </th>
+                                    <th> Email Pengiriman: </th>
                                     <th> {{ $orderDetail->user->email }} </th>
                                 </tr>
 
@@ -73,16 +73,16 @@
                                 </tr>
 
                                 <tr>
-                                    <th> Post Code: </th>
+                                    <th> Kode Pos: </th>
                                     <th> {{ $orderDetail->shipping->kode_pos }} </th>
                                 </tr>
 
                                 <tr>
-                                    <th> Order Date: </th>
+                                    <th> Tanggal Pesanan: </th>
                                     <th> {{ $orderDetail->tanggal_pesanan }} </th>
                                 </tr>
                                 <tr>
-                                    <th> Delivery Status: </th>
+                                    <th> Status pengiriman </th>
                                     <th>
                                         <span class="badge badge-pill badge-warning"
                                             style="background:{{ $orderDetail->shipping->status_pengiriman == 0 ? '#EF3737' : '#418DB9' }} ; ">{{ $orderDetail->shipping->status_pengiriman == 0 ? 'Waitlist' : 'Sent' }}
@@ -91,7 +91,7 @@
                                 </tr>
                                 @if ($orderDetail->shipping->status_pengiriman == 1)
                                     <tr>
-                                        <th> Resi NO: </th>
+                                        <th> No Resi: </th>
                                         <th>
                                             <span class="badge badge-pill badge-warning"
                                                 style="background:#EF3737 ; ">{{ $orderDetail->shipping->resi }}
@@ -111,7 +111,7 @@
                 <div class="col-md-5">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Order Details
+                            <h4>Detail Pesanan
 
                             </h4>
                         </div>
@@ -119,37 +119,37 @@
                         <div class="card-body" style="background: #E9EBEC;">
                             <table class="table">
                                 <tr>
-                                    <th> Name: </th>
+                                    <th> Nama: </th>
                                     <th> {{ $orderDetail->user->name }} </th>
                                 </tr>
 
                                 <tr>
-                                    <th> Phone: </th>
+                                    <th> Telepon: </th>
                                     <th> {{ $orderDetail->user->phone }} </th>
                                 </tr>
 
                                 <tr>
-                                    <th> Payment Type: </th>
+                                    <th> Tipe Pembayaran: </th>
                                     <th> {{ ucwords($orderDetail->tipe_pembayaran) }} </th>
                                 </tr>
 
                                 <tr>
-                                    <th> Trans ID: </th>
+                                    <th> ID transaksi: </th>
                                     <th> {{ $orderDetail->id_transaksi }} </th>
                                 </tr>
 
                                 <tr>
-                                    <th> Order ID: </th>
+                                    <th> ID Pesanan: </th>
                                     <th class="text-danger"> {{ $orderDetail->id_pesanan }} </th>
                                 </tr>
 
                                 <tr>
-                                    <th> Order Total: </th>
+                                    <th> Total Pesanan: </th>
                                     <th>{{ $orderDetail->nominal_total }} </th>
                                 </tr>
 
                                 <tr>
-                                    <th> Order: </th>
+                                    <th> Pesanan: </th>
                                     <th>
                                         <span class="badge badge-pill badge-warning"
                                             style="background: #418DB9;">{{ $orderDetail->status }} </span>
@@ -179,32 +179,32 @@
 
                                     <tr style="background: #e2e2e2;">
                                         <td class="col-md-1">
-                                            <label for=""> Image</label>
+                                            <label for=""> Gambar</label>
                                         </td>
 
                                         <td class="col-md-3">
-                                            <label for=""> Product Name </label>
+                                            <label for=""> Nama Produk </label>
                                         </td>
 
                                         <td class="col-md-3">
-                                            <label for=""> Product Code</label>
+                                            <label for=""> Kode Produk</label>
                                         </td>
 
 
                                         <td class="col-md-2">
-                                            <label for=""> Color </label>
+                                            <label for=""> Warna </label>
                                         </td>
 
                                         <td class="col-md-2">
-                                            <label for=""> Size </label>
+                                            <label for=""> Ukuran </label>
                                         </td>
 
                                         <td class="col-md-1">
-                                            <label for=""> Quantity </label>
+                                            <label for=""> Kuantitas </label>
                                         </td>
 
                                         <td class="col-md-1">
-                                            <label for=""> Price </label>
+                                            <label for=""> Harga </label>
                                         </td>
 
                                     </tr>

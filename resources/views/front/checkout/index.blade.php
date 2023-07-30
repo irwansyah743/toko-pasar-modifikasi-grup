@@ -41,7 +41,7 @@
                                     <div class="row">
 
                                         <!-- guest-login -->
-                                        <h4 class="unicase-checkout-title mb-4"><b>Shipping Address</b></h4>
+                                        <h4 class="unicase-checkout-title mb-4"><b>Alamat Pengiriman</b></h4>
 
 
                                         <form class="register-form" action="{{ route('checkout.store') }}"
@@ -50,8 +50,7 @@
 
                                             <div class="col-md-6 col-sm-6 already-registered-login">
                                                 <div class="form-group">
-                                                    <label class="info-title" for="nama_pengiriman"><b>Shipping
-                                                            Name</b> <span class="text-danger">*</span></label>
+                                                    <label class="info-title" for="nama_pengiriman"><b>Nama Pengirim</b> <span class="text-danger">*</span></label>
                                                     <input type="text" name="nama_pengiriman"
                                                         class="form-control unicase-form-control text-input"
                                                         id="nama_pengiriman" placeholder="Full Name"
@@ -72,7 +71,7 @@
 
 
                                                 <div class="form-group">
-                                                    <label class="info-title" for="no_telepon_pengiriman"><b>Phone</b>
+                                                    <label class="info-title" for="no_telepon_pengiriman"><b>Telepon</b>
                                                         <span class="text-danger">*</span></label>
                                                     <input type="number" name="no_telepon_pengiriman"
                                                         class="form-control unicase-form-control text-input"
@@ -83,7 +82,7 @@
 
 
                                                 <div class="form-group">
-                                                    <label class="info-title" for="kode_pos"><b>Post Code </b>
+                                                    <label class="info-title" for="kode_pos"><b>Kode Post </b>
                                                         <span class="text-danger">*</span></label>
                                                     <input type="text" name="kode_pos"
                                                         class="form-control unicase-form-control text-input"
@@ -185,14 +184,14 @@
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4 class="unicase-checkout-title">Your Checkout Progress</h4>
+                                    <h4 class="unicase-checkout-title">progres checkout anda</h4>
                                 </div>
                                 <div class="">
                                     <ul class="nav nav-checkout-progress list-unstyled">
 
                                         @foreach ($carts as $item)
                                             <li>
-                                                <strong>Image: </strong>
+                                                <strong>Gambar: </strong>
                                                 <img src="{{ asset('storage/' . $item->options->image) }}"
                                                     style="height: 50px; width: 50px;">
                                             </li>
@@ -203,7 +202,7 @@
                                                 <strong>Color: </strong>
                                                 {{ $item->options->warna }}
 
-                                                <strong>Size: </strong>
+                                                <strong>ukuran: </strong>
                                                 {{ $item->options->ukuran }}
                                             </li>
                                         @endforeach
@@ -213,25 +212,25 @@
                                                 <strong>SubTotal: </strong> ${{ $cartTotal }}
                                                 <hr>
 
-                                                <strong>Coupon Name : </strong>
+                                                <strong>Nama Kupon : </strong>
                                                 <span
                                                     id="nama_kupon">{{ session()->get('coupon')['nama_kupon'] }}</span>
                                                 ( {{ session()->get('coupon')['coupon_discount'] }} % )
                                                 <hr>
 
-                                                <strong>Coupon Discount : </strong>
+                                                <strong>Kupon Diskon : </strong>
                                                 Rp. <span
                                                     id="coupon_discount">{{ session()->get('coupon')['discount_amount'] }}</span>
                                                 <hr>
 
-                                                <strong>Grand Total :
+                                                <strong>Total Keseluruhan :
                                                     Rp.{{ session()->get('coupon')['total_amount'] }}</strong>
                                                 <hr>
                                             @else
                                                 <strong>SubTotal: </strong> Rp.{{ $cartTotal }}
                                                 <hr>
 
-                                                <strong>Grand Total : Rp.{{ $cartTotal }}</strong>
+                                                <strong>Total Keseluruhan : Rp.{{ $cartTotal }}</strong>
                                                 <hr>
                                             @endif
 
@@ -247,8 +246,7 @@
                     </div>
 
                     <button type="button" id="pay-button" disabled
-                        class="btn-upper btn btn-primary checkout-page-button mb-5" style="float:right;">Pay
-                        Now</button>
+                        class="btn-upper btn btn-primary checkout-page-button mb-5" style="float:right;">Bayar Sekarang</button>
                 </div>
                 <!-- checkout-progress-sidebar -->
 

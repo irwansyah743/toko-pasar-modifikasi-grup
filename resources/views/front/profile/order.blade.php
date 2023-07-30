@@ -15,7 +15,7 @@
 
                                 <tr style="background: #e2e2e2;">
                                     <td class="col-md-1">
-                                        <label for=""> Date</label>
+                                        <label for=""> Tanggal</label>
                                     </td>
 
                                     <td class="col-md-3">
@@ -23,12 +23,12 @@
                                     </td>
 
                                     <td class="col-md-3">
-                                        <label for=""> Payment</label>
+                                        <label for=""> Pembayaran</label>
                                     </td>
 
 
                                     <td class="col-md-2">
-                                        <label for=""> Order</label>
+                                        <label for=""> Pesanan</label>
                                     </td>
 
                                     <td class="col-md-2">

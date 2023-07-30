@@ -154,7 +154,7 @@
                                     <div class="row">
                                         <div class="col-sm-2">
                                             <div class="stock-box">
-                                                <span class="label">Availability :</span>
+                                                <span class="label">Ketersediaan :</span>
                                             </div>
                                         </div>
                                         <div class="col-sm-9">
@@ -213,10 +213,10 @@
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label class="info-title control-label">Color </label>
+                                            <label class="info-title control-label">Warna </label>
                                             <select class="form-control unicase-form-control selectpicker"
                                                 id="color">
-                                                <option selected disabled>--Choose Color--</option>
+                                                <option selected disabled>--Pilih Warna--</option>
                                                 @foreach ($colors as $color)
                                                     <option value="{{ $color }}">{{ ucwords($color) }}
                                                     </option>
@@ -227,10 +227,10 @@
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label class="info-title control-label">Size </label>
+                                            <label class="info-title control-label">Ukuran </label>
                                             <select class="form-control unicase-form-control selectpicker"
                                                 id="size">
-                                                <option selected disabled>--Choose Size--</option>
+                                                <option selected disabled>Pilih Ukuran</option>
                                                 @foreach ($sizes as $size)
                                                     <option value="{{ $size }}">{{ ucwords($size) }}
                                                     </option>
