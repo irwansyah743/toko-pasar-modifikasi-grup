@@ -139,7 +139,7 @@ class ReviewController extends Controller
     public function reviewApprove($id)
     {
 
-        Review::where('id', $id)->update(['status' => 1]);
+        Review::where('id_review', $id)->update(['status' => 1]);
 
         $notification = array(
             'message' => 'Review Approved Successfully',

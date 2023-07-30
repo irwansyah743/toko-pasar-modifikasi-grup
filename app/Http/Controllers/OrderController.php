@@ -59,7 +59,7 @@ class OrderController extends Controller
     public function updateDelivery(Request $request, Shipping $shipping)
     {
         $validated = $request->validate([
-            'resi' => 'required|unique:shippings,resi',
+            'resi' => 'required|unique:pengiriman,resi',
         ], [
             'resi.required' => "You have to input the Resi Number before you mark this order as Sent"
         ]);
@@ -67,12 +67,12 @@ class OrderController extends Controller
         $products = OrderItem::where('id_pesanan', $request->id_pesanan)->get();
         foreach ($products as $product) {
             $productData['kuantitas_produk'] = $product->product->kuantitas_produk - $product->kuantitas;
-            Product::where('id', $product->product->getKey())->update($productData);
+            Product::where('id_produk', $product->product->getKey())->update($productData);
         }
 
         $validated['resi'] = $request->resi;
         $validated['status_pengiriman'] = 1;
-        Shipping::where('id', $shipping->getKey())->update($validated);
+        Shipping::where('id_pengiriman', $shipping->getKey())->update($validated);
 
         $notification = array(
             'message' => 'Delivery status has been updated',

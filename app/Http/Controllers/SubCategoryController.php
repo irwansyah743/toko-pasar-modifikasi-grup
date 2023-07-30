@@ -48,7 +48,7 @@ class SubCategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama_subkategori' => 'required|max:50|unique:sub_categories,nama_subkategori',
+            'nama_subkategori' => 'required|max:50|unique:sub_kategori,nama_subkategori',
             'id_kategori' => 'required',
         ], [
             'id_kategori.required' => "Subcategory must belong to a category"

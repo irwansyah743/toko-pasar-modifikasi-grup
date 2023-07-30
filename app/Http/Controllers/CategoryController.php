@@ -48,7 +48,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama_kategori' => 'required|max:50|unique:categories,nama_kategori',
+            'nama_kategori' => 'required|max:50|unique:kategori,nama_kategori',
             'ikon_kategori' => 'required|max:255',
             'gambar_kategori' => 'required|image|max:2048',
         ]);
