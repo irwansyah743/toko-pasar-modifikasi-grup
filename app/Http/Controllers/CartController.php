@@ -53,7 +53,7 @@ class CartController extends Controller
             ]);
             return response()->json(['success' => 'Successfully Added on Your Cart']);
         }
-    } // end mehtod 
+    } // end mehtod
 
     // Mini Cart Section
     public function addMiniCart()
@@ -69,9 +69,9 @@ class CartController extends Controller
             'cartQty' => $cartQty,
             'cartTotal' => $cartTotal,
         ));
-    } // end method 
+    } // end method
 
-    /// remove mini cart 
+    /// remove mini cart
     public function removeMiniCart($rowId)
     {
         Cart::remove($rowId);
@@ -81,7 +81,7 @@ class CartController extends Controller
         }
     }
 
-    // Cart Increment 
+    // Cart Increment
     public function cartIncrement($rowId)
     {
         $row = Cart::get($rowId);
@@ -101,9 +101,9 @@ class CartController extends Controller
         }
 
         return response()->json('Increment');
-    } // end mehtod 
+    } // end mehtod
 
-    // Cart Decrement  
+    // Cart Decrement
     public function cartDecrement($rowId)
     {
 
@@ -124,7 +124,7 @@ class CartController extends Controller
         }
 
         return response()->json('Decrement');
-    } // end mehtod 
+    } // end mehtod
 
     public function couponApply(Request $request)
     {
@@ -163,7 +163,7 @@ class CartController extends Controller
                 'total' => Cart::priceTotal(),
             ));
         }
-    } // end method 
+    } // end method
 
     public function couponRemove()
     {
@@ -171,7 +171,7 @@ class CartController extends Controller
         return response()->json(['success' => 'Coupon Remove Successfully']);
     }
 
-    // Checkout Method 
+    // Checkout Method
     public function checkoutCreate()
     {
 
@@ -196,7 +196,7 @@ class CartController extends Controller
 
             return redirect()->route('login')->with($notification);
         }
-    } // end method 
+    } // end method
 
     public function checkoutStore(Request $request)
     {
@@ -218,5 +218,5 @@ class CartController extends Controller
         } else {
             return 'cash';
         }
-    } // end mehtod. 
+    } // end mehtod.
 }

@@ -108,6 +108,68 @@
                                     </div>
                                 @enderror
                             </div>
+
+                            {{-- Alamat --}}
+                            <div class="form-group">
+                                <label class="info-title" for="alamat">Alamat <span>*</span></label>
+                                <textarea name="alamat" id="alamat" rows="4" class="form-control unicase-form-control @error('alamat') is-invalid @enderror">{{ old('alamat') }}</textarea>
+                                @error('alamat')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label class="info-title" for="provinsi">Provinsi <span>*</span></label>
+                                <input type="text"
+                                    class="form-control unicase-form-control text-input @error('provinsi') is-invalid @enderror"
+                                    id="provinsi" name="provinsi" value="{{ old('provinsi') }}">
+                                @error('provinsi')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label class="info-title" for="kabupaten">Kabupaten/Kota <span>*</span></label>
+                                <input type="text"
+                                    class="form-control unicase-form-control text-input @error('kabupaten') is-invalid @enderror"
+                                    id="kabupaten" name="kabupaten" value="{{ old('kabupaten') }}">
+                                @error('kabupaten')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label class="info-title" for="kecamatan">Kecamatan <span>*</span></label>
+                                <input type="text"
+                                    class="form-control unicase-form-control text-input @error('kecamatan') is-invalid @enderror"
+                                    id="kecamatan" name="kecamatan" value="{{ old('kecamatan') }}">
+                                @error('kecamatan')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label class="info-title" for="kode_pos">Kode Pos <span>*</span></label>
+                                <input type="text"
+                                    class="form-control unicase-form-control text-input @error('kode_pos') is-invalid @enderror"
+                                    id="kode_pos" name="kode_pos" value="{{ old('kode_pos') }}">
+                                @error('kode_pos')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            {{-- Alamat End --}}
+
+
                             <div class="form-group">
                                 <label class="info-title" for="passwordRegister">Password <span>*</span></label>
                                 <input type="password"

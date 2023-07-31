@@ -28,6 +28,11 @@ class User extends Authenticatable
         'name',
         'email',
         'phone',
+        'alamat',
+        'provinsi',
+        'kabupaten',
+        'kecamatan',
+        'kode_pos',
         'last_seen',
         'password',
     ];

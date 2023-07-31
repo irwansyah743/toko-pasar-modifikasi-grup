@@ -48,6 +48,20 @@
                                             method="POST">
                                             @csrf
 
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="info-title" for="nama_pengiriman"><b>Pilih Alamat</b> <span class="text-danger">*</span></label>
+
+
+                                                    <input type="text" name="nama_pengiriman"
+                                                        class="form-control unicase-form-control text-input"
+                                                        id="nama_pengiriman" placeholder="Full Name"
+                                                        value="{{ Auth::user()->name }}" required=""
+                                                        onchange="checkForm()">
+                                                </div>
+                                                <hr>
+                                            </div>
+
                                             <div class="col-md-6 col-sm-6 already-registered-login">
                                                 <div class="form-group">
                                                     <label class="info-title" for="nama_pengiriman"><b>Nama Pengirim</b> <span class="text-danger">*</span></label>
@@ -82,12 +96,12 @@
 
 
                                                 <div class="form-group">
-                                                    <label class="info-title" for="kode_pos"><b>Kode Post </b>
+                                                    <label class="info-title" for="kode_pos"><b>Kode Pos </b>
                                                         <span class="text-danger">*</span></label>
                                                     <input type="text" name="kode_pos"
                                                         class="form-control unicase-form-control text-input"
                                                         id="kode_pos" placeholder="Post Code" required
-                                                        onchange="checkForm()">
+                                                        onchange="checkForm()" value="{{ Auth::user()->kode_pos }}">
                                                 </div> <!-- // end form group  -->
                                                 <hr>
                                             </div>
@@ -97,7 +111,7 @@
                                                         <span class="text-danger">*</span></label>
                                                     <input type="text" name="provinsi"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="provinsi" value="{{ old('provinsi') }}" required
+                                                        id="provinsi" value="{{ Auth::user()->provinsi }}" required
                                                         onchange="checkForm()">
                                                 </div> <!-- // end form group  -->
 
@@ -107,7 +121,7 @@
                                                         <span class="text-danger">*</span></label>
                                                     <input type="text" name="kabupaten"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="kabupaten" value="{{ old('kabupaten') }}" required
+                                                        id="kabupaten" value="{{ Auth::user()->kabupaten }}" required
                                                         onchange="checkForm()">
                                                 </div> <!-- // end form group  -->
 
@@ -117,7 +131,7 @@
                                                         <span class="text-danger">*</span></label>
                                                     <input type="text" name="kecamatan"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="kecamatan" value="{{ old('kecamatan') }}" required
+                                                        id="kecamatan" value="{{ Auth::user()->kecamatan }}" required
                                                         onchange="checkForm()">
                                                 </div> <!-- // end form group  -->
 
@@ -126,13 +140,13 @@
                                                         <span class="text-danger">*</span></label>
                                                     <input type="text" name="alamat"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="alamat" value="{{ old('alamat') }}" required
+                                                        id="alamat" value="{{ Auth::user()->alamat }}" required
                                                         onchange="checkForm()">
                                                 </div> <!-- // end form group  -->
 
 
                                                 <div class="form-group">
-                                                    <label class="info-title" for="catatan">catatan
+                                                    <label class="info-title" for="catatan">Catatan
                                                     </label>
                                                     <textarea id="catatan" class="form-control" cols="30" rows="5" placeholder="catatan" name="catatan"
                                                         onchange="checkForm()"></textarea>
