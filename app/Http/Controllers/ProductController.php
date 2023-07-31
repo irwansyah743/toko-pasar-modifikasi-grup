@@ -89,7 +89,7 @@ class ProductController extends Controller
 
 
 
-        $id_produk = DB::table('products')->insertGetId([
+        $id_produk = DB::table('produk')->insertGetId([
             'id_merek' => $request->id_merek,
             'id_kategori' => $request->id_kategori,
             'id_subkategori' => $request->id_subkategori,
@@ -207,9 +207,9 @@ class ProductController extends Controller
             'id_subsubkategori' => $request->id_subsubkategori,
             'nama_produk' => $request->nama_produk,
 
-            'product_slug' =>  strtolower(str_replace(' ', '-', $request->nama_produk)),
+            'slug_produk' =>  strtolower(str_replace(' ', '-', $request->nama_produk)),
 
-            'product_code' => $request->product_code,
+            'kode_produk' => $request->kode_produk,
 
             'kuantitas_produk' => $request->kuantitas_produk,
             'tag_produk' => $request->tag_produk,
