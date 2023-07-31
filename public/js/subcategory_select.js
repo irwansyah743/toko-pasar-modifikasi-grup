@@ -16,7 +16,7 @@
                     removeAllChildNodes(subCategoryInput);
                     subCategories.forEach(subCategory => {
                         subCategoryInput.innerHTML+=createSelectOption(subCategory);
-                        subCategoryInput.value=subCategory.id;
+                        subCategoryInput.value=subCategory.id_subkategori;
                     });
                     SubSubUpdate(subCategoryInput);
                 } catch (err) {
@@ -44,7 +44,7 @@
 
 
         function createSelectOption(subCategory) {
-            return `<option value=${subCategory.id}>${subCategory.nama_subkategori}</option>`;
+            return `<option value=${subCategory.id_subkategori}>${subCategory.nama_subkategori}</option>`;
         }
 
         // SUB SUB CATEGORY
@@ -77,7 +77,7 @@
         }
 
         function createSelectOptionSubSub(subsubCategory) {
-            return `<option value=${subsubCategory.id}>${subsubCategory.nama_subsubkategori}</option>`;
+            return `<option value=${subsubCategory.id_subsubkategori}>${subsubCategory.nama_subsubkategori}</option>`;
         }
 
 
