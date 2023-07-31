@@ -99,7 +99,7 @@ class CouponController extends Controller
         ]);
         $validated['updated_at'] = Carbon::now();
 
-        Coupon::where('id', $coupon->getKey())->update($validated);
+        Coupon::where('id_kupon', $coupon->getKey())->update($validated);
 
         $notification = array(
             'message' => 'A coupon has been updated',

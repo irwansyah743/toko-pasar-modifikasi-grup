@@ -122,7 +122,7 @@ class BrandController extends Controller
         $validated['nama_merek'] = $request->nama_merek;
         $validated['updated_at'] = Carbon::now();
 
-        Brand::where('id', $brand->getKey())->update($validated);
+        Brand::where('id_merek', $brand->getKey())->update($validated);
 
         $notification = array(
             'message' => 'A brand has been updated',

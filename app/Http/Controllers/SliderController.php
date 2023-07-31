@@ -124,7 +124,7 @@ class SliderController extends Controller
         $validated['updated_at'] = Carbon::now();
 
         // BATCH INSERT
-        Slider::where('id', $slider->getKey())->update($validated);
+        Slider::where('id_banner', $slider->getKey())->update($validated);
 
         $notification = array(
             'message' => 'A slider has been updated',

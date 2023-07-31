@@ -200,7 +200,7 @@ class ProductController extends Controller
             'deskripsi_panjang' => 'required',
         ]);
 
-        Product::where('id', $product->getKey())->update([
+        Product::where('id_produk', $product->getKey())->update([
             'id_merek' => $request->id_merek,
             'id_kategori' => $request->id_kategori,
             'id_subkategori' => $request->id_subkategori,

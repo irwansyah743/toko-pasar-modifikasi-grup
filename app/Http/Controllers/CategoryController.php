@@ -122,7 +122,7 @@ class CategoryController extends Controller
         $validated['ikon_kategori'] = $request->ikon_kategori;
         $validated['updated_at'] = Carbon::now();
 
-        Category::where('id', $category->getKey())->update($validated);
+        Category::where('id_kategori', $category->getKey())->update($validated);
 
         $notification = array(
             'message' => 'A category has been updated',

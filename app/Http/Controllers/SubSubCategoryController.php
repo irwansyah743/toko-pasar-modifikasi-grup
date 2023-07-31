@@ -136,7 +136,7 @@ class SubSubCategoryController extends Controller
         $validated['slug_subsubkategori'] = strtolower(str_replace(' ', '-', $request->nama_subsubkategori));
         $validated['created_at'] = Carbon::now();
 
-        SubSubCategory::where('id', $subSubCategory->getKey())->update($validated);
+        SubSubCategory::where('id_subsubkategori', $subSubCategory->getKey())->update($validated);
 
         $notification = array(
             'message' => 'A sub-subcategory has been updated',
