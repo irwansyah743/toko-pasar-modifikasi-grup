@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
+use Kavist\RajaOngkir\Facades\RajaOngkir;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -30,13 +31,25 @@ class CreateNewUser implements CreatesNewUsers
             'emailRegister.unique' => 'This email has already been taken.',
             'passwordRegister.confirmed' => 'The password confirmation does not match.',
         ])->validate();
+
+        $provinsi = RajaOngkir::provinsi()->find($input['provinsi']);
+        $kabupaten = RajaOngkir::kota()->find($input['kabupaten']);
+
+        if(!empty($provinsi)){
+            $provinsi = $provinsi['province'];
+        }
+
+        if(!empty($kabupaten)){
+            $kabupaten = $kabupaten['type'] . ' ' . $kabupaten['city_name'];
+        }
+
         return User::create([
             'name' => $input['name'],
             'email' => $input['emailRegister'],
             'phone' => $input['phone'],
             'alamat' => $input['alamat'],
-            'provinsi' => $input['provinsi'],
-            'kabupaten' => $input['kabupaten'],
+            'provinsi' => $provinsi,
+            'kabupaten' => $kabupaten,
             'kecamatan' => $input['kecamatan'],
             'kode_pos' => $input['kode_pos'],
             'password' => Hash::make($input['passwordRegister']),

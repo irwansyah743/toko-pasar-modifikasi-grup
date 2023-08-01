@@ -280,6 +280,12 @@ Route::controller(CartController::class)->group(function () {
     Route::post('/coupon-remove', 'couponRemove');
     Route::get('/checkout', 'checkoutCreate')->name('checkout');
     Route::post('/checkout/store', 'checkoutStore')->name('checkout.store');
+
+    // RajaOngkir API
+    Route::get('/rajaongkir/provinsi', 'getProvinsi')->name('getProvinsi');
+    Route::get('/rajaongkir/provinsi/{id}', 'getKabupaten')->name('getKabupaten');
+    Route::get('/rajaongkir/ongkir', 'getOngkir');
+    // END OF RajaOngkir API
 });
 
 Route::middleware([

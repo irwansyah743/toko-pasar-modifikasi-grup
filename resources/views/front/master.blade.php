@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{{ asset('front-theme/assets/css/rateit.css') }}">
     <link rel="stylesheet" href="{{ asset('front-theme/assets/css/bootstrap-select.min.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <!-- Icons/Glyphs -->
     <link rel="stylesheet" href="{{ asset('assets/icons/font-awesome/css/font-awesome.css') }}">
@@ -72,6 +73,7 @@
     <script src="{{ asset('front-theme/assets/js/wow.min.js') }}"></script>
     <script src="{{ asset('front-theme/assets/js/scripts.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (Session::has('message'))
         <script>

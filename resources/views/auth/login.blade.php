@@ -122,9 +122,14 @@
 
                             <div class="form-group">
                                 <label class="info-title" for="provinsi">Provinsi <span>*</span></label>
-                                <input type="text"
-                                    class="form-control unicase-form-control text-input @error('provinsi') is-invalid @enderror"
-                                    id="provinsi" name="provinsi" value="{{ old('provinsi') }}">
+
+                                <select class="form-control unicase-form-control @error('provinsi') is-invalid @enderror" name="provinsi" id="provinsi" required>
+                                    <option value="">== Pilh Provinsi ==</option>
+                                    @foreach (\RajaOngkir::provinsi()->all() as $provinsi)
+                                        <option value="{{ $provinsi['province_id'] }}">{{ $provinsi['province'] }}</option>
+                                    @endforeach
+                                </select>
+
                                 @error('provinsi')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -134,9 +139,11 @@
 
                             <div class="form-group">
                                 <label class="info-title" for="kabupaten">Kabupaten/Kota <span>*</span></label>
-                                <input type="text"
-                                    class="form-control unicase-form-control text-input @error('kabupaten') is-invalid @enderror"
-                                    id="kabupaten" name="kabupaten" value="{{ old('kabupaten') }}">
+
+                                <select class="form-control unicase-form-control @error('kabupaten') is-invalid @enderror" name="kabupaten" id="kabupaten" disabled required>
+                                    <option value="">== Pilh Kabupaten/Kota ==</option>
+                                </select>
+
                                 @error('kabupaten')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -217,4 +224,30 @@
         </div>
     </div>
     @include('front.components.brands')
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('provinsi').addEventListener('change', function() {
+                var provinsi_id = this.value;
+                if (provinsi_id != '') {
+                    fetch("{{ url('/rajaongkir/provinsi/') }}/" + provinsi_id)
+                        .then(response => response.json())
+                        .then(data => {
+                            var holder = `<option value="">== Pilih Kabupaten/Kota ==</option>`;
+                            data.forEach(function(kabupaten) {
+                                holder += '<option value="' +
+                                    kabupaten.city_id + '">' + kabupaten.type + ' ' + kabupaten
+                                    .city_name + '</option>';
+                            });
+
+                            document.getElementById('kabupaten').removeAttribute('disabled');
+                            document.getElementById('kabupaten').innerHTML = holder;
+                        });
+                } else {
+                    document.getElementById('kabupaten').setAttribute('disabled', 'disabled');
+                    document.getElementById('kabupaten').innerHTML = '<option value="">== Pilih Kabupaten/Kota ==</option>';
+                }
+            });
+        });
+    </script>
 @endsection

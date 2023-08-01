@@ -10,6 +10,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Kavist\RajaOngkir\Facades\RajaOngkir;
 
 class CartController extends Controller
 {
@@ -219,4 +220,46 @@ class CartController extends Controller
             return 'cash';
         }
     } // end mehtod.
+
+
+    // Raja Ongkir
+    public function getProvinsi(Request $request)
+    {
+        $provinsi = RajaOngkir::provinsi()->all();
+        return response()->json($provinsi);
+    }
+
+    public function getKabupaten(Request $request, $id)
+    {
+        $kabupaten = RajaOngkir::kota()->dariProvinsi($id)->get();
+        return response()->json($kabupaten);
+    }
+
+    public function getOngkir(Request $request)
+    {
+        if(!$request->has('id_kabupaten_asal')){
+            return response()->json(['error' => 'id_kabupaten_asal is required']);
+        }
+
+        if(!$request->has('id_kabupaten_tujuan')){
+            return response()->json(['error' => 'id_kabupaten_tujuan is required']);
+        }
+
+        if(!$request->has('berat')){
+            return response()->json(['error' => 'berat is required']);
+        }
+
+        if(!$request->has('kurir')){
+            return response()->json(['error' => 'kurir is required']);
+        }
+
+        $ongkir = RajaOngkir::ongkosKirim([
+            'origin' => $request->id_kabupaten_asal, // ID kota/kabupaten asal
+            'destination' => $request->id_kabupaten_tujuan, // ID kota/kabupaten tujuan
+            'weight' => $request->berat, // berat barang dalam gram
+            'courier' => $request->kurir, // kode kurir pengantar ( jne / tiki / pos )
+        ])->get();
+
+        return response()->json($ongkir);
+    }
 }
