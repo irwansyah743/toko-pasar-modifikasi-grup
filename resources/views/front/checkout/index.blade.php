@@ -51,14 +51,13 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="info-title" for="nama_pengiriman"><b>Pilih Alamat</b> <span class="text-danger">*</span></label>
-
-
-                                                    <input type="text" name="nama_pengiriman"
-                                                        class="form-control unicase-form-control text-input"
-                                                        id="nama_pengiriman" placeholder="Full Name"
-                                                        value="{{ Auth::user()->name }}" required=""
-                                                        onchange="checkForm()">
                                                 </div>
+
+                                                <div class="form-group" style="margin-left: 15px;">
+                                                    <label class="radio"><input type="radio" class="alamat_choose" name="alamat_choose" value="alamat_utama" checked>Alamat Utama</label>
+                                                    <label class="radio"><input type="radio" class="alamat_choose" name="alamat_choose" value="alamat_lain">Alamat Lain</label>
+                                                </div>
+
                                                 <hr>
                                             </div>
 
@@ -291,4 +290,41 @@
 
 {{-- Custom JS --}}
 <script src="{{ asset('js/midtrans.js') }}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Getting all radio buttons with class 'alamat_choose'
+    const radioButtons = document.querySelectorAll('.alamat_choose');
+
+    // Adding event listener to each radio button
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.value === "alamat_utama") {
+                // Perform action for Alamat Utama
+                console.log("Alamat Utama selected");
+                // document.getElementById('nama_pengiriman').value = '{{ Auth::user()->name }}';
+                // document.getElementById('email_pengiriman').value = '{{ Auth::user()->email }}';
+                // document.getElementById('no_telepon_pengiriman').value = '{{ Auth::user()->phone }}';
+                document.getElementById('kode_pos').value = '{{ Auth::user()->kode_pos }}';
+                document.getElementById('provinsi').value = '{{ Auth::user()->provinsi }}';
+                document.getElementById('kabupaten').value = '{{ Auth::user()->kabupaten }}';
+                document.getElementById('kecamatan').value = '{{ Auth::user()->kecamatan }}';
+                document.getElementById('alamat').value = `{{ Auth::user()->alamat }}`;
+            } else if (this.value === "alamat_lain") {
+                // Perform action for Alamat Lain
+                console.log("Alamat Lain selected");
+                // document.getElementById('nama_pengiriman').value = '';
+                // document.getElementById('email_pengiriman').value = '';
+                // document.getElementById('no_telepon_pengiriman').value = '';
+                document.getElementById('kode_pos').value = '';
+                document.getElementById('provinsi').value = '';
+                document.getElementById('kabupaten').value = '';
+                document.getElementById('kecamatan').value = '';
+                document.getElementById('alamat').value = '';
+            }
+
+            checkForm();
+        });
+    });
+});
+</script>
 @endsection
