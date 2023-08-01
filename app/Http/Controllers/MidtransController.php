@@ -18,6 +18,11 @@ class MidtransController extends Controller
 {
     public function getToken(Request $request)
     {
+        // TODO:
+        // 1. Create new field on Shipping to store: ongkir, kurir
+        // 2. Insert ongkir on midtrans item_details
+        // 3. Add total ongkir to nominal_total
+
         // Set your Merchant Server Key
         \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).

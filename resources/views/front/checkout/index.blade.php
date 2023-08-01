@@ -108,20 +108,37 @@
                                                 <div class="form-group">
                                                     <label class="info-title" for="provinsi"><b>Provinsi</b>
                                                         <span class="text-danger">*</span></label>
-                                                    <input type="text" name="provinsi"
-                                                        class="form-control unicase-form-control text-input"
-                                                        id="provinsi" value="{{ Auth::user()->provinsi }}" required
-                                                        onchange="checkForm()">
+
+                                                    <select class="form-control unicase-form-control @error('provinsi') is-invalid @enderror" name="provinsi" id="provinsi" required onchange="checkForm()">
+                                                        <option value="">== Pilh Provinsi ==</option>
+                                                        @foreach ($provinsiList as $provinsi)
+                                                            <option
+                                                                value="{{ $provinsi['province_id'] }}"
+                                                                {{ Auth::user()->provinsi == $provinsi['province'] ? 'selected' : '' }}
+                                                            >{{ $provinsi['province'] }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div> <!-- // end form group  -->
 
 
                                                 <div class="form-group">
                                                     <label class="info-title" for="kabupaten"><b>Kabupaten</b>
                                                         <span class="text-danger">*</span></label>
-                                                    <input type="text" name="kabupaten"
+
+                                                    <select class="form-control unicase-form-control @error('kabupaten') is-invalid @enderror" name="kabupaten" id="kabupaten" required onchange="checkForm()">
+                                                        <option value="">== Pilh Kabupaten/Kota ==</option>
+                                                        @foreach ($kabupatenList as $kabupaten)
+                                                            <option
+                                                                value="{{ $kabupaten['city_id'] }}"
+                                                                {{ Auth::user()->kabupaten == $kabupaten['type'] . ' ' . $kabupaten['city_name'] ? 'selected' : '' }}
+                                                            >{{ $kabupaten['type'] }} {{ $kabupaten['city_name'] }}</option>
+                                                        @endforeach
+                                                    </select>
+
+                                                    {{-- <input type="text" name="kabupaten"
                                                         class="form-control unicase-form-control text-input"
                                                         id="kabupaten" value="{{ Auth::user()->kabupaten }}" required
-                                                        onchange="checkForm()">
+                                                        onchange="checkForm()"> --}}
                                                 </div> <!-- // end form group  -->
 
 
@@ -150,16 +167,21 @@
                                                     <textarea id="catatan" class="form-control" cols="30" rows="5" placeholder="catatan" name="catatan"
                                                         onchange="checkForm()"></textarea>
                                                 </div> <!-- // end form group  -->
+                                            </div>
+                                            <!-- already-registered-login -->
 
+                                            <div class="col-md-12">
+                                                <hr>
 
-
-
-
-
+                                                <div class="form-group">
+                                                    <label class="info-title"><b>Pilih Ongkos Kirim</b> <span class="text-danger">*</span></label>
+                                                    <select name="ongkir_choose" id="ongkir_choose" class="form-control unicase-form-control" required>
+                                                        <option value="">== Pilih Ongkos Kirim ==</option>
+                                                    </select>
+                                                </div>
 
 
                                             </div>
-                                            <!-- already-registered-login -->
 
                                         </form>
 
@@ -291,6 +313,29 @@
 {{-- Custom JS --}}
 <script src="{{ asset('js/midtrans.js') }}"></script>
 <script>
+function ongkir() {
+    var kabupaten = document.getElementById('kabupaten').value;
+
+    fetch("{{ url('/rajaongkir/ongkir/') }}?id_kabupaten_asal=23&id_kabupaten_tujuan="+ kabupaten +"&berat=1000&kurir=jne")
+        .then(response => response.json())
+        .then(data => {
+            if(data == null || data.length == 0){
+                document.getElementById('ongkir_choose').innerHTML = `<option value="">== Pilih Ongkos Kirim ==</option>`;
+                return;
+            }
+
+            var temp = `<option value="">== Pilih Ongkos Kirim ==</option>`;
+
+            data[0].costs.forEach(function(cost) {
+                cost.cost.forEach(function(c) {
+                    temp += `<option value="${cost.service}">JNE ${cost.service} (${c.etd} Hari) - Rp. ${c.value}</option>`;
+                });
+            });
+
+            document.getElementById('ongkir_choose').innerHTML = temp;
+        });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Getting all radio buttons with class 'alamat_choose'
     const radioButtons = document.querySelectorAll('.alamat_choose');
@@ -305,8 +350,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // document.getElementById('email_pengiriman').value = '{{ Auth::user()->email }}';
                 // document.getElementById('no_telepon_pengiriman').value = '{{ Auth::user()->phone }}';
                 document.getElementById('kode_pos').value = '{{ Auth::user()->kode_pos }}';
-                document.getElementById('provinsi').value = '{{ Auth::user()->provinsi }}';
-                document.getElementById('kabupaten').value = '{{ Auth::user()->kabupaten }}';
+                document.getElementById('provinsi').value = '{{ $provinsiUser }}';
                 document.getElementById('kecamatan').value = '{{ Auth::user()->kecamatan }}';
                 document.getElementById('alamat').value = `{{ Auth::user()->alamat }}`;
             } else if (this.value === "alamat_lain") {
@@ -325,6 +369,36 @@ document.addEventListener('DOMContentLoaded', function() {
             checkForm();
         });
     });
+
+    document.getElementById('provinsi').addEventListener('change', function() {
+        var provinsi_id = this.value;
+        if (provinsi_id != '') {
+            fetch("{{ url('/rajaongkir/provinsi/') }}/" + provinsi_id)
+                .then(response => response.json())
+                .then(data => {
+                    var holder = `<option value="">== Pilih Kabupaten/Kota ==</option>`;
+                    data.forEach(function(kabupaten) {
+                        holder += '<option value="' +
+                            kabupaten.city_id + '">' + kabupaten.type + ' ' + kabupaten
+                            .city_name + '</option>';
+                    });
+
+                    document.getElementById('kabupaten').removeAttribute('disabled');
+                    document.getElementById('kabupaten').innerHTML = holder;
+
+                    document.getElementById('kabupaten').value = '{{ Auth::user()->kabupaten }}';
+                });
+        } else {
+            document.getElementById('kabupaten').setAttribute('disabled', 'disabled');
+            document.getElementById('kabupaten').innerHTML = '<option value="">== Pilih Kabupaten/Kota ==</option>';
+        }
+    });
+
+    document.getElementById('kabupaten').addEventListener('change', function() {
+        ongkir();
+    });
+
+    ongkir();
 });
 </script>
 @endsection

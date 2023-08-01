@@ -181,7 +181,21 @@ class CartController extends Controller
                 $carts = Cart::content();
                 $cartQty = Cart::count();
                 $cartTotal = Cart::priceTotal();
-                return view('front.checkout.index', compact('carts', 'cartQty', 'cartTotal'));
+                $provinsiList = RajaOngkir::provinsi()->all();
+
+                $provinsiUser = array_search(Auth::user()->provinsi, array_column($provinsiList, "province"));
+                if (!$provinsiUser) {
+                    $provinsiUser = 0;
+                }else{
+                    $provinsiUser += 1;
+                }
+
+                $kabupatenList = RajaOngkir::kota()->dariProvinsi($provinsiUser)->get();
+                // if (empty($kabupatenList)) {
+                //     $kabupatenList = 0;
+                // }
+
+                return view('front.checkout.index', compact('carts', 'cartQty', 'cartTotal', 'provinsiList', 'provinsiUser', 'kabupatenList'));
             } else {
                 $notification = array(
                     'message' => 'Your cart is empty',
