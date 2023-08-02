@@ -58,12 +58,12 @@
                                 </tr>
 
                                 <tr>
-                                    <th> Division: </th>
+                                    <th> Provinsi: </th>
                                     <th> {{ $orderDetail->shipping->provinsi }} </th>
                                 </tr>
 
                                 <tr>
-                                    <th> District: </th>
+                                    <th> Kabupaten/Kota: </th>
                                     <th> {{ $orderDetail->shipping->kabupaten }} </th>
                                 </tr>
 
@@ -81,6 +81,17 @@
                                     <th> Tanggal Pesanan: </th>
                                     <th> {{ $orderDetail->tanggal_pesanan }} </th>
                                 </tr>
+
+                                <tr>
+                                    <th> Kurir: </th>
+                                    <th> {{ $orderDetail->shipping->kurir }} </th>
+                                </tr>
+
+                                <tr>
+                                    <th> Ongkos Kirim: </th>
+                                    <th> Rp.{{ number_format($orderDetail->shipping->ongkos_kirim, 0, '.', '.') }},- </th>
+                                </tr>
+
                                 <tr>
                                     <th> Status pengiriman </th>
                                     <th>

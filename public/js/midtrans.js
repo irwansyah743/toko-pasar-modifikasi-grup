@@ -20,6 +20,7 @@ function midTrans(){
     const address=document.getElementById('alamat').value;
     const catatan=document.getElementById('catatan').value;
 
+    const ongkir_choose=document.getElementById('ongkir_choose').value;
 
 
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -32,6 +33,7 @@ function midTrans(){
         kabupaten: kabupaten,
         kecamatan: kecamatan,
         alamat: address,
+        ongkir_choose: ongkir_choose,
     };
 
     if(catatan){
@@ -281,7 +283,9 @@ const checkForm=()=>{
     document.getElementById('provinsi').value !==''&&
     document.getElementById('kabupaten').value !==''&&
     document.getElementById('kecamatan').value !==''&&
-    document.getElementById('alamat').value!==''){
+    document.getElementById('alamat').value!=='' &&
+    document.getElementById('ongkir_choose').value!==''
+    ){
         document.getElementById('pay-button').disabled = false
     }else{
         document.getElementById('pay-button').disabled = true

@@ -25,6 +25,8 @@ class Shipping extends Model
         'status_pengiriman',
         'kode_pos',
         'resi',
+        'kurir',
+        'ongkos_kirim',
         'catatan'
     ];
 

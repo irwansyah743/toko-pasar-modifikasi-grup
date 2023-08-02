@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Kavist\RajaOngkir\Facades\RajaOngkir;
 
 class MidtransController extends Controller
 {
@@ -34,18 +35,22 @@ class MidtransController extends Controller
 
         $carts = Cart::content();
         $id_pesanan = rand();
+        $getOngkirRegion = RajaOngkir::kota()->dariProvinsi($request->provinsi)->find($request->kabupaten);
 
         // STORE TO DATABASE
         $shipping['nama_pengiriman'] = $request->name;
         $shipping['email_pengiriman'] = $request->email;
         $shipping['no_telepon_pengiriman'] = $request->phone;
         $shipping['kode_pos'] = $request->kodePos;
-        $shipping['provinsi'] = $request->provinsi;
-        $shipping['kabupaten'] = $request->kabupaten;
+        $shipping['provinsi'] = $getOngkirRegion['province'];
+        $shipping['kabupaten'] = $getOngkirRegion['type'] . ' ' . $getOngkirRegion['city_name'];
         $shipping['kecamatan'] = $request->kecamatan;
         $shipping['alamat'] = $request->alamat;
         $shipping['catatan'] = $request->catatan;
         $shipping['status_pengiriman'] = 0;
+        $kurirSplit = explode('_', $request->ongkir_choose);
+        $shipping['kurir'] = 'JNE ' . $kurirSplit[0];
+        $shipping['ongkos_kirim'] = $kurirSplit[1];
         $shipping['created_at'] = Carbon::now();
 
         // Insert Shipping
@@ -55,7 +60,7 @@ class MidtransController extends Controller
         $order->user_id = Auth::id();
         $order->id_pengiriman = Shipping::latest()->first()->getKey();
         $order->status = "to be paid";
-        $order->nominal_total = Cart::total();
+        $order->nominal_total = Cart::total() + $kurirSplit[1];
         $order->id_pesanan =  $id_pesanan;
         $order->tanggal_pesanan = Carbon::now()->format('d F Y');
         $order->bulan_pesanan = Carbon::now()->format('F');
@@ -93,6 +98,13 @@ class MidtransController extends Controller
                 'name' => $request->discount['name'],
             ]);
         }
+
+        array_push($items,  [
+            'id' => 'JNE_' . $kurirSplit[0],
+            'price' => $kurirSplit[1],
+            'quantity' => 1,
+            'name' => 'Ongkir Ke ' . $getOngkirRegion['type'] . ' ' . $getOngkirRegion['city_name'],
+        ]);
 
         $params = array(
             'transaction_details' => array(

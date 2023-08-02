@@ -175,7 +175,7 @@
 
                                                 <div class="form-group">
                                                     <label class="info-title"><b>Pilih Ongkos Kirim</b> <span class="text-danger">*</span></label>
-                                                    <select name="ongkir_choose" id="ongkir_choose" class="form-control unicase-form-control" required>
+                                                    <select name="ongkir_choose" id="ongkir_choose" class="form-control unicase-form-control" required onchange="checkForm()">
                                                         <option value="">== Pilih Ongkos Kirim ==</option>
                                                     </select>
                                                 </div>
@@ -328,7 +328,7 @@ function ongkir() {
 
             data[0].costs.forEach(function(cost) {
                 cost.cost.forEach(function(c) {
-                    temp += `<option value="${cost.service}">JNE ${cost.service} (${c.etd} Hari) - Rp. ${c.value}</option>`;
+                    temp += `<option value="${cost.service}_${c.value}">JNE ${cost.service} (${c.etd} Hari) - Rp. ${c.value}</option>`;
                 });
             });
 
