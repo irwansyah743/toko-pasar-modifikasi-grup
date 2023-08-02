@@ -18,6 +18,7 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\SubSubCategoryController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\SuplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +89,20 @@ Route::middleware([
     Route::post('/{brand}', 'destroy')->name('brand.delete');
 });
 // END ADMIN BRAND
+
+// ADMIN SUPLIER
+Route::middleware([
+    'auth.admin:admin',
+    config('jetstream.auth_session'),
+    'verified'
+])->controller(SuplierController::class)->prefix('suplier')->group(function () {
+    Route::get('/', 'index')->name('all.suplier');
+    Route::post('/', 'store')->name('suplier.store');
+    Route::get('/{suplier}', 'edit');
+    Route::put('/{suplier}', 'update');
+    Route::post('/{suplier}', 'destroy')->name('suplier.delete');
+});
+// END ADMIN SUPLIER
 
 // ADMIN CATEGORY
 Route::middleware([

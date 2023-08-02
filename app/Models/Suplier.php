@@ -5,35 +5,35 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Brand extends Model
+class Suplier extends Model
 {
     use HasFactory;
 
-    public $table = "merek";
+    public $table = "suplier";
 
-    protected $primaryKey = 'id_merek';
+    protected $primaryKey = 'id_suplier';
 
     protected $fillable = [
-        'id_merek',
-        'nama_merek',
-        'slug_merek',
-        'gambar_merek',
+        'id_suplier',
+        'nama_suplier',
+        'alamat_suplier',
+        'pengajuan_stok',
     ];
 
     // Accessor for the old 'id' attribute
     public function getIdAttribute()
     {
-        return $this->attributes['id_merek'];
+        return $this->attributes['id_suplier'];
     }
 
     // Mutator for the old 'id' attribute
     public function setIdAttribute($value)
     {
-        $this->attributes['id_merek'] = $value;
+        $this->attributes['id_suplier'] = $value;
     }
 
     public function getKeyName()
     {
-        return 'id_merek';
+        return 'id_suplier';
     }
 }

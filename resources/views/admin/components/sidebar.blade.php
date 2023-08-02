@@ -70,7 +70,7 @@ $alladmin =
                     <span>Dashboard</span>
                 </a>
             </li>
-            
+
                 <li class="treeview {{ $prefix == '/alluser' ? 'active' : '' }}">
                     <a href="#">
                         <i data-feather="user"></i>
@@ -84,8 +84,8 @@ $alladmin =
                                     class="ti-more"></i>Semua Users</a></li>
                     </ul>
                 </li>
-            
-            
+
+
                 <li class="treeview {{ $prefix == '/alladmin' ? 'active' : '' }}">
                     <a href="#">
                         <i data-feather="user"></i>
@@ -99,7 +99,7 @@ $alladmin =
                                     class="ti-more"></i>Semua Admin</a></li>
                     </ul>
                 </li>
-            
+
                 <li class="treeview {{ $prefix == '/report' ? 'active' : '' }}">
                     <a href="#">
                         <i data-feather="mail"></i>
@@ -113,10 +113,10 @@ $alladmin =
                                 href="{{ route('all.report') }}"><i class="ti-more"></i>Semua Laporan</a></li>
                     </ul>
                 </li>
-            
+
 
             <hr>
-            
+
                 <li class="treeview {{ $prefix == '/brand' ? 'active' : '' }}">
                     <a href="#">
                         <i data-feather="file"></i>
@@ -131,7 +131,22 @@ $alladmin =
                         <li><a href="calendar.html"><i class="ti-more"></i>Kalender</a></li>
                     </ul>
                 </li>
-            
+
+
+                <li class="treeview {{ $prefix == '/suplier' ? 'active' : '' }}">
+                    <a href="#">
+                        <i data-feather="file"></i>
+                        <span>Suplier</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-right pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{{ $route == 'all.suplier' ? 'active' : '' }}"><a href="{{ route('all.suplier') }}"><i
+                                    class="ti-more"></i>Semua Suplier</a></li>
+                    </ul>
+                </li>
+
                 <li
                     class="treeview {{ $prefix == '/category' || $prefix == '/subcategory' || $prefix == '/subsubcategory' ? 'active' : '' }}">
                     <a href="#">
@@ -151,7 +166,7 @@ $alladmin =
                         </li>
                     </ul>
                 </li>
-            
+
                 <li class="treeview {{ $prefix == '/product' ? 'active' : '' }}">
                     <a href="#">
                         <i data-feather="file"></i>
@@ -169,7 +184,7 @@ $alladmin =
                         </li>
                     </ul>
                 </li>
-            
+
                 <li class="treeview {{ $prefix == '/slider' ? 'active' : '' }}  ">
                     <a href="#">
                         <i data-feather="file"></i>
@@ -183,7 +198,7 @@ $alladmin =
                                 href="{{ route('manage.slider') }}"><i class="ti-more"></i>Mengelola Banner</a></li>
                     </ul>
                 </li>
-            
+
                 <li class="treeview {{ $prefix == '/coupon' ? 'active' : '' }}  ">
                     <a href="#">
                         <i data-feather="file"></i>
@@ -197,7 +212,7 @@ $alladmin =
                                 href="{{ route('manage.coupon') }}"><i class="ti-more"></i>Mengelola Kupon</a></li>
                     </ul>
                 </li>
-            
+
                 <li class="treeview {{ $prefix == '/orders' ? 'active' : '' }}">
                     <a href="#">
                         <i data-feather="message-circle"></i>
@@ -217,7 +232,7 @@ $alladmin =
                                 href="{{ route('error.orders') }}"><i class="ti-more"></i>Pesanan Error</a></li>
                     </ul>
                 </li>
-            
+
                 <li class="treeview {{ $prefix == '/review' ? 'active' : '' }}">
                     <a href="#">
                         <i data-feather="message-circle"></i>
@@ -234,7 +249,7 @@ $alladmin =
                         </li>
                     </ul>
                 </li>
-            
+
 
 
 
