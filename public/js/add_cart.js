@@ -160,7 +160,7 @@ async function cart(){
 
 if(document.getElementById('cartPage')){
     cart();
-    couponCalculation();
+    // couponCalculation();
 }
 
 function createCartPage(cart) {
@@ -208,14 +208,13 @@ function createCartPage(cart) {
     fetch(`${window.location.origin}/cart-increment/${rowId}`,{
         method:'post',
         headers: {
-            
             "Content-Type": "application/json",
             "Accept": "application/json, text-plain, */*",
             "X-Requested-With": "XMLHttpRequest",
             "X-CSRF-TOKEN": token
         }
     }).then(
-        couponCalculation()
+        // couponCalculation()
     ).then(
         miniCart()
     ).then(
@@ -246,9 +245,9 @@ function createCartPage(cart) {
             "X-CSRF-TOKEN": token
         }
     }).then(()=>{
-        if( document.getElementById('couponCalField')){
-            couponCalculation()
-        }
+        // if( document.getElementById('couponCalField')){
+        //     couponCalculation()
+        // }
     }
     ).then(
         miniCart()
@@ -333,9 +332,9 @@ const cartRemove=(rowId)=>{
                     "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 }
             }).then(()=>{
-                if( document.getElementById('couponCalField')){
-                    couponCalculation()
-                }
+                // if( document.getElementById('couponCalField')){
+                //     couponCalculation()
+                // }
             }
             ).then(
                 miniCart()
@@ -343,14 +342,14 @@ const cartRemove=(rowId)=>{
             ).then(
                 cart()
             ).then(()=>{
-                if( document.getElementById('couponField')){
-                    document.getElementById('couponField').style.display='block'
-                }
+                // if( document.getElementById('couponField')){
+                //     document.getElementById('couponField').style.display='block'
+                // }
             }
             ).then(()=>{
-                if( document.getElementById('coupon_name')){
-                    document.getElementById('coupon_name').value=''
-                }
+                // if( document.getElementById('coupon_name')){
+                //     document.getElementById('coupon_name').value=''
+                // }
             }
             ).then(
                 // Start Message 

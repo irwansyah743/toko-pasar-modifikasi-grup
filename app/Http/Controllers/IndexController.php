@@ -10,6 +10,8 @@ use App\Models\Category;
 use App\Models\MultiImg;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class IndexController extends Controller
 {
@@ -64,31 +66,98 @@ class IndexController extends Controller
         return view('front.product.product_detail', $data);
     }
 
-    public function productCategory(Category $category)
+// CONTOH SORTING
+    public function productCategory($categoryId, $sort = null)
     {
+        $category = Category::find($categoryId);
+
+        if (!$category) {
+            abort(404); // Or return a view with a user-friendly error message
+        }
+
+        $query = Product::where('status', 1)->where('id_kategori', $categoryId);
+
+        switch ($sort) {
+            case 'price_low':
+                $query = $query->orderBy(DB::raw('CAST(harga_jual AS UNSIGNED)'), 'asc');
+                break;
+            case 'price_high':
+                $query = $query->orderBy(DB::raw('CAST(harga_jual AS UNSIGNED)'), 'desc');
+                break;
+            case 'alpha':
+                $query = $query->orderBy('nama_produk', 'asc');
+                break;
+            default:
+                $query = $query->orderBy('id_produk', 'asc');
+        }
+
+        $data['products'] = $query->paginate(4);
         $data['sliders'] = Slider::where('status', 1)->orderBy('id_banner', 'DESC')->limit(3)->get();
-        $data['products'] = Product::where('status', 1)->where('id_kategori', $category->getKey())->orderBy('id_produk', 'ASC')->paginate(4);
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('nama_subkategori', 'ASC')->get();
         $data['nama_kategori'] = $category->nama_kategori;
+        $data['categoryId'] = $categoryId;
+
         return view('front.product.category_products', $data);
     }
 
-    public function productSubcategory(Subcategory $subcategory)
+// AKHIR SORTING
+
+
+    public function productSubcategory($subcategoryId, $sort = null)
     {
+
+        $subcategory = SubCategory::find($subcategoryId);
+
+        if (!$subcategory) {
+            abort(404); // Or return a view with a user-friendly error message
+        }
+
+        $query = Product::where('status', 1)->where('id_subkategori', $subcategoryId);
+
+        switch ($sort) {
+            case 'price_low':
+                $query = $query->orderBy(DB::raw('CAST(harga_jual AS UNSIGNED)'), 'asc');
+                break;
+            case 'price_high':
+                $query = $query->orderBy(DB::raw('CAST(harga_jual AS UNSIGNED)'), 'desc');
+                break;
+            case 'alpha':
+                $query = $query->orderBy('nama_produk', 'asc');
+                break;
+            default:
+                $query = $query->orderBy('id_produk', 'asc');
+        }
         $data['sliders'] = Slider::where('status', 1)->orderBy('id_banner', 'DESC')->limit(3)->get();
-        $data['products'] = Product::where('status', 1)->where('id_subkategori', $subcategory->getKey())->orderBy('id_produk', 'DESC')->paginate(4);
+        $data['products'] = $query->paginate(4);
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('nama_subkategori', 'ASC')->get();
         $data['nama_subkategori'] = $subcategory->nama_subkategori;
         $data['nama_kategori'] = $subcategory->category->nama_kategori;
+        $data['subcategoryId'] = $subcategoryId;
         return view('front.product.subcategory_products', $data);
     }
 
-    public function productTag($keyword)
+    public function productTag($keyword, $sort = null)
     {
+        $query = Product::where('status', 1)->where('tag_produk', 'LIKE', '%' . $keyword . '%');
+
+        switch ($sort) {
+            case 'price_low':
+                $query = $query->orderBy(DB::raw('CAST(harga_jual AS UNSIGNED)'), 'asc');
+                break;
+            case 'price_high':
+                $query = $query->orderBy(DB::raw('CAST(harga_jual AS UNSIGNED)'), 'desc');
+                break;
+            case 'alpha':
+                $query = $query->orderBy('nama_produk', 'asc');
+                break;
+            default:
+                $query = $query->orderBy('id_produk', 'asc');
+        }
+
         $data['sliders'] = Slider::where('status', 1)->orderBy('id_banner', 'DESC')->limit(3)->get();
-        $data['products'] = Product::where('status', 1)->where('tag_produk', 'LIKE', '%' . $keyword . '%')->orderBy('id_produk', 'DESC')->paginate(4);
+        $data['products'] = $query->paginate(4);
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('nama_subkategori', 'ASC')->get();
         $data['keyword'] = $keyword;
@@ -125,4 +194,30 @@ class IndexController extends Controller
         $data['keyword'] =  $request->keyword;
         return view('front.product.search', $data);
     }
+
+    public function sort($sort)
+    {
+        switch ($sort) {
+            case 'price_low':
+                $data['products'] = Product::orderBy('harga_jual', 'asc')->get();
+                break;
+            case 'price_high':
+                $data['products'] = Product::orderBy('harga_jual', 'desc')->get();
+                break;
+            case 'alpha':
+                $data['products'] = Product::orderBy('name', 'asc')->get();
+                break;
+            default:
+                $data['products'] = Product::all();
+        }
+
+        $data['sliders'] = Slider::where('status', 1)->orderBy('id_banner', 'DESC')->limit(3)->get();
+        $data['products'] = Product::where('status', 1)->where('id_kategori', $category->getKey())->orderBy('id_produk', 'ASC')->paginate(4);
+        $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
+        $data['subcategories'] = SubCategory::orderBy('nama_subkategori', 'ASC')->get();
+        $data['nama_kategori'] = $category->nama_kategori;
+        
+        return view('front.product.category_products', $data);
+    }
+
 }

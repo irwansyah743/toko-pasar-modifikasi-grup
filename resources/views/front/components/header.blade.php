@@ -141,7 +141,7 @@ $subcategories = App\Models\SubCategory::latest()->get();
                     <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
                         <div class="nav-outer">
                             <ul class="nav navbar-nav">
-                                <li class="active dropdown yamm-fw"> <a href="{{ url('/') }}"
+                                <li class="dropdown yamm-fw"> <a href="{{ url('/') }}"
                                         class="dropdown-toggle">Home</a> </li>
                                 @foreach ($categories as $category)
                                     <li class="dropdown yamm mega-menu">

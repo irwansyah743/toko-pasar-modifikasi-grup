@@ -276,11 +276,13 @@ Route::middleware([
 Route::controller(IndexController::class)->group(function () {
     Route::get('/', 'index');
     Route::get('/product/detail/{slug}', 'productDetail');
-    Route::get('/product/category/{category}', 'productCategory');
-    Route::get('/product/tags/{keyword}', 'productTag');
+    Route::get('/product/category/{categoryId}/{sort?}', 'productCategory');
+    Route::get('/product/subcategory/{subcategoryId}/{sort?}', 'productSubcategory');
+    Route::get('/product/tags/{keyword}/{sort?}', 'productTag');
     Route::get('/product/subcategory/{subcategory}', 'productSubcategory');
     Route::get('/product/view/modal/{id}', 'productViewAjax');
     Route::get('/product/search', 'searchProduct')->name('search');
+    Route::get('/sort/{sort}', 'sort');
 });
 
 Route::controller(CartController::class)->group(function () {

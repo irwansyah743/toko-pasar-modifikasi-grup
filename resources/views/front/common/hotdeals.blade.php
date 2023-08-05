@@ -27,8 +27,8 @@
                          @endphp
 
                          {{-- HOT DEALS ARE GUARANTEED TO HAVE DISCOUNT --}}
-                         <div class="sale-offer-tag"><span>{{ round($discount) }}%<br>
-                                 off</span></div>
+                         <!-- <div class="sale-offer-tag"><span>{{ round($discount) }}%<br>
+                                 off</span></div> -->
 
 
 

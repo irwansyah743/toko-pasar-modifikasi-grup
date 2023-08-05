@@ -15,7 +15,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
                         <!-- ========================================== SECTION – HERO ========================================= -->
 
-                        <div id="hero">
+                        <!-- <div id="hero">
                             <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
                                 @foreach ($sliders as $slider)
                                     <div class="item hero-image"
@@ -31,20 +31,20 @@
                                                         class="btn-lg btn btn-uppercase btn-primary shop-now-button">Belanja sekarang</a>
                                                 </div>
                                             </div>
-                                            <!-- /.caption -->
+                                           
                                         </div>
-                                        <!-- /.container-fluid -->
+                                        
                                     </div>
-                                    <!-- /.item -->
+                                   
                                 @endforeach
                             </div>
-                            <!-- /.owl-carousel -->
-                        </div>
+                      
+                        </div> -->
 
                         <!-- ========================================= SECTION – HERO : END ========================================= -->
 
                         <!-- ============================================== INFO BOXES ============================================== -->
-                        <div class="info-boxes wow fadeInUp">
+                        <!-- <div class="info-boxes wow fadeInUp">
                             <div class="info-boxes-inner">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-4 col-lg-4">
@@ -57,7 +57,7 @@
                                             <h6 class="text">30 Days Money Back Guarantee</h6>
                                         </div>
                                     </div>
-                                    <!-- .col -->
+                                   
 
                                     <div class="hidden-md col-sm-4 col-lg-4">
                                         <div class="info-box">
@@ -69,7 +69,7 @@
                                             <h6 class="text">Pemesanan dengan Rp. 300.000</h6>
                                         </div>
                                     </div>
-                                    <!-- .col -->
+                                   
 
                                     <div class="col-md-6 col-sm-4 col-lg-4">
                                         <div class="info-box">
@@ -81,13 +81,13 @@
                                             <h6 class="text">20% Hanya pada bulan ini </h6>
                                         </div>
                                     </div>
-                                    <!-- .col -->
+                                   
                                 </div>
-                                <!-- /.row -->
+                              
                             </div>
-                            <!-- /.info-boxes-inner -->
+                          
 
-                        </div>
+                        </div> -->
                         <!-- /.info-boxes -->
                         <!-- ============================================== INFO BOXES : END ============================================== -->
                         <!-- ============================================== SCROLL TABS ============================================== -->
@@ -131,7 +131,7 @@
                                                                     
                                                                 @endphp
 
-                                                                <div>
+                                                                <!-- <div>
                                                                     @if ($product->harga_diskon == null)
                                                                         <div class="tag new"><span>new</span></div>
                                                                     @else
@@ -139,7 +139,7 @@
                                                                             <span>{{ round($discount) }}%</span>
                                                                         </div>
                                                                     @endif
-                                                                </div>
+                                                                </div> -->
                                                             </div>
                                                             <!-- /.product-image -->
 
@@ -273,7 +273,7 @@
                                                                                 ->avg('rating');
                                                                         @endphp
 
-                                                                        <div>
+                                                                        <!-- <div>
                                                                             @if ($product->harga_diskon == null)
                                                                                 <div class="tag new"><span>new</span>
                                                                                 </div>
@@ -282,7 +282,7 @@
                                                                                     <span>{{ round($discount) }}%</span>
                                                                                 </div>
                                                                             @endif
-                                                                        </div>
+                                                                        </div> -->
                                                                     </div>
                                                                     <!-- /.product-image -->
 
@@ -428,13 +428,13 @@
                                                             ->avg('rating');
                                                     @endphp
 
-                                                    <div>
+                                                    <!-- <div>
                                                         @if ($product->harga_diskon)
                                                             <div class="tag hot">
                                                                 <span>{{ round($discount) }}%</span>
                                                             </div>
                                                         @endif
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                                 <!-- /.product-image -->
 
@@ -558,13 +558,13 @@
                                                             ->avg('rating');
                                                     @endphp
 
-                                                    <div>
+                                                    <!-- <div>
                                                         @if ($product->harga_diskon)
                                                             <div class="tag hot">
                                                                 <span>{{ round($discount) }}%</span>
                                                             </div>
                                                         @endif
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                                 <!-- /.product-image -->
 
@@ -687,13 +687,13 @@
                                                             ->avg('rating');
                                                     @endphp
 
-                                                    <div>
+                                                    <!-- <div>
                                                         @if ($product->harga_diskon)
                                                             <div class="tag hot">
                                                                 <span>{{ round($discount) }}%</span>
                                                             </div>
                                                         @endif
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                                 <!-- /.product-image -->
 
@@ -817,13 +817,13 @@
                                                             ->avg('rating');
                                                     @endphp
 
-                                                    <div>
+                                                    <!-- <div>
                                                         @if ($product->harga_diskon)
                                                             <div class="tag hot">
                                                                 <span>{{ round($discount) }}%</span>
                                                             </div>
                                                         @endif
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                                 <!-- /.product-image -->
 

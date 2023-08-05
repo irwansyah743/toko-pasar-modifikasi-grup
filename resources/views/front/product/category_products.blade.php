@@ -159,19 +159,22 @@
                             <!-- /.filter-tabs -->
                         </div>
                         <!-- /.col -->
+                        
                         <div class="col col-sm-12 col-md-6">
                             <div class="col col-sm-3 col-md-6 no-padding">
                                 <div class="lbl-cnt"> <span class="lbl">Sort by</span>
                                     <div class="fld inline">
                                         <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
                                             <button data-toggle="dropdown" type="button" class="btn dropdown-toggle">
-                                                Position <span class="caret"></span> </button>
-                                            <ul role="menu" class="dropdown-menu">
-                                                <li role="presentation"><a href="#">position</a></li>
-                                                <li role="presentation"><a href="#">Price:Lowest first</a></li>
-                                                <li role="presentation"><a href="#">Price:Highest first</a></li>
-                                                <li role="presentation"><a href="#">Product Name:A to Z</a></li>
+                                                Jenis Sorting <span class="caret"></span> </button>
+                                                <!-- GANTI UNTUK SORTING JADI SEPERTI INI -->
+                                           <ul role="menu" class="dropdown-menu">
+                                                <li role="presentation"><a href="/product/category/{{ $categoryId }}/price_low">Dari harga terendah</a></li>
+                                                <li role="presentation"><a href="/product/category/{{ $categoryId }}/price_high">Dari harga tertinggi</a></li>
+                                                <li role="presentation"><a href="/product/category/{{ $categoryId }}/alpha">Berdasarkan nama</a></li>
                                             </ul>
+                                            <!-- AKHIR GANTI UNTUK SORTING JADI SEPERTI INI -->
+
                                         </div>
                                     </div>
                                     <!-- /.fld -->
@@ -242,7 +245,7 @@
                                                                 ->avg('rating');
                                                         @endphp
 
-                                                        <div>
+                                                        <!-- <div>
                                                             @if ($product->harga_diskon == null)
                                                                 <div class="tag new"><span>new</span></div>
                                                             @else
@@ -250,7 +253,7 @@
                                                                     <span>{{ round($discount) }}%</span>
                                                                 </div>
                                                             @endif
-                                                        </div>
+                                                        </div> -->
 
 
                                                     </div>
@@ -516,7 +519,7 @@
 
 
                                                 <!-- /.product-list-row -->
-                                                <div>
+                                                <!-- <div>
                                                     @if ($product->harga_diskon == null)
                                                         <div class="tag new"><span>new</span></div>
                                                     @else
@@ -524,7 +527,7 @@
                                                             <span>{{ round($discount) }}%</span>
                                                         </div>
                                                     @endif
-                                                </div>
+                                                </div> -->
 
 
 

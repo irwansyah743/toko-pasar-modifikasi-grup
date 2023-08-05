@@ -165,12 +165,11 @@
                                     <div class="fld inline">
                                         <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
                                             <button data-toggle="dropdown" type="button" class="btn dropdown-toggle">
-                                                Position <span class="caret"></span> </button>
+                                                Jenis Sorting <span class="caret"></span> </button>
                                             <ul role="menu" class="dropdown-menu">
-                                                <li role="presentation"><a href="#">position</a></li>
-                                                <li role="presentation"><a href="#">Price:Lowest first</a></li>
-                                                <li role="presentation"><a href="#">Price:Highest first</a></li>
-                                                <li role="presentation"><a href="#">Product Name:A to Z</a></li>
+                                                <li role="presentation"><a href="/product/tags/{{ $keyword }}/price_low">Dari harga terendah</a></li>
+                                                <li role="presentation"><a href="/product/tags/{{ $keyword }}/price_high">Dari harga tertinggi</a></li>
+                                                <li role="presentation"><a href="/product/tags/{{ $keyword }}/alpha">Berdasarkan nama</a></li>
                                             </ul>
                                         </div>
                                     </div>

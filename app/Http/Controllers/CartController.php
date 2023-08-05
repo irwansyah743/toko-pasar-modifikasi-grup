@@ -86,20 +86,20 @@ class CartController extends Controller
     public function cartIncrement($rowId)
     {
         $row = Cart::get($rowId);
-        Cart::update($rowId, $row->kuantitas + 1);
+        Cart::update($rowId, $row->qty + 1);
 
-        if (Session::has('coupon')) {
+        // if (Session::has('coupon')) {
 
-            $nama_kupon = Session::get('coupon')['nama_kupon'];
-            $coupon = Coupon::where('nama_kupon', $nama_kupon)->first();
+        //     $nama_kupon = Session::get('coupon')['nama_kupon'];
+        //     $coupon = Coupon::where('nama_kupon', $nama_kupon)->first();
 
-            Session::put('coupon', [
-                'nama_kupon' => $coupon->nama_kupon,
-                'diskon_kupon' => $coupon->diskon_kupon,
-                'discount_amount' => Cart::priceTotal() * $coupon->diskon_kupon / 100,
-                'total_amount' => Cart::priceTotal() - Cart::priceTotal() * $coupon->diskon_kupon / 100
-            ]);
-        }
+        //     Session::put('coupon', [
+        //         'nama_kupon' => $coupon->nama_kupon,
+        //         'diskon_kupon' => $coupon->diskon_kupon,
+        //         'discount_amount' => Cart::priceTotal() * $coupon->diskon_kupon / 100,
+        //         'total_amount' => Cart::priceTotal() - Cart::priceTotal() * $coupon->diskon_kupon / 100
+        //     ]);
+        // }
 
         return response()->json('Increment');
     } // end mehtod
@@ -109,20 +109,20 @@ class CartController extends Controller
     {
 
         $row = Cart::get($rowId);
-        Cart::update($rowId, $row->kuantitas - 1);
+        Cart::update($rowId, $row->qty - 1);
 
-        if (Session::has('coupon')) {
+        // if (Session::has('coupon')) {
 
-            $nama_kupon = Session::get('coupon')['nama_kupon'];
-            $coupon = Coupon::where('nama_kupon', $nama_kupon)->first();
+        //     $nama_kupon = Session::get('coupon')['nama_kupon'];
+        //     $coupon = Coupon::where('nama_kupon', $nama_kupon)->first();
 
-            Session::put('coupon', [
-                'nama_kupon' => $coupon->nama_kupon,
-                'diskon_kupon' => $coupon->diskon_kupon,
-                'discount_amount' => Cart::priceTotal() * $coupon->diskon_kupon / 100,
-                'total_amount' => Cart::priceTotal() - Cart::priceTotal() * $coupon->diskon_kupon / 100
-            ]);
-        }
+        //     Session::put('coupon', [
+        //         'nama_kupon' => $coupon->nama_kupon,
+        //         'diskon_kupon' => $coupon->diskon_kupon,
+        //         'discount_amount' => Cart::priceTotal() * $coupon->diskon_kupon / 100,
+        //         'total_amount' => Cart::priceTotal() - Cart::priceTotal() * $coupon->diskon_kupon / 100
+        //     ]);
+        // }
 
         return response()->json('Decrement');
     } // end mehtod

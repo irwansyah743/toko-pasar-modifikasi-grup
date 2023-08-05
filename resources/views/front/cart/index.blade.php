@@ -30,7 +30,7 @@
                                     <th class="cart-description item">Nama</th>
                                     <th class="cart-product-name item">Warna</th>
                                     <th class="cart-edit item">Ukuran</th>
-                                    <th class="cart-kuantitas item">Stok</th>
+                                    <th class="cart-kuantitas item">Jumlah</th>
                                     <th class="cart-sub-total item">Subtotal</th>
                                     <th class="cart-total last-item">Hapus</th>
                                 </tr>
@@ -47,7 +47,7 @@
             <div class="col-md-4 col-sm-12 estimate-ship-tax">
             </div>
 
-
+<!-- 
             <div class="col-md-4 col-sm-12 estimate-ship-tax">
 
                 <table class="table" id="couponField"
@@ -74,10 +74,10 @@
                                 </div>
                             </td>
                         </tr>
-                    </tbody><!-- /tbody -->
-                </table><!-- /table -->
+                    </tbody>
+                </table>
 
-            </div><!-- /.estimate-ship-tax -->
+            </div>/ -->
 
 
 
@@ -85,9 +85,9 @@
 
             <div class="col-md-4 col-sm-12 cart-shopping-total">
                 <table class="table">
-                    <thead id="couponCalField">
+                    <!-- <thead id="couponCalField">
 
-                    </thead><!-- /thead -->
+                    </thead> -->
                     <tbody>
                         <tr>
                             <td>
