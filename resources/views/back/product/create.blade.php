@@ -254,7 +254,7 @@
                                                     <h5>Tag Produk <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="text" name="tag_produk"
-                                                            value="{{ old('tag_produk') ? old('tag_produk') : 'clothes,sport,football' }}"
+                                                            value="{{ old('tag_produk') ? old('tag_produk') : 'Aksesoris,Sparepartp' }}"
                                                             class="form-control @error('tag_produk') is-invalid @enderror"
                                                             data-role="tagsinput" required="">
                                                         @error('tag_produk')
@@ -275,7 +275,7 @@
                                                     <h5>Ukuran Produk<span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="text" name="ukuran_produk"
-                                                            value="{{ old('ukuran_produk') ? old('ukuran_produk') : 'small,medium,large' }}"
+                                                            value="{{ old('ukuran_produk') ? old('ukuran_produk') : 'Kecil,Sedang,Besar' }}"
                                                             class="form-control @error('ukuran_produk') is-invalid @enderror"
                                                             data-role="tagsinput" required="">
                                                         @error('ukuran_produk')
@@ -294,7 +294,7 @@
                                                     <h5>Warna Produkr<span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="text" name="warna_produk"
-                                                            value="{{ old('warna_produk') ? old('warna_produk') : 'red,black,white' }}"
+                                                            value="{{ old('warna_produk') ? old('warna_produk') : 'Merah,Hitam,Putih' }}"
                                                             class="form-control @error('warna_produk') is-invalid @enderror"
                                                             data-role="tagsinput" required="">
                                                         @error('warna_produk')

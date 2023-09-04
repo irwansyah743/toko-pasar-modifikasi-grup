@@ -16,7 +16,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Daftar Merek <span class="badge badge-pill badge-danger">
+                            <h3 class="box-title">Daftar Supplier <span class="badge badge-pill badge-danger">
                                     {{ count($supliers) }} </span></h3>
                         </div>
                         <!-- /.box-header -->

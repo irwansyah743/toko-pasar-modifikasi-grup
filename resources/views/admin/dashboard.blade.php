@@ -91,9 +91,8 @@
                                             <th style="min-width: 250px"><span class="text-white">Tanggal</span></th>
                                             <th style="min-width: 100px"><span class="text-fade">Pesanan</span></th>
                                             <th style="min-width: 100px"><span class="text-fade">Jumlah</span></th>
-                                            <th style="min-width: 150px"><span class="text-fade">Pembayarant</span></th>
+                                            <th style="min-width: 150px"><span class="text-fade">Pembayaran</span></th>
                                             <th style="min-width: 130px"><span class="text-fade">Status</span></th>
-                                            <th style="min-width: 120px"><span class="text-fade">Proses</span> </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -128,14 +127,6 @@
                                                 <td>
                                                     <span
                                                         class="badge badge-primary-light badge-lg">{{ $item->status }}</span>
-                                                </td>
-                                                <td class="text-right">
-                                                    <a href="#"
-                                                        class="waves-effect waves-light btn btn-info btn-circle mx-5"><span
-                                                            class="mdi mdi-bookmark-plus"></span></a>
-                                                    <a href="#"
-                                                        class="waves-effect waves-light btn btn-info btn-circle mx-5"><span
-                                                            class="mdi mdi-arrow-right"></span></a>
                                                 </td>
                                             </tr>
                                         @endforeach

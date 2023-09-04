@@ -184,35 +184,6 @@ $alladmin =
                         </li>
                     </ul>
                 </li>
-
-                <li class="treeview {{ $prefix == '/slider' ? 'active' : '' }}  ">
-                    <a href="#">
-                        <i data-feather="file"></i>
-                        <span>Banner</span>
-                        <span class="pull-right-container">
-                            <i class="fa fa-angle-right pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li class="{{ $route == 'manage.slider' ? 'active' : '' }}"><a
-                                href="{{ route('manage.slider') }}"><i class="ti-more"></i>Mengelola Banner</a></li>
-                    </ul>
-                </li>
-
-                <li class="treeview {{ $prefix == '/coupon' ? 'active' : '' }}  ">
-                    <a href="#">
-                        <i data-feather="file"></i>
-                        <span>Kupon</span>
-                        <span class="pull-right-container">
-                            <i class="fa fa-angle-right pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li class="{{ $route == 'manage.coupon' ? 'active' : '' }}"><a
-                                href="{{ route('manage.coupon') }}"><i class="ti-more"></i>Mengelola Kupon</a></li>
-                    </ul>
-                </li>
-
                 <li class="treeview {{ $prefix == '/orders' ? 'active' : '' }}">
                     <a href="#">
                         <i data-feather="message-circle"></i>
@@ -222,14 +193,12 @@ $alladmin =
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="{{ $route == 'pending.orders' ? 'active' : '' }}"><a
-                                href="{{ route('pending.orders') }}"><i class="ti-more"></i>Pesanan Tertunda</a></li>
                         <li class="{{ $route == 'success.orders' ? 'active' : '' }}"><a
                                 href="{{ route('success.orders') }}"><i class="ti-more"></i>Pesanan Sukses</a></li>
                         <li class="{{ $route == 'failure.orders' ? 'active' : '' }}"><a
                                 href="{{ route('failure.orders') }}"><i class="ti-more"></i>Pesanan Gagal</a></li>
                         <li class="{{ $route == 'error.orders' ? 'active' : '' }}"><a
-                                href="{{ route('error.orders') }}"><i class="ti-more"></i>Pesanan Error</a></li>
+                                href="{{ route('error.orders') }}"><i class="ti-more"></i>Pesanan Tertunda</a></li>
                     </ul>
                 </li>
 

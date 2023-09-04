@@ -136,33 +136,29 @@
 
                                                     <div class="controls">
                                                         <fieldset>
-                                                            <input type="checkbox" id="checkbox_2" name="brand"
-                                                                value="1" @checked(old('brand', $adminuser->brand))>
-                                                            <label for="checkbox_2">Brand</label>
+                                                            <input type="checkbox" id="checkbox_2" name="Merek"
+                                                                value="1" @checked(old('Merek', $adminuser->Merek))>
+                                                            <label for="checkbox_2">Merek</label>
                                                         </fieldset>
                                                         <fieldset>
-                                                            <input type="checkbox" id="checkbox_3" name="category"
-                                                                value="1" @checked(old('category', $adminuser->category))>
-                                                            <label for="checkbox_3">Category</label>
+                                                            <input type="checkbox" id="checkbox_3" name="Kategori"
+                                                                value="1" @checked(old('Kategori', $adminuser->Kategori))>
+                                                            <label for="checkbox_3">Kategori</label>
                                                         </fieldset>
 
                                                         <fieldset>
-                                                            <input type="checkbox" id="checkbox_4" name="product"
-                                                                value="1" @checked(old('product', $adminuser->product))>
-                                                            <label for="checkbox_4">Product</label>
+                                                            <input type="checkbox" id="checkbox_4" name="Produk"
+                                                                value="1" @checked(old('Produk', $adminuser->Produk))>
+                                                            <label for="checkbox_4">Produk</label>
                                                         </fieldset>
 
                                                         <fieldset>
-                                                            <input type="checkbox" id="checkbox_5" name="slider"
-                                                                value="1" @checked(old('slider', $adminuser->slider))>
-                                                            <label for="checkbox_5">Slider</label>
+                                                            <input type="checkbox" id="checkbox_5" name="Suplier"
+                                                                value="1" @checked(old('Suplier', $adminuser->Suplier))>
+                                                            <label for="checkbox_5">Suplier</label>
                                                         </fieldset>
 
-                                                        <fieldset>
-                                                            <input type="checkbox" id="checkbox_6" name="coupons"
-                                                                value="1" @checked(old('coupons', $adminuser->coupon))>
-                                                            <label for="checkbox_6">Coupons</label>
-                                                        </fieldset>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -178,9 +174,9 @@
 
                                                     <div class="controls">
                                                         <fieldset>
-                                                            <input type="checkbox" id="checkbox_12" name="orders"
-                                                                value="1" @checked(old('orders', $adminuser->orders))>
-                                                            <label for="checkbox_12">Orders</label>
+                                                            <input type="checkbox" id="checkbox_12" name="Pesanan"
+                                                                value="1" @checked(old('Pesanan', $adminuser->Pesanan))>
+                                                            <label for="checkbox_12">Pesanan</label>
                                                         </fieldset>
                                                         <fieldset>
                                                             <input type="checkbox" id="checkbox_11" name="review"
@@ -189,21 +185,21 @@
                                                         </fieldset>
 
                                                         <fieldset>
-                                                            <input type="checkbox" id="checkbox_14" name="reports"
-                                                                value="1" @checked(old('reports', $adminuser->report))>
+                                                            <input type="checkbox" id="checkbox_14" name="Laporan"
+                                                                value="1" @checked(old('Laporan', $adminuser->Laporan))>
                                                             <label for="checkbox_14">Reports</label>
                                                         </fieldset>
 
                                                         <fieldset>
-                                                            <input type="checkbox" id="checkbox_15" name="alluser"
-                                                                value="1" @checked(old('alluser', $adminuser->alluser))>
-                                                            <label for="checkbox_15">Alluser</label>
+                                                            <input type="checkbox" id="checkbox_15" name="SemuaUser"
+                                                                value="1" @checked(old('SemuaUser', $adminuser->SemuaUser))>
+                                                            <label for="checkbox_15">SemuaUser</label>
                                                         </fieldset>
 
                                                         <fieldset>
                                                             <input type="checkbox" id="checkbox_16" name="adminuserrole"
-                                                                value="1" @checked(old('adminuserrole', $adminuser->alladmin))>
-                                                            <label for="checkbox_16">Alladmin</label>
+                                                                value="1" @checked(old('adminuserrole', $adminuser->SemuaAdmin))>
+                                                            <label for="checkbox_16">SemuaAdmin</label>
                                                         </fieldset>
                                                     </div>
                                                 </div>
