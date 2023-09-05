@@ -12,7 +12,7 @@
             <!-- Basic Forms -->
             <div class="box">
                 <div class="box-header with-border">
-                    <h4 class="box-title">Edit produk </h4>
+                    <h4 class="box-title">Edit Produk </h4>
 
                 </div>
                 <!-- /.box-header -->
@@ -33,7 +33,7 @@
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <h5>pilih Kategori <span class="text-danger">*</span></h5>
+                                                    <h5>Pilih Kategori <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <select name="id_kategori" id="id_kategori"
                                                             class="form-control @error('id_kategori') is-invalid @enderror">
@@ -57,11 +57,11 @@
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <h5>Pilih Kategori <span class="text-danger">*</span></h5>
+                                                    <h5>Pilih Subkategori <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <select name="id_subkategori" id="id_subkategori"
                                                             class="form-control @error('id_subkategori') is-invalid @enderror">
-                                                            <option value="" @selected(old('id_subkategori') == '') disabled>- Pilih SubKategori -
+                                                            <option value="" @selected(old('id_subkategori') == '') disabled>- Pilih subKategori -
                                                             </option>
                                                             @if (old('id_subkategori', $product->id_subkategori))
                                                                 @foreach ($subcategories as $subcategory)
@@ -84,7 +84,7 @@
                                             </div> <!-- end col md 4 -->
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <h5>Pilih SubSubkategori <span class="text-danger">*</span></h5>
+                                                    <h5>Pilih Subsubkategori <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <select name="id_subsubkategori" id="id_subsubkategori"
                                                             class="form-control @error('id_subsubkategori') is-invalid @enderror">
@@ -124,7 +124,7 @@
                                                         <select name="id_merek"
                                                             class="form-control @error('id_merek') is-invalid @enderror"
                                                             required="">
-                                                            <option value="" selected="" disabled="">pilih Merek</option>
+                                                            <option value="" selected="" disabled="">Pilih Merek</option>
                                                             @foreach ($brands as $brand)
                                                                 <option @selected(old('id_merek') == $brand->getKey() || $brand->getKey() == $product->id_merek)
                                                                     value="{{ $brand->getKey() }}">
@@ -193,7 +193,7 @@
                                             <div class="col-md-4">
 
                                                 <div class="form-group">
-                                                    <h5>Produk Kuantity <span class="text-danger">*</span></h5>
+                                                    <h5>Kuantitas Produk <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="number" name="kuantitas_produk"
                                                             value="{{ old('kuantitas_produk', $product->kuantitas_produk) }}"
@@ -211,7 +211,7 @@
                                             <div class="col-md-4">
 
                                                 <div class="form-group">
-                                                    <h5>Harga Jual Produk (Rp) <span class="text-danger">*</span>
+                                                    <h5>Harga jual Produk (Rp) <span class="text-danger">*</span>
                                                     </h5>
                                                     <div class="controls">
                                                         <input type="text" name="harga_jual"
@@ -230,7 +230,7 @@
                                             <div class="col-md-4">
 
                                                 <div class="form-group">
-                                                    <h5>Sesudah harga Diskon</h5>
+                                                    <h5>Sesudah Harga diskon</h5>
                                                     <div class="controls">
                                                         <input type="text" name="harga_diskon" class="form-control"
                                                             value="{{ old('harga_diskon', $product->harga_diskon) }}">
@@ -299,6 +299,7 @@
                                                                 {{ $message }}
                                                             </div>
                                                         @enderror
+                                                        <small>Use commas to separate each tag</small>
                                                     </div>
                                                 </div>
 
@@ -343,7 +344,7 @@
                                             <div class="col-md-12">
 
                                                 <div class="form-group">
-                                                    <h5>Deksripsi panjang <span class="text-danger">*</span></h5>
+                                                    <h5>Deskripsi Panjang <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <textarea id="editor1" name="deskripsi_panjang" rows="10" cols="80" required=""
                                                             class="form-control @error('deskripsi_panjang') is-invalid @enderror">{{ old('deskripsi_panjang', $product->deskripsi_panjang) }}</textarea>
@@ -357,12 +358,13 @@
 
                                             </div> <!-- end col md 6 -->
 
-
-
                                         </div> <!-- end 8th row  -->
 
-
                                         <hr>
+                                        <div class="text-xs-right">
+                                            <input type="submit" class="btn btn-rounded btn-primary mb-5"
+                                                value="Update Product">
+                                        </div>
                             </form>
 
                         </div>
@@ -461,7 +463,7 @@
             <div class="col-md-12">
                 <div class="box bt-3 border-info">
                     <div class="box-header">
-                        <h4 class="box-title">Gambah thumbnail Produk <strong>Update</strong></h4>
+                        <h4 class="box-title">Product Thambnail Image <strong>Update</strong></h4>
                     </div>
                     <div class="box-body">
                         <form method="post" action="{{ route('update.product.thumbnail', $product->getKey()) }}"
@@ -474,7 +476,7 @@
                                     <img src="{{ asset('storage/' . $product->thumbnail_produk) }}"
                                         class="card-img-top mb-3">
                                     <div class="form-group">
-                                        <label class="form-control-label">Mengubah Gambar <span
+                                        <label class="form-control-label">Change Image <span
                                                 class="text-danger">*</span></label>
                                         <input type="file" name="thumbnail_produk"
                                             class="form-control    @error('thumbnail_produk') is-invalid @enderror"

@@ -262,6 +262,7 @@
                                                                 {{ $message }}
                                                             </div>
                                                         @enderror
+                                                        <small>Use commas to separate each tag</small>
                                                     </div>
                                                 </div>
 
@@ -282,6 +283,7 @@
                                                                 {{ $message }}
                                                             </div>
                                                         @enderror
+                                                        <small>Use commas to separate each tag</small>
                                                     </div>
                                                 </div>
 
@@ -300,6 +302,7 @@
                                                                 {{ $message }}
                                                             </div>
                                                         @enderror
+                                                        <small>Use commas to separate each tag</small>
                                                     </div>
                                                 </div>
 
@@ -407,56 +410,8 @@
                                                 </div>
 
                                             </div> <!-- end col md 6 -->
-
-
-
                                         </div> <!-- end 8th row  -->
-
-
                                         <hr>
-
-
-
-                                        <div class="row">
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-
-                                                    <div class="controls">
-                                                        <fieldset>
-                                                            <input type="checkbox" id="checkbox_2" name="diskon_besar"
-                                                                value="1" @checked(old('diskon_besar'))>
-                                                            <label for="checkbox_2">Diskon besar</label>
-                                                        </fieldset>
-                                                        <fieldset>
-                                                            <input type="checkbox" id="checkbox_3" name="unggulan"
-                                                                value="1" @checked(old('unggulan'))>
-                                                            <label for="checkbox_3">Unggulan</label>
-                                                        </fieldset>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-
-                                                    <div class="controls">
-                                                        <fieldset>
-                                                            <input type="checkbox" id="checkbox_4" name="penawaran_spesial"
-                                                                value="1" @checked(old('penawaran_spesial'))>
-                                                            <label for="checkbox_4">Penawaran spesial</label>
-                                                        </fieldset>
-                                                        <fieldset>
-                                                            <input type="checkbox" id="checkbox_5" name="penawaran_khusus"
-                                                                value="1" @checked(old('penawaran_khusus'))>
-                                                            <label for="checkbox_5">Penawaran khusus</label>
-                                                        </fieldset>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
                                         <div class="text-xs-right">
                                             <input type="submit" class="btn btn-rounded btn-primary mb-5"
