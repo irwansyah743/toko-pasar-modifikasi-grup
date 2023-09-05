@@ -93,7 +93,7 @@
                         <!-- ============================================== SCROLL TABS ============================================== -->
                         <div id="product-tabs-slider" class="scroll-tabs outer-top-vs wow fadeInUp">
                             <div class="more-info-tab clearfix ">
-                                <h3 class="new-product-title pull-left">New Products</h3>
+                                <h3 class="new-product-title pull-left">Produk</h3>
                                 <ul class="nav nav-tabs nav-tab-line pull-right" id="new-products-1">
                                     <li class="active"><a data-transition-type="backSlide" href="#all"
                                             data-toggle="tab">All</a></li>
@@ -387,7 +387,7 @@
                                                         <!-- /.item -->
                                                     @endif
                                                 @empty
-                                                    <h5 class="text-danger">No new product for this category</h5>
+                                                    <h5 class="text-danger">Tidak ada produk baru untuk kategori ini</h5>
                                                 @endforelse
 
 
@@ -404,136 +404,6 @@
                         </div>
                         <!-- /.scroll-tabs -->
                         <!-- ============================================== SCROLL TABS : END ============================================== -->
-
-                        <!-- ============================================== FEATURED PRODUCTS ============================================== -->
-                        <section class="section featured-product wow fadeInUp">
-                            <h3 class="section-title">Featured products</h3>
-                            <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
-                                @foreach ($featuredProducts as $product)
-                                    <div class="item item-carousel">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image"> <a
-                                                            href="{{ url('product/detail/' . $product->slug_produk) }}"><img
-                                                                src=" {{ asset('storage/' . $product->thumbnail_produk) }}"
-                                                                alt=""></a> </div>
-                                                    <!-- /.image -->
-
-                                                    @php
-                                                        $amount = $product->harga_jual - $product->harga_diskon;
-                                                        $discount = ($amount / $product->harga_jual) * 100;
-                                                        $avarage = App\Models\Review::where('id_produk', $product->getKey())
-                                                            ->where('status', 1)
-                                                            ->avg('rating');
-                                                    @endphp
-
-                                                    <!-- <div>
-                                                        @if ($product->harga_diskon)
-                                                            <div class="tag hot">
-                                                                <span>{{ round($discount) }}%</span>
-                                                            </div>
-                                                        @endif
-                                                    </div> -->
-                                                </div>
-                                                <!-- /.product-image -->
-
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a
-                                                            href="{{ url('product/detail/' . $product->slug_produk) }}">{{ $product->nama_produk }}</a>
-                                                    </h3>
-                                                    <div>
-
-                                                        @if ($avarage == 0)
-                                                        @elseif($avarage == 1 || $avarage < 2)
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
-                                                        @elseif($avarage == 2 || $avarage < 3)
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
-                                                        @elseif($avarage == 3 || $avarage < 4)
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
-                                                        @elseif($avarage == 4 || $avarage < 5)
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star"></span>
-                                                        @elseif($avarage == 5 || $avarage < 5)
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                        @endif
-
-
-                                                    </div>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        @if ($product->harga_diskon)
-                                                            <span class="price">
-                                                                Rp.{{ $product->harga_diskon }}
-                                                            </span>
-                                                            <span
-                                                                class="price-before-discount">Rp.{{ $product->harga_jual }}
-                                                            </span>
-                                                        @else
-                                                            <span class="price">
-                                                                Rp.{{ $product->harga_jual }}
-                                                            </span>
-                                                        @endif
-                                                    </div>
-                                                    <!-- /.product-price -->
-
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button data-toggle="modal" data-target="#exampleModal"
-                                                                    class="btn btn-primary icon" type="button"
-                                                                    title="Add Cart" id="{{ $product->getKey() }}"
-                                                                    onclick="productView(this.id)"> <i
-                                                                        class="fa fa-shopping-cart"></i>
-                                                                </button>
-                                                                <button class="btn btn-primary cart-btn"
-                                                                    type="button">Tambah ke keranjang</button>
-                                                            </li>
-                                                            <button class="btn btn-primary icon" type="button"
-                                                                title="Wishlist" id="{{ $product->getKey() }}"
-                                                                onclick="addToWishList(this.id)"> <i
-                                                                    class="fa fa-heart"></i> </button>
-
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                @endforeach
-                            </div>
-                            <!-- /.home-owl-carousel -->
-                        </section>
-                        <!-- /.section -->
-                        <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
 
                         <!-- ============================================== Shockbreaker LEAGUE PRODUCTS ============================================== -->
                         <section class="section featured-product wow fadeInUp">

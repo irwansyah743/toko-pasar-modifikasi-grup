@@ -37,14 +37,9 @@
                     <div class="sidebar-filter">
                         <!-- ============================================== SIDEBAR CATEGORY ============================================== -->
                         <div class="sidebar-widget wow fadeInUp">
-                            <h3 class="section-title">shop by</h3>
-                            <div class="widget-header">
-                                <h4 class="widget-title">Kategori</h4>
-                            </div>
+                            <h3 class="section-title">Kategori</h3>
                             <div class="sidebar-widget-body">
                                 <div class="accordion">
-
-
                                     @foreach ($categories as $category)
                                         <div class="accordion-group">
                                             <div class="accordion-heading"> <a href="#collapse{{ $category->getKey() }}"
@@ -469,7 +464,16 @@
                                                                 </div>
                                                             @endif
 
-                                                            <!-- /.product-price -->
+                                                            <!-- /.Produk-Ukuran -->
+                                                            @if ($product->harga_diskon == null)
+                                                                <div class="product-Ukuran"> <span class="Ukuran">
+                                                                        {{ $product->ukuran_produk }} </span>
+                                                                </div>
+                                                            @else
+                                                                <div class="product-ukuran"> <span class="Ukuran">
+                                                                        {{ $product->ukuran_produk }} </span>
+                                                                </div>
+                                                            @endif
                                                             <div class="description m-t-10">
 
                                                                 {{ $product->deskripsi_singkat }}

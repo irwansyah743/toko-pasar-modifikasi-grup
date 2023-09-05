@@ -12,7 +12,7 @@
             <!-- Basic Forms -->
             <div class="box">
                 <div class="box-header with-border">
-                    <h4 class="box-title">Edit Product </h4>
+                    <h4 class="box-title">Edit produk </h4>
 
                 </div>
                 <!-- /.box-header -->
@@ -33,12 +33,11 @@
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <h5>Category Select <span class="text-danger">*</span></h5>
+                                                    <h5>pilih Kategori <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <select name="id_kategori" id="id_kategori"
                                                             class="form-control @error('id_kategori') is-invalid @enderror">
-                                                            <option value="" @selected(old('id_kategori') == '') disabled>- Select
-                                                                Category -
+                                                            <option value="" @selected(old('id_kategori') == '') disabled>- Pilih Kategori -
                                                             </option>
                                                             @foreach ($categories as $category)
                                                                 <option value="{{ $category->getKey() }}"
@@ -58,12 +57,11 @@
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <h5>SubCategory Select <span class="text-danger">*</span></h5>
+                                                    <h5>Pilih Kategori <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <select name="id_subkategori" id="id_subkategori"
                                                             class="form-control @error('id_subkategori') is-invalid @enderror">
-                                                            <option value="" @selected(old('id_subkategori') == '') disabled>- Select
-                                                                SubCategory -
+                                                            <option value="" @selected(old('id_subkategori') == '') disabled>- Pilih SubKategori -
                                                             </option>
                                                             @if (old('id_subkategori', $product->id_subkategori))
                                                                 @foreach ($subcategories as $subcategory)
@@ -86,12 +84,11 @@
                                             </div> <!-- end col md 4 -->
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <h5>Sub-SubCategory Select <span class="text-danger">*</span></h5>
+                                                    <h5>Pilih SubSubkategori <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <select name="id_subsubkategori" id="id_subsubkategori"
                                                             class="form-control @error('id_subsubkategori') is-invalid @enderror">
-                                                            <option value="" @selected(old('id_subsubkategori') == '') disabled>- Select
-                                                                Sub-SubCategory -
+                                                            <option value="" @selected(old('id_subsubkategori') == '') disabled>- Pilih Subsubkategori -
                                                             </option>
                                                             @if (old('id_subsubkategori', $product->id_subsubkategori))
                                                                 @foreach ($subsubcategories as $subsubcategory)
@@ -122,12 +119,12 @@
                                             <!-- start 2nd row  -->
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <h5>Brand Select <span class="text-danger">*</span></h5>
+                                                    <h5>Pilih Merek <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <select name="id_merek"
                                                             class="form-control @error('id_merek') is-invalid @enderror"
                                                             required="">
-                                                            <option value="" selected="" disabled="">Select Brand</option>
+                                                            <option value="" selected="" disabled="">pilih Merek</option>
                                                             @foreach ($brands as $brand)
                                                                 <option @selected(old('id_merek') == $brand->getKey() || $brand->getKey() == $product->id_merek)
                                                                     value="{{ $brand->getKey() }}">
@@ -147,7 +144,7 @@
                                             <div class="col-md-4">
 
                                                 <div class="form-group">
-                                                    <h5>Product Name <span class="text-danger">*</span></h5>
+                                                    <h5>Nama Produk <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="text"
                                                             value="{{ old('nama_produk', $product->nama_produk) }}"
@@ -166,7 +163,7 @@
                                             <div class="col-md-4">
 
                                                 <div class="form-group">
-                                                    <h5>Product Code <span class="text-danger">*</span></h5>
+                                                    <h5>Kode Produk <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="text" name="kode_produk"
                                                             value="{{ old('kode_produk', $product->kode_produk) }}"
@@ -196,7 +193,7 @@
                                             <div class="col-md-4">
 
                                                 <div class="form-group">
-                                                    <h5>Product Quantity <span class="text-danger">*</span></h5>
+                                                    <h5>Produk Kuantity <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="number" name="kuantitas_produk"
                                                             value="{{ old('kuantitas_produk', $product->kuantitas_produk) }}"
@@ -214,7 +211,7 @@
                                             <div class="col-md-4">
 
                                                 <div class="form-group">
-                                                    <h5>Product Selling Price (Rp) <span class="text-danger">*</span>
+                                                    <h5>Harga Jual Produk (Rp) <span class="text-danger">*</span>
                                                     </h5>
                                                     <div class="controls">
                                                         <input type="text" name="harga_jual"
@@ -233,7 +230,7 @@
                                             <div class="col-md-4">
 
                                                 <div class="form-group">
-                                                    <h5>After Discount Price</h5>
+                                                    <h5>Sesudah harga Diskon</h5>
                                                     <div class="controls">
                                                         <input type="text" name="harga_diskon" class="form-control"
                                                             value="{{ old('harga_diskon', $product->harga_diskon) }}">
@@ -253,7 +250,7 @@
                                             <div class="col-md-4">
 
                                                 <div class="form-group">
-                                                    <h5>Product Tags <span class="text-danger">*</span></h5>
+                                                    <h5>Tag Produk <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="text" name="tag_produk"
                                                             value="{{ old('tag_produk') ? old('tag_produk') : $product->tag_produk }}"
@@ -274,7 +271,7 @@
                                             <div class="col-md-4">
 
                                                 <div class="form-group">
-                                                    <h5>Product Size<span class="text-danger">*</span></h5>
+                                                    <h5>Ukuran Produk<span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="text" name="ukuran_produk"
                                                             value="{{ old('ukuran_produk') ? old('ukuran_produk') : $product->ukuran_produk }}"
@@ -293,7 +290,7 @@
                                             <div class="col-md-4">
 
                                                 <div class="form-group">
-                                                    <h5>Product Color<span class="text-danger">*</span></h5>
+                                                    <h5>Warna Produk<span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="text" name="warna_produk"
                                                             value="{{ old('warna_produk') ? old('warna_produk') : $product->warna_produk }}"
@@ -321,7 +318,7 @@
                                             <div class="col-md-6">
 
                                                 <div class="form-group">
-                                                    <h5>Short Description<span class="text-danger">*</span>
+                                                    <h5>Deskripsi Singkat<span class="text-danger">*</span>
                                                     </h5>
                                                     <div class="controls">
                                                         <textarea name="deskripsi_singkat" id="textarea" class="form-control @error('deskripsi_singkat') is-invalid @enderror" required
@@ -349,7 +346,7 @@
                                             <div class="col-md-12">
 
                                                 <div class="form-group">
-                                                    <h5>Long Description <span class="text-danger">*</span></h5>
+                                                    <h5>Deksripsi panjang <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <textarea id="editor1" name="deskripsi_panjang" rows="10" cols="80" required=""
                                                             class="form-control @error('deskripsi_panjang') is-invalid @enderror">{{ old('deskripsi_panjang', $product->deskripsi_panjang) }}</textarea>
@@ -369,54 +366,6 @@
 
 
                                         <hr>
-
-
-
-                                        <div class="row">
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-
-                                                    <div class="controls">
-                                                        <fieldset>
-                                                            <input type="checkbox" id="checkbox_2" name="diskon_besar"
-                                                                value="1" @checked(old('diskon_besar', $product->diskon_besar))>
-                                                            <label for="checkbox_2">Hot Deals</label>
-                                                        </fieldset>
-                                                        <fieldset>
-                                                            <input type="checkbox" id="checkbox_3" name="unggulan" value="1"
-                                                                @checked(old('unggulan', $product->unggulan))>
-                                                            <label for="checkbox_3">unggulan</label>
-                                                        </fieldset>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-
-                                                    <div class="controls">
-                                                        <fieldset>
-                                                            <input type="checkbox" id="checkbox_4" name="penawaran_spesial"
-                                                                value="1" @checked(old('penawaran_spesial', $product->penawaran_spesial))>
-                                                            <label for="checkbox_4">Special Offer</label>
-                                                        </fieldset>
-                                                        <fieldset>
-                                                            <input type="checkbox" id="checkbox_5" name="penawaran_khusus"
-                                                                value="1" @checked(old('penawaran_khusus', $product->penawaran_khusus))>
-                                                            <label for="checkbox_5">Special Deals</label>
-                                                        </fieldset>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="text-xs-right">
-                                            <input type="submit" class="btn btn-rounded btn-primary mb-5"
-                                                value="Update Product">
-                                        </div>
                             </form>
 
                         </div>
@@ -515,7 +464,7 @@
             <div class="col-md-12">
                 <div class="box bt-3 border-info">
                     <div class="box-header">
-                        <h4 class="box-title">Product Thambnail Image <strong>Update</strong></h4>
+                        <h4 class="box-title">Gambah thumbnail Produk <strong>Update</strong></h4>
                     </div>
                     <div class="box-body">
                         <form method="post" action="{{ route('update.product.thumbnail', $product->getKey()) }}"
@@ -528,7 +477,7 @@
                                     <img src="{{ asset('storage/' . $product->thumbnail_produk) }}"
                                         class="card-img-top mb-3">
                                     <div class="form-group">
-                                        <label class="form-control-label">Change Image <span
+                                        <label class="form-control-label">Mengubah Gambar <span
                                                 class="text-danger">*</span></label>
                                         <input type="file" name="thumbnail_produk"
                                             class="form-control    @error('thumbnail_produk') is-invalid @enderror"
