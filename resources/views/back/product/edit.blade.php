@@ -261,7 +261,6 @@
                                                                 {{ $message }}
                                                             </div>
                                                         @enderror
-                                                        <small>Use commas to separate each tag</small>
                                                     </div>
                                                 </div>
 
@@ -282,7 +281,6 @@
                                                                 {{ $message }}
                                                             </div>
                                                         @enderror
-                                                        <small>Use commas to separate each tag</small>
                                                     </div>
                                                 </div>
 
@@ -301,7 +299,6 @@
                                                                 {{ $message }}
                                                             </div>
                                                         @enderror
-                                                        <small>Use commas to separate each tag</small>
                                                     </div>
                                                 </div>
 
