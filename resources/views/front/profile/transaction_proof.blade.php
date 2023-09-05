@@ -104,12 +104,12 @@
     <table width="100%">
         <thead style="background-color: rgb(7, 0, 89); color:#FFFFFF;">
             <tr class="font">
-                <th>Product Name</th>
-                <th>Size</th>
-                <th>Color</th>
-                <th>Code</th>
-                <th>Quantity</th>
-                <th>Unit Price </th>
+                <th>Nama Produk</th>
+                <th>Ukuran</th>
+                <th>Warna</th>
+                <th>Kode</th>
+                <th>Kuantitas</th>
+                <th>Harga Unit </th>
                 <th>Total </th>
             </tr>
         </thead>
