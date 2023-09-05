@@ -178,11 +178,10 @@
                                         <div class="col-sm-6">
                                             <div class="price-box">
                                                 @if ($product->harga_diskon == null)
-                                                    <span class="price">Rp. {{ $product->harga_jual }}</span>
+                                                <span class="price">Rp. {{ $product->harga_jual }} @if($product->unit == 'pasang')/Pasang @else/Pasang @endif</span>
                                                 @else
-                                                    <span class="price">Rp. {{ $product->harga_diskon }}</span>
-                                                    <span
-                                                        class="price-strike">Rp.{{ $product->harga_jual }}</span>
+                                                <span class="price">Rp. {{ $product->harga_diskon }} @if($product->unit == 'pasang')/Pasang @else/Pasang @endif</span>
+                                                <span class="price-strike">Rp.{{ $product->harga_jual }}</span>
                                                 @endif
 
 
