@@ -262,7 +262,6 @@
                                                                 {{ $message }}
                                                             </div>
                                                         @enderror
-                                                        <small>Use commas to separate each tag</small>
                                                     </div>
                                                 </div>
 
@@ -283,7 +282,6 @@
                                                                 {{ $message }}
                                                             </div>
                                                         @enderror
-                                                        <small>Use commas to separate each tag</small>
                                                     </div>
                                                 </div>
 
@@ -302,7 +300,6 @@
                                                                 {{ $message }}
                                                             </div>
                                                         @enderror
-                                                        <small>Use commas to separate each tag</small>
                                                     </div>
                                                 </div>
 
@@ -415,7 +412,7 @@
 
                                         <div class="text-xs-right">
                                             <input type="submit" class="btn btn-rounded btn-primary mb-5"
-                                                value="Add Product">
+                                                value="Tambah Produk">
                                         </div>
                             </form>
 

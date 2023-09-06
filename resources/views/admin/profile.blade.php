@@ -35,7 +35,7 @@
             <!-- Basic Forms -->
             <div class="box">
                 <div class="box-header with-border">
-                    <h4 class="box-title">Change password</h4>
+                    <h4 class="box-title">Mengubah Password</h4>
 
                 </div>
                 <!-- /.box-header -->
@@ -49,7 +49,7 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <h5>Current password <span class="text-danger">*</span></h5>
+                                                <h5>Password sebelumnya <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="password" name="current_password" class="form-control"
                                                         required data-validation-required-message="This field is required">
@@ -58,7 +58,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <h5>New password <span class="text-danger">*</span></h5>
+                                                <h5>Password Baru <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input id="password" type="password" name="password"
                                                         class="form-control @error('password') is-invalid @enderror"
@@ -73,7 +73,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <h5>Confirmation password <span class="text-danger">*</span></h5>
+                                                <h5>Konfirmasi password <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input id="password_confirmation" type="password"
                                                         name="password_confirmation" class="form-control " required
@@ -86,8 +86,7 @@
 
 
                                         <div class="text-xs-right">
-                                            <button type="submit" class="btn btn-rounded btn-primary mb-5">Change
-                                                password</button>
+                                            <button type="submit" class="btn btn-rounded btn-primary mb-5">Ganti password</button>
                                         </div>
                                     </div>
                                 </div>

@@ -8,9 +8,9 @@
 
         <a href="{{ route('profile') }}" class="btn btn-primary btn-sm btn-block">Profile Update</a>
 
-        <a href="{{ route('user.password') }}" class="btn btn-primary btn-sm btn-block">Change Password </a>
+        <a href="{{ route('user.password') }}" class="btn btn-primary btn-sm btn-block">MenggantiPassword </a>
 
-        <a href="{{ route('my.orders') }}" class="btn btn-primary btn-sm btn-block">Orders</a>
+        <a href="{{ route('my.orders') }}" class="btn btn-primary btn-sm btn-block">Pesanan</a>
 
         <form method="POST" action="{{ route('logout') }}" class="mt-2">
             @csrf

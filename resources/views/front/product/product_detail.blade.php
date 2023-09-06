@@ -267,8 +267,7 @@
                                         <input type="hidden" id="pid" value="{{ $product->getKey() }}">
                                         <div class="col-sm-7">
                                             <button type="submit" onclick="addToCart({{ $product->kuantitas_produk }})" class="btn btn-primary"><i
-                                                    class="fa fa-shopping-cart inner-right-vs"></i> ADD TO
-                                                CART</button>
+                                                    class="fa fa-shopping-cart inner-right-vs"></i> Tambah Ke keranjang</button>
                                         </div>
 
 

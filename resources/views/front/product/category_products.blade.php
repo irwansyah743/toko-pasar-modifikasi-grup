@@ -331,7 +331,7 @@
                                                                         <i class="fa fa-shopping-cart"></i>
                                                                     </button>
                                                                     <button class="btn btn-primary cart-btn"
-                                                                        type="button">Add to cart</button>
+                                                                        type="button">Tambah Ke keranjang</button>
                                                                 </li>
                                                                 <button class="btn btn-primary icon" type="button"
                                                                     title="Wishlist" id="{{ $product->getKey() }}"

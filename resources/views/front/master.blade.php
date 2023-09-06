@@ -125,12 +125,12 @@
                         <div class="col-md-4">
 
                             <ul class="list-group">
-                                <li class="list-group-item">Product Price: <strong id="price"
+                                <li class="list-group-item">Harga produk: <strong id="price"
                                         class="text-danger"></strong>&nbsp;<del id="oldprice"></del> </li>
-                                <li class="list-group-item">Product Code: <strong id="pcode"></strong></li>
-                                <li class="list-group-item">Category: <strong id="pcategory"></strong></li>
-                                <li class="list-group-item">Brand: <strong id="pbrand"></strong></li>
-                                <li class="list-group-item">Stock: <strong id="pstock"></strong></li>
+                                <li class="list-group-item">Kode Produk: <strong id="pcode"></strong></li>
+                                <li class="list-group-item">Kategori: <strong id="pcategory"></strong></li>
+                                <li class="list-group-item">Merek: <strong id="pbrand"></strong></li>
+                                <li class="list-group-item">Stok: <strong id="pstock"></strong></li>
                             </ul>
                         </div><!-- // end col md -->
 
@@ -138,7 +138,7 @@
                         <div class="col-md-4">
 
                             <div class="form-group">
-                                <label for="pcolor">Choose Color</label>
+                                <label for="pcolor">Pilih Warna</label>
                                 <select class="form-control" id="pcolor" name="pcolor">
                                     <option>1</option>
                                     <option>2</option>
@@ -150,7 +150,7 @@
 
 
                             <div class="form-group">
-                                <label for="psize">Choose Size</label>
+                                <label for="psize">Pilih Ukuran</label>
                                 <select class="form-control" id="psize" name="psize">
                                     <option>1</option>
                                     <option>2</option>
@@ -161,13 +161,12 @@
                             </div> <!-- // end form group -->
 
                             <div class="form-group">
-                                <label for="kuantitas">Quantity</label>
+                                <label for="kuantitas">Kuantitas</label>
                                 <input type="number" class="form-control" id="kuantitas" value="1"
                                     min="1">
                             </div> <!-- // end form group -->
                             <input type="hidden" id="pid" />
-                            <button type="submit" class="btn btn-primary mb-2" onclick="addToCart()">Add to
-                                Cart</button>
+                            <button type="submit" class="btn btn-primary mb-2" onclick="addToCart()">Tambah Ke keranjang</button>
 
 
                         </div><!-- // end col md -->

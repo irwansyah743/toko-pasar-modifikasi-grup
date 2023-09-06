@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="module-heading">
-                        <h4 class="module-title">Contact Us</h4>
+                        <h4 class="module-title">Kontak kami</h4>
                     </div>
                     <!-- /.module-heading -->
 
