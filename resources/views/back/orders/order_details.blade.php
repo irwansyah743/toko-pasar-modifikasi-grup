@@ -196,32 +196,32 @@
 
                                 <tr>
                                     <td width="10%">
-                                        <label for=""> Image</label>
+                                        <label for=""> Gambar</label>
                                     </td>
 
                                     <td width="20%">
-                                        <label for=""> Product Name </label>
+                                        <label for=""> Nama Produk </label>
                                     </td>
 
                                     <td width="10%">
-                                        <label for=""> Product Code</label>
+                                        <label for=""> kode Produk</label>
                                     </td>
 
 
                                     <td width="10%">
-                                        <label for=""> Color </label>
+                                        <label for=""> Warna </label>
                                     </td>
 
                                     <td width="10%">
-                                        <label for=""> Size </label>
+                                        <label for=""> Ukuran </label>
                                     </td>
 
                                     <td width="10%">
-                                        <label for=""> Quantity </label>
+                                        <label for=""> Kuantitas </label>
                                     </td>
 
                                     <td width="10%">
-                                        <label for=""> Price </label>
+                                        <label for=""> Harga </label>
                                     </td>
 
                                 </tr>
