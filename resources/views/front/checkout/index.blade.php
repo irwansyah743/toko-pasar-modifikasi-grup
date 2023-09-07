@@ -97,10 +97,13 @@
                                                 <div class="form-group">
                                                     <label class="info-title" for="kode_pos"><b>Kode Pos </b>
                                                         <span class="text-danger">*</span></label>
-                                                    <input type="text" name="kode_pos"
+
+                                                    <input type="text" class="form-control" name="kode_pos" id="kode_pos" readonly value="45362">
+
+                                                    {{-- <input type="text" name="kode_pos"
                                                         class="form-control unicase-form-control text-input"
                                                         id="kode_pos" placeholder="Post Code" required
-                                                        onchange="checkForm()" value="{{ Auth::user()->kode_pos }}">
+                                                        onchange="checkForm()" value="{{ Auth::user()->kode_pos }}"> --}}
                                                 </div> <!-- // end form group  -->
                                                 <hr>
                                             </div>
@@ -109,7 +112,9 @@
                                                     <label class="info-title" for="provinsi"><b>Provinsi</b>
                                                         <span class="text-danger">*</span></label>
 
-                                                    <select class="form-control unicase-form-control @error('provinsi') is-invalid @enderror" name="provinsi" id="provinsi" required onchange="checkForm()">
+                                                    <input type="text" class="form-control" name="provinsi" id="provinsi" readonly value="Jawa Barat">
+
+                                                    {{-- <select class="form-control unicase-form-control @error('provinsi') is-invalid @enderror" name="provinsi" id="provinsi" required onchange="checkForm()">
                                                         <option value="">== Pilh Provinsi ==</option>
                                                         @foreach ($provinsiList as $provinsi)
                                                             <option
@@ -117,7 +122,7 @@
                                                                 {{ Auth::user()->provinsi == $provinsi['province'] ? 'selected' : '' }}
                                                             >{{ $provinsi['province'] }}</option>
                                                         @endforeach
-                                                    </select>
+                                                    </select> --}}
                                                 </div> <!-- // end form group  -->
 
 
@@ -125,7 +130,9 @@
                                                     <label class="info-title" for="kabupaten"><b>Kabupaten</b>
                                                         <span class="text-danger">*</span></label>
 
-                                                    <select class="form-control unicase-form-control @error('kabupaten') is-invalid @enderror" name="kabupaten" id="kabupaten" required onchange="checkForm()">
+                                                    <input type="text" class="form-control" name="kabupaten" id="kabupaten" readonly value="Kabupaten Sumedang">
+
+                                                    {{-- <select class="form-control unicase-form-control @error('kabupaten') is-invalid @enderror" name="kabupaten" id="kabupaten" required onchange="checkForm()">
                                                         <option value="">== Pilh Kabupaten/Kota ==</option>
                                                         @foreach ($kabupatenList as $kabupaten)
                                                             <option
@@ -133,7 +140,7 @@
                                                                 {{ Auth::user()->kabupaten == $kabupaten['type'] . ' ' . $kabupaten['city_name'] ? 'selected' : '' }}
                                                             >{{ $kabupaten['type'] }} {{ $kabupaten['city_name'] }}</option>
                                                         @endforeach
-                                                    </select>
+                                                    </select> --}}
 
                                                     {{-- <input type="text" name="kabupaten"
                                                         class="form-control unicase-form-control text-input"
@@ -145,10 +152,13 @@
                                                 <div class="form-group">
                                                     <label class="info-title" for="kecamatan"><b>Kecamatan</b>
                                                         <span class="text-danger">*</span></label>
-                                                    <input type="text" name="kecamatan"
+
+                                                    <input type="text" class="form-control" name="kecamatan" id="kecamatan" readonly value="Tanjungsari">
+
+                                                    {{-- <input type="text" name="kecamatan"
                                                         class="form-control unicase-form-control text-input"
                                                         id="kecamatan" value="{{ Auth::user()->kecamatan }}" required
-                                                        onchange="checkForm()">
+                                                        onchange="checkForm()"> --}}
                                                 </div> <!-- // end form group  -->
 
                                                 <div class="form-group">
@@ -170,7 +180,7 @@
                                             </div>
                                             <!-- already-registered-login -->
 
-                                            <div class="col-md-12">
+                                            {{-- <div class="col-md-12">
                                                 <hr>
 
                                                 <div class="form-group">
@@ -181,7 +191,7 @@
                                                 </div>
 
 
-                                            </div>
+                                            </div> --}}
 
                                         </form>
 
@@ -244,7 +254,7 @@
                                         <hr>
                                         <li>
                                             @if (Session::has('coupon'))
-                                                <strong>SubTotal: </strong> ${{ $cartTotal }}
+                                                <strong>SubTotal: </strong> Rp.{{ $cartTotal }}
                                                 <hr>
 
                                                 <strong>Nama Kupon : </strong>
@@ -262,10 +272,15 @@
                                                     Rp.{{ session()->get('coupon')['total_amount'] }}</strong>
                                                 <hr>
                                             @else
-                                                <strong>SubTotal: </strong> Rp.{{ $cartTotal }}
+                                                <strong>SubTotal: </strong> Rp.{{ number_format($cartTotal, 0, '.', '.') }}
                                                 <hr>
 
-                                                <strong>Total Keseluruhan : Rp.{{ $cartTotal }}</strong>
+                                                <strong>Ongkos Kirim : Rp.10.000,-</strong>
+                                                <hr>
+
+                                                <input type="hidden" name="ongkir_choose" id="ongkir_choose" value="10000">
+
+                                                <strong>Total Keseluruhan : Rp.{{ number_format($cartTotal + 10000, 0, '.', '.') }}</strong>
                                                 <hr>
                                             @endif
 
@@ -313,28 +328,28 @@
 {{-- Custom JS --}}
 <script src="{{ asset('js/midtrans.js') }}"></script>
 <script>
-function ongkir() {
-    var kabupaten = document.getElementById('kabupaten').value;
+// function ongkir() {
+//     var kabupaten = document.getElementById('kabupaten').value;
 
-    fetch("{{ url('/rajaongkir/ongkir/') }}?id_kabupaten_asal=23&id_kabupaten_tujuan="+ kabupaten +"&berat=1000&kurir=jne")
-        .then(response => response.json())
-        .then(data => {
-            if(data == null || data.length == 0){
-                document.getElementById('ongkir_choose').innerHTML = `<option value="">== Pilih Ongkos Kirim ==</option>`;
-                return;
-            }
+//     fetch("{{ url('/rajaongkir/ongkir/') }}?id_kabupaten_asal=23&id_kabupaten_tujuan="+ kabupaten +"&berat=1000&kurir=jne")
+//         .then(response => response.json())
+//         .then(data => {
+//             if(data == null || data.length == 0){
+//                 document.getElementById('ongkir_choose').innerHTML = `<option value="">== Pilih Ongkos Kirim ==</option>`;
+//                 return;
+//             }
 
-            var temp = `<option value="">== Pilih Ongkos Kirim ==</option>`;
+//             var temp = `<option value="">== Pilih Ongkos Kirim ==</option>`;
 
-            data[0].costs.forEach(function(cost) {
-                cost.cost.forEach(function(c) {
-                    temp += `<option value="${cost.service}_${c.value}">JNE ${cost.service} (${c.etd} Hari) - Rp. ${c.value}</option>`;
-                });
-            });
+//             data[0].costs.forEach(function(cost) {
+//                 cost.cost.forEach(function(c) {
+//                     temp += `<option value="${cost.service}_${c.value}">JNE ${cost.service} (${c.etd} Hari) - Rp. ${c.value}</option>`;
+//                 });
+//             });
 
-            document.getElementById('ongkir_choose').innerHTML = temp;
-        });
-}
+//             document.getElementById('ongkir_choose').innerHTML = temp;
+//         });
+// }
 
 document.addEventListener('DOMContentLoaded', function() {
     // Getting all radio buttons with class 'alamat_choose'
@@ -349,9 +364,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 // document.getElementById('nama_pengiriman').value = '{{ Auth::user()->name }}';
                 // document.getElementById('email_pengiriman').value = '{{ Auth::user()->email }}';
                 // document.getElementById('no_telepon_pengiriman').value = '{{ Auth::user()->phone }}';
-                document.getElementById('kode_pos').value = '{{ Auth::user()->kode_pos }}';
-                document.getElementById('provinsi').value = '{{ $provinsiUser }}';
-                document.getElementById('kecamatan').value = '{{ Auth::user()->kecamatan }}';
+                // document.getElementById('kode_pos').value = '{{ Auth::user()->kode_pos }}';
+                // document.getElementById('provinsi').value = '{{ $provinsiUser }}';
+                // document.getElementById('kecamatan').value = '{{ Auth::user()->kecamatan }}';
                 document.getElementById('alamat').value = `{{ Auth::user()->alamat }}`;
             } else if (this.value === "alamat_lain") {
                 // Perform action for Alamat Lain
@@ -359,10 +374,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 // document.getElementById('nama_pengiriman').value = '';
                 // document.getElementById('email_pengiriman').value = '';
                 // document.getElementById('no_telepon_pengiriman').value = '';
-                document.getElementById('kode_pos').value = '';
-                document.getElementById('provinsi').value = '';
-                document.getElementById('kabupaten').value = '';
-                document.getElementById('kecamatan').value = '';
+                // document.getElementById('kode_pos').value = '';
+                // document.getElementById('provinsi').value = '';
+                // document.getElementById('kabupaten').value = '';
+                // document.getElementById('kecamatan').value = '';
                 document.getElementById('alamat').value = '';
             }
 
@@ -370,35 +385,37 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    document.getElementById('provinsi').addEventListener('change', function() {
-        var provinsi_id = this.value;
-        if (provinsi_id != '') {
-            fetch("{{ url('/rajaongkir/provinsi/') }}/" + provinsi_id)
-                .then(response => response.json())
-                .then(data => {
-                    var holder = `<option value="">== Pilih Kabupaten/Kota ==</option>`;
-                    data.forEach(function(kabupaten) {
-                        holder += '<option value="' +
-                            kabupaten.city_id + '">' + kabupaten.type + ' ' + kabupaten
-                            .city_name + '</option>';
-                    });
+    checkForm();
 
-                    document.getElementById('kabupaten').removeAttribute('disabled');
-                    document.getElementById('kabupaten').innerHTML = holder;
+    // document.getElementById('provinsi').addEventListener('change', function() {
+    //     var provinsi_id = this.value;
+    //     if (provinsi_id != '') {
+    //         fetch("{{ url('/rajaongkir/provinsi/') }}/" + provinsi_id)
+    //             .then(response => response.json())
+    //             .then(data => {
+    //                 var holder = `<option value="">== Pilih Kabupaten/Kota ==</option>`;
+    //                 data.forEach(function(kabupaten) {
+    //                     holder += '<option value="' +
+    //                         kabupaten.city_id + '">' + kabupaten.type + ' ' + kabupaten
+    //                         .city_name + '</option>';
+    //                 });
 
-                    document.getElementById('kabupaten').value = '{{ Auth::user()->kabupaten }}';
-                });
-        } else {
-            document.getElementById('kabupaten').setAttribute('disabled', 'disabled');
-            document.getElementById('kabupaten').innerHTML = '<option value="">== Pilih Kabupaten/Kota ==</option>';
-        }
-    });
+    //                 document.getElementById('kabupaten').removeAttribute('disabled');
+    //                 document.getElementById('kabupaten').innerHTML = holder;
 
-    document.getElementById('kabupaten').addEventListener('change', function() {
-        ongkir();
-    });
+    //                 document.getElementById('kabupaten').value = '{{ Auth::user()->kabupaten }}';
+    //             });
+    //     } else {
+    //         document.getElementById('kabupaten').setAttribute('disabled', 'disabled');
+    //         document.getElementById('kabupaten').innerHTML = '<option value="">== Pilih Kabupaten/Kota ==</option>';
+    //     }
+    // });
 
-    ongkir();
+    // document.getElementById('kabupaten').addEventListener('change', function() {
+    //     ongkir();
+    // });
+
+    // ongkir();
 });
 </script>
 @endsection

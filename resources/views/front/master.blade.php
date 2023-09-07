@@ -33,10 +33,16 @@
     {{-- <link rel="stylesheet" href="{{ asset('front-theme/assets/css/font-awesome.css') }}"> --}}
 
     <!-- Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,600italic,700,700italic,800'
         rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <style>
+        .swal2-popup {
+            font-size: 1.6rem !important;
+        }
+    </style>
 </head>
 
 <body class="cnt-home">
@@ -94,6 +100,7 @@
             }
         </script>
     @endif
+    @yield('scripts')
 
     <!-- Add to Cart Product Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

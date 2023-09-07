@@ -14,6 +14,13 @@
     <div class="body-content">
 
         <div class="container">
+            <div class="alert alert-warning" style="font-size: 1.6rem;" role="alert">
+                <strong style="font-size: 2rem;">Perhatian!</strong>
+                <br>
+                <p>Jangkauan Pengiriman hanya di daerah <b>Tanjungsari, Kabupaten Sumedang</b>.</p>
+                <p>Untuk yang berada di luar daerah tersebut, <b>mohon maaf kami belum bisa melayani anda</b>.</p>
+            </div>
+
             <div class="sign-in-page">
                 <div class="row">
                     <!-- Sign-in -->
@@ -123,12 +130,14 @@
                             <div class="form-group">
                                 <label class="info-title" for="provinsi">Provinsi <span>*</span></label>
 
-                                <select class="form-control unicase-form-control @error('provinsi') is-invalid @enderror" name="provinsi" id="provinsi" required>
+                                <input type="text" class="form-control" name="provinsi" id="provinsi" readonly value="Jawa Barat">
+
+                                {{-- <select class="form-control unicase-form-control @error('provinsi') is-invalid @enderror" name="provinsi" id="provinsi" required>
                                     <option value="">== Pilh Provinsi ==</option>
                                     @foreach (\RajaOngkir::provinsi()->all() as $provinsi)
                                         <option value="{{ $provinsi['province_id'] }}">{{ $provinsi['province'] }}</option>
                                     @endforeach
-                                </select>
+                                </select> --}}
 
                                 @error('provinsi')
                                     <div class="invalid-feedback">
@@ -140,9 +149,11 @@
                             <div class="form-group">
                                 <label class="info-title" for="kabupaten">Kabupaten/Kota <span>*</span></label>
 
-                                <select class="form-control unicase-form-control @error('kabupaten') is-invalid @enderror" name="kabupaten" id="kabupaten" disabled required>
+                                <input type="text" class="form-control" name="kabupaten" id="kabupaten" readonly value="Kabupaten Sumedang">
+
+                                {{-- <select class="form-control unicase-form-control @error('kabupaten') is-invalid @enderror" name="kabupaten" id="kabupaten" disabled required>
                                     <option value="">== Pilh Kabupaten/Kota ==</option>
-                                </select>
+                                </select> --}}
 
                                 @error('kabupaten')
                                     <div class="invalid-feedback">
@@ -153,9 +164,13 @@
 
                             <div class="form-group">
                                 <label class="info-title" for="kecamatan">Kecamatan <span>*</span></label>
-                                <input type="text"
+
+                                <input type="text" class="form-control" name="kecamatan" id="kecamatan" readonly value="Tanjungsari">
+
+                                {{-- <input type="text"
                                     class="form-control unicase-form-control text-input @error('kecamatan') is-invalid @enderror"
-                                    id="kecamatan" name="kecamatan" value="{{ old('kecamatan') }}">
+                                    id="kecamatan" name="kecamatan" value="{{ old('kecamatan') }}"> --}}
+
                                 @error('kecamatan')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -165,9 +180,13 @@
 
                             <div class="form-group">
                                 <label class="info-title" for="kode_pos">Kode Pos <span>*</span></label>
-                                <input type="text"
+
+                                <input type="text" class="form-control" name="kode_pos" id="kode_pos" readonly value="45362">
+
+                                {{-- <input type="text"
                                     class="form-control unicase-form-control text-input @error('kode_pos') is-invalid @enderror"
-                                    id="kode_pos" name="kode_pos" value="{{ old('kode_pos') }}">
+                                    id="kode_pos" name="kode_pos" value="{{ old('kode_pos') }}"> --}}
+
                                 @error('kode_pos')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -224,30 +243,42 @@
         </div>
     </div>
     @include('front.components.brands')
+@endsection
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('provinsi').addEventListener('change', function() {
-                var provinsi_id = this.value;
-                if (provinsi_id != '') {
-                    fetch("{{ url('/rajaongkir/provinsi/') }}/" + provinsi_id)
-                        .then(response => response.json())
-                        .then(data => {
-                            var holder = `<option value="">== Pilih Kabupaten/Kota ==</option>`;
-                            data.forEach(function(kabupaten) {
-                                holder += '<option value="' +
-                                    kabupaten.city_id + '">' + kabupaten.type + ' ' + kabupaten
-                                    .city_name + '</option>';
-                            });
+@section('scripts')
+<script>
+    Swal.fire({
+        icon: 'warning',
+        title: 'Perhatian',
+        html: `
+        Jangkauan Pengiriman hanya di daerah <b>Tanjungsari, Kabupaten Sumedang</b>.
+        <br>
+        Untuk yang berada di luar daerah tersebut, <b>mohon maaf kami belum bisa melayani anda</b>.
+        `,
+    });
 
-                            document.getElementById('kabupaten').removeAttribute('disabled');
-                            document.getElementById('kabupaten').innerHTML = holder;
-                        });
-                } else {
-                    document.getElementById('kabupaten').setAttribute('disabled', 'disabled');
-                    document.getElementById('kabupaten').innerHTML = '<option value="">== Pilih Kabupaten/Kota ==</option>';
-                }
-            });
-        });
-    </script>
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     document.getElementById('provinsi').addEventListener('change', function() {
+    //         var provinsi_id = this.value;
+    //         if (provinsi_id != '') {
+    //             fetch("{{ url('/rajaongkir/provinsi/') }}/" + provinsi_id)
+    //                 .then(response => response.json())
+    //                 .then(data => {
+    //                     var holder = `<option value="">== Pilih Kabupaten/Kota ==</option>`;
+    //                     data.forEach(function(kabupaten) {
+    //                         holder += '<option value="' +
+    //                             kabupaten.city_id + '">' + kabupaten.type + ' ' + kabupaten
+    //                             .city_name + '</option>';
+    //                     });
+
+    //                     document.getElementById('kabupaten').removeAttribute('disabled');
+    //                     document.getElementById('kabupaten').innerHTML = holder;
+    //                 });
+    //         } else {
+    //             document.getElementById('kabupaten').setAttribute('disabled', 'disabled');
+    //             document.getElementById('kabupaten').innerHTML = '<option value="">== Pilih Kabupaten/Kota ==</option>';
+    //         }
+    //     });
+    // });
+</script>
 @endsection

@@ -31,15 +31,23 @@
                                                         class="btn-lg btn btn-uppercase btn-primary shop-now-button">Belanja sekarang</a>
                                                 </div>
                                             </div>
-                                           
+
                                         </div>
-                                        
+
                                     </div>
-                                   
+
                                 @endforeach
                             </div>
-                      
+
                         </div> -->
+
+                       <div class="alert alert-warning" style="font-size: 1.6rem;" role="alert">
+                            <strong style="font-size: 2rem;">Perhatian!</strong>
+                            <br>
+                            <p>Jangkauan Pengiriman hanya di daerah <b>Tanjungsari, Kabupaten Sumedang</b>.</p>
+                            <p>Untuk yang berada di luar daerah tersebut, <b>mohon maaf kami belum bisa melayani anda</b>.</p>
+                        </div>
+
 
                         <!-- ========================================= SECTION – HERO : END ========================================= -->
 
@@ -57,7 +65,7 @@
                                             <h6 class="text">30 Days Money Back Guarantee</h6>
                                         </div>
                                     </div>
-                                   
+
 
                                     <div class="hidden-md col-sm-4 col-lg-4">
                                         <div class="info-box">
@@ -69,7 +77,7 @@
                                             <h6 class="text">Pemesanan dengan Rp. 300.000</h6>
                                         </div>
                                     </div>
-                                   
+
 
                                     <div class="col-md-6 col-sm-4 col-lg-4">
                                         <div class="info-box">
@@ -81,11 +89,11 @@
                                             <h6 class="text">20% Hanya pada bulan ini </h6>
                                         </div>
                                     </div>
-                                   
+
                                 </div>
-                              
+
                             </div>
-                          
+
 
                         </div> -->
                         <!-- /.info-boxes -->
@@ -128,7 +136,7 @@
                                                                     $avarage = App\Models\Review::where('id_produk', $product->getKey())
                                                                         ->where('status', 1)
                                                                         ->avg('rating');
-                                                                    
+
                                                                 @endphp
 
                                                                 <!-- <div>

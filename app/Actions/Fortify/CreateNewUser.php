@@ -32,16 +32,19 @@ class CreateNewUser implements CreatesNewUsers
             'passwordRegister.confirmed' => 'The password confirmation does not match.',
         ])->validate();
 
-        $provinsi = RajaOngkir::provinsi()->find($input['provinsi']);
-        $kabupaten = RajaOngkir::kota()->find($input['kabupaten']);
+        // $provinsi = RajaOngkir::provinsi()->find($input['provinsi']);
+        // $kabupaten = RajaOngkir::kota()->find($input['kabupaten']);
 
-        if(!empty($provinsi)){
-            $provinsi = $provinsi['province'];
-        }
+        // if(!empty($provinsi)){
+        //     $provinsi = $provinsi['province'];
+        // }
 
-        if(!empty($kabupaten)){
-            $kabupaten = $kabupaten['type'] . ' ' . $kabupaten['city_name'];
-        }
+        // if(!empty($kabupaten)){
+        //     $kabupaten = $kabupaten['type'] . ' ' . $kabupaten['city_name'];
+        // }
+
+        $provinsi = "Jawa Barat";
+        $kabupaten = "Kabupaten Sumedang";
 
         return User::create([
             'name' => $input['name'],

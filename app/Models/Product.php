@@ -25,8 +25,8 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class, 'id_merek', 'id_merek');
     }
-    
-    
+
+
 
     // Accessor for the old 'id' attribute
     public function getIdAttribute()
