@@ -137,7 +137,7 @@
                                 <li class="list-group-item">Kode Produk: <strong id="pcode"></strong></li>
                                 <li class="list-group-item">Kategori: <strong id="pcategory"></strong></li>
                                 <li class="list-group-item">Merek: <strong id="pbrand"></strong></li>
-                                <li class="list-group-item">Stok: <strong id="pstock"></strong></li>
+                                {{-- <li class="list-group-item">Stok: <strong id="pstock"></strong></li> --}}
                             </ul>
                         </div><!-- // end col md -->
 

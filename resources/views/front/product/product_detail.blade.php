@@ -150,7 +150,7 @@
                                     </div><!-- /.row -->
                                 </div><!-- /.rating-reviews -->
 
-                                <div class="stock-container info-container m-t-10">
+                                {{-- <div class="stock-container info-container m-t-10">
                                     <div class="row">
                                         <div class="col-sm-2">
                                             <div class="stock-box">
@@ -163,7 +163,7 @@
                                             </div>
                                         </div>
                                     </div><!-- /.row -->
-                                </div><!-- /.stock-container -->
+                                </div><!-- /.stock-container --> --}}
 
                                 <div class="description-container m-t-20">
 
@@ -209,8 +209,33 @@
 
                                 <div class="row">
 
+                                    <div class="col-sm-12">
 
-                                    <div class="col-sm-6">
+                                        <table class="table table-responsive table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th class="text-center">Warna</th>
+                                                    <th class="text-center">Ukuran</th>
+                                                    <th class="text-center">Kuantitas</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($product->productDetail as $detail)
+                                                    <tr>
+                                                        <td class="text-center" style="padding: 0; !important;">
+                                                            <input type="radio" name="product_detail_choose" value="{{ $detail->warna_produk }}|{{ $detail->ukuran_produk }}|{{ $detail->kuantitas_produk }}" {{ ($loop->first ? 'checked' : '') }}>
+                                                        </td>
+                                                        <td class="text-center" style="padding: 10px; !important;">{{ $detail->warna_produk }}</td>
+                                                        <td class="text-center" style="padding: 10px; !important;">{{ $detail->ukuran_produk }}</td>
+                                                        <td class="text-center" style="padding: 10px; !important;">{{ $detail->kuantitas_produk }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    {{-- <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="info-title control-label">Warna </label>
                                             <select class="form-control unicase-form-control selectpicker"
@@ -237,7 +262,7 @@
 
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                 </div><!-- /.row -->
 
@@ -266,7 +291,7 @@
                                         </div>
                                         <input type="hidden" id="pid" value="{{ $product->getKey() }}">
                                         <div class="col-sm-7">
-                                            <button type="submit" onclick="addToCart({{ $product->kuantitas_produk }})" class="btn btn-primary"><i
+                                            <button type="submit" onclick="addToCart()" class="btn btn-primary"><i
                                                     class="fa fa-shopping-cart inner-right-vs"></i> Tambah Ke keranjang</button>
                                         </div>
 

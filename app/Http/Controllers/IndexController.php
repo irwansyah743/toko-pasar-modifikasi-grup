@@ -28,7 +28,7 @@ class IndexController extends Controller
         $data['spionProducts'] = Product::where('status', 1)->where('id_kategori', $spionId)->orderBy('id_produk', 'DESC')->limit(8)->get();
         $shockbreakerId = Category::skip(1)->first()->getKey();
         $data['shockbreakerProducts'] = Product::where('status', 1)->where('id_kategori', $shockbreakerId)->orderBy('id_produk', 'DESC')->limit(8)->get();
-    
+
         // BRAND PRODUCTS
         $ohlinsId = Brand::skip(0)->first()->getKey();
         $data['ohlinsproducts'] = Product::where('status', 1)->where('id_merek', $ohlinsId)->orderBy('id_produk', 'DESC')->limit(8)->get();
@@ -180,7 +180,7 @@ class IndexController extends Controller
             'colors' => $warna_produk,
             'sizes' => $ukuran_produk,
         ));
-    } // end method 
+    } // end method
 
     public function searchProduct(Request $request)
     {
@@ -216,8 +216,9 @@ class IndexController extends Controller
         $data['categories'] = Category::orderBy('nama_kategori', 'ASC')->get();
         $data['subcategories'] = SubCategory::orderBy('nama_subkategori', 'ASC')->get();
         $data['nama_kategori'] = $category->nama_kategori;
-        
+
         return view('front.product.category_products', $data);
     }
 
 }
+

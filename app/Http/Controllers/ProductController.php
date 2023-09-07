@@ -64,7 +64,7 @@ class ProductController extends Controller
             'id_subsubkategori' => 'required',
             'nama_produk' => 'required|unique:produk,nama_produk',
             'kode_produk' => 'required|unique:produk,kode_produk',
-            'kuantitas_produk' => 'required|numeric',
+            // 'kuantitas_produk' => 'required|numeric',
             'tag_produk' => 'required',
             'ukuran_produk' => 'required',
             'warna_produk' => 'required',
@@ -81,14 +81,13 @@ class ProductController extends Controller
 
 
 
-
-
         $image = $request->file('thumbnail_produk');
         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
         Image::make($image)->resize(917, 1000)->save('storage/thumbnails/' . $name_gen);
         $save_url = 'thumbnails/' . $name_gen;
 
-
+        $ukuran_produk = explode(',', $request->ukuran_produk);
+        $warna_produk = explode(',', $request->warna_produk);
 
         $id_produk = DB::table('produk')->insertGetId([
             'id_merek' => $request->id_merek,
@@ -101,7 +100,7 @@ class ProductController extends Controller
 
             'kode_produk' => $request->kode_produk,
 
-            'kuantitas_produk' => $request->kuantitas_produk,
+            'kuantitas_produk' => 0,
             'tag_produk' => $request->tag_produk,
 
             'ukuran_produk' => $request->ukuran_produk,
@@ -124,6 +123,18 @@ class ProductController extends Controller
 
         ]);
 
+        foreach ($ukuran_produk as $ukuran) {
+            foreach ($warna_produk as $warna) {
+                ProductDetail::insert([
+                    'id_produk' => $id_produk,
+                    'warna_produk' => $warna,
+                    'ukuran_produk' => $ukuran,
+                    'kuantitas_produk' => 0,
+                    'created_at' => Carbon::now(),
+                ]);
+            }
+        }
+
         ////////// Multiple Image Upload Start ///////////
 
         $images = $request->file('multi_img');
@@ -144,7 +155,7 @@ class ProductController extends Controller
             'alert-type' => 'success'
         );
 
-        return to_route('manage.product')->with($notification);
+        return to_route('product.edit', $id_produk)->with($notification);
     }
 
     /**
@@ -192,7 +203,7 @@ class ProductController extends Controller
             'id_subsubkategori' => 'required',
             'nama_produk' => 'required',
             'kode_produk' => 'required',
-            'kuantitas_produk' => 'required|numeric',
+            // 'kuantitas_produk' => 'required|numeric',
             'tag_produk' => 'required',
             'ukuran_produk' => 'required',
             'warna_produk' => 'required',
@@ -212,12 +223,11 @@ class ProductController extends Controller
 
             'kode_produk' => $request->kode_produk,
 
-            'kuantitas_produk' => $request->kuantitas_produk,
             'tag_produk' => $request->tag_produk,
 
-            'ukuran_produk' => $request->ukuran_produk,
-
-            'warna_produk' => $request->warna_produk,
+            // 'kuantitas_produk' => $request->kuantitas_produk,
+            // 'ukuran_produk' => $request->ukuran_produk,
+            // 'warna_produk' => $request->warna_produk,
 
 
             'harga_jual' => $request->harga_jual,
@@ -232,6 +242,16 @@ class ProductController extends Controller
             'updated_at' => Carbon::now(),
 
         ]);
+
+        foreach ($request->ukuran_produk as $id_produk_detail => $ukuran) {
+            ProductDetail::where('id_produk_detail', $id_produk_detail)->update([
+                'ukuran_produk' => $ukuran,
+                'warna_produk' => $request->warna_produk[$id_produk_detail],
+                'kuantitas_produk' => $request->kuantitas_produk[$id_produk_detail],
+                'updated_at' => Carbon::now(),
+            ]);
+        }
+
         $notification = array(
             'message' => 'A product has been updated',
             'alert-type' => 'success'

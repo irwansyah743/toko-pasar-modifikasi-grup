@@ -191,7 +191,7 @@
                                             <!-- start 3RD row  -->
 
 
-                                            <div class="col-md-4">
+                                            {{-- <div class="col-md-4">
 
                                                 <div class="form-group">
                                                     <h5>Kuantits Produk <span class="text-danger">*</span></h5>
@@ -208,7 +208,9 @@
                                                     </div>
                                                 </div>
 
-                                            </div> <!-- end col md 4 -->
+                                            </div> --}}
+
+                                            <!-- end col md 4 -->
                                             <div class="col-md-4">
 
                                                 <div class="form-group">

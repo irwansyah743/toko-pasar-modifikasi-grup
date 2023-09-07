@@ -3,7 +3,7 @@ async function productView(id){
     try {
         const data = await getProduct(id);
         document.getElementById('pname').innerHTML=data.product.nama_produk;
-        
+
         document.getElementById('pcode').innerHTML=data.product.kode_produk;
         document.getElementById('pstock').innerHTML=data.product.kuantitas_produk;
         document.getElementById('pcategory').innerHTML=data.product.category.nama_kategori;
@@ -21,7 +21,7 @@ async function productView(id){
         const psize=document.getElementById('psize');
         removeAllChildNodes( pcolor);
         removeAllChildNodes( psize);
-        
+
         data.colors.forEach(color => {
             pcolor.innerHTML+=createSelectOption(color);
             pcolor.value=color;
@@ -45,7 +45,7 @@ async function getProduct(id) {
         dataType: "json",
     }).then((response) => {
         if (response.status !== 200) {
-            
+
             throw new Error(response.statusText);
         }
         return response.json();
@@ -59,20 +59,26 @@ function createSelectOption(data) {
 // -------------------------------------- END MODAL ----------------------------------
 
 // -------------------------------------- ADD TO CART ----------------------------------
-function addToCart(kuantitas_produk){
+function addToCart(){
     const selectColor=document.getElementById('pcolor');
     const selectSize=document.getElementById('psize');
 
     const pName=document.getElementById('pname').innerText;
     const pId=document.getElementById('pid').value;
-    
-    const pColor=selectColor.options[selectColor.selectedIndex].value;
-    const pSize=selectSize.options[selectSize.selectedIndex].value;
+    const productDetailChoose = $('input[name="product_detail_choose"]:checked').val();
+
+    const pColor=productDetailChoose.split('|')[0];
+    const pSize=productDetailChoose.split('|')[1];
+    const pdQty=productDetailChoose.split('|')[2];
+
+    // const pColor=selectColor.options[selectColor.selectedIndex].value;
+    // const pSize=selectSize.options[selectSize.selectedIndex].value;
+
     let pQty=null;
 
     console.log(parseInt(document.getElementById('kuantitas').value, 10));
-    console.log(parseInt(kuantitas_produk));
-    if(parseInt(document.getElementById('kuantitas').value, 10) > parseInt(kuantitas_produk)){
+
+    if(parseInt(document.getElementById('kuantitas').value, 10) > parseInt(pdQty)){
         Swal.fire({
             toast: true,
             position: 'top-end',
@@ -85,7 +91,7 @@ function addToCart(kuantitas_produk){
     }else{
         pQty=document.getElementById('kuantitas').value;
     }
-    
+
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     const data = {
         nama_produk: pName,
@@ -99,7 +105,7 @@ function addToCart(kuantitas_produk){
         method:'post',
         body:JSON.stringify(data),
         headers: {
-            
+
             "Content-Type": "application/json",
             "Accept": "application/json, text-plain, */*",
             "X-Requested-With": "XMLHttpRequest",
@@ -122,7 +128,7 @@ function addToCart(kuantitas_produk){
                 timer: 3000
               })
           }
-      // End Message 
+      // End Message
     ).then(miniCart())
     .catch(error=> {
         Swal.fire({
@@ -166,34 +172,34 @@ if(document.getElementById('cartPage')){
 function createCartPage(cart) {
     return `<tr>
     <td class="col-md-2"><img src="${window.location.origin}/storage/${cart.options.image} " alt="${cart.name}" style="width:60px; height:60px;"></td>
-    
+
     <td class="col-md-2">
         <div class="product-name"><a href="#">${cart.name}</a></div>
-         
-                    <div class="price"> 
+
+                    <div class="price">
                         Rp. ${cart.price}
                     </div>
                 </td>
              <td class="col-md-2">
-            <strong>${cart.options.warna} </strong> 
+            <strong>${cart.options.warna} </strong>
             </td>
          <td class="col-md-2">
           ${cart.options.ukuran == null
             ? `<span> .... </span>`
             :
-          `<strong>${cart.options.ukuran} </strong>` 
-          }           
+          `<strong>${cart.options.ukuran} </strong>`
+          }
             </td>
            <td class="col-md-2">
            ${cart.qty > 1
             ? `<button type="submit" class="btn btn-danger btn-sm" id="${cart.rowId}" onclick="cartDecrement(this.id)" >-</button> `
             : `<button type="submit" class="btn btn-danger btn-sm" disabled >-</button> `
-            } 
-           <input type="text" value="${cart.qty}" min="1" max="100" disabled="" style="width:25px;" >  
-            <button type="submit" class="btn btn-success btn-sm" id="${cart.rowId}" onclick="cartIncrement(this.id)" >+</button>    
+            }
+           <input type="text" value="${cart.qty}" min="1" max="100" disabled="" style="width:25px;" >
+            <button type="submit" class="btn btn-success btn-sm" id="${cart.rowId}" onclick="cartIncrement(this.id)" >+</button>
             </td>
              <td class="col-md-2">
-            <strong>Rp.${cart.subtotal} </strong> 
+            <strong>Rp.${cart.subtotal} </strong>
             </td>
 
     <td class="col-md-1 close-btn">
@@ -238,7 +244,7 @@ function createCartPage(cart) {
     fetch(`${window.location.origin}/cart-decrement/${rowId}`,{
         method:'post',
         headers: {
-            
+
             "Content-Type": "application/json",
             "Accept": "application/json, text-plain, */*",
             "X-Requested-With": "XMLHttpRequest",
@@ -311,7 +317,7 @@ function createCartItem(cart) {
         <h3 class="name"><a href="index.php?page-detail">${cart.name}</a></h3>
         <div class="price"> ${cart.price} * ${cart.qty} </div>
       </div>
-      <div class="col-xs-2 action"> 
+      <div class="col-xs-2 action">
       <button type="submit" id="${cart.rowId}" onclick="cartRemove(this.id)"><i class="fa fa-trash"></i></button> </div>
     </div>
   </div>
@@ -338,7 +344,7 @@ const cartRemove=(rowId)=>{
             }
             ).then(
                 miniCart()
-                
+
             ).then(
                 cart()
             ).then(()=>{
@@ -352,7 +358,7 @@ const cartRemove=(rowId)=>{
                 // }
             }
             ).then(
-                // Start Message 
+                // Start Message
                 Swal.fire({
                     toast: true,
                     position: 'top-end',
@@ -361,7 +367,7 @@ const cartRemove=(rowId)=>{
                     showConfirmButton: false,
                     timer: 3000
                 })
-                // End Message 
+                // End Message
             ) .catch(error=> {
                 Swal.fire({
                     toast: true,
@@ -374,13 +380,13 @@ const cartRemove=(rowId)=>{
             });
         }
 
-//  end mini cart remove 
+//  end mini cart remove
 // -------------------------------------- END REMOVE MINI CART ----------------------------------
 
 
 
 // -------------------------------------- COUPON ----------------------------------
-  
+
   function applyCoupon(){
     const coupon_name=document.getElementById('coupon_name').value;
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -388,7 +394,7 @@ const cartRemove=(rowId)=>{
         method:'post',
         body:JSON.stringify({coupon_name:coupon_name}),
         headers: {
-            
+
             "Content-Type": "application/json",
             "Accept": "application/json, text-plain, */*",
             "X-Requested-With": "XMLHttpRequest",
@@ -422,7 +428,7 @@ const cartRemove=(rowId)=>{
             timer: 3000
           })
       }
-  // End Message 
+  // End Message
 ).catch(error=> {
         Swal.fire({
             toast: true,
@@ -460,7 +466,7 @@ const cartRemove=(rowId)=>{
                 </div>
             </th>
         </tr>`
-        
+
         }else{
             document.getElementById('couponCalField').innerHTML=
                 `<tr>
@@ -482,7 +488,7 @@ const cartRemove=(rowId)=>{
         </tr>`
         }
     }
-        
+
     );
 }
 // -------------------------------------- END COUPON CALCULATION ----------------------------------
@@ -501,7 +507,7 @@ const cartRemove=(rowId)=>{
     ).then(
             document.getElementById('nama_kupon').value=''
     ).then(
-        // Start Message 
+        // Start Message
         Swal.fire({
             toast: true,
             position: 'top-end',
@@ -510,7 +516,7 @@ const cartRemove=(rowId)=>{
             showConfirmButton: false,
             timer: 3000
         })
-        // End Message 
+        // End Message
     ) .catch(error=> {
         Swal.fire({
             toast: true,

@@ -190,7 +190,7 @@
                                             <!-- start 3RD row  -->
 
 
-                                            <div class="col-md-4">
+                                            {{-- <div class="col-md-4">
 
                                                 <div class="form-group">
                                                     <h5>Kuantitas Produk <span class="text-danger">*</span></h5>
@@ -207,7 +207,9 @@
                                                     </div>
                                                 </div>
 
-                                            </div> <!-- end col md 4 -->
+                                            </div> --}}
+
+                                            <!-- end col md 4 -->
                                             <div class="col-md-4">
 
                                                 <div class="form-group">
@@ -240,12 +242,6 @@
 
                                             </div> <!-- end col md 4 -->
 
-
-
-
-                                        </div> <!-- end 3RD row  -->
-
-                                        <div class="row">
                                             <!-- start 4th row  -->
                                             <div class="col-md-4">
 
@@ -267,7 +263,71 @@
                                             </div> <!-- end col md 4 -->
 
 
-                                            <div class="col-md-4">
+                                        </div> <!-- end 3RD row  -->
+
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+                                                <br>
+                                                <div class="form-group">
+                                                    <h5>Ukuran, Warna & Kuantitas Produk <span class="text-danger">*</span></h5>
+
+                                                    <table class="table table-responsive">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    Ukuran Produk
+                                                                </th>
+                                                                <th>
+                                                                    Warna Produk
+                                                                </th>
+                                                                <th>
+                                                                    Kuantitas Produk
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($product->productDetail as $detail)
+                                                                <tr>
+                                                                    <td>
+                                                                        <input type="text" name="ukuran_produk[{{ $detail->id_produk_detail }}]"
+                                                                            value="{{ $detail->ukuran_produk }}"
+                                                                            class="form-control @error('ukuran_produk') is-invalid @enderror" required="">
+                                                                        @error('ukuran_produk')
+                                                                            <div class="invalid-feedback">
+                                                                                {{ $message }}
+                                                                            </div>
+                                                                        @enderror
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" name="warna_produk[{{ $detail->id_produk_detail }}]"
+                                                                            value="{{ $detail->warna_produk }}"
+                                                                            class="form-control @error('warna_produk') is-invalid @enderror" required="">
+                                                                        @error('warna_produk')
+                                                                            <div class="invalid-feedback">
+                                                                                {{ $message }}
+                                                                            </div>
+                                                                        @enderror
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="number" name="kuantitas_produk[{{ $detail->id_produk_detail }}]"
+                                                                            value="{{ $detail->kuantitas_produk }}"
+                                                                            class="form-control @error('kuantitas_produk') is-invalid @enderror"
+                                                                            required="">
+                                                                        @error('kuantitas_produk')
+                                                                            <div class="invalid-feedback">
+                                                                                {{ $message }}
+                                                                            </div>
+                                                                        @enderror
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                    </table>
+                                                </div>
+
+                                            </div>
+
+                                            {{-- <div class="col-md-4">
 
                                                 <div class="form-group">
                                                     <h5>Ukuran Produk<span class="text-danger">*</span></h5>
@@ -302,7 +362,7 @@
                                                     </div>
                                                 </div>
 
-                                            </div> <!-- end col md 4 -->
+                                            </div> <!-- end col md 4 --> --}}
 
 
 

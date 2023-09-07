@@ -361,23 +361,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (this.value === "alamat_utama") {
                 // Perform action for Alamat Utama
                 console.log("Alamat Utama selected");
-                // document.getElementById('nama_pengiriman').value = '{{ Auth::user()->name }}';
-                // document.getElementById('email_pengiriman').value = '{{ Auth::user()->email }}';
-                // document.getElementById('no_telepon_pengiriman').value = '{{ Auth::user()->phone }}';
-                // document.getElementById('kode_pos').value = '{{ Auth::user()->kode_pos }}';
-                // document.getElementById('provinsi').value = '{{ $provinsiUser }}';
-                // document.getElementById('kecamatan').value = '{{ Auth::user()->kecamatan }}';
                 document.getElementById('alamat').value = `{{ Auth::user()->alamat }}`;
             } else if (this.value === "alamat_lain") {
                 // Perform action for Alamat Lain
                 console.log("Alamat Lain selected");
-                // document.getElementById('nama_pengiriman').value = '';
-                // document.getElementById('email_pengiriman').value = '';
-                // document.getElementById('no_telepon_pengiriman').value = '';
-                // document.getElementById('kode_pos').value = '';
-                // document.getElementById('provinsi').value = '';
-                // document.getElementById('kabupaten').value = '';
-                // document.getElementById('kecamatan').value = '';
                 document.getElementById('alamat').value = '';
             }
 
