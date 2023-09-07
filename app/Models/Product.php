@@ -26,6 +26,10 @@ class Product extends Model
         return $this->belongsTo(Brand::class, 'id_merek', 'id_merek');
     }
 
+    public function productDetail()
+    {
+        return $this->hasMany(ProductDetail::class, 'id_produk', 'id_produk');
+    }
 
 
     // Accessor for the old 'id' attribute

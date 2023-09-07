@@ -42,7 +42,11 @@
                                                         style="width: 60px; height: 50px;"> </td>
                                                 <td>{{ $item->nama_produk }}</td>
                                                 <td>Rp.{{ $item->harga_jual }}</td>
-                                                <td>{{ $item->kuantitas_produk }} Pcs</td>
+                                                <td>
+                                                    @foreach ($item->productDetail as $val)
+                                                        <p>{{ $val->warna_produk }} {{ $val->ukuran_produk }} : <b>{{ $val->kuantitas_produk }} Pcs</b></p>
+                                                    @endforeach
+                                                </td>
 
                                                 <td>
                                                     @if ($item->harga_diskon == null)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\ProductDetail;
 use App\Models\Category;
 use App\Models\MultiImg;
 use App\Models\SubCategory;
